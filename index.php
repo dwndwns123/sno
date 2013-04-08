@@ -21,10 +21,11 @@
       <div class="row">
         <div class="span4">
           <h2>New users</h2>
+          <p><a class="btn" href="register.php">Click here to register</a></p>
         </div>
         <div class="span4 offset2">
           <h2>Returning users</h2>
-          <form method="post" action="login" class="form-horizontal" id="login-form" name="login-form">
+          <form method="post" action="login.php" class="form-horizontal" id="login-form" name="login-form">
             <fieldset>
               <div class="control-group">
                 <label class="control-label" for="login-email">Email</label>
