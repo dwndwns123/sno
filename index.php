@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <?php require('inc/header.php'); ?>
-    <div class="main">
+    <div class="main clearfix">
 
       <div class="row">
         <div class="span12">

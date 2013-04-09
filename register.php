@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <?php require('inc/header.php'); ?>
-    <div class="main">
+    <div class="main clearfix">
 
       <div class="page-header">
         <h1>Participant registration</h1>
@@ -18,7 +18,7 @@
       <div class="row">
         <div class="span8 offset2">
           <p><span class="req">*</span> Required</p>
-          <form method="post" action="register.php" class="form-horizontal" id="registration-form" name="registration-form" data-validate="parsley">
+          <form method="post" action="verify.php" class="form-horizontal" id="registration-form" name="registration-form" data-validate="parsley">
             <fieldset>
               <div class="control-group">
                 <label class="control-label" for="reg-title"><span class="req">*</span> Title</label>
