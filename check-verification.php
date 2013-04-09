@@ -15,11 +15,42 @@
         <h1>Check verification</h1>
       </div>
 
+<?php
+if($_SESSION["logged"]){
+  //TODO: implement 'already logged in' component with link to homepage
+  echo "Already logged in.";
+} else {
+  $rows = mysql_query("SELECT * FROM Users WHERE email='$_POST[verEmail]'") or die(mysql_error());
+  if(mysql_num_rows($rows)==1){
+    $user = mysql_fetch_array($rows);
+    if($_POST["verCode"]==$user["verification"]){
+
+      $sql = "UPDATE Users SET verified='1' WHERE email='".$user['email']."'";
+      mysql_query($sql) or die(mysql_error());
+
+      $_SESSION["title"] = $user["title"];
+      $_SESSION["first_name"] = $user["first_name"];
+      $_SESSION["last_name"] = $user["last_name"];
+      $_SESSION["email"] = $user["email"];
+      $_SESSION["id"] = $user["id"];
+      $_SESSION["logged"] = true;
+      $_SESSION["sentpass"] = false;
+
+      //TODO: generate and send 'you have verified' email
+
+      $message = '<p class="lead">Verification successful.</p><p>You are now logged in as <strong>'.$_SESSION["email"].'</strong>.</p><p><a class="btn btn-primary" href="/">Home</a></p>';
+    } else {
+      $message = '<div class="alert alert-error">Verification unsuccessful.</div><p>Make sure you copy/paste the whole verification code.</p><p><a class="btn btn-primary" href="javascript:history.go(-1);">Try again</a></p>';
+    }
+  } else {
+    $message = '<div class="alert alert-error">Username does not exist.</div><p class="lead">You probably just mistyped it, old thing.</p><p><a class="btn btn-primary" href="javascript:history.go(-1);">Try again</a></p>';
+  }
+}
+?>
       <div class="row">
         <div class="span12">
-          <div class="well">
-            <p class="lead">Verification successful.</p><p>You are now logged in as <strong>xxx@yyyyyyy.zzz</strong>.</p><p><a class="btn btn-primary" href="/">Home</a></p>
-          </div>
+          <!-- <p class="lead">Verification successful.</p><p>You are now logged in as <strong>xxx@yyyyyyy.zzz</strong>.</p><p><a class="btn btn-primary" href="/">Home</a></p> -->
+          <?= $message; ?>
         </div>
       </div>
 

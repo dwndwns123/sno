@@ -32,7 +32,7 @@
                     <option value="Dr.">Dr.</option>
                     <option value="Prof.">Prof.</option>
                     <option value="Rev.">Rev.</option>
-                    <option value="other">Other</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
               </div>

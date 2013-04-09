@@ -43,7 +43,6 @@ if($_SESSION["logged"]){
     //do nothing - we arrived by another means, most likely the link in the verification email
   }
 ?>
-
       <div class="row">
         <div class="span12">
           <div class="well">
@@ -55,7 +54,7 @@ if($_SESSION["logged"]){
       </div>
 
       <div class="row span8 offset2">
-        <form class="form-horizontal" id="verify" method="post" action="xxx.php" data-validate="parsley">
+        <form class="form-horizontal" id="verify" method="post" action="check-verification.php" data-validate="parsley">
           <fieldset>
             <div class="control-group">
               <label class="control-label" for="verEmail">Email address</label>
