@@ -18,7 +18,7 @@
       <div class="row">
         <div class="span12">
           <div class="well">
-            <p class="lead">Verification successful.</p><p>You are now logged in as <strong>xxx@yyyyyyy.zzz</strong>.</p><p><a class="btn btn-primary" href="home.php">Home</a></p>
+            <p class="lead">Verification successful.</p><p>You are now logged in as <strong>xxx@yyyyyyy.zzz</strong>.</p><p><a class="btn btn-primary" href="/">Home</a></p>
           </div>
         </div>
       </div>
