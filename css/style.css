@@ -7,6 +7,9 @@ footer {
   padding-top: 20px;
 }
 
+.req {
+  color: #c00;
+}
 
 input.parsley-error {
   background-color: #fcc;
