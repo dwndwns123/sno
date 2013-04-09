@@ -3,14 +3,15 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 08, 2013 at 06:12 PM
+-- Generation Time: Apr 09, 2013 at 12:18 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `test`
+-- Database: `field-test`
 --
 
 -- --------------------------------------------------------
@@ -19,8 +20,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `Countries`
 --
 
-DROP TABLE IF EXISTS `Countries`;
-CREATE TABLE `Countries` (
+CREATE TABLE IF NOT EXISTS `Countries` (
   `country_id` int(11) NOT NULL,
   `country_code` varchar(2) NOT NULL,
   `name` varchar(50) NOT NULL
@@ -32,8 +32,7 @@ CREATE TABLE `Countries` (
 -- Table structure for table `Encounters`
 --
 
-DROP TABLE IF EXISTS `Encounters`;
-CREATE TABLE `Encounters` (
+CREATE TABLE IF NOT EXISTS `Encounters` (
   `encounter_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`encounter_id`)
@@ -45,8 +44,7 @@ CREATE TABLE `Encounters` (
 -- Table structure for table `Encounter_Reasons`
 --
 
-DROP TABLE IF EXISTS `Encounter_Reasons`;
-CREATE TABLE `Encounter_Reasons` (
+CREATE TABLE IF NOT EXISTS `Encounter_Reasons` (
   `rfe_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `encounter_id` mediumint(9) NOT NULL,
   `refset_id` int(11) NOT NULL COMMENT 'this differentiates between health issues & RFE',
@@ -66,8 +64,7 @@ CREATE TABLE `Encounter_Reasons` (
 -- Table structure for table `Gender`
 --
 
-DROP TABLE IF EXISTS `Gender`;
-CREATE TABLE `Gender` (
+CREATE TABLE IF NOT EXISTS `Gender` (
   `gender_id` int(11) NOT NULL,
   `gender` varchar(10) NOT NULL,
   UNIQUE KEY `id` (`gender_id`)
@@ -79,8 +76,7 @@ CREATE TABLE `Gender` (
 -- Table structure for table `Map_Concepts`
 --
 
-DROP TABLE IF EXISTS `Map_Concepts`;
-CREATE TABLE `Map_Concepts` (
+CREATE TABLE IF NOT EXISTS `Map_Concepts` (
   `map_id` int(11) NOT NULL,
   `map_code` varchar(25) NOT NULL,
   `label` varchar(250) NOT NULL,
@@ -94,8 +90,7 @@ CREATE TABLE `Map_Concepts` (
 -- Table structure for table `SCT_Concepts`
 --
 
-DROP TABLE IF EXISTS `SCT_Concepts`;
-CREATE TABLE `SCT_Concepts` (
+CREATE TABLE IF NOT EXISTS `SCT_Concepts` (
   `sct_id` int(11) NOT NULL,
   `concept_name` varchar(250) NOT NULL,
   PRIMARY KEY (`sct_id`)
@@ -107,8 +102,7 @@ CREATE TABLE `SCT_Concepts` (
 -- Table structure for table `Users`
 --
 
-DROP TABLE IF EXISTS `Users`;
-CREATE TABLE `Users` (
+CREATE TABLE IF NOT EXISTS `Users` (
   `user_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `title` varchar(5) DEFAULT NULL,
   `first_name` varchar(25) NOT NULL,
@@ -121,5 +115,7 @@ CREATE TABLE `Users` (
   `country_id` int(11) NOT NULL,
   `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `verified` tinyint(1) NOT NULL DEFAULT '0',
+  `verification` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
