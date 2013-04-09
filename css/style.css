@@ -6,3 +6,16 @@ footer {
   margin-top: 20px;
   padding-top: 20px;
 }
+
+
+input.parsley-error {
+  background-color: #fcc;
+}
+ul.parsley-error-list {
+  margin: 0;
+}
+ul.parsley-error-list li {
+  list-style-type: none;
+  color: #c00;
+  font-size: 11px;
+}

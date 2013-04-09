@@ -1,3 +1,4 @@
+<?php include "inc/conn.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +11,18 @@
     <?php require('inc/header.php'); ?>
     <div class="main">
 
+      <div class="page-header">
+        <h1>Participant registration</h1>
+      </div>
+
       <div class="row">
         <div class="span8 offset2">
-          <form method="post" action="register.php" class="form-horizontal" id="registration-form" name="registration-form">
+          <form method="post" action="register.php" class="form-horizontal" id="registration-form" name="registration-form" data-validate="parsley">
             <fieldset>
               <div class="control-group">
                 <label class="control-label" for="reg-title">Title</label>
                 <div class="controls">
-                  <select class="input-xlarge" id="reg-title" name="reg-title">
+                  <select class="input-xlarge" id="reg-title" name="reg-title" data-required="true">
                     <option value="">Please select</option>
                     <option value="Mr.">Mr.</option>
                     <option value="Mrs.">Mrs.</option>
@@ -33,37 +38,37 @@
               <div class="control-group">
                 <label class="control-label" for="reg-firstname">First name</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="30" id="reg-firstname" name="reg-firstname" placeholder="First name">
+                  <input type="text" class="input-xlarge" maxlength="30" id="reg-firstname" name="reg-firstname" placeholder="First name" data-trigger="change" data-required="true">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label" for="reg-lastname">Last name</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="30" id="reg-lastname" name="reg-lastname" placeholder="Last name">
+                  <input type="text" class="input-xlarge" maxlength="30" id="reg-lastname" name="reg-lastname" placeholder="Last name" data-trigger="change" data-required="true">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label" for="reg-email">Email address</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="50" id="reg-email" name="reg-email" placeholder="Email address">
+                  <input type="text" class="input-xlarge" maxlength="50" id="reg-email" name="reg-email" placeholder="Email address" data-trigger="change" data-required="true" data-type="email">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label" for="reg-password">Password</label>
                 <div class="controls">
-                  <input type="password" class="input-xlarge" id="reg-password" name="reg-password" placeholder="Password">
+                  <input type="password" class="input-xlarge" id="reg-password" name="reg-password" placeholder="Password" data-trigger="change" data-required="true" data-minlength="6">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label" for="reg-confirmpassword">Confirm password</label>
                 <div class="controls">
-                  <input type="password" class="input-xlarge" id="reg-confirmpassword" name="reg-confirmpassword" placeholder="Confirm password">
+                  <input type="password" class="input-xlarge" id="reg-confirmpassword" name="reg-confirmpassword" placeholder="Confirm password" data-trigger="change" data-required="true" data-minlength="6" data-equalto="#reg-password">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label" for="reg-country">Country</label>
                 <div class="controls">
-                  <select class="input-xlarge" id="reg-country" name="reg-country">
+                  <select class="input-xlarge" id="reg-country" name="reg-country" data-required="true">
                     <option value="">Please select</option>
                     <?php require('inc/countries.php'); ?>
                   </select>
@@ -72,13 +77,13 @@
               <div class="control-group">
                 <label class="control-label" for="reg-role">Main role/occupation</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="100" id="reg-role" name="reg-role" placeholder="Main role/occupation">
+                  <input type="text" class="input-xlarge" maxlength="100" id="reg-role" name="reg-role" placeholder="Main role/occupation" data-required="true">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label" for="reg-gender">Gender</label>
                 <div class="controls">
-                  <select class="input-xlarge" id="reg-gender" name="reg-gender">
+                  <select class="input-xlarge" id="reg-gender" name="reg-gender" data-required="true">
                     <option value="">Please select</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -88,23 +93,18 @@
               <div class="control-group">
                 <label class="control-label" for="reg-age">Age</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="100" id="reg-age" name="reg-age" placeholder="Age">
-                </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label" for="reg-ftoption">Field test option</label>
-                <div class="controls">
-                  <select class="input-xlarge" id="reg-ftoption" name="reg-ftoption">
-                    <option value="">Please select</option>
-                    <option value="RefSet Only">RefSet Only</option>
-                    <option value="RefSet + Map">RefSet + Map</option>
-                  </select>
+                  <input type="text" class="input-xlarge" maxlength="100" id="reg-age" name="reg-age" placeholder="Age" data-required="true">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label" for="reg-conditions">Conditions</label>
                 <div class="controls">
                   <textarea class="input-xlarge" id="reg-conditions" name="reg-conditions"></textarea>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <input type="submit" class="btn" value="Register">
                 </div>
               </div>
             </fieldset>
