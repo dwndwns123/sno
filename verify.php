@@ -36,9 +36,11 @@ if($_SESSION["logged"]){
       //TODO: generate and send email here
       echo "User added";
     }
-  } else {
+  } else if($_POST["regTitle"] && $_POST["regFirstname"] && $_POST["regLastname"] && $_POST["regEmail"] && $_POST["regPassword"] && !is_null($_POST["regCountry"]) && $_POST["regRole"] && !is_null($_POST["regGender"]) && $_POST["regAge"]) {// we arrived by posting from the registration form and all the fields are NOT here
     //TODO: This shouldn't happen due to client-side validation, but should handle it anyway
     echo "Not all required fields present in POST";
+  } else {
+    //do nothing - we arrived by another means, most likely the link in the verification email
   }
 ?>
 
