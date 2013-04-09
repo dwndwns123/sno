@@ -5,3 +5,18 @@
 <script src="/js/lib/parsley.min.js"></script>
 
 <script src="/js/script.js"></script>
+
+
+
+
+
+
+<?php
+foreach ($_SESSION as $key=>$value){
+  print "\$_ SESSION [\"$key\"] == $value<br>";
+}
+
+print"<br /><br />POST:";
+print_r($_POST);
+
+?>

@@ -11,8 +11,10 @@
     <?php require('inc/header.php'); ?>
     <div class="main clearfix">
 
+<?php
+if(!$_SESSION["logged"]){
+?>
 <!-- IF NOT LOGGED IN -->
-<!-- 
       <div class="row">
         <div class="span12">
           <div class="hero-unit">
@@ -28,18 +30,18 @@
         </div>
         <div class="span4 offset2">
           <h2>Returning users</h2>
-          <form method="post" action="login.php" class="form-horizontal" id="login-form" name="login-form">
+          <form method="post" action="login.php" class="form-horizontal" id="loginForm" name="loginForm">
             <fieldset>
               <div class="control-group">
-                <label class="control-label" for="login-email">Email</label>
+                <label class="control-label" for="loginEmail">Email</label>
                 <div class="controls">
-                  <input type="text" name="login-email" id="login-email" placeholder="Email">
+                  <input type="text" name="loginEmail" id="loginEmail" placeholder="Email">
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="login-password">Password</label>
+                <label class="control-label" for="loginPassword">Password</label>
                 <div class="controls">
-                  <input type="password" name="login-password" id="login-password" placeholder="Password">
+                  <input type="password" name="loginPassword" id="loginPassword" placeholder="Password">
                 </div>
               </div>
               <div class="control-group">
@@ -51,7 +53,9 @@
           </form>
         </div>
       </div>
- -->
+<?php
+} else {
+?>
 <!-- ELSE IF LOGGED IN -->
 
       <div class="page-header">
@@ -76,7 +80,9 @@
           <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
         </div>
       </div>
-
+<?php
+}
+?>
 <!-- END IF -->
 
     </div>

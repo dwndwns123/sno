@@ -15,6 +15,33 @@
         <h1>Registration confirmation</h1>
       </div>
 
+<?php
+if($_SESSION["logged"]){
+  //TODO: implement 'already logged in' component with link to homepage
+  echo "Already logged in.";
+} else {
+  if($_POST["regTitle"] && $_POST["regFirstname"] && $_POST["regLastname"] && $_POST["regEmail"] && $_POST["regPassword"] && !is_null($_POST["regCountry"]) && $_POST["regRole"] && !is_null($_POST["regGender"]) && $_POST["regAge"]){// we arrived by posting from the registration form and all the fields are here
+
+    $checkUser = mysql_query("SELECT * FROM Users WHERE email='$_POST[regEmail]'") or die(mysql_error());
+    $user = mysql_fetch_array($checkUser);
+    if(mysql_num_rows($checkUser)==1){
+      echo "User already in DB";
+    } else {
+      $ver = md5($_POST["regEmail"]);
+      $pass = md5($_POST["password"]);
+
+      $sql="INSERT INTO Users (title,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','$_POST[regFirstname]','$_POST[regLastname]','$_POST[regEmail]','$pass','$_POST[regRole]','$_POST[regAge]','$_POST[regGender]','$_POST[regCountry]','$ver')";
+      mysql_query($sql) or die(mysql_error());
+
+      //TODO: generate and send email here
+      echo "User added";
+    }
+  } else {
+    //TODO: This shouldn't happen due to client-side validation, but should handle it anyway
+    echo "Not all required fields present in POST";
+  }
+?>
+
       <div class="row">
         <div class="span12">
           <div class="well">
@@ -29,15 +56,15 @@
         <form class="form-horizontal" id="verify" method="post" action="xxx.php" data-validate="parsley">
           <fieldset>
             <div class="control-group">
-              <label class="control-label" for="ver-email">Email address</label>
+              <label class="control-label" for="verEmail">Email address</label>
               <div class="controls">
-                <input type="text" id="username" name="ver-email" placeholder="Email address" value="xxx@yyyyyyy.zzz" data-trigger="change" data-required="true" data-type="email">
+                <input type="text" id="verEmail" name="verEmail" placeholder="Email address" value="<?= (empty($_POST["regEmail"]) ? '' : $_POST["regEmail"]); ?>" data-trigger="change" data-required="true" data-type="email">
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" for="verification">Verification code</label>
+              <label class="control-label" for="verCode">Verification code</label>
               <div class="controls">
-                <input type="text" id="verification" name="verification" placeholder="Verification code">
+                <input type="text" id="verCode" name="verCode" placeholder="Verification code" data-required="true">
               </div>
             </div>
             <div class="control-group">
@@ -53,7 +80,9 @@
           </fieldset>
         </form>
       </div>
-
+<?php
+}
+?>
     </div>
     <?php require('inc/footer.php'); ?>
   </div>

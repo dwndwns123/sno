@@ -18,12 +18,12 @@
       <div class="row">
         <div class="span8 offset2">
           <p><span class="req">*</span> Required</p>
-          <form method="post" action="verify.php" class="form-horizontal" id="registration-form" name="registration-form" data-validate="parsley">
+          <form method="post" action="verify.php" class="form-horizontal" id="registrationForm" name="registrationForm" data-validate="parsley">
             <fieldset>
               <div class="control-group">
-                <label class="control-label" for="reg-title"><span class="req">*</span> Title</label>
+                <label class="control-label" for="regTitle"><span class="req">*</span> Title</label>
                 <div class="controls">
-                  <select class="input-xlarge" id="reg-title" name="reg-title" data-required="true">
+                  <select class="input-xlarge" id="regTitle" name="regTitle" data-required="true">
                     <option value="">Please select</option>
                     <option value="Mr.">Mr.</option>
                     <option value="Mrs.">Mrs.</option>
@@ -37,70 +37,70 @@
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="reg-firstname"><span class="req">*</span> First name</label>
+                <label class="control-label" for="regFirstname"><span class="req">*</span> First name</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="30" id="reg-firstname" name="reg-firstname" placeholder="First name" data-trigger="change" data-required="true">
+                  <input type="text" class="input-xlarge" maxlength="30" id="regFirstname" name="regFirstname" placeholder="First name" data-trigger="change" data-required="true">
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="reg-lastname"><span class="req">*</span> Last name</label>
+                <label class="control-label" for="regLastname"><span class="req">*</span> Last name</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="30" id="reg-lastname" name="reg-lastname" placeholder="Last name" data-trigger="change" data-required="true">
+                  <input type="text" class="input-xlarge" maxlength="30" id="regLastname" name="regLastname" placeholder="Last name" data-trigger="change" data-required="true">
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="reg-email"><span class="req">*</span> Email address</label>
+                <label class="control-label" for="regEmail"><span class="req">*</span> Email address</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="50" id="reg-email" name="reg-email" placeholder="Email address" data-trigger="change" data-required="true" data-type="email">
+                  <input type="text" class="input-xlarge" maxlength="50" id="regEmail" name="regEmail" placeholder="Email address" data-trigger="change" data-required="true" data-type="email">
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="reg-password"><span class="req">*</span> Password</label>
+                <label class="control-label" for="regPassword"><span class="req">*</span> Password</label>
                 <div class="controls">
-                  <input type="password" class="input-xlarge" id="reg-password" name="reg-password" placeholder="Password" data-trigger="change" data-required="true" data-minlength="6"><span class="help-inline">Minimum 6 characters</span>
+                  <input type="password" class="input-xlarge" id="regPassword" name="regPassword" placeholder="Password" data-trigger="change" data-required="true" data-minlength="6"><span class="help-inline">Minimum 6 characters</span>
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="reg-confirmpassword"><span class="req">*</span> Confirm password</label>
+                <label class="control-label" for="regConfirmpassword"><span class="req">*</span> Confirm password</label>
                 <div class="controls">
-                  <input type="password" class="input-xlarge" id="reg-confirmpassword" name="reg-confirmpassword" placeholder="Confirm password" data-trigger="change" data-required="true" data-minlength="6" data-equalto="#reg-password">
+                  <input type="password" class="input-xlarge" id="regConfirmpassword" name="regConfirmpassword" placeholder="Confirm password" data-trigger="change" data-required="true" data-minlength="6" data-equalto="#regPassword">
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="reg-country"><span class="req">*</span> Country</label>
+                <label class="control-label" for="regCountry"><span class="req">*</span> Country</label>
                 <div class="controls">
-                  <select class="input-xlarge" id="reg-country" name="reg-country" data-required="true">
+                  <select class="input-xlarge" id="regCountry" name="regCountry" data-required="true">
                     <option value="">Please select</option>
                     <?php require('inc/countries.php'); ?>
                   </select>
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="reg-role"><span class="req">*</span> Main role/occupation</label>
+                <label class="control-label" for="regRole"><span class="req">*</span> Main role/occupation</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="100" id="reg-role" name="reg-role" placeholder="Main role/occupation" data-required="true">
+                  <input type="text" class="input-xlarge" maxlength="100" id="regRole" name="regRole" placeholder="Main role/occupation" data-required="true">
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="reg-gender"><span class="req">*</span> Gender</label>
+                <label class="control-label" for="regGender"><span class="req">*</span> Gender</label>
                 <div class="controls">
-                  <select class="input-xlarge" id="reg-gender" name="reg-gender" data-required="true">
+                  <select class="input-xlarge" id="regGender" name="regGender" data-required="true">
                     <option value="">Please select</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                    <?php
+                    $result = mysql_query("SELECT * FROM Gender") or die(mysql_error());
+                    while($row = mysql_fetch_array($result)){
+                      ?>
+                      <option value="<?=$row['gender_id'];?>"><?=$row['gender'];?></option>
+                      <?php
+                    }
+                    ?>
                   </select>
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="reg-age"><span class="req">*</span> Age</label>
+                <label class="control-label" for="regAge"><span class="req">*</span> Age</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" maxlength="100" id="reg-age" name="reg-age" placeholder="Age" data-required="true">
-                </div>
-              </div>
-              <div class="control-group">
-                <label class="control-label" for="reg-conditions">Conditions</label>
-                <div class="controls">
-                  <textarea class="input-xlarge" id="reg-conditions" name="reg-conditions"></textarea>
+                  <input type="text" class="input-xlarge" id="regAge" name="regAge" placeholder="Age" data-required="true">
                 </div>
               </div>
               <div class="control-group">
