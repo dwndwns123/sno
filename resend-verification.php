@@ -24,12 +24,12 @@
       </div>
 
       <div class="row span8 offset2">
-        <form class="form-horizontal" id="resend-verification" method="post" action="xxx.php">
+        <form class="form-horizontal" id="resend-verification" method="post" action="xxx.php" data-validate="parsley">
           <fieldset>
             <div class="control-group">
               <label class="control-label" for="resend-email">Email address</label>
               <div class="controls">
-                <input type="text" id="resend-email" name="resend-email" placeholder="Email address">
+                <input type="text" id="resend-email" name="resend-email" placeholder="Email address" data-trigger="change" data-required="true" data-type="email">
               </div>
             </div>
             <div class="control-group">

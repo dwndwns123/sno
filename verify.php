@@ -26,12 +26,12 @@
       </div>
 
       <div class="row span8 offset2">
-        <form class="form-horizontal" id="verify" method="post" action="xxx.php">
+        <form class="form-horizontal" id="verify" method="post" action="xxx.php" data-validate="parsley">
           <fieldset>
             <div class="control-group">
               <label class="control-label" for="ver-email">Email address</label>
               <div class="controls">
-                <input type="text" id="username" name="ver-email" placeholder="Email address" value="xxx@yyyyyyy.zzz">
+                <input type="text" id="username" name="ver-email" placeholder="Email address" value="xxx@yyyyyyy.zzz" data-trigger="change" data-required="true" data-type="email">
               </div>
             </div>
             <div class="control-group">
