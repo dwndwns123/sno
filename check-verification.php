@@ -14,11 +14,9 @@
       <div class="page-header">
         <h1>Check verification</h1>
       </div>
-
 <?php
 if($_SESSION["logged"]){
-  //TODO: implement 'already logged in' component with link to homepage
-  echo "Already logged in.";
+  include('inc/already-logged-in.php');
 } else {
   $rows = mysql_query("SELECT * FROM Users WHERE email='$_POST[verEmail]'") or die(mysql_error());
   if(mysql_num_rows($rows)==1){
@@ -32,7 +30,7 @@ if($_SESSION["logged"]){
       $_SESSION["first_name"] = $user["first_name"];
       $_SESSION["last_name"] = $user["last_name"];
       $_SESSION["email"] = $user["email"];
-      $_SESSION["id"] = $user["id"];
+      $_SESSION["user_id"] = $user["user_id"];
       $_SESSION["logged"] = true;
       $_SESSION["sentpass"] = false;
 
@@ -40,12 +38,11 @@ if($_SESSION["logged"]){
 
       $message = '<p class="lead">Verification successful.</p><p>You are now logged in as <strong>'.$_SESSION["email"].'</strong>.</p><p><a class="btn btn-primary" href="/">Home</a></p>';
     } else {
-      $message = '<div class="alert alert-error">Verification unsuccessful.</div><p>Make sure you copy/paste the whole verification code.</p><p><a class="btn btn-primary" href="javascript:history.go(-1);">Try again</a></p>';
+      $message = '<div class="alert alert-error">Verification unsuccessful.</div><p>Make sure you copy/paste the whole verification code.</p><p><a class="btn btn-primary" href="verify.php">Try again</a></p>';
     }
   } else {
-    $message = '<div class="alert alert-error">Username does not exist.</div><p class="lead">You probably just mistyped it, old thing.</p><p><a class="btn btn-primary" href="javascript:history.go(-1);">Try again</a></p>';
+    $message = '<div class="alert alert-error">Email address not recognised.</div><p><a class="btn btn-primary" href="verify.php">Try again</a></p>';
   }
-}
 ?>
       <div class="row">
         <div class="span12">
@@ -53,7 +50,9 @@ if($_SESSION["logged"]){
           <?= $message; ?>
         </div>
       </div>
-
+<?php
+}
+?>
     </div>
     <?php require('inc/footer.php'); ?>
   </div>

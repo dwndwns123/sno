@@ -14,7 +14,11 @@
       <div class="page-header">
         <h1>Participant registration</h1>
       </div>
-
+<?php
+if($_SESSION["logged"]){
+  include('inc/already-logged-in.php');
+} else {
+?>
       <div class="row">
         <div class="span8 offset2">
           <p><span class="req">*</span> Required</p>
@@ -112,7 +116,9 @@
           </form>
         </div>
       </div>
-
+<?php
+}
+?>
     </div>
     <?php require('inc/footer.php'); ?>
   </div>

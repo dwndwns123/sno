@@ -14,7 +14,11 @@
       <div class="page-header">
         <h1>Resend verification</h1>
       </div>
-
+<?php
+if($_SESSION["logged"]){
+  include('inc/already-logged-in.php');
+} else {
+?>
       <div class="row">
         <div class="span12">
           <div class="well">
@@ -45,7 +49,9 @@
           </fieldset>
         </form>
       </div>
-
+<?php
+}
+?>
     </div>
     <?php require('inc/footer.php'); ?>
   </div>

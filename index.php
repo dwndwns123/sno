@@ -21,7 +21,7 @@ if($_POST["loginEmail"] && $_POST["loginPassword"]){
         $_SESSION["first_name"] = $user["first_name"];
         $_SESSION["last_name"] = $user["last_name"];
         $_SESSION["email"] = $user["email"];
-        $_SESSION["id"] = $user["id"];
+        $_SESSION["user_id"] = $user["user_id"];
         $_SESSION["logged"] = true;
         $_SESSION["sentpass"] = false;
       } else {
@@ -40,14 +40,12 @@ if($_POST["loginEmail"] && $_POST["loginPassword"]){
   <div class="container">
     <?php require('inc/header.php'); ?>
     <div class="main clearfix">
-
 <?php
 if($message){
   echo $message;
 }
 if(!$_SESSION["logged"]){
 ?>
-<!-- IF NOT LOGGED IN -->
       <div class="row">
         <div class="span12">
           <div class="hero-unit">
@@ -89,8 +87,6 @@ if(!$_SESSION["logged"]){
 <?php
 } else {
 ?>
-<!-- ELSE IF LOGGED IN -->
-
       <div class="page-header">
         <h1>Home</h1>
       </div>
@@ -116,8 +112,6 @@ if(!$_SESSION["logged"]){
 <?php
 }
 ?>
-<!-- END IF -->
-
     </div>
     <?php require('inc/footer.php'); ?>
   </div>

@@ -14,7 +14,11 @@
       <div class="page-header">
         <h1>New encounter</h1>
       </div>
-
+<?php
+if(!$_SESSION["logged"]){
+  include('inc/not-logged-in.php');
+} else {
+?>
       <h2>Add reason for encounter (RFE)</h2>
       <div class="row">
         <div class="span8 offset2">
@@ -28,8 +32,6 @@
           </div>
         </div>
       </div>
-      
-
 
       <div class="row">
         <div class="span8 offset2">
@@ -100,7 +102,9 @@
           </form>
         </div>
       </div>
-
+<?php
+}
+?>
     </div>
     <?php require('inc/footer.php'); ?>
   </div>
