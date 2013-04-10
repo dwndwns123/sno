@@ -9,8 +9,8 @@
 
 
 
-
-
+<div class="well">
+<p><big><strong>DEBUG</strong></big></p>
 <?php
 foreach ($_SESSION as $key=>$value){
   print "\$_ SESSION [\"$key\"] == $value<br>";
@@ -20,3 +20,4 @@ print"<br /><br />POST:";
 print_r($_POST);
 
 ?>
+</div>

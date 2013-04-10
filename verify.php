@@ -27,8 +27,8 @@ if($_SESSION["logged"]){
     if(mysql_num_rows($checkUser)==1){
       echo "User already in DB";
     } else {
-      $ver = md5($_POST["regEmail"]);
-      $pass = md5($_POST["password"]);
+      $ver = md5(uniqid(mt_rand(), true));
+      $pass = md5($_POST["regPassword"]);
 
       $sql="INSERT INTO Users (title,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','$_POST[regFirstname]','$_POST[regLastname]','$_POST[regEmail]','$pass','$_POST[regRole]','$_POST[regAge]','$_POST[regGender]','$_POST[regCountry]','$ver')";
       mysql_query($sql) or die(mysql_error());

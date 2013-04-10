@@ -54,6 +54,22 @@ footer {
   color: #c00;
 }
 
+
+.likert .inline {
+  vertical-align: top;
+  width: 18%;
+  padding: 0;
+}
+.likert .inline span,
+.likert .inline input {
+  display: block;
+  float: none;
+  margin: 0 auto 5px;
+  text-align: center;
+}
+
+
+
 input.parsley-error {
   background-color: #fcc;
 }

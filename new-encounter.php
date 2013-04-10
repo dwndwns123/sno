@@ -46,21 +46,23 @@
               </select>
               <hr>
               <p>2. How well does this SNOMED CT concept adequately represent the RFE you wish to record?</p>
-              <label class="radio inline">
-                <input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation1" value="1"> 1 (very)
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation2" value="2"> 2
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation3" value="3"> 3
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation4" value="4"> 4
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation5" value="5"> 5 (poorly)
-              </label>
+              <div class="likert">
+                <label class="radio inline">
+                  <span>1</span><input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation1" value="1"><span>Very</span>
+                </label>
+                <label class="radio inline">
+                  <span>2</span><input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation2" value="2">
+                </label>
+                <label class="radio inline">
+                  <span>3</span><input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation3" value="3">
+                </label>
+                <label class="radio inline">
+                  <span>4</span><input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation4" value="4">
+                </label>
+                <label class="radio inline">
+                  <span>5</span><input type="radio" name="rfeConceptrepresentation" id="rfeConceptrepresentation5" value="5"><span>Poorly</span>
+                </label>
+              </div>
               <hr>
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
               <input type="text" class="span8" id="rfeConceptfreetext" name="rfeConceptfreetext" maxlength="250">
@@ -68,21 +70,23 @@
               <p>4. The associated ICPC-2 code is: <span class="uneditable-input span3">xxxxx</span></p>
               <hr>
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the RFE you recorded?</p>
-              <label class="radio inline">
-                <input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate1" value="1"> 1 (very)
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate2" value="2"> 2
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate3" value="3"> 3
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate4" value="4"> 4
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate5" value="5"> 5 (not at all)
-              </label>
+              <div class="likert">
+                <label class="radio inline">
+                  <span>1</span><input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate1" value="1"><span>Very</span>
+                </label>
+                <label class="radio inline">
+                  <span>2</span><input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate2" value="2">
+                </label>
+                <label class="radio inline">
+                  <span>3</span><input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate3" value="3">
+                </label>
+                <label class="radio inline">
+                  <span>4</span><input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate4" value="4">
+                </label>
+                <label class="radio inline">
+                  <span>5</span><input type="radio" name="rfeIcpc2appropriate" id="rfeIcpc2appropriate5" value="5"><span>Not at all</span>
+                </label>
+              </div>
               <hr>
               <p>6. If the ICPC-2 code is not an appropriate match, please record your preferred ICPC-2 code:</p>
               <input type="text" class="span3" id="rfeIcpc2freetext" name="rfeIcpc2freetext" maxlength="250">

@@ -7,11 +7,44 @@
   <title>SNOMED CT GP/FP RefSet Field Test - Home</title>
 </head>
 <body>
+
+<?php
+// check for login post
+if($_POST["loginEmail"] && $_POST["loginPassword"]){
+  $rows = mysql_query("SELECT * FROM Users WHERE email='$_POST[loginEmail]'") or die(mysql_error());
+
+  if(mysql_num_rows($rows)==1){
+    $user = mysql_fetch_array($rows);
+    if($user["password"]==md5($_POST["loginPassword"])){
+      if($user["verified"]){
+        $_SESSION["title"] = $user["title"];
+        $_SESSION["first_name"] = $user["first_name"];
+        $_SESSION["last_name"] = $user["last_name"];
+        $_SESSION["email"] = $user["email"];
+        $_SESSION["id"] = $user["id"];
+        $_SESSION["logged"] = true;
+        $_SESSION["sentpass"] = false;
+      } else {
+        $message = '<div class="alert">You have not yet verified your email address.<br>Please retrieve the verification code from the email you should by now have received, and enter it <a href="verify.php">here</a>.</div>';
+      }
+    } else {
+      $message = '<div class="alert alert-error">Password incorrect</div>';
+    }
+  } else {
+    $message = '<div class="alert alert-error">Email address not recognised</div>';
+  }
+  // echo $message;
+}
+?>
+
   <div class="container">
     <?php require('inc/header.php'); ?>
     <div class="main clearfix">
 
 <?php
+if($message){
+  echo $message;
+}
 if(!$_SESSION["logged"]){
 ?>
 <!-- IF NOT LOGGED IN -->
@@ -30,18 +63,18 @@ if(!$_SESSION["logged"]){
         </div>
         <div class="span4 offset2">
           <h2>Returning users</h2>
-          <form method="post" action="login.php" class="form-horizontal" id="loginForm" name="loginForm">
+          <form method="post" action="index.php" class="form-horizontal" id="loginForm" name="loginForm" data-validate="parsley">
             <fieldset>
               <div class="control-group">
                 <label class="control-label" for="loginEmail">Email</label>
                 <div class="controls">
-                  <input type="text" name="loginEmail" id="loginEmail" placeholder="Email">
+                  <input type="text" name="loginEmail" id="loginEmail" placeholder="Email" data-trigger="change" data-required="true" data-type="email">
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label" for="loginPassword">Password</label>
                 <div class="controls">
-                  <input type="password" name="loginPassword" id="loginPassword" placeholder="Password">
+                  <input type="password" name="loginPassword" id="loginPassword" placeholder="Password" data-trigger="change" data-required="true">
                 </div>
               </div>
               <div class="control-group">
@@ -71,7 +104,7 @@ if(!$_SESSION["logged"]){
       </div>
       <div class="row">
         <div class="span2 offset5">
-          <a class="btn btn-large btn-block btn-primary">Start field test</a>
+          <a class="btn btn-large btn-block btn-primary" href="new-encounter.php">Add encounter</a>
         </div>
       </div>
       <div class="row disclaimer">
