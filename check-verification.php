@@ -21,24 +21,32 @@ if($_SESSION["logged"]){
   $rows = mysql_query("SELECT * FROM Users WHERE email='$_POST[verEmail]'") or die(mysql_error());
   if(mysql_num_rows($rows)==1){
     $user = mysql_fetch_array($rows);
-    if($_POST["verCode"]==$user["verification"]){
-
-      $sql = "UPDATE Users SET verified='1' WHERE email='".$user['email']."'";
-      mysql_query($sql) or die(mysql_error());
-
-      $_SESSION["title"] = $user["title"];
-      $_SESSION["first_name"] = $user["first_name"];
-      $_SESSION["last_name"] = $user["last_name"];
-      $_SESSION["email"] = $user["email"];
-      $_SESSION["user_id"] = $user["user_id"];
-      $_SESSION["logged"] = true;
-      $_SESSION["sentpass"] = false;
-
-      //TODO: generate and send 'you have verified' email
-
-      $message = '<p class="lead">Verification successful.</p><p>You are now logged in as <strong>'.$_SESSION["email"].'</strong>.</p><p><a class="btn btn-primary" href="/">Home</a></p>';
+    if($user["verified"]){
+      $message = '<div class="well"><p class="lead">'.$user["email"].' is already verified.</p><p><a class="btn btn-primary" href="/">Login</a></p></div>';
     } else {
-      $message = '<div class="alert alert-error">Verification unsuccessful.</div><p>Make sure you copy/paste the whole verification code.</p><p><a class="btn btn-primary" href="verify.php">Try again</a></p>';
+      if($_POST["verCode"]==$user["verification"]){
+
+        $sql = "UPDATE Users SET verified='1' WHERE email='".$user['email']."'";
+        mysql_query($sql) or die(mysql_error());
+
+        $_SESSION["title"] = $user["title"];
+        $_SESSION["first_name"] = $user["first_name"];
+        $_SESSION["last_name"] = $user["last_name"];
+        $_SESSION["email"] = $user["email"];
+        $_SESSION["user_id"] = $user["user_id"];
+        $_SESSION["logged"] = true;
+
+        $emailText = "Thanks for registering on the SNOMED CT Field Test Website.\r\n\r\nYour email address has now been verified and you can now log in normally at http://URL-TO-BE-DETERMINED/ any time.";
+        $subject = "SNOMED CT Field Test Website - Registration Verified";
+        $to = $_POST["regEmail"];
+        $headers = 'From: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'Reply-To: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $emailText, $headers);
+
+        $message = '<div class="well"><p class="lead">Verification successful.</p><p>You are now logged in as <strong>'.$_SESSION["email"].'</strong>.</p><p><a class="btn btn-primary" href="/">Home</a></p></div>';
+      } else {
+        $message = '<div class="alert alert-error">Verification unsuccessful.</div><p>Make sure you copy/paste the whole verification code.</p><p><a class="btn btn-primary" href="verify.php">Try again</a></p>';
+      }
     }
   } else {
     $message = '<div class="alert alert-error">Email address not recognised.</div><p><a class="btn btn-primary" href="verify.php">Try again</a></p>';
@@ -46,7 +54,6 @@ if($_SESSION["logged"]){
 ?>
       <div class="row">
         <div class="span12">
-          <!-- <p class="lead">Verification successful.</p><p>You are now logged in as <strong>xxx@yyyyyyy.zzz</strong>.</p><p><a class="btn btn-primary" href="/">Home</a></p> -->
           <?= $message; ?>
         </div>
       </div>

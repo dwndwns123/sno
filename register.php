@@ -75,7 +75,14 @@ if($_SESSION["logged"]){
                 <div class="controls">
                   <select class="input-xlarge" id="regCountry" name="regCountry" data-required="true">
                     <option value="">Please select</option>
-                    <?php require('inc/countries.php'); ?>
+                    <?php
+                    $result = mysql_query("SELECT * FROM Countries") or die(mysql_error());
+                    while($row = mysql_fetch_array($result)){
+                      ?>
+                      <option value="<?=$row['country_id'];?>"><?=$row['name'];?></option>
+                      <?php
+                    }
+                    ?>
                   </select>
                 </div>
               </div>

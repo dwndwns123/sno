@@ -23,7 +23,6 @@ if($_POST["loginEmail"] && $_POST["loginPassword"]){
         $_SESSION["email"] = $user["email"];
         $_SESSION["user_id"] = $user["user_id"];
         $_SESSION["logged"] = true;
-        $_SESSION["sentpass"] = false;
       } else {
         $message = '<div class="alert">You have not yet verified your email address.<br>Please retrieve the verification code from the email you should by now have received, and enter it <a href="verify.php">here</a>.</div>';
       }
@@ -73,6 +72,11 @@ if(!$_SESSION["logged"]){
                 <label class="control-label" for="loginPassword">Password</label>
                 <div class="controls">
                   <input type="password" name="loginPassword" id="loginPassword" placeholder="Password" data-trigger="change" data-required="true">
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <a href="forgot-password.php">Forgotten your password?</a>
                 </div>
               </div>
               <div class="control-group">

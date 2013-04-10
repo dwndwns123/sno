@@ -17,6 +17,33 @@
 <?php
 if($_SESSION["logged"]){
   include('inc/already-logged-in.php');
+} else if($_POST["resendEmail"]){
+  $rows = mysql_query("SELECT * FROM Users WHERE email='$_POST[resendEmail]'") or die(mysql_error());
+
+  if(mysql_num_rows($rows)==1){
+    $user = mysql_fetch_array($rows);
+    if($user["verified"]){
+      $message = '<div class="well"><p class="lead">'.$user["email"].' is already verified.</p><p><a class="btn btn-primary" href="/">Login</a></p></div>';
+    } else {
+      $emailText = "Hi ".$user["first_name"].".\r\n\r\nYou've asked to have your verification code re-sent, so here it is:\r\n".$user["verification"]."\r\n\r\nYou just need to go to http://URL-TO-BE-DETERMINED/verify.php and enter it along with your email address to complete your registration.";
+      $subject = "SNOMED CT Field Test Website - Verification code reminder";
+      $to = $_POST["resendEmail"];
+      $headers = 'From: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'Reply-To: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+
+      mail($to, $subject, $emailText, $headers);
+
+      $message = '<div class="well"><p class="lead">Verification code resent to <strong>'.$user["email"].'</strong>.</p><p><a class="btn btn-primary" href="verify.php">Verify</a></p></div>';
+    }
+  } else {
+    $message = '<div class="alert alert-error">Email address not recognised.</div><p><a class="btn btn-primary" href="verify.php">Try again</a></p>';
+  }
+  ?>
+  <div class="row">
+    <div class="span12">
+      <?= $message; ?>
+    </div>
+  </div>
+  <?php
 } else {
 ?>
       <div class="row">
@@ -28,7 +55,7 @@ if($_SESSION["logged"]){
       </div>
 
       <div class="row span8 offset2">
-        <form class="form-horizontal" id="resendVerification" name="resendVerification" method="post" action="xxx.php" data-validate="parsley">
+        <form class="form-horizontal" id="resendVerification" name="resendVerification" method="post" action="resend-verification.php" data-validate="parsley">
           <fieldset>
             <div class="control-group">
               <label class="control-label" for="resendEmail">Email address</label>

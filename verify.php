@@ -31,11 +31,16 @@ if($_SESSION["logged"]){
       $sql="INSERT INTO Users (title,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','$_POST[regFirstname]','$_POST[regLastname]','$_POST[regEmail]','$pass','$_POST[regRole]','$_POST[regAge]','$_POST[regGender]','$_POST[regCountry]','$ver')";
       mysql_query($sql) or die(mysql_error());
 
-      //TODO: generate and send email here
-      echo "User added";
+      $emailText = "Thanks for registering on the SNOMED CT Field Test Website.\r\n\r\nPlease verify your email address by visiting http://URL-TO-BE-DETERMINED/verify.php and entering your verification code:\r\n\r\n".$ver;
+      $subject = "SNOMED CT Field Test Website - Registration";
+      $to = $user["email"];
+      $headers = 'From: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'Reply-To: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+
+      mail($to, $subject, $emailText, $headers);
     }
   } else if($_POST["regTitle"] && $_POST["regFirstname"] && $_POST["regLastname"] && $_POST["regEmail"] && $_POST["regPassword"] && !is_null($_POST["regCountry"]) && $_POST["regRole"] && !is_null($_POST["regGender"]) && $_POST["regAge"]) {// we arrived by posting from the registration form and all the fields are NOT here
     //TODO: This shouldn't happen due to client-side validation, but should handle it anyway
+    //TODO: fix the above logic as it's clearly 6pm code
     echo "Not all required fields present in POST";
   } else {
     //do nothing - we arrived by another means, most likely the link in the verification email
