@@ -22,8 +22,9 @@ if(!$_SESSION["logged"]){
     $user = mysql_fetch_array($rows);
     $userCountry = mysql_fetch_array(mysql_query("SELECT name FROM Countries WHERE country_id='$user[country_id]'")) or die(mysql_error());
     $userGender = mysql_fetch_array(mysql_query("SELECT gender FROM Gender WHERE gender_id='$user[gender_id]'")) or die(mysql_error());
-    // this breaks and I don't know why
-    // $encounters = mysql_num_rows(mysql_query("SELECT * FROM Encounters WHERE user_id='$user[user_id]'")) or die(mysql_error());
+    $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$user[user_id]'") or die(mysql_error());
+    $encounters = mysql_num_rows($encountersData);
+
 ?>
       <div class="row">
         <div class="span8 offset2">
