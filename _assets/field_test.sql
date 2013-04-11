@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 09, 2013 at 12:18 PM
+-- Generation Time: Apr 11, 2013 at 12:30 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -26,6 +26,14 @@ CREATE TABLE IF NOT EXISTS `Countries` (
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `Countries`
+--
+
+INSERT INTO `Countries` (`country_id`, `country_code`, `name`) VALUES
+(0, 'AU', 'Australia'),
+(1, 'GB', 'United Kingdom');
+
 -- --------------------------------------------------------
 
 --
@@ -35,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `Countries` (
 CREATE TABLE IF NOT EXISTS `Encounters` (
   `encounter_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `complete` tinyint(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`encounter_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -70,6 +79,14 @@ CREATE TABLE IF NOT EXISTS `Gender` (
   UNIQUE KEY `id` (`gender_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `Gender`
+--
+
+INSERT INTO `Gender` (`gender_id`, `gender`) VALUES
+(0, 'Male'),
+(1, 'Female');
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +116,32 @@ CREATE TABLE IF NOT EXISTS `SCT_Concepts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Title`
+--
+
+CREATE TABLE IF NOT EXISTS `Title` (
+  `title_id` int(11) NOT NULL,
+  `title` varchar(32) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`title_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `Title`
+--
+
+INSERT INTO `Title` (`title_id`, `title`) VALUES
+(0, 'Mr.'),
+(1, 'Mrs.'),
+(2, 'Ms.'),
+(3, 'Miss'),
+(4, 'Dr.'),
+(5, 'Prof.'),
+(6, 'Rev.'),
+(7, 'Other');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Users`
 --
 
@@ -118,4 +161,4 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `verification` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
