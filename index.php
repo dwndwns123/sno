@@ -56,11 +56,11 @@ if(!$_SESSION["logged"]){
         </div>
       </div>
       <div class="row">
-        <div class="span4">
+        <div class="span4 offset1">
           <h2>New users</h2>
           <p><a class="btn" href="register.php">Click here to register</a></p>
         </div>
-        <div class="span4 offset2">
+        <div class="span4 offset1">
           <h2>Returning users</h2>
           <form method="post" action="index.php" class="form-horizontal" id="loginForm" name="loginForm" data-validate="parsley">
             <fieldset>
