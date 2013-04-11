@@ -29,7 +29,10 @@ if($_SESSION["logged"]){
         $sql = "UPDATE Users SET verified='1' WHERE email='".$user['email']."'";
         mysql_query($sql) or die(mysql_error());
 
-        $_SESSION["title"] = $user["title"];
+        $tRows = mysql_query("SELECT * FROM Title WHERE title_id='$user[title_id]'") or die(mysql_error());
+        $uTitle = mysql_fetch_array($tRows);
+
+        $_SESSION["title"] = $uTitle["title"];
         $_SESSION["first_name"] = $user["first_name"];
         $_SESSION["last_name"] = $user["last_name"];
         $_SESSION["email"] = $user["email"];

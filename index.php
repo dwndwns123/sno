@@ -17,7 +17,9 @@ if($_POST["loginEmail"] && $_POST["loginPassword"]){
     $user = mysql_fetch_array($rows);
     if($user["password"]==md5($_POST["loginPassword"])){
       if($user["verified"]){
-        $_SESSION["title"] = $user["title"];
+        $tRows = mysql_query("SELECT * FROM Title WHERE title_id='$user[title_id]'") or die(mysql_error());
+        $uTitle = mysql_fetch_array($tRows);
+        $_SESSION["title"] = $uTitle["title"];
         $_SESSION["first_name"] = $user["first_name"];
         $_SESSION["last_name"] = $user["last_name"];
         $_SESSION["email"] = $user["email"];

@@ -29,14 +29,14 @@ if($_SESSION["logged"]){
                 <div class="controls">
                   <select class="input-xlarge" id="regTitle" name="regTitle" data-required="true">
                     <option value="">Please select</option>
-                    <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs.</option>
-                    <option value="Ms.">Ms.</option>
-                    <option value="Miss">Miss</option>
-                    <option value="Dr.">Dr.</option>
-                    <option value="Prof.">Prof.</option>
-                    <option value="Rev.">Rev.</option>
-                    <option value="Other">Other</option>
+                    <?php
+                    $result = mysql_query("SELECT * FROM Title") or die(mysql_error());
+                    while($row = mysql_fetch_array($result)){
+                      ?>
+                      <option value="<?=$row['title_id'];?>"><?=$row['title'];?></option>
+                      <?php
+                    }
+                    ?>
                   </select>
                 </div>
               </div>
