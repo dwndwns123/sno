@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2013 at 12:30 PM
+-- Generation Time: Apr 11, 2013 at 12:47 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -147,7 +147,7 @@ INSERT INTO `Title` (`title_id`, `title`) VALUES
 
 CREATE TABLE IF NOT EXISTS `Users` (
   `user_id` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `title` varchar(5) DEFAULT NULL,
+  `title_id` int(11) DEFAULT NULL,
   `first_name` varchar(25) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -161,4 +161,4 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `verification` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
