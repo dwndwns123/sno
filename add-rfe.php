@@ -4,7 +4,7 @@
 <head>
   <?php require('inc/head.php'); ?>
 
-  <title>SNOMED CT GP/FP RefSet Field Test - New encounter</title>
+  <title>SNOMED CT GP/FP RefSet Field Test - Add RFE</title>
 </head>
 <body>
   <div class="container">
@@ -12,14 +12,13 @@
     <div class="main clearfix">
 
       <div class="page-header">
-        <h1>New encounter</h1>
+        <h1>Add RFE</h1>
       </div>
 <?php
 if(!$_SESSION["logged"]){
   include('inc/not-logged-in.php');
 } else {
 ?>
-      <h2>Add reason for encounter (RFE)</h2>
       <div class="row">
         <div class="span8 offset2">
           <div class="well">
@@ -91,11 +90,21 @@ if(!$_SESSION["logged"]){
               </div>
               <hr>
               <p>6. If the ICPC-2 code is not an appropriate match, please record your preferred ICPC-2 code:</p>
-              <input type="text" class="span3" id="rfeIcpc2freetext" name="rfeIcpc2freetext" maxlength="250">
+              <select id="rfeIcpc2choice" name="rfeIcpc2choice" class="span8">
+                <option value="">Select ICPC-2 code</option>
+                <option value="">ICPC-2 code and label</option>
+                <option value="">ICPC-2 code and label</option>
+                <option value="">ICPC-2 code and label</option>
+                <option value="">ICPC-2 code and label</option>
+                <option value="">ICPC-2 code and label</option>
+                <option value="">ICPC-2 code and label</option>
+                <option value="">ICPC-2 code and label</option>
+                <option value="">ICPC-2 code and label</option>
+              </select>
 
               <div class="form-actions">
                 <button type="submit" class="btn">Add another RFE</button>
-                <button type="button" class="btn">RFEs complete - add health issue(s)</button>
+                <a href="add-health-issue.php" class="btn">RFEs complete - add health issue(s)</a>
               </div>
 
             </fieldset>
