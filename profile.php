@@ -17,6 +17,8 @@ if($_SESSION["logged"]){
     $_SESSION["title"] = $uTitle["title"];
     $_SESSION["first_name"] = $_POST["editFirstname"];
     $_SESSION["last_name"] = $_POST["editLastname"];
+
+    $message = '<div class="alert alert-success">Profile successfully updated.</div>';
   }
 }
 ?>
@@ -36,6 +38,10 @@ if(!$_SESSION["logged"]){
   $userGender = mysql_fetch_array(mysql_query("SELECT gender FROM Gender WHERE gender_id='$user[gender_id]'")) or die(mysql_error());
   $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$user[user_id]'") or die(mysql_error());
   $encounters = mysql_num_rows($encountersData);
+
+  if($message){
+    echo $message;
+  }
 ?>
       <div class="row">
         <div class="span8 offset2">

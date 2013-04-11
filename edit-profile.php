@@ -105,7 +105,7 @@ if(!$_SESSION["logged"]){
               </div>
               <div class="control-group">
                 <div class="controls">
-                  <input type="submit" class="btn" value="Save changes">
+                  <input type="submit" class="btn" value="Save">
                   <a class="btn" href="profile.php">Cancel</a>
                 </div>
               </div>
