@@ -23,7 +23,7 @@ if($_SESSION["logged"]){
     $checkUser = mysql_query("SELECT * FROM Users WHERE email='$_POST[regEmail]'") or die(mysql_error());
     $user = mysql_fetch_array($checkUser);
     if(mysql_num_rows($checkUser)==1){
-      echo "User already in DB";
+      $message = '<div class="alert alert-error">That email address is already registered.</div>';
     } else {
       $ver = md5(uniqid(mt_rand(), true));
       $pass = md5($_POST["regPassword"]);
@@ -36,10 +36,11 @@ if($_SESSION["logged"]){
       $to = $_POST["regEmail"];
       $headers = 'From: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'Reply-To: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
 
-      if(!mail($to, $subject, $emailText, $headers)){
-        echo "mail went wrong";
-      }
-      
+      mail($to, $subject, $emailText, $headers);
+    }
+
+    if($message){
+      echo $message;
     }
   }
 ?>
