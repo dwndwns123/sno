@@ -25,10 +25,10 @@ if($_SESSION["logged"]){
     if($user["verified"]){
       $message = '<div class="well"><p class="lead">'.$user["email"].' is already verified.</p><p><a class="btn btn-primary" href="/">Login</a></p></div>';
     } else {
-      $emailText = "Hi ".$user["first_name"].".\r\n\r\nYou've asked to have your verification code re-sent, so here it is:\r\n".$user["verification"]."\r\n\r\nYou just need to go to http://URL-TO-BE-DETERMINED/verify.php and enter it along with your email address to complete your registration.";
-      $subject = "SNOMED CT Field Test Website - Verification code reminder";
+      $emailText = "Hi ".$user["first_name"].".\r\n\r\nYou've asked to have your verification code re-sent, so here it is:\r\n".$user["verification"]."\r\n\r\nYou just need to go to ".$configvars["environment"]["url"]."/verify.php and enter it along with your email address to complete your registration.";
+      $subject = $configvars["email"]["subjecttag"]." - Verification code reminder";
       $to = $_POST["resendEmail"];
-      $headers = 'From: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'Reply-To: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+      $headers = 'From: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'Reply-To: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
 
       mail($to, $subject, $emailText, $headers);
 

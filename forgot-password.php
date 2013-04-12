@@ -24,9 +24,9 @@ if($_SESSION["logged"]){
     $pw = substr(md5(rand()), 0, 10);
 
     $emailText = "You have requested a new password for the SNOMED CT Field Test Website.\r\n\r\nA new password has been randomly generated for you, and has replaced your old password with immediate effect.\r\n\r\nYour new password is: ".$pw."\r\n\r\nYou may log into the site using this password, and then change it to something more memorable. Remember, it is case-sensitive.";
-    $subject = "SNOMED CT Field Test Website - Password Reset";
+    $subject = $configvars["email"]["subjecttag"]." - Password Reset";
     $to = $user["email"];
-    $headers = 'From: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'Reply-To: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+    $headers = 'From: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'Reply-To: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
 
     mail($to, $subject, $emailText, $headers);
 

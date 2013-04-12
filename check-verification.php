@@ -39,10 +39,10 @@ if($_SESSION["logged"]){
         $_SESSION["user_id"] = $user["user_id"];
         $_SESSION["logged"] = true;
 
-        $emailText = "Thanks for registering on the SNOMED CT Field Test Website.\r\n\r\nYour email address has now been verified and you can now log in normally at http://URL-TO-BE-DETERMINED/ any time.";
-        $subject = "SNOMED CT Field Test Website - Registration Verified";
+        $emailText = "Thanks for registering on the SNOMED CT Field Test Website.\r\n\r\nYour email address has now been verified and you can now log in normally at ".$configvars["environment"]["url"]." any time.";
+        $subject = $configvars["email"]["subjecttag"]." - Registration Verified";
         $to = $_POST["regEmail"];
-        $headers = 'From: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'Reply-To: SNOMED CT Field Test <test@example.com>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+        $headers = 'From: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'Reply-To: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
 
         mail($to, $subject, $emailText, $headers);
 
