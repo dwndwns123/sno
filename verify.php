@@ -36,8 +36,6 @@ if($_SESSION["logged"]){
       $to = $_POST["regEmail"];
       $headers = 'From: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'Reply-To: '.$configvars["email"]["fromname"].' <'.$configvars["email"]["fromemail"].'>' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
 
-      echo $emailText;
-
       if(!mail($to, $subject, $emailText, $headers)){
         echo "mail went wrong";
       }
