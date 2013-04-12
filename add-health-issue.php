@@ -45,6 +45,17 @@ if(!$_SESSION["logged"]){
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>
               </select>
+              <dl class="dl-horizontal synonyms">
+                <dt>Synonyms:</dt>
+                <dd>
+                  <ul>
+                    <li>Synonym 1</li>
+                    <li>Synonym 2</li>
+                    <li>Synonym 3</li>
+                    <li>Synonym 4</li>
+                  </ul>
+                </dd>
+              </dl>
               <hr>
               <p>2. How well does this SNOMED CT concept adequately represent the health issue you wish to record?</p>
               <div class="likert">

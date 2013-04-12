@@ -55,6 +55,9 @@ footer {
 }
 
 
+.synonyms ul li {
+  list-style-type: none;
+}
 .likert .inline {
   vertical-align: top;
   width: 18%;
