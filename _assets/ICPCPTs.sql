@@ -13,8 +13,8 @@
 -- Table structure for table `ICPCPTs`
 --
 
-DROP TABLE IF EXISTS `ICPCPTs`;
-CREATE TABLE `ICPCPTs` (
+DROP TABLE IF EXISTS `SCT_Concepts`;
+CREATE TABLE `SCT_Concepts` (
   `ConceptId` varchar(18) NOT NULL,
   `PT` varchar(300) DEFAULT NULL,
   KEY `id35` (`ConceptId`)

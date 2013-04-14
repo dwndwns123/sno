@@ -13,8 +13,8 @@
 -- Table structure for table `ICPCSynonyms`
 --
 
-DROP TABLE IF EXISTS `ICPCSynonyms`;
-CREATE TABLE `ICPCSynonyms` (
+DROP TABLE IF EXISTS `SCT_Synonyms`;
+CREATE TABLE `SCT_Synonyms` (
   `DescId` varchar(18) NOT NULL,
   `ConceptId` varchar(18) NOT NULL,
   `Synonym` varchar(300) DEFAULT NULL,
