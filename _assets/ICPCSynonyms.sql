@@ -3,9 +3,16 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 14, 2013 at 09:49 PM
+-- Generation Time: Apr 15, 2013 at 08:22 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `snomedct`
+--
 
 -- --------------------------------------------------------
 
@@ -13,15 +20,15 @@
 -- Table structure for table `ICPCSynonyms`
 --
 
-DROP TABLE IF EXISTS `SCT_Synonyms`;
-CREATE TABLE `SCT_Synonyms` (
+DROP TABLE IF EXISTS `ICPCSynonyms`;
+CREATE TABLE IF NOT EXISTS `ICPCSynonyms` (
   `DescId` varchar(18) NOT NULL,
   `ConceptId` varchar(18) NOT NULL,
   `Synonym` varchar(300) DEFAULT NULL,
   `Type` varchar(18) DEFAULT NULL,
   KEY `id33` (`DescId`),
   KEY `id34` (`ConceptId`)
-) 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ICPCSynonyms`
@@ -13846,7 +13853,3 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`) VALUES
 ('17447012', '9991008', 'Colic', '900000000000013009'),
 ('195250015', '9991008', 'Spasmodic abdominal pain', '900000000000013009'),
 ('845005018', '9991008', 'Abdominal colic (finding)', '900000000000003001');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

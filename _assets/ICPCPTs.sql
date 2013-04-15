@@ -3,9 +3,16 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 14, 2013 at 09:49 PM
+-- Generation Time: Apr 15, 2013 at 08:24 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `snomedct`
+--
 
 -- --------------------------------------------------------
 
@@ -14,17 +21,17 @@
 --
 
 DROP TABLE IF EXISTS `SCT_Concepts`;
-CREATE TABLE `SCT_Concepts` (
+CREATE TABLE IF NOT EXISTS `SCT_Concepts` (
   `ConceptId` varchar(18) NOT NULL,
   `PT` varchar(300) DEFAULT NULL,
   KEY `id35` (`ConceptId`)
-) 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ICPCPTs`
 --
 
-INSERT INTO `ICPCPTs` (`ConceptId`, `PT`) VALUES
+INSERT INTO `SCT_Concepts` (`ConceptId`, `PT`) VALUES
 ('10050004', 'Contusion of chest'),
 ('10085004', 'Metatarsalgia'),
 ('1023001', 'Apnea'),
@@ -3357,7 +3364,3 @@ INSERT INTO `ICPCPTs` (`ConceptId`, `PT`) VALUES
 ('9826008', 'Conjunctivitis'),
 ('9957009', 'Urethral discharge'),
 ('9991008', 'Abdominal colic');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
