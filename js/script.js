@@ -2,13 +2,20 @@ var ftt = {
   init: function(){
     $('input[maxlength]').maxlength();
 
-    $('#rfeSearchBtn').click(function(){
+    $('#searchBtn').on('click', function(){
       ftt.concepts.narrow();
+    });
+    $('#clearBtn').on('click', function(){
+      ftt.concepts.reset();
+    });
+
+    $('#conceptsDropdown').on('change', function(){
+      ftt.concepts.getSynonyms();
     });
   },
   concepts: {
     narrow: function(){
-      var searchText = $('#rfeSearch').val();
+      var searchText = $('#searchBox').val();
 
       $.ajax({
         url:      'searchConcepts.php',
@@ -16,12 +23,48 @@ var ftt = {
         data:     'searchText='+searchText,
         dataType: 'json',
         success:  function(response, textStatus, jqXHR){
-          tools.rewriteDropdown($('#rfeConcepts'), response);
+          $('#conceptsDropdown').prop('size', 5);
+          tools.rewriteDropdown($('#conceptsDropdown'), response);
+          $('dl.synonyms').hide();
+          
+          if(searchText === ''){
+            $('#conceptsDropdown').prop('size', 1);
+            $('#conceptsDropdown')[0].selectedIndex = 0;
+          }
         },
         error:    function(jqXHR, textStatus, errorThrown){
           alert('error: '+errorThrown);
         }
       });
+    },
+    reset: function(){
+      $('#searchBox').val('');
+      ftt.concepts.narrow();
+    },
+    getSynonyms: function(){
+      var cid = $('#conceptsDropdown').val();
+      
+      $.ajax({
+        url:      'getSynonyms.php',
+        type:     'POST',
+        data:     'syn='+cid,
+        dataType: 'json',
+        success:  function(response, textStatus, jqXHR){
+          ftt.concepts.showSynonyms(response);
+        },
+        error:    function(jqXHR, textStatus, errorThrown){
+          alert('error: '+errorThrown);
+        }
+      });
+    },
+    showSynonyms: function(data){
+      var str = '<ul>';
+      for(var x=0; x<data.length; x++){
+        str += '<li>'+data[x].synonym+'</li>';
+      }
+      str += '</ul>';
+      $('dl.synonyms dd').empty().append(str);
+      $('dl.synonyms').show();
     }
   }
 };

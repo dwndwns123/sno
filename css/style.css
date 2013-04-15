@@ -55,6 +55,9 @@ footer {
 }
 
 
+.synonyms {
+  display: none;
+}
 .synonyms ul li {
   list-style-type: none;
 }
@@ -69,6 +72,11 @@ footer {
   float: none;
   margin: 0 auto 5px;
   text-align: center;
+}
+
+.input-append,
+#clearBtn {
+  vertical-align: top;
 }
 
 

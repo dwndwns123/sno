@@ -38,23 +38,17 @@ if(!$_SESSION["logged"]){
             <fieldset>
               <p>1. Search for(and select) a SNOMED CT concept that represents the health issue you wish to record.</p>
               <div class="input-append">
-                <input id="healthissueSearch" name="healthissueSearch" type="text" maxlength="50">
-                <button class="btn" type="button">Search</button>
+                <input id="searchBox" name="searchBox" type="text" maxlength="50">
+                <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
-              <select class="input-xlarge" id="healthissueConcepts" name="healthissueConcepts">
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown">
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>
               </select>
+              <button id="clearBtn" class="btn" type="button">Reset</button>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
-                <dd>
-                  <ul>
-                    <li>Synonym 1</li>
-                    <li>Synonym 2</li>
-                    <li>Synonym 3</li>
-                    <li>Synonym 4</li>
-                  </ul>
-                </dd>
+                <dd></dd>
               </dl>
               <hr>
               <p>2. How well does this SNOMED CT concept adequately represent the health issue you wish to record?</p>
