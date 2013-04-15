@@ -39,7 +39,7 @@ if(!$_SESSION["logged"]){
               <p>1. Search for(and select) a SNOMED CT concept that represents the RFE you wish to record.</p>
               <div class="input-append">
                 <input id="rfeSearch" name="rfeSearch" type="text" maxlength="50">
-                <button class="btn" type="button">Search</button>
+                <button id="rfeSearchBtn" class="btn" type="button">Search</button>
               </div>
               <select class="input-xlarge" id="rfeConcepts" name="rfeConcepts">
                 <option value="">Select SNOMED concept</option>
