@@ -1,9 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.5.5
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Apr 15, 2013 at 08:22 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 

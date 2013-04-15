@@ -1,9 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.5.5
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Apr 15, 2013 at 08:24 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -17,7 +11,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ICPCPTs`
+-- Table structure for table `SCT_Concepts`
 --
 
 DROP TABLE IF EXISTS `SCT_Concepts`;
@@ -28,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `SCT_Concepts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ICPCPTs`
+-- Dumping data for table `SCT_Concepts`
 --
 
 INSERT INTO `SCT_Concepts` (`ConceptId`, `PT`) VALUES
@@ -1328,7 +1322,7 @@ INSERT INTO `SCT_Concepts` (`ConceptId`, `PT`) VALUES
 ('248480008', 'Leg swelling symptom'),
 ('24848001', 'Pelvic echography'),
 ('248490000', 'Bloating symptom');
-INSERT INTO `ICPCPTs` (`ConceptId`, `PT`) VALUES
+INSERT INTO `SCT_Concepts` (`ConceptId`, `PT`) VALUES
 ('248491001', 'Swollen knee'),
 ('248499004', 'Dependent edema'),
 ('248539004', 'Family problems'),
@@ -2679,7 +2673,7 @@ INSERT INTO `ICPCPTs` (`ConceptId`, `PT`) VALUES
 ('53891004', 'Lichen simplex chronicus'),
 ('54016002', 'Mobitz type I incomplete atrioventricular block'),
 ('54048003', 'Threatened abortion');
-INSERT INTO `ICPCPTs` (`ConceptId`, `PT`) VALUES
+INSERT INTO `SCT_Concepts` (`ConceptId`, `PT`) VALUES
 ('54150009', 'Upper respiratory infection'),
 ('54220007', 'Fissure of nipple'),
 ('54302000', 'Discharge from nipple'),
