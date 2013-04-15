@@ -1,9 +1,8 @@
-<option value="concept1">concept1</option>
-<option value="concept2">concept2</option>
-<option value="concept3">concept3</option>
-<option value="concept4">concept4</option>
-<option value="concept5">concept5</option>
-<option value="concept6">concept6</option>
-<option value="concept7">concept7</option>
-<option value="concept8">concept8</option>
-<option value="concept9">concept9</option>
+<?php
+$result = mysql_query("SELECT * FROM SCT_Concepts") or die(mysql_error());
+while($row = mysql_fetch_array($result)){
+  ?>
+  <option value="<?=$row['ConceptId'];?>"><?=$row['PT'];?></option>
+  <?php
+}
+?>
