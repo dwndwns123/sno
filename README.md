@@ -5,6 +5,11 @@ IHTSDO Field Test Web Tool
 
 The field test is a web based, php/mysql system to test the clinical completeness of the SNOMED CT GP/FP RefSet as a representation of the terms commonly used by Family/General Practitioners in clinical practice with reference to Reasons for Encounter and Health Issues, and of the validity of the map from concepts in the SNOMED CT GP/FP RefSet to the ICPC-2 classification.
 
+Minimum Specification
+---------------------
+- PHP v5.4.x (current incompatibilities with PHP v5.3.x and below)
+- MYSQL v5.5.x
+
 Installation
 ------------
 
