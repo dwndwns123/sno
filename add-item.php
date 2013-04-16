@@ -66,7 +66,7 @@ if(!$_SESSION["logged"]){
   }
 ?>
 
-      <form method="post" action="add-rfe.php" id="addItem" name="addItem" data-validate="parsley">
+      <form method="post" action="add-item.php" id="addItem" name="addItem" data-validate="parsley">
         <fieldset>
           <div class="row">
             <div class="span8 offset2">

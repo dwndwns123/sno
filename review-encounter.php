@@ -64,6 +64,13 @@ if(!$_SESSION["logged"]){
                       <dt>Alternate ICPC-2 code</dt>
                       <dd><?= $row['map_alt_id']; ?></dd>
                     </dl>
+                    <form action="edit-item.php" method="post">
+                      <fieldset>
+                        <input type="hidden" id="item" name="item" value="<?= $row['rfe_id']; ?>">
+                        <input type="hidden" id="from" name="from" value="review-encounter.php">
+                        <button type="submit" class="btn pull-right">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button>
+                      </fieldset>
+                    </form>
                   </div>
                 </div>
               </div>

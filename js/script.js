@@ -13,6 +13,10 @@ var ftt = {
       ftt.concepts.getSynonyms();
     });
 
+    if($('#conceptsDropdown option:selected').length > 0){
+      ftt.concepts.getSynonyms();
+    }
+
     $('#nextBtn').on('click', function(e){
       e.preventDefault();
       $('#addAnother').val("false");

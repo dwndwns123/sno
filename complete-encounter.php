@@ -41,7 +41,7 @@ if(!$_SESSION["logged"]){
       <div class="row">
         <div class="span8 offset2">
           <p class="lead">You have completed <?= $encounters; ?> of 100 encounters.</p>
-          <a class="btn btn-large btn-block btn-primary" href="add-rfe.php">Add another encounter</a>
+          <a class="btn btn-large btn-block btn-primary" href="add-item.php">Add another encounter</a>
         </div>
       </div>
 <?php
