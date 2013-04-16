@@ -74,6 +74,7 @@ if(!$_SESSION["logged"]){
               <input type="text" class="span8" id="healthissueConceptfreetext" name="healthissueConceptfreetext" maxlength="250">
               <hr>
               <p>4. The associated ICPC-2 code is: <span class="uneditable-input span3">xxxxx</span></p>
+              <input type="hidden" id="healthissueIcpc2" name="healthissueIcpc2" value="xxxxx">
               <hr>
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the health issue you recorded?</p>
               <div class="likert">
