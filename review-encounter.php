@@ -20,7 +20,7 @@ if($_SESSION["logged"]){
     <?php require('inc/header.php'); ?>
     <div class="main clearfix">
       <div class="page-header">
-        <h1>Profile</h1>
+        <h1>Review encounter</h1>
       </div>
 <?php
 if(!$_SESSION["logged"]){
@@ -32,7 +32,46 @@ if(!$_SESSION["logged"]){
 ?>
       <div class="row">
         <div class="span8 offset2">
-          ENCOUNTERS GO HERE
+          <h2>Encounter <?= $_SESSION["encounter_id"] ?></h2>
+          <div class="accordion">
+            <?php
+            $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
+            $count = 0;
+            while($row = mysql_fetch_array($rows)){
+              $sql = mysql_query("SELECT * FROM SCT_Concepts WHERE ConceptId='$row[sct_id]'") or die(mysql_error());
+              $conceptArr = mysql_fetch_array($sql);
+              $concept = $conceptArr['PT'];
+              ?>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $count; ?>">
+                    <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue")." #".$row['rfe_id']; ?>
+                  </a>
+                </div>
+                <div id="collapse<?= $count; ?>" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <dl>
+                      <dt>SNOMED CT Concept</dt>
+                      <dd><?= $concept; ?></dd>
+                      <dt>How well does this SNOMED CT concept adequately represent the <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very well, 5 = Poorly)</dt>
+                      <dd><?= $row['sct_scale']; ?></dd>
+                      <dt>Alternative description of clinical term</dt>
+                      <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
+                      <dt>ICPC-2 code</dt>
+                      <dd><?= $row['map_id']; ?></dd>
+                      <dt>Is this ICPC-2 code an appropriate match for the ?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very, 5 = Not at all)</dt>
+                      <dd><?= $row['map_scale']; ?></dd>
+                      <dt>Alternate ICPC-2 code</dt>
+                      <dd><?= $row['map_alt_id']; ?></dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+              <?php
+              $count++;
+              }
+            ?>
+          </div>
         </div>
       </div>
 <?php
