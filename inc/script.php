@@ -9,7 +9,7 @@
 
 
 
-<div class="well" style="display: none;">
+<div class="well">
 <p><big><strong>DEBUG</strong></big></p>
 <?php
 foreach ($_SESSION as $key=>$value){

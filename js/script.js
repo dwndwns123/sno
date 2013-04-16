@@ -12,6 +12,17 @@ var ftt = {
     $('#conceptsDropdown').on('change', function(){
       ftt.concepts.getSynonyms();
     });
+
+    $('#nextBtn').on('click', function(e){
+      e.preventDefault();
+      $('#addAnother').val("false");
+      $(this).closest('form').submit();
+    });
+
+    $('#finishedBtn').on('click', function(e){
+      e.preventDefault();
+      $(this).closest('form').attr('action', 'review-encounter.php').submit();
+    });
   },
   concepts: {
     narrow: function(){

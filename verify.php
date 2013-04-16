@@ -28,7 +28,7 @@ if($_SESSION["logged"]){
       $ver = md5(uniqid(mt_rand(), true));
       $pass = md5($_POST["regPassword"]);
 
-      $sql="INSERT INTO Users (title_id,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','$_POST[regFirstname]','$_POST[regLastname]','$_POST[regEmail]','$pass','$_POST[regRole]','$_POST[regAge]','$_POST[regGender]','$_POST[regCountry]','$ver')";
+      $sql = "INSERT INTO Users (title_id,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','$_POST[regFirstname]','$_POST[regLastname]','$_POST[regEmail]','$pass','$_POST[regRole]','$_POST[regAge]','$_POST[regGender]','$_POST[regCountry]','$ver')";
       mysql_query($sql) or die(mysql_error());
 
       $emailText = "Thanks for registering on the SNOMED CT Field Test Website.\r\n\r\nPlease verify your email address by visiting ".$configvars["environment"]["url"]."/verify.php and entering your verification code:\r\n\r\n".$ver;
