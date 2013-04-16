@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2013 at 02:06 PM
+-- Generation Time: Apr 16, 2013 at 03:21 PM
 -- Server version: 5.5.29
--- PHP Version: 5.4.10
+-- PHP Version: 5.2.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -286,8 +286,9 @@ CREATE TABLE IF NOT EXISTS `Encounters` (
   `encounter_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `complete` tinyint(2) NOT NULL DEFAULT '0',
+  `label` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`encounter_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -298,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `Encounters` (
 CREATE TABLE IF NOT EXISTS `Encounter_Reasons` (
   `rfe_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `encounter_id` mediumint(9) NOT NULL,
-  `refset_id` int(11) NOT NULL COMMENT 'this differentiates between health issues & RFE',
+  `refset_id` int(11) NOT NULL COMMENT 'this differentiates between health issues & RFE - 0 for RFE, 1 for HI',
   `sct_id` int(11) DEFAULT NULL,
   `sct_scale` int(11) DEFAULT NULL,
   `sct_alt` varchar(250) DEFAULT NULL,
@@ -307,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `Encounter_Reasons` (
   `map_alt_id` int(11) DEFAULT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`rfe_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -332,6 +333,23 @@ INSERT INTO `Gender` (`gender_id`, `gender`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ICPCSynonyms`
+--
+
+CREATE TABLE IF NOT EXISTS `ICPCSynonyms` (
+  `DescId` varchar(18) NOT NULL,
+  `ConceptId` varchar(18) NOT NULL,
+  `Synonym` varchar(300) DEFAULT NULL,
+  `Type` varchar(18) DEFAULT NULL,
+  KEY `id33` (`DescId`),
+  KEY `id34` (`ConceptId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Map_Concepts`
 --
 
@@ -350,10 +368,11 @@ CREATE TABLE IF NOT EXISTS `Map_Concepts` (
 --
 
 CREATE TABLE IF NOT EXISTS `SCT_Concepts` (
-  `sct_id` int(11) NOT NULL,
-  `concept_name` varchar(250) NOT NULL,
-  PRIMARY KEY (`sct_id`)
+  `ConceptId` varchar(18) NOT NULL,
+  `PT` varchar(300) DEFAULT NULL,
+  KEY `id35` (`ConceptId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -403,4 +422,4 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `verification` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
