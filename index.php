@@ -92,6 +92,13 @@ if(!$_SESSION["logged"]){
       </div>
 <?php
 } else {
+  $_SESSION ["encounter_id"] = null;
+  $_SESSION ["add_mode"] = null;
+  $_SESSION ["rfe_id"] = null;
+  $_SESSION ["label"] = null;
+
+  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
+  $encounters = mysql_num_rows($encountersData);
 ?>
       <div class="page-header">
         <h1>Home</h1>
@@ -100,7 +107,7 @@ if(!$_SESSION["logged"]){
         <div class="span12">
           <div class="well">
             <p class="lead">Welcome, <?= ($_SESSION['title'] !== 'Other' ? $_SESSION['title'].' ' : ''); ?><?= $_SESSION['first_name'].' '.$_SESSION['last_name'] ?>.</p>
-            <p>You have completed 0 of 100 encounters.</p>
+            <p>You have completed <?= $encounters; ?> of 100 encounters.</p>
           </div>
         </div>
       </div>

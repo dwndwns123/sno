@@ -36,7 +36,7 @@ if(!$_SESSION["logged"]){
   $user = mysql_fetch_array($rows);
   $userCountry = mysql_fetch_array(mysql_query("SELECT name FROM Countries WHERE country_id='$user[country_id]'")) or die(mysql_error());
   $userGender = mysql_fetch_array(mysql_query("SELECT gender FROM Gender WHERE gender_id='$user[gender_id]'")) or die(mysql_error());
-  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$user[user_id]'") or die(mysql_error());
+  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$user[user_id]' AND complete='1'") or die(mysql_error());
   $encounters = mysql_num_rows($encountersData);
 
   if($message){
@@ -59,7 +59,7 @@ if(!$_SESSION["logged"]){
               <dd><?= $userGender['gender']; ?></dd>
               <dt>Age</dt>
               <dd><?= $user['age']; ?></dd>
-              <dt>Encounters recorded</dt>
+              <dt>Encounters completed</dt>
               <dd><?= $encounters; ?></dd>
             </dl>
 

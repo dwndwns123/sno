@@ -13,6 +13,7 @@
 
         $_SESSION["add_mode"] = 0;
         $recordType = "RFE";
+        $editLabel = true;
 
         $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
         mysql_query($sql) or die(mysql_error());
@@ -24,11 +25,18 @@
           mysql_query($sql) or die(mysql_error());
           $message = '<div class="alert alert-success">'.($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue").' number '.$_SESSION["rfe_id"].' successfully recorded.</div>';
 
+          if($_POST["label"]){
+            $sql = "UPDATE Encounters SET label = '$_POST[label]' WHERE encounter_id = '$_SESSION[encounter_id]'";
+            mysql_query($sql) or die(mysql_error());
+            $_SESSION["label"] = $_POST["label"];
+          }
+
           if($_POST["addAnother"] == "false"){
             $_SESSION["add_mode"] = 1;
           }
 
           $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+          $editLabel = false;
 
           $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
           mysql_query($sql) or die(mysql_error());
@@ -57,23 +65,38 @@ if(!$_SESSION["logged"]){
     echo $message;
   }
 ?>
-      <div class="row">
-        <div class="span8 offset2">
-          <div class="well">
-            <dl class="dl-horizontal">
-              <dt>Encounter ID:</dt>
-              <dd><?= $_SESSION["encounter_id"]; ?></dd>
-              <dt><?= $recordType; ?> number:</dt>
-              <dd><?= $_SESSION["rfe_id"]; ?></dd>
-            </dl>
-          </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="span8 offset2">
-          <form method="post" action="add-rfe.php" id="addItem" name="addItem" data-validate="parsley">
-            <fieldset>
+      <form method="post" action="add-rfe.php" id="addItem" name="addItem" data-validate="parsley">
+        <fieldset>
+          <div class="row">
+            <div class="span8 offset2">
+              <div class="well">
+                <dl class="dl-horizontal">
+                  <dt>Encounter ID:</dt>
+                  <dd><?= $_SESSION["encounter_id"]; ?></dd>
+                  <dt><?= $recordType; ?> number:</dt>
+                  <dd><?= $_SESSION["rfe_id"]; ?></dd>
+                  <dt>Label (optional):</dt>
+                  <dd>
+                    <?php
+                    if($editLabel){
+                      ?>
+                      <input type="text" class="input-xlarge" id="label" name="label" maxlength="64">
+                      <?php
+                    } else {
+                      if($_SESSION["label"]){
+                        echo $_SESSION["label"];
+                      }
+                    }
+                    ?>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="span8 offset2">
               <p>1. Search for(and select) a SNOMED CT concept that represents the <?= $recordType; ?> you wish to record.</p>
               <div class="input-append">
                 <input id="searchBox" name="searchBox" type="text" maxlength="50">
@@ -157,10 +180,10 @@ if(!$_SESSION["logged"]){
                 ?>
               </div>
 
-            </fieldset>
-          </form>
-        </div>
-      </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
 <?php
 }
 ?>

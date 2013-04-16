@@ -32,7 +32,7 @@ if(!$_SESSION["logged"]){
 ?>
       <div class="row">
         <div class="span8 offset2">
-          <h2>Encounter <?= $_SESSION["encounter_id"] ?></h2>
+          <h2>Encounter <?= $_SESSION["encounter_id"].($_SESSION["label"] == '' ? '' : ' - '.$_SESSION["label"]); ?></h2>
           <div class="accordion">
             <?php
             $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
@@ -45,7 +45,7 @@ if(!$_SESSION["logged"]){
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $count; ?>">
-                    <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue")." #".$row['rfe_id']; ?>
+                    <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue")." #".$row['rfe_id'].' - '.$concept; ?>
                   </a>
                 </div>
                 <div id="collapse<?= $count; ?>" class="accordion-body collapse">
@@ -72,6 +72,8 @@ if(!$_SESSION["logged"]){
               }
             ?>
           </div>
+
+          <a href="complete-encounter.php" class="btn btn-success pull-right">Complete encounter</a>
         </div>
       </div>
 <?php
