@@ -59,7 +59,7 @@ if(!$_SESSION["logged"]){
                       <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
                       <dt>ICPC-2 code</dt>
                       <dd><?= $row['map_id']; ?></dd>
-                      <dt>Is this ICPC-2 code an appropriate match for the ?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very, 5 = Not at all)</dt>
+                      <dt>Is this ICPC-2 code an appropriate match for the <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very, 5 = Not at all)</dt>
                       <dd><?= $row['map_scale']; ?></dd>
                       <dt>Alternate ICPC-2 code</dt>
                       <dd><?= $row['map_alt_id']; ?></dd>
