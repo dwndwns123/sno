@@ -29,19 +29,18 @@ if(!$_SESSION["logged"]){
             $_SESSION ["label"] = null;
 
             $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
-            $count = 0;
             while($row = mysql_fetch_array($encountersData)){
               ?>
               <div class="accordion-group">
                 <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $count; ?>">
+                  <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['encounter_id']; ?>">
                     Encounter #<?= $row['encounter_id']; ?> - <?= ($row['label'] == '' ? '<em>No label given</em>' : $row['label']) ?>
                   </a>
                 </div>
-                <div class="accordion-body collapse" id="collapse<?= $count; ?>">
+                <div class="accordion-body collapse" id="collapse<?= $row['encounter_id']; ?>">
                   <div class="accordion-inner">
                     <ul class="inline pull-right">
-                      <li><button class="btn" id="">Edit label for this encounter</button></li>
+                      <li><button class="btn editlabelBtn" data-encounterid="<?= $row['encounter_id']; ?>" data-currentlabel="<?= $row['label']; ?>">Edit label for this encounter</button></li>
                     </ul>
                     <div class="itemsHolder clearboth clearfix" id="enc-<?= $row['encounter_id']; ?>">
                       <div class="spin"></div>
@@ -54,7 +53,6 @@ if(!$_SESSION["logged"]){
                 </div>
               </div>
               <?php
-              $count++;
             }
           ?>
           </div>

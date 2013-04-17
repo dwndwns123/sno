@@ -59,8 +59,8 @@ footer {
 
 .itemsHolder {}
 .itemsHolder .spin {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   margin: auto;
 }
 .itemsHolder p {

@@ -90,7 +90,7 @@ var ftt = {
             success:  function(response, textStatus, jqXHR){
               bootbox.alert("Encounter #"+wId+" successfully deleted.", function(){
                 window.location.href = "index.php";
-              })
+              });
             },
             error:    function(jqXHR, textStatus, errorThrown){
               alert('error: '+errorThrown);
@@ -100,7 +100,7 @@ var ftt = {
       });
     });
 
-    $('.itemsHolder .spin').each(function(n){
+    $('.itemsHolder .spin').each(function(){
       var $this = $(this);
       var spinner = new Spinner(ftt.spinOpts).spin($this[0]);
     });
@@ -125,6 +125,33 @@ var ftt = {
         }
       });
     });
+
+    $('.editlabelBtn').on('click', function(e){
+      e.preventDefault();
+      var $this = $(this);
+      bootbox.prompt("Enter new label for this encounter:", function(result){
+        if(result){
+          $.ajax({
+            url:      'newLabel.php',
+            type:     'POST',
+            data:     'txt='+result+'&enc='+$this.data('encounterid').toString(),
+            success:  function(response, textStatus, jqXHR){
+              window.location.href="encounters.php?scrollTo="+$this.data('encounterid');
+            },
+            error:    function(jqXHR, textStatus, errorThrown){
+              alert('error: '+errorThrown);
+            }
+          });
+        }
+      });
+    });
+
+    if(($('.encounters-list').length > 0) && (window.location.search.indexOf('scrollTo') !== -1)){
+      var wId = window.location.search.split('scrollTo=')[1];
+      var wX = $('#collapse'+wId).closest('.accordion-group').offset().top;
+      window.scrollTo(0, wX);
+      $('#collapse'+wId).parent().find('.accordion-toggle').trigger('click');
+    }
   },
   concepts: {
     narrow: function(){

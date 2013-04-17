@@ -114,6 +114,7 @@ if(!$_SESSION["logged"]){
       <div class="row">
         <div class="span2 offset5">
           <a class="btn btn-large btn-block btn-primary" href="add-item.php">Add encounter</a>
+          <a class="btn btn-large btn-block btn-primary" href="encounters.php">View encounters</a>
         </div>
       </div>
       <div class="row disclaimer">
