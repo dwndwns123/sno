@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2013 at 03:21 PM
+-- Generation Time: Apr 17, 2013 at 07:54 AM
 -- Server version: 5.5.29
--- PHP Version: 5.2.17
+-- PHP Version: 5.4.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `Countries`
 --
 
-CREATE TABLE IF NOT EXISTS `Countries` (
+DROP TABLE IF EXISTS `Countries`;
+CREATE TABLE `Countries` (
   `country_id` int(11) NOT NULL,
   `country_code` varchar(2) NOT NULL,
   `name` varchar(50) CHARACTER SET utf8 NOT NULL
@@ -282,13 +283,14 @@ INSERT INTO `Countries` (`country_id`, `country_code`, `name`) VALUES
 -- Table structure for table `Encounters`
 --
 
-CREATE TABLE IF NOT EXISTS `Encounters` (
+DROP TABLE IF EXISTS `Encounters`;
+CREATE TABLE `Encounters` (
   `encounter_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `complete` tinyint(2) NOT NULL DEFAULT '0',
   `label` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`encounter_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -296,7 +298,8 @@ CREATE TABLE IF NOT EXISTS `Encounters` (
 -- Table structure for table `Encounter_Reasons`
 --
 
-CREATE TABLE IF NOT EXISTS `Encounter_Reasons` (
+DROP TABLE IF EXISTS `Encounter_Reasons`;
+CREATE TABLE `Encounter_Reasons` (
   `rfe_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `encounter_id` mediumint(9) NOT NULL,
   `refset_id` int(11) NOT NULL COMMENT 'this differentiates between health issues & RFE - 0 for RFE, 1 for HI',
@@ -308,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `Encounter_Reasons` (
   `map_alt_id` int(11) DEFAULT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`rfe_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -316,7 +319,8 @@ CREATE TABLE IF NOT EXISTS `Encounter_Reasons` (
 -- Table structure for table `Gender`
 --
 
-CREATE TABLE IF NOT EXISTS `Gender` (
+DROP TABLE IF EXISTS `Gender`;
+CREATE TABLE `Gender` (
   `gender_id` int(11) NOT NULL,
   `gender` varchar(10) NOT NULL,
   UNIQUE KEY `id` (`gender_id`)
@@ -333,27 +337,11 @@ INSERT INTO `Gender` (`gender_id`, `gender`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ICPCSynonyms`
---
-
-CREATE TABLE IF NOT EXISTS `ICPCSynonyms` (
-  `DescId` varchar(18) NOT NULL,
-  `ConceptId` varchar(18) NOT NULL,
-  `Synonym` varchar(300) DEFAULT NULL,
-  `Type` varchar(18) DEFAULT NULL,
-  KEY `id33` (`DescId`),
-  KEY `id34` (`ConceptId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `Map_Concepts`
 --
 
-CREATE TABLE IF NOT EXISTS `Map_Concepts` (
+DROP TABLE IF EXISTS `Map_Concepts`;
+CREATE TABLE `Map_Concepts` (
   `map_id` int(11) NOT NULL,
   `map_code` varchar(25) NOT NULL,
   `label` varchar(250) NOT NULL,
@@ -364,23 +352,11 @@ CREATE TABLE IF NOT EXISTS `Map_Concepts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `SCT_Concepts`
---
-
-CREATE TABLE IF NOT EXISTS `SCT_Concepts` (
-  `ConceptId` varchar(18) NOT NULL,
-  `PT` varchar(300) DEFAULT NULL,
-  KEY `id35` (`ConceptId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `Title`
 --
 
-CREATE TABLE IF NOT EXISTS `Title` (
+DROP TABLE IF EXISTS `Title`;
+CREATE TABLE `Title` (
   `title_id` int(11) NOT NULL,
   `title` varchar(32) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`title_id`)
@@ -406,7 +382,8 @@ INSERT INTO `Title` (`title_id`, `title`) VALUES
 -- Table structure for table `Users`
 --
 
-CREATE TABLE IF NOT EXISTS `Users` (
+DROP TABLE IF EXISTS `Users`;
+CREATE TABLE `Users` (
   `user_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `title_id` int(11) DEFAULT NULL,
   `first_name` varchar(25) NOT NULL,
@@ -422,4 +399,11 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `verification` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `Users`
+--
+
+INSERT INTO `Users` (`user_id`, `title_id`, `first_name`, `last_name`, `email`, `password`, `role`, `age`, `gender_id`, `country_id`, `date_modified`, `date_created`, `verified`, `verification`) VALUES
+(1, 0, 'Bob', 'Smith', 'rda@ihtsdo.org', '80ec3d3b70f87a52e614bf66d050d245', 'Doctor', 36, 0, 229, '2013-04-17 05:53:49', '0000-00-00 00:00:00', 1, '24d1b323e1bcb772e3c1ac115009d8cb');
