@@ -12,6 +12,7 @@
         $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE rfe_id = '$_POST[item]'") or die(mysql_error());
         $item = mysql_fetch_array($rows);
         $recordType = ($item["refset_id"] == 0 ? "RFE" : "Health Issue");
+        $_SESSION['rfe_id'] = $_POST['item'];
       }
     }
   ?>
@@ -23,7 +24,7 @@
     <div class="main clearfix">
 
       <div class="page-header">
-        <h1>Edit Edit <?= $recordType; ?></h1>
+        <h1>Edit <?= $recordType; ?></h1>
       </div>
 <?php
 if(!$_SESSION["logged"]){
@@ -34,7 +35,7 @@ if(!$_SESSION["logged"]){
   }
 ?>
 
-      <form method="post" action="review-encounter.php" id="editItem" name="editItem" data-validate="parsley">
+      <form method="post" action="<?= $_POST['from'] ?>" id="editItem" name="editItem" data-validate="parsley">
         <fieldset>
           <div class="row">
             <div class="span8 offset2">
