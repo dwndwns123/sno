@@ -59,8 +59,6 @@ if(!$_SESSION["logged"]){
               <dd><?= $userGender['gender']; ?></dd>
               <dt>Age</dt>
               <dd><?= $user['age']; ?></dd>
-              <dt>Encounters completed</dt>
-              <dd><?= $encounters; ?></dd>
             </dl>
 
             <div class="control-group">
@@ -69,6 +67,18 @@ if(!$_SESSION["logged"]){
                 <a class="btn" href="change-password.php">Change password</a>
               </div>
             </div>
+
+            <dl class="dl-horizontal">
+              <dt>Encounters completed</dt>
+              <dd><?= $encounters; ?></dd>
+            </dl>
+
+            <div class="control-group">
+              <div class="controls">
+                <a class="btn" href="encounters.php">Review/edit encounters</a>
+              </div>
+            </div>
+
           </form>
         </div>
       </div>

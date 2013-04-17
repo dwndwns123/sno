@@ -39,7 +39,9 @@
   text-rendering: optimizelegibility;
 }
 
-
+.clearboth {
+  clear: both;
+}
 
 .main {
   min-height: 450px;
@@ -52,6 +54,18 @@ footer {
 
 .req {
   color: #c00;
+}
+
+
+.itemsHolder {}
+.itemsHolder .spin {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+.itemsHolder p {
+  text-align: center;
+  font-style: italic;
 }
 
 

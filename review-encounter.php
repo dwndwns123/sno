@@ -48,7 +48,7 @@ if(!$_SESSION["logged"]){
                     <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue")." #".$row['rfe_id'].' - '.$concept; ?>
                   </a>
                 </div>
-                <div id="collapse<?= $count; ?>" class="accordion-body collapse">
+                <div class="accordion-body collapse" id="collapse<?= $count; ?>">
                   <div class="accordion-inner">
                     <dl>
                       <dt>SNOMED CT Concept</dt>

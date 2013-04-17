@@ -1,4 +1,22 @@
 var ftt = {
+  spinOpts: {
+    lines: 13, // The number of lines to draw
+    length: 20, // The length of each line
+    width: 10, // The line thickness
+    radius: 30, // The radius of the inner circle
+    corners: 1, // Corner roundness (0..1)
+    rotate: 0, // The rotation offset
+    direction: 1, // 1: clockwise, -1: counterclockwise
+    color: '#3FABE9', // #rgb or #rrggbb
+    speed: 1, // Rounds per second
+    trail: 60, // Afterglow percentage
+    shadow: false, // Whether to render a shadow
+    hwaccel: false, // Whether to use hardware acceleration
+    className: 'spinner', // The CSS class to assign to the spinner
+    zIndex: 2e9, // The z-index (defaults to 2000000000)
+    top: 'auto', // Top position relative to parent in px
+    left: 'auto' // Left position relative to parent in px
+  },
   init: function(){
     $('input[maxlength]').maxlength();
 
@@ -81,6 +99,32 @@ var ftt = {
         }
       });
     });
+
+    $('.itemsHolder .spin').each(function(n){
+      var $this = $(this);
+      var spinner = new Spinner(ftt.spinOpts).spin($this[0]);
+    });
+
+    $('.encounters-list .collapse').not('fetched').on('shown', function(){
+      var $this = $(this),
+        $container = $this.find('.itemsHolder'),
+        wId = $container.attr('id').split('-')[1];
+
+      $.ajax({
+        url:        'getItems.php',
+        type:       'POST',
+        data:       'enc='+wId,
+        dataType:   'json',
+        success:    function(response, textStatus, jqXHR){
+          $this.addClass('fetched');
+          var insertHtml = ftt.items.write(response);
+          $container.empty().append(insertHtml);
+        },
+        error:      function(jqXHR, textStatus, errorThrown){
+          alert('error: '+errorThrown);
+        }
+      });
+    });
   },
   concepts: {
     narrow: function(){
@@ -134,6 +178,26 @@ var ftt = {
       str += '</ul>';
       $('dl.synonyms dd').empty().append(str);
       $('dl.synonyms').show();
+    }
+  },
+  items: {
+    write: function(data){
+      tools.dir(data);
+      var str = '<dl class="dl-horizontal"><dt>RFEs</dt><dd><ul>';
+      for(var x=0; x<data.length; x++){// RFEs only
+        if(data[x].type === "0"){
+          str += '<li>'+data[x].term+'</li>';
+        }
+      }
+      str += '</ul></dd><dt>Health Issues</dt><dd><ul>';
+      for(var y=0; y<data.length; y++){// HIs only
+        if(data[y].type === "1"){
+          str += '<li>'+data[y].term+'</li>';
+        }
+      }
+      str += '</ul></dd></dl>';
+
+      return str;
     }
   }
 };
