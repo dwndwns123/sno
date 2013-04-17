@@ -68,7 +68,16 @@ if(!$_SESSION["logged"]){
                       <fieldset>
                         <input type="hidden" id="item" name="item" value="<?= $row['rfe_id']; ?>">
                         <input type="hidden" id="from" name="from" value="review-encounter.php">
-                        <button type="submit" class="btn pull-right">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button>
+                        <input type="hidden" id="itemType" name="itemType" value="<?= $row['refset_id']; ?>">
+                        <?php
+                          $sql = mysql_query("SELECT rfe_id FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' AND refset_id='$row[refset_id]'") or die(mysql_error());
+                          $num = mysql_num_rows($sql);
+                        ?>
+                        <input type="hidden" id="numThis" name="numThis" value="<?= $num; ?>">
+                        <ul class="inline pull-right">
+                          <li><button type="submit" class="btn pull-right">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                          <li><button class="btn btn-danger pull-right deleteItemBtn">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                        </ul>
                       </fieldset>
                     </form>
                   </div>
@@ -80,7 +89,10 @@ if(!$_SESSION["logged"]){
             ?>
           </div>
 
-          <a href="complete-encounter.php" class="btn btn-success pull-right">Complete encounter</a>
+          <ul class="inline pull-right">
+            <li><button class="btn btn-danger pull-right deleteEncounterBtn" id="delenc-<?= $_SESSION['encounter_id']; ?>">Delete this encounter</button></li>
+            <li><a href="complete-encounter.php" class="btn btn-success pull-right">Complete encounter</a></li>
+          </ul>
         </div>
       </div>
 <?php

@@ -27,6 +27,34 @@ var ftt = {
       e.preventDefault();
       $(this).closest('form').attr('action', 'review-encounter.php').submit();
     });
+
+    $('.deleteItemBtn').on('click', function(e){
+      e.preventDefault();
+
+    });
+
+    $('.deleteEncounterBtn').on('click', function(e){
+      e.preventDefault();
+      bootbox.confirm("Are you sure?", function(result){
+        var wId = $(e.target).attr('id').split('-')[1];
+        if(result){
+          // TODO: show some kind of spinner (spin.js) while this call is made
+          $.ajax({
+            url:      'deleteEncounter.php',
+            type:     'POST',
+            data:     'id='+wId,
+            success:  function(response, textStatus, jqXHR){
+              bootbox.alert("Encounter "+wId+" successfully deleted.", function(){
+                window.location.href = "index.php";
+              })
+            },
+            error:    function(jqXHR, textStatus, errorThrown){
+              alert('error: '+errorThrown);
+            }
+          });
+        }
+      });
+    });
   },
   concepts: {
     narrow: function(){
