@@ -30,13 +30,39 @@ var ftt = {
 
     $('.deleteItemBtn').on('click', function(e){
       e.preventDefault();
-
+      var $this = $(e.target);
+      var wId = $this.attr('id').split('-')[1];
+      var numThis = $this.closest('form').find('#numThis').val();
+      var thisType = ($this.closest('form').find('#itemType').val().toString() === "0" ? "RFE" : "Health Issue");
+      if(numThis < 2){
+        bootbox.alert('Each encounter must have at least one RFE and at least one Health Issue.');
+      } else {
+        bootbox.confirm("Delete "+thisType+" #"+wId+" - Are you sure?", function(result){
+          if(result){
+            // TODO: show some kind of spinner (spin.js) while this call is made
+            $.ajax({
+              url:      'deleteItem.php',
+              type:     'POST',
+              data:     'id='+wId,
+              success:  function(response, textStatus, jqXHR){
+                bootbox.alert(thisType+" #"+wId+" successfully deleted.", function(){
+                  window.location.href = "review-encounter.php";
+                })
+              },
+              error:    function(jqXHR, textStatus, errorThrown){
+                alert('error: '+errorThrown);
+              }
+            });
+          }
+        });
+      }
     });
 
     $('.deleteEncounterBtn').on('click', function(e){
       e.preventDefault();
-      bootbox.confirm("Are you sure?", function(result){
-        var wId = $(e.target).attr('id').split('-')[1];
+      var $this = $(e.target);
+      var wId = $this.attr('id').split('-')[1];
+      bootbox.confirm("Delete Encounter #"+wId+" - Are you sure?", function(result){
         if(result){
           // TODO: show some kind of spinner (spin.js) while this call is made
           $.ajax({
@@ -44,7 +70,7 @@ var ftt = {
             type:     'POST',
             data:     'id='+wId,
             success:  function(response, textStatus, jqXHR){
-              bootbox.alert("Encounter "+wId+" successfully deleted.", function(){
+              bootbox.alert("Encounter #"+wId+" successfully deleted.", function(){
                 window.location.href = "index.php";
               })
             },

@@ -76,7 +76,7 @@ if(!$_SESSION["logged"]){
                         <input type="hidden" id="numThis" name="numThis" value="<?= $num; ?>">
                         <ul class="inline pull-right">
                           <li><button type="submit" class="btn pull-right">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
-                          <li><button class="btn btn-danger pull-right deleteItemBtn">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                          <li><button class="btn btn-danger pull-right deleteItemBtn" id="delitem-<?= $row['rfe_id']; ?>">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
                         </ul>
                       </fieldset>
                     </form>
