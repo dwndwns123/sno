@@ -107,13 +107,19 @@ if(!$_SESSION["logged"]){
         <div class="span12">
           <div class="well">
             <p class="lead">Welcome, <?= ($_SESSION['title'] !== 'Other' ? $_SESSION['title'].' ' : ''); ?><?= $_SESSION['first_name'].' '.$_SESSION['last_name'] ?>.</p>
-            <p>You have completed <?= $encounters; ?> of 100 encounters.</p>
+            <p>You have completed <?= $encounters; ?> of <?= $configvars["encounters"]["maxencounters"]; ?> encounters.</p>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="span2 offset5">
-          <a class="btn btn-large btn-block btn-primary" href="add-item.php">Add encounter</a>
+          <?php
+          if($encounters < $configvars["encounters"]["maxencounters"]){
+            ?>
+            <a class="btn btn-large btn-block btn-primary" href="add-item.php">Add encounter</a>
+            <?php
+          }
+          ?>
           <a class="btn btn-large btn-block btn-primary" href="encounters.php">View encounters</a>
         </div>
       </div>
