@@ -39,59 +39,66 @@ if(!$_SESSION["logged"]){
       <div class="row">
         <div class="span8 offset2">
           <h2>Encounter <?= $_SESSION["encounter_id"].($_SESSION["label"] == '' ? '' : ' - '.$_SESSION["label"]); ?></h2>
-          <div class="accordion">
+          <ul class="inline pull-right">
+            <li><a href="add-item.php?type=0&amp;enc=<?= $_SESSION['encounter_id']; ?>" class="btn">Add RFE</a></li>
+            <li><a href="add-item.php?type=1&amp;enc=<?= $_SESSION['encounter_id']; ?>" class="btn">Add Health Issue</a></li>
+          </ul>
+          <div class="accordion clearboth">
             <?php
-            $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
-            $count = 0;
-            while($row = mysql_fetch_array($rows)){
-              $sql = mysql_query("SELECT * FROM SCT_Concepts WHERE ConceptId='$row[sct_id]'") or die(mysql_error());
-              $conceptArr = mysql_fetch_array($sql);
-              $concept = $conceptArr['PT'];
-              ?>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $count; ?>">
-                    <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue")." #".$row['rfe_id'].' - '.$concept; ?>
-                  </a>
-                </div>
-                <div class="accordion-body collapse" id="collapse<?= $count; ?>">
-                  <div class="accordion-inner">
-                    <dl>
-                      <dt>SNOMED CT Concept</dt>
-                      <dd><?= $concept; ?></dd>
-                      <dt>How well does this SNOMED CT concept adequately represent the <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very well, 5 = Poorly)</dt>
-                      <dd><?= $row['sct_scale']; ?></dd>
-                      <dt>Alternative description of clinical term</dt>
-                      <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
-                      <dt>ICPC-2 code</dt>
-                      <dd><?= $row['map_id']; ?></dd>
-                      <dt>Is this ICPC-2 code an appropriate match for the <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very, 5 = Not at all)</dt>
-                      <dd><?= $row['map_scale']; ?></dd>
-                      <dt>Alternate ICPC-2 code</dt>
-                      <dd><?= $row['map_alt_id']; ?></dd>
-                    </dl>
-                    <form action="edit-item.php" method="post">
-                      <fieldset>
-                        <input type="hidden" id="item" name="item" value="<?= $row['rfe_id']; ?>">
-                        <input type="hidden" id="from" name="from" value="review-encounter.php">
-                        <input type="hidden" id="itemType" name="itemType" value="<?= $row['refset_id']; ?>">
-                        <?php
-                          $sql = mysql_query("SELECT rfe_id FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' AND refset_id='$row[refset_id]'") or die(mysql_error());
-                          $num = mysql_num_rows($sql);
-                        ?>
-                        <input type="hidden" id="numThis" name="numThis" value="<?= $num; ?>">
-                        <ul class="inline pull-right">
-                          <li><button type="submit" class="btn pull-right">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
-                          <li><button class="btn btn-danger pull-right deleteItemBtn" id="delitem-<?= $row['rfe_id']; ?>">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
-                        </ul>
-                      </fieldset>
-                    </form>
+
+            for($x = 0; $x <= 1; $x++){ // loop through once for RFEs and once for HIs
+              $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
+              while($row = mysql_fetch_array($rows)){
+                if($row['refset_id'] == $x){
+                  $sql = mysql_query("SELECT * FROM SCT_Concepts WHERE ConceptId='$row[sct_id]'") or die(mysql_error());
+                  $conceptArr = mysql_fetch_array($sql);
+                  $concept = $conceptArr['PT'];
+                  ?>
+                  <div class="accordion-group">
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['rfe_id']; ?>">
+                        <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue")." #".$row['rfe_id'].' - '.$concept; ?>
+                      </a>
+                    </div>
+                    <div class="accordion-body collapse" id="collapse<?= $row['rfe_id']; ?>">
+                      <div class="accordion-inner">
+                        <dl>
+                          <dt>SNOMED CT Concept</dt>
+                          <dd><?= $concept; ?></dd>
+                          <dt>How well does this SNOMED CT concept adequately represent the <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very well, 5 = Poorly)</dt>
+                          <dd><?= $row['sct_scale']; ?></dd>
+                          <dt>Alternative description of clinical term</dt>
+                          <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
+                          <dt>ICPC-2 code</dt>
+                          <dd><?= $row['map_id']; ?></dd>
+                          <dt>Is this ICPC-2 code an appropriate match for the <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very, 5 = Not at all)</dt>
+                          <dd><?= $row['map_scale']; ?></dd>
+                          <dt>Alternate ICPC-2 code</dt>
+                          <dd><?= $row['map_alt_id']; ?></dd>
+                        </dl>
+                        <form action="edit-item.php" method="post">
+                          <fieldset>
+                            <input type="hidden" id="item" name="item" value="<?= $row['rfe_id']; ?>">
+                            <input type="hidden" id="from" name="from" value="review-encounter.php">
+                            <input type="hidden" id="itemType" name="itemType" value="<?= $row['refset_id']; ?>">
+                            <?php
+                              $sql = mysql_query("SELECT rfe_id FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' AND refset_id='$row[refset_id]'") or die(mysql_error());
+                              $num = mysql_num_rows($sql);
+                            ?>
+                            <input type="hidden" id="numThis" name="numThis" value="<?= $num; ?>">
+                            <ul class="inline pull-right">
+                              <li><button type="submit" class="btn pull-right">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                              <li><button class="btn btn-danger pull-right deleteItemBtn" id="delitem-<?= $row['rfe_id']; ?>">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                            </ul>
+                          </fieldset>
+                        </form>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <?php
-              $count++;
-              }
+                  <?php
+                } // end of if
+              } // end of while
+            } // end of for
             ?>
           </div>
 
