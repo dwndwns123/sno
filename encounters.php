@@ -17,6 +17,7 @@
 if(!$_SESSION["logged"]){
   include('inc/not-logged-in.php');
 } else {
+  $_SESSION["return_to"] = null;
 ?>
       <div class="row">
         <div class="span8 offset2">
@@ -29,29 +30,39 @@ if(!$_SESSION["logged"]){
             $_SESSION ["label"] = null;
 
             $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
-            while($row = mysql_fetch_array($encountersData)){
-              ?>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['encounter_id']; ?>">
-                    Encounter #<?= $row['encounter_id']; ?> - <?= ($row['label'] == '' ? '<em>No label given</em>' : $row['label']) ?>
-                  </a>
-                </div>
-                <div class="accordion-body collapse" id="collapse<?= $row['encounter_id']; ?>">
-                  <div class="accordion-inner">
-                    <ul class="inline pull-right">
-                      <li><button class="btn editlabelBtn" data-encounterid="<?= $row['encounter_id']; ?>" data-currentlabel="<?= $row['label']; ?>">Edit label for this encounter</button></li>
-                    </ul>
-                    <div class="itemsHolder clearboth clearfix" id="enc-<?= $row['encounter_id']; ?>">
-                      <div class="spin"></div>
-                      <p>Fetching items...</p>
+            if(mysql_num_rows($encountersData)){
+              while($row = mysql_fetch_array($encountersData)){
+                ?>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['encounter_id']; ?>">
+                      Encounter #<?= $row['encounter_id']; ?> - <?= ($row['label'] == '' ? '<em>No label given</em>' : $row['label']) ?>
+                    </a>
+                  </div>
+                  <div class="accordion-body collapse" id="collapse<?= $row['encounter_id']; ?>">
+                    <div class="accordion-inner">
+                      <ul class="inline pull-right">
+                        <li><button class="btn editlabelBtn" data-encounterid="<?= $row['encounter_id']; ?>" data-currentlabel="<?= $row['label']; ?>">Edit label for this encounter</button></li>
+                      </ul>
+                      <div class="itemsHolder clearboth clearfix" id="enc-<?= $row['encounter_id']; ?>">
+                        <div class="spin"></div>
+                        <p>Fetching items...</p>
+                      </div>
+                      <form action="review-encounter.php" method="post">
+                        <input type="hidden" id="enc" name="enc" value="<?= $row['encounter_id']; ?>">
+                        <ul class="inline pull-right">
+                          <li><button type="submit" class="btn">Edit this encounter</button></li>
+                        </ul>
+                      </form>
                     </div>
-                    <ul class="inline pull-right">
-                      <li><button class="btn" id="">Edit this encounter</button></li>
-                    </ul>
                   </div>
                 </div>
-              </div>
+                <?php
+              }
+            } else {
+              ?>
+              <p class="lead">You have not yet completed any encounters.</p>
+              <a href="add-item.php" class="btn">Add encounter</a>
               <?php
             }
           ?>

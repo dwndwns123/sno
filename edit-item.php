@@ -13,6 +13,8 @@
         $item = mysql_fetch_array($rows);
         $recordType = ($item["refset_id"] == 0 ? "RFE" : "Health Issue");
         $_SESSION['rfe_id'] = $_POST['item'];
+        $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$item[encounter_id]'") or die(mysql_error());
+        $enc = mysql_fetch_array($encRows);
       }
     }
   ?>
@@ -45,8 +47,8 @@ if(!$_SESSION["logged"]){
                   <dd><?= $item["encounter_id"]; ?></dd>
                   <dt><?= $recordType; ?> number:</dt>
                   <dd><?= $item["rfe_id"]; ?></dd>
-                  <dt>Label (optional):</dt>
-                  <dd><input type="text" class="input-xlarge" id="label" name="label" value="<?= $item["label"] ?>" maxlength="64"></dd>
+                  <dt>Encounter label:</dt>
+                  <dd><?= ($enc["label"] == "" ? '<em>None</em>' : $enc["label"]); ?></dd>
                 </dl>
               </div>
             </div>

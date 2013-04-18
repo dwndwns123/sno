@@ -9,7 +9,13 @@
 <body>
 <?php
 if($_SESSION["logged"]){
-  if($_POST["conceptsDropdown"] && $_POST["conceptRepresentation"] && $_POST["icpc2"] && $_POST["icpc2appropriate"]){ // all mandatory fields posted
+  if($_POST["enc"]){
+    $_SESSION["encounter_id"] = $_POST["enc"];
+    $_SESSION["return_to"] = "encounters.php";
+    $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$_POST[enc]'") or die(mysql_error());
+    $enc = mysql_fetch_array($encRows);
+    $_SESSION["label"] = $enc["label"];
+  } else if($_POST["conceptsDropdown"] && $_POST["conceptRepresentation"] && $_POST["icpc2"] && $_POST["icpc2appropriate"]){ // all mandatory fields posted
     $sql = "UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', sct_alt = '$_POST[conceptFreeText]', map_id = '$_POST[icpc2]', map_scale = '$_POST[icpc2appropriate]'".(!is_null($_POST["icpc2choice"]) ? ", map_alt_id = '$_POST[icpc2choice]'" : "")." WHERE rfe_id = '$_SESSION[rfe_id]'";
     mysql_query($sql) or die(mysql_error());
     $message = '<div class="alert alert-success">'.($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue").' number '.$_SESSION["rfe_id"].' successfully recorded.</div>';
@@ -91,7 +97,17 @@ if(!$_SESSION["logged"]){
 
           <ul class="inline pull-right">
             <li><button class="btn btn-danger pull-right deleteEncounterBtn" id="delenc-<?= $_SESSION['encounter_id']; ?>">Delete this encounter</button></li>
-            <li><a href="complete-encounter.php" class="btn btn-success pull-right">Complete encounter</a></li>
+            <?php
+              if($_SESSION["return_to"]){
+                ?>
+                  <li><a href="<?= $_SESSION["return_to"]; ?>" class="btn pull-right">Review encounters</a></li>
+                <?php
+              } else {
+                ?>
+                  <li><a href="complete-encounter.php" class="btn btn-success pull-right">Complete encounter</a></li>
+                <?php
+              }
+            ?>
           </ul>
         </div>
       </div>
