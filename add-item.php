@@ -130,7 +130,7 @@ if(!$_SESSION["logged"]){
               <p>2. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-required="true"><span>Very</span>
+                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-required="true" data-error-container="#representationValidation"><span>Very</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2">
@@ -145,6 +145,7 @@ if(!$_SESSION["logged"]){
                   <span>5</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation5" value="5"><span>Poorly</span>
                 </label>
               </div>
+              <div id="representationValidation"></div>
               <hr>
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
               <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250">
@@ -155,7 +156,7 @@ if(!$_SESSION["logged"]){
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the <?= $recordType; ?> you recorded?</p>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1" data-required="true"><span>Very</span>
+                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1" data-required="true" data-error-container="#appropriateValidation"><span>Very</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate2" value="2">
@@ -170,6 +171,7 @@ if(!$_SESSION["logged"]){
                   <span>5</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate5" value="5"><span>Not at all</span>
                 </label>
               </div>
+              <div id="appropriateValidation"></div>
               <hr>
               <p>6. If the ICPC-2 code is not an appropriate match, please record your preferred ICPC-2 code:</p>
               <select id="icpc2choice" name="icpc2choice" class="span8">

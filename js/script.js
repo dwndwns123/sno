@@ -31,7 +31,7 @@ var ftt = {
       ftt.concepts.getSynonyms();
     });
 
-    if($('#conceptsDropdown option:selected').length > 0){
+    if($('#conceptsDropdown').val() !== ''){
       ftt.concepts.getSynonyms();
     }
 
