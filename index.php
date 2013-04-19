@@ -112,15 +112,17 @@ if(!$_SESSION["logged"]){
         </div>
       </div>
       <div class="row">
-        <div class="span2 offset5">
-          <?php
-          if($encounters < $configvars["encounters"]["maxencounters"]){
-            ?>
-            <a class="btn btn-large btn-block btn-primary" href="add-item.php">Add encounter</a>
+        <div class="span4 offset4">
+          <ul class="unstyled homeButtons">
             <?php
-          }
-          ?>
-          <a class="btn btn-large btn-block btn-primary" href="encounters.php">View encounters</a>
+            if($encounters < $configvars["encounters"]["maxencounters"]){
+              ?>
+              <li><a class="btn btn-large btn-block btn-primary" href="add-item.php">Add encounter</a></li>
+              <?php
+            }
+            ?>
+            <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View encounters</a></li>
+          </ul>
         </div>
       </div>
       <div class="row disclaimer">

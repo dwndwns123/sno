@@ -39,6 +39,12 @@
   text-rendering: optimizelegibility;
 }
 
+ul.inline > li,
+ol.inline > li {
+  *display: inline;
+  *zoom: 1;
+}
+
 .clearboth {
   clear: both;
 }
@@ -56,6 +62,9 @@ footer {
   color: #c00;
 }
 
+.homeButtons li {
+  margin-bottom: 10px;
+}
 
 .itemsHolder {}
 .itemsHolder .spin {

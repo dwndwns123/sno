@@ -87,8 +87,8 @@ if(!$_SESSION["logged"]){
                             ?>
                             <input type="hidden" id="numThis" name="numThis" value="<?= $num; ?>">
                             <ul class="inline pull-right">
-                              <li><button type="submit" class="btn pull-right">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
-                              <li><button class="btn btn-danger pull-right deleteItemBtn" id="delitem-<?= $row['rfe_id']; ?>">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                              <li><button type="submit" class="btn">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                              <li><button class="btn btn-danger deleteItemBtn" id="delitem-<?= $row['rfe_id']; ?>">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
                             </ul>
                           </fieldset>
                         </form>
@@ -103,15 +103,15 @@ if(!$_SESSION["logged"]){
           </div>
 
           <ul class="inline pull-right">
-            <li><button class="btn btn-danger pull-right deleteEncounterBtn" id="delenc-<?= $_SESSION['encounter_id']; ?>">Delete this encounter</button></li>
+            <li><button class="btn btn-danger deleteEncounterBtn" id="delenc-<?= $_SESSION['encounter_id']; ?>">Delete this encounter</button></li>
             <?php
               if($_SESSION["return_to"]){
                 ?>
-                  <li><a href="<?= $_SESSION["return_to"]; ?>" class="btn pull-right">Review encounters</a></li>
+                  <li><a href="<?= $_SESSION["return_to"]; ?>" class="btn">Review encounters</a></li>
                 <?php
               } else {
                 ?>
-                  <li><a href="complete-encounter.php" class="btn btn-success pull-right">Complete encounter</a></li>
+                  <li><a href="complete-encounter.php" class="btn btn-success">Complete encounter</a></li>
                 <?php
               }
             ?>
