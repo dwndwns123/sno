@@ -394,10 +394,11 @@ CREATE TABLE `Users` (
   `age` int(11) DEFAULT NULL,
   `gender_id` int(11) DEFAULT NULL,
   `country_id` int(11) NOT NULL,
-  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `verification` varchar(256) DEFAULT NULL,
+  `field_test_complete` smallint(6) NOT NULL DEFAULT '0',
+  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
