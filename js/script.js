@@ -18,26 +18,25 @@ var ftt = {
     left: 'auto' // Left position relative to parent in px
   },
   init: function(){
+    // implement nice maxlength plugin
     $('input[maxlength]').maxlength();
 
+    // button actions
     $('#searchBtn').on('click', function(){
-      ftt.concepts.narrow();
+      ftt.concepts.refine();
     });
     $('#clearBtn').on('click', function(){
       ftt.concepts.reset();
     });
-
     $('#nextBtn').on('click', function(e){
       e.preventDefault();
       $('#addAnother').val("false");
       $(this).closest('form').submit();
     });
-
     $('#finishedBtn').on('click', function(e){
       e.preventDefault();
       $(this).closest('form').attr('action', 'review-encounter.php').submit();
     });
-
     $('.deleteItemBtn').on('click', function(e){
       e.preventDefault();
       var $this = $(e.target);
@@ -67,7 +66,6 @@ var ftt = {
         });
       }
     });
-
     $('.deleteEncounterBtn').on('click', function(e){
       e.preventDefault();
       var $this = $(e.target);
@@ -92,11 +90,13 @@ var ftt = {
       });
     });
 
+    // setup js spinners to display before AJAX calls in itemsHolder on encounters list page
     $('.itemsHolder .spin').each(function(){
       var $this = $(this);
       var spinner = new Spinner(ftt.spinOpts).spin($this[0]);
     });
 
+    // AJAX calls for on encounters list page
     $('.encounters-list .collapse').not('fetched').on('shown', function(){
       var $this = $(this),
         $container = $this.find('.itemsHolder'),
@@ -118,6 +118,7 @@ var ftt = {
       });
     });
 
+    // AJAX setting new label for encounter
     $('.editlabelBtn').on('click', function(e){
       e.preventDefault();
       var $this = $(this);
@@ -138,6 +139,7 @@ var ftt = {
       });
     });
 
+    // scrollto and open encounter after label change
     if(($('.encounters-list').length > 0) && (window.location.search.indexOf('scrollTo') !== -1)){
       var wId = window.location.search.split('scrollTo=')[1];
       var wX = $('#collapse'+wId).closest('.accordion-group').offset().top;
@@ -145,13 +147,14 @@ var ftt = {
       $('#collapse'+wId).parent().find('.accordion-toggle').trigger('click');
     }
 
+    // trap pressing RETURN on add/edit form - send focus to search box
     $('form#addItem, form#editItem').bind('keypress', function(e){
        if(e.keyCode === 13){
          e.preventDefault();
          $('#searchBox').focus();
        }
      });
-
+    // if already in search box, RETURN triggers search
     $('#searchBox').bind('keypress', function(e){
        if(e.keyCode === 13){
          e.preventDefault();
@@ -160,7 +163,7 @@ var ftt = {
      });
   },
   concepts: {
-    narrow: function(){
+    refine: function(){
       var searchText = $('#searchBox').val();
 
       if(searchText == ''){
@@ -188,7 +191,7 @@ var ftt = {
     },
     reset: function(){
       $('#searchBox').val('');
-      ftt.concepts.narrow();
+      ftt.concepts.refine();
     },
     getSynonyms: function(){
       var cid = $('#conceptsDropdown').val();
@@ -240,6 +243,7 @@ var ftt = {
 
 
 var tools = {
+  // safe logging
   log: function(msg){
     if(window && window.console){
       console.log(msg);
@@ -250,6 +254,8 @@ var tools = {
       console.dir(obj);
     }
   },
+
+  // dropdown rebuilding from JSON
   rewriteDropdown: function($obj, data){
     var $tmp = $obj.find('option')[0];
     $obj.empty().append($tmp);
