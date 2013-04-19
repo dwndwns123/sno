@@ -27,14 +27,6 @@ var ftt = {
       ftt.concepts.reset();
     });
 
-    $('#conceptsDropdown').on('change', function(){
-      ftt.concepts.getSynonyms();
-    });
-
-    if($('#conceptsDropdown').val() !== ''){
-      ftt.concepts.getSynonyms();
-    }
-
     $('#nextBtn').on('click', function(e){
       e.preventDefault();
       $('#addAnother').val("false");
@@ -157,25 +149,28 @@ var ftt = {
     narrow: function(){
       var searchText = $('#searchBox').val();
 
-      $.ajax({
-        url:      'searchConcepts.php',
-        type:     'POST',
-        data:     'searchText='+searchText,
-        dataType: 'json',
-        success:  function(response, textStatus, jqXHR){
-          $('#conceptsDropdown').prop('size', 5);
-          tools.rewriteDropdown($('#conceptsDropdown'), response);
-          $('dl.synonyms').hide();
-          
-          if(searchText === ''){
-            $('#conceptsDropdown').prop('size', 1);
-            $('#conceptsDropdown')[0].selectedIndex = 0;
+      if(searchText == ''){
+        $('#conceptsDropdown, dl.synonyms, #clearBtn').hide();
+        $('#conceptsDropdown')[0].selectedIndex = 0;
+        $('#conceptsDropdown').unbind('change');
+      } else {
+        $.ajax({
+          url:      'searchConcepts.php',
+          type:     'POST',
+          data:     'searchText='+searchText,
+          dataType: 'json',
+          success:  function(response, textStatus, jqXHR){
+            tools.rewriteDropdown($('#conceptsDropdown'), response);
+            $('#conceptsDropdown, #clearBtn').show();
+            $('#conceptsDropdown').on('change', function(){
+              ftt.concepts.getSynonyms();
+            });
+          },
+          error:    function(jqXHR, textStatus, errorThrown){
+            alert('error: '+errorThrown);
           }
-        },
-        error:    function(jqXHR, textStatus, errorThrown){
-          alert('error: '+errorThrown);
-        }
-      });
+        });
+      }
     },
     reset: function(){
       $('#searchBox').val('');

@@ -77,7 +77,12 @@ footer {
   font-style: italic;
 }
 
-
+#conceptsDropdown {
+  display: none;
+}
+#clearBtn {
+  display: none;
+}
 .synonyms {
   display: none;
 }
