@@ -7,7 +7,7 @@ The field test is a web based, php/mysql system to test the clinical completenes
 
 Minimum Specification
 ---------------------
-- PHP v5.4.x (current incompatibilities with PHP v5.3.x and below)
+- PHP v5.2.x (developed in v5.2.17)
 - MYSQL v5.5.x
 
 Installation
