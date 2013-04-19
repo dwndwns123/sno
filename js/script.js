@@ -144,6 +144,20 @@ var ftt = {
       window.scrollTo(0, wX);
       $('#collapse'+wId).parent().find('.accordion-toggle').trigger('click');
     }
+
+    $('form#addItem, form#editItem').bind('keypress', function(e){
+       if(e.keyCode === 13){
+         e.preventDefault();
+         $('#searchBox').focus();
+       }
+     });
+
+    $('#searchBox').bind('keypress', function(e){
+       if(e.keyCode === 13){
+         e.preventDefault();
+         $('#searchBtn').click();
+       }
+     });
   },
   concepts: {
     narrow: function(){

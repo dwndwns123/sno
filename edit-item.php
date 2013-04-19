@@ -61,11 +61,12 @@ if(!$_SESSION["logged"]){
                 <input id="searchBox" name="searchBox" type="text" maxlength="50">
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
-              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" data-required="true" size="5">
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" data-required="true" size="5" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
+              <div id="conceptValidation"></div>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
                 <dd></dd>
