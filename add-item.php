@@ -34,12 +34,14 @@
         } else { // there is an encounter id
 
           if($_POST["conceptsDropdown"] && $_POST["conceptRepresentation"] && $_POST["icpc2"] && $_POST["icpc2appropriate"]){ // all mandatory fields posted
-            $sql = "UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', sct_alt = '$_POST[conceptFreeText]', map_id = '$_POST[icpc2]', map_scale = '$_POST[icpc2appropriate]'".(!is_null($_POST["icpc2choice"]) ? ", map_alt_id = '$_POST[icpc2choice]'" : "")." WHERE rfe_id = '$_SESSION[rfe_id]'";
+            $sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', sct_alt = '%s', map_id = '$_POST[icpc2]', map_scale = '$_POST[icpc2appropriate]'".(!is_null($_POST["icpc2choice"]) ? ", map_alt_id = '$_POST[icpc2choice]'" : "")." WHERE rfe_id = '$_SESSION[rfe_id]'",
+                           mysql_real_escape_string($_POST[conceptFreeText]));
             mysql_query($sql) or die(mysql_error());
             $message = '<div class="alert alert-success">'.($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue").' number '.$_SESSION["rfe_id"].' successfully recorded.</div>';
 
             if($_POST["label"]){
-              $sql = "UPDATE Encounters SET label = '$_POST[label]' WHERE encounter_id = '$_SESSION[encounter_id]'";
+              $sql = sprintf("UPDATE Encounters SET label = '%s' WHERE encounter_id = '$_SESSION[encounter_id]'",
+                             mysql_real_escape_string($_POST[label]));
               mysql_query($sql) or die(mysql_error());
               $_SESSION["label"] = $_POST["label"];
             }

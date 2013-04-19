@@ -10,7 +10,12 @@
 <?php
 if($_SESSION["logged"]){
   if(!is_null($_POST["editTitle"]) && $_POST["editFirstname"] && $_POST["editLastname"] && !is_null($_POST["editCountry"]) && $_POST["editRole"] && !is_null($_POST["editGender"]) && $_POST["editAge"]){
-    $sql = mysql_query("UPDATE Users SET title_id = '$_POST[editTitle]', first_name = '$_POST[editFirstname]', last_name = '$_POST[editLastname]', country_id = '$_POST[editCountry]', role = '$_POST[editRole]', gender_id = '$_POST[editGender]', age = '$_POST[editAge]' WHERE user_id = $_SESSION[user_id]") or die(mysql_error());
+    $sql = sprintf("UPDATE Users SET title_id = '$_POST[editTitle]', first_name = '%s', last_name = '%s', country_id = '$_POST[editCountry]', role = '%s', gender_id = '$_POST[editGender]', age = '$_POST[editAge]' WHERE user_id = $_SESSION[user_id]",
+                   mysql_real_escape_string($_POST[editFirstname]),
+                   mysql_real_escape_string($_POST[editLastname]),
+                   mysql_real_escape_string($_POST[editRole]));
+    
+    mysql_query($sql) or die(mysql_error());
 
     $tRows = mysql_query("SELECT * FROM Title WHERE title_id='$_POST[editTitle]'") or die(mysql_error());
     $uTitle = mysql_fetch_array($tRows);

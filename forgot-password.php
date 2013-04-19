@@ -18,7 +18,9 @@
 if($_SESSION["logged"]){
   include('inc/already-logged-in.php');
 } else if($_POST["forgotEmail"]){
-  $checkUser = mysql_query("SELECT * FROM Users WHERE email='$_POST[forgotEmail]'") or die(mysql_error());
+  $sql = sprintf("SELECT * FROM Users WHERE email='%s'",
+                 mysql_real_escape_string($_POST[forgotEmail]));
+  $checkUser = mysql_query($sql) or die(mysql_error());
   $user = mysql_fetch_array($checkUser);
   if(mysql_num_rows($checkUser)==1){
     $pw = substr(md5(rand()), 0, 10);

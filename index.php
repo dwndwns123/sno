@@ -11,7 +11,9 @@
 <?php
 // check for login post
 if($_POST["loginEmail"] && $_POST["loginPassword"]){
-  $rows = mysql_query("SELECT * FROM Users WHERE email='$_POST[loginEmail]'") or die(mysql_error());
+  $sql = sprintf("SELECT * FROM Users WHERE email='%s'",
+                 mysql_real_escape_string($_POST[loginEmail]));
+  $rows = mysql_query($sql) or die(mysql_error());
 
   if(mysql_num_rows($rows)==1){
     $user = mysql_fetch_array($rows);

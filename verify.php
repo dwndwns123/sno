@@ -20,7 +20,10 @@ if($_SESSION["logged"]){
 } else {
   if(!is_null($_POST["regTitle"]) && $_POST["regFirstname"] && $_POST["regLastname"] && $_POST["regEmail"] && $_POST["regPassword"] && !is_null($_POST["regCountry"]) && $_POST["regRole"] && !is_null($_POST["regGender"]) && $_POST["regAge"]){// we arrived by posting from the registration form and all the fields are here
 
-    $checkUser = mysql_query("SELECT * FROM Users WHERE email='$_POST[regEmail]'") or die(mysql_error());
+    $sql = sprintf("SELECT * FROM Users WHERE email='%s'",
+                   mysql_real_escape_string($_POST[regEmail]));
+    
+    $checkUser = mysql_query($sql) or die(mysql_error());
     $user = mysql_fetch_array($checkUser);
     if(mysql_num_rows($checkUser)==1){
       $message = '<div class="alert alert-error">That email address is already registered.</div>';
@@ -28,7 +31,12 @@ if($_SESSION["logged"]){
       $ver = md5(uniqid(mt_rand(), true));
       $pass = md5($_POST["regPassword"]);
 
-      $sql = "INSERT INTO Users (title_id,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','$_POST[regFirstname]','$_POST[regLastname]','$_POST[regEmail]','$pass','$_POST[regRole]','$_POST[regAge]','$_POST[regGender]','$_POST[regCountry]','$ver')";
+      $sql = sprintf("INSERT INTO Users (title_id,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','%s','%s','%s','$pass','%s','$_POST[regAge]','$_POST[regGender]','$_POST[regCountry]','$ver')",
+                     mysql_real_escape_string($_POST[regFirstname]),
+                     mysql_real_escape_string($_POST[regLastname]),
+                     mysql_real_escape_string($_POST[regEmail]),
+                     mysql_real_escape_string($_POST[regRole]));
+
       mysql_query($sql) or die(mysql_error());
 
       $emailText = "Thanks for registering on the SNOMED CT Field Test Website.\r\n\r\nPlease verify your email address by visiting ".$configvars["environment"]["url"]."/verify.php and entering your verification code:\r\n\r\n".$ver;

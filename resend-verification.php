@@ -18,7 +18,9 @@
 if($_SESSION["logged"]){
   include('inc/already-logged-in.php');
 } else if($_POST["resendEmail"]){
-  $rows = mysql_query("SELECT * FROM Users WHERE email='$_POST[resendEmail]'") or die(mysql_error());
+  $sql = sprintf("SELECT * FROM Users WHERE email='%s'",
+                 mysql_real_escape_string($_POST[resendEmail]));
+  $rows = mysql_query($sql) or die(mysql_error());
 
   if(mysql_num_rows($rows)==1){
     $user = mysql_fetch_array($rows);
