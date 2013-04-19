@@ -18,18 +18,28 @@ if(!$_SESSION["logged"]){
   include('inc/not-logged-in.php');
 } else {
   $_SESSION["return_to"] = null;
+
+  $_SESSION ["encounter_id"] = null;
+  $_SESSION ["add_mode"] = null;
+  $_SESSION ["rfe_id"] = null;
+  $_SESSION ["label"] = null;
+
+  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
+
+  $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
+  $user = mysql_fetch_array($rows);
+
+  if($user["field_test_complete"]){
+    ?>
+    <div class="alert alert-info">Encounters may not be edited since your field test results have been submitted.</div>
+    <?php
+  }
 ?>
       <div class="row">
         <div class="span8 offset2">
 
           <div class="accordion encounters-list">
           <?php
-            $_SESSION ["encounter_id"] = null;
-            $_SESSION ["add_mode"] = null;
-            $_SESSION ["rfe_id"] = null;
-            $_SESSION ["label"] = null;
-
-            $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
             if(mysql_num_rows($encountersData)){
               while($row = mysql_fetch_array($encountersData)){
                 ?>
@@ -41,9 +51,15 @@ if(!$_SESSION["logged"]){
                   </div>
                   <div class="accordion-body collapse" id="collapse<?= $row['encounter_id']; ?>">
                     <div class="accordion-inner">
-                      <ul class="inline pull-right">
-                        <li><button class="btn editlabelBtn" data-encounterid="<?= $row['encounter_id']; ?>" data-currentlabel="<?= $row['label']; ?>">Edit label for this encounter</button></li>
-                      </ul>
+                      <?php
+                      if($user["field_test_complete"] == 0){
+                        ?>
+                        <ul class="inline pull-right">
+                          <li><button class="btn editlabelBtn" data-encounterid="<?= $row['encounter_id']; ?>" data-currentlabel="<?= $row['label']; ?>">Edit label for this encounter</button></li>
+                        </ul>
+                        <?php
+                      }
+                      ?>
                       <div class="itemsHolder clearboth clearfix" id="enc-<?= $row['encounter_id']; ?>">
                         <div class="spin"></div>
                         <p>Fetching items...</p>
@@ -51,7 +67,7 @@ if(!$_SESSION["logged"]){
                       <form action="review-encounter.php" method="post">
                         <input type="hidden" id="enc" name="enc" value="<?= $row['encounter_id']; ?>">
                         <ul class="inline pull-right">
-                          <li><button type="submit" class="btn">Edit this encounter</button></li>
+                          <li><button type="submit" class="btn">Review/edit this encounter</button></li>
                         </ul>
                       </form>
                     </div>
@@ -68,6 +84,9 @@ if(!$_SESSION["logged"]){
           ?>
           </div>
 
+          <ul class="unstyled bigButtons">
+            <li><a class="btn btn-large btn-block btn-primary" href="/">Home</a></li>
+          </ul>
         </div>
       </div>
 <?php

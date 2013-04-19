@@ -35,13 +35,30 @@ if(!$_SESSION["logged"]){
     echo $message;
   }
 
+  $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
+  $user = mysql_fetch_array($rows);
+
   $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
   $encounters = mysql_num_rows($encountersData);
 ?>
       <div class="row">
         <div class="span8 offset2">
           <p class="lead">You have completed <?= $encounters; ?> of <?= $configvars["encounters"]["maxencounters"]; ?> encounters.</p>
-          <a class="btn btn-large btn-block btn-primary" href="add-item.php">Add another encounter</a>
+
+          <ul class="unstyled bigButtons">
+            <?php
+            if($encounters < $configvars["encounters"]["maxencounters"]){
+              ?>
+              <li><a class="btn btn-large btn-block btn-primary" href="add-item.php">Add another encounter</a></li>
+              <?php
+            } else if(!$user["field_test_complete"]){
+              ?>
+              <li><a class="btn btn-large btn-block btn-warning" href="complete-test.php">Submit Field Test</a></li>
+              <?php
+            }
+            ?>
+            <li><a class="btn btn-large btn-block btn-primary" href="/">Home</a></li>
+          </ul>
         </div>
       </div>
 <?php

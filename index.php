@@ -97,6 +97,9 @@ if(!$_SESSION["logged"]){
   $_SESSION ["rfe_id"] = null;
   $_SESSION ["label"] = null;
 
+  $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
+  $user = mysql_fetch_array($rows);
+
   $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
   $encounters = mysql_num_rows($encountersData);
 ?>
@@ -113,7 +116,7 @@ if(!$_SESSION["logged"]){
       </div>
       <div class="row">
         <div class="span4 offset4">
-          <ul class="unstyled homeButtons">
+          <ul class="unstyled bigButtons">
             <?php
             if($encounters < $configvars["encounters"]["maxencounters"]){
               ?>
@@ -122,6 +125,13 @@ if(!$_SESSION["logged"]){
             }
             ?>
             <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View encounters</a></li>
+            <?php
+            if(($encounters == $configvars["encounters"]["maxencounters"]) && ($user["field_test_complete"] == 0)){
+              ?>
+              <li><a class="btn btn-large btn-block btn-warning" href="complete-test.php">Submit Field Test</a></li>
+              <?php
+            }
+            ?>
           </ul>
         </div>
       </div>

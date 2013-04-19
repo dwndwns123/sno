@@ -35,14 +35,23 @@ if(!$_SESSION["logged"]){
   if($message){
     echo $message;
   }
+
+  $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
+  $user = mysql_fetch_array($rows);
 ?>
       <div class="row">
         <div class="span8 offset2">
           <h2>Encounter <?= $_SESSION["encounter_id"].($_SESSION["label"] == '' ? '' : ' - '.$_SESSION["label"]); ?></h2>
-          <ul class="inline pull-right">
-            <li><a href="add-item.php?type=0&amp;enc=<?= $_SESSION['encounter_id']; ?>" class="btn">Add RFE</a></li>
-            <li><a href="add-item.php?type=1&amp;enc=<?= $_SESSION['encounter_id']; ?>" class="btn">Add Health Issue</a></li>
-          </ul>
+          <?php
+          if($user["field_test_complete"] == 0){
+            ?>
+            <ul class="inline pull-right">
+              <li><a href="add-item.php?type=0&amp;enc=<?= $_SESSION['encounter_id']; ?>" class="btn">Add RFE</a></li>
+              <li><a href="add-item.php?type=1&amp;enc=<?= $_SESSION['encounter_id']; ?>" class="btn">Add Health Issue</a></li>
+            </ul>
+            <?php
+          }
+          ?>
           <div class="accordion clearboth">
             <?php
 
@@ -76,22 +85,28 @@ if(!$_SESSION["logged"]){
                           <dt>Alternate ICPC-2 code</dt>
                           <dd><?= $row['map_alt_id']; ?></dd>
                         </dl>
-                        <form action="edit-item.php" method="post">
-                          <fieldset>
-                            <input type="hidden" id="item" name="item" value="<?= $row['rfe_id']; ?>">
-                            <input type="hidden" id="from" name="from" value="review-encounter.php">
-                            <input type="hidden" id="itemType" name="itemType" value="<?= $row['refset_id']; ?>">
-                            <?php
-                              $sql = mysql_query("SELECT rfe_id FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' AND refset_id='$row[refset_id]'") or die(mysql_error());
-                              $num = mysql_num_rows($sql);
-                            ?>
-                            <input type="hidden" id="numThis" name="numThis" value="<?= $num; ?>">
-                            <ul class="inline pull-right">
-                              <li><button type="submit" class="btn">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
-                              <li><button class="btn btn-danger deleteItemBtn" id="delitem-<?= $row['rfe_id']; ?>">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
-                            </ul>
-                          </fieldset>
-                        </form>
+                        <?php
+                        if($user["field_test_complete"] == 0){
+                          ?>
+                          <form action="edit-item.php" method="post">
+                            <fieldset>
+                              <input type="hidden" id="item" name="item" value="<?= $row['rfe_id']; ?>">
+                              <input type="hidden" id="from" name="from" value="review-encounter.php">
+                              <input type="hidden" id="itemType" name="itemType" value="<?= $row['refset_id']; ?>">
+                              <?php
+                                $sql = mysql_query("SELECT rfe_id FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' AND refset_id='$row[refset_id]'") or die(mysql_error());
+                                $num = mysql_num_rows($sql);
+                              ?>
+                              <input type="hidden" id="numThis" name="numThis" value="<?= $num; ?>">
+                              <ul class="inline pull-right">
+                                <li><button type="submit" class="btn">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                                <li><button class="btn btn-danger deleteItemBtn" id="delitem-<?= $row['rfe_id']; ?>">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                              </ul>
+                            </fieldset>
+                          </form>
+                          <?php
+                        }
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -103,16 +118,20 @@ if(!$_SESSION["logged"]){
           </div>
 
           <ul class="inline pull-right">
-            <li><button class="btn btn-danger deleteEncounterBtn" id="delenc-<?= $_SESSION['encounter_id']; ?>">Delete this encounter</button></li>
             <?php
-              if($_SESSION["return_to"]){
-                ?>
-                  <li><a href="<?= $_SESSION["return_to"]; ?>" class="btn">Review encounters</a></li>
-                <?php
-              } else {
-                ?>
-                  <li><a href="complete-encounter.php" class="btn btn-success">Complete encounter</a></li>
-                <?php
+            if($user["field_test_complete"] == 0){
+              ?>
+              <li><button class="btn btn-danger deleteEncounterBtn" id="delenc-<?= $_SESSION['encounter_id']; ?>">Delete this encounter</button></li>
+              <?php
+            }
+            if($_SESSION["return_to"]){
+              ?>
+                <li><a href="<?= $_SESSION["return_to"]; ?>" class="btn">Review encounters</a></li>
+              <?php
+            } else if($user["field_test_complete"] == 0){
+              ?>
+                <li><a href="complete-encounter.php" class="btn btn-success">Complete encounter</a></li>
+              <?php
               }
             ?>
           </ul>
