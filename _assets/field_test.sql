@@ -421,6 +421,27 @@ INSERT INTO `TestApproach` (`option_id`, `option_label`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Option`
+--
+
+DROP TABLE IF EXISTS `Option`;
+CREATE TABLE `Option` (
+  `option_id` smallint(6) NOT NULL,
+  `option` varchar(50) NOT NULL,
+  PRIMARY KEY (`option_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Option`
+--
+
+INSERT INTO `Option` (`option_id`, `option`) VALUES
+(1, 'Record through SNOMED CT Concepts'),
+(2, 'Record through ICPC2 Codes');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Users`
 --
 

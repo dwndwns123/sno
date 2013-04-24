@@ -18,7 +18,7 @@
 if($_SESSION["logged"]){
   include('inc/already-logged-in.php');
 } else {
-  if(!is_null($_POST["regTitle"]) && $_POST["regFirstname"] && $_POST["regLastname"] && $_POST["regEmail"] && $_POST["regPassword"] && !is_null($_POST["regCountry"]) && $_POST["regRole"] && !is_null($_POST["regGender"]) && $_POST["regAge"]){// we arrived by posting from the registration form and all the fields are here
+  if(!is_null($_POST["regTitle"]) && $_POST["regFirstname"] && $_POST["regLastname"] && $_POST["regEmail"] && $_POST["regPassword"] && !is_null($_POST["regCountry"]) && $_POST["regRole"] && !is_null($_POST["regGender"]) && $_POST["regAge"] && !is_null($_POST["regOption"])){// we arrived by posting from the registration form and all the fields are here
 
     $sql = sprintf("SELECT * FROM Users WHERE email='%s'",
                    mysql_real_escape_string($_POST[regEmail]));
@@ -31,7 +31,7 @@ if($_SESSION["logged"]){
       $ver = md5(uniqid(mt_rand(), true));
       $pass = md5($_POST["regPassword"]);
 
-      $sql = sprintf("INSERT INTO Users (title_id,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','%s','%s','%s','$pass','%s','$_POST[regAge]','$_POST[regGender]','$_POST[regCountry]','$ver')",
+      $sql = sprintf("INSERT INTO Users (title_id,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','%s','%s','%s','$pass','%s','$_POST[regAge]','$_POST[regGender]','$_POST[regOption]','$_POST[regCountry]','$ver')",
                      mysql_real_escape_string($_POST[regFirstname]),
                      mysql_real_escape_string($_POST[regLastname]),
                      mysql_real_escape_string($_POST[regEmail]),

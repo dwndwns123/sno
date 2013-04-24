@@ -115,6 +115,23 @@ if($_SESSION["logged"]){
                 </div>
               </div>
               <div class="control-group">
+                <label class="control-label" for="regOption"><span class="req">*</span> Field Test Approach</label>
+                <div class="controls">
+                  <select class="input-xlarge" id="regOption" name="regOption" data-required="true">
+                    <option value="">Please select</option>
+                    <?php
+                    $result = mysql_query("SELECT * FROM Option") or die(mysql_error());
+                    while($row = mysql_fetch_array($result)){
+                      ?>
+                      <option value="<?=$row['option_id'];?>"><?=$row['option'];?></option>
+                      <?php
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
+  
+              <div class="control-group">
                 <div class="controls">
                   <input type="submit" class="btn" value="Register">
                 </div>
