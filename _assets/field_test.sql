@@ -405,6 +405,7 @@ INSERT INTO `Title` (`title_id`, `title`) VALUES
 
 DROP TABLE IF EXISTS `TestApproach`;
 CREATE TABLE `TestApproach` (
+<<<<<<< HEAD
   `option_id` smallint(6) NOT NULL,
   `option_label` varchar(50) NOT NULL,
   PRIMARY KEY (`option_id`)
@@ -426,8 +427,10 @@ INSERT INTO `TestApproach` (`option_id`, `option_label`) VALUES
 
 DROP TABLE IF EXISTS `Option`;
 CREATE TABLE `Option` (
+=======
+>>>>>>> More changes for the optionality question
   `option_id` smallint(6) NOT NULL,
-  `option` varchar(50) NOT NULL,
+  `option_label` varchar(50) NOT NULL,
   PRIMARY KEY (`option_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -435,7 +438,7 @@ CREATE TABLE `Option` (
 -- Dumping data for table `Option`
 --
 
-INSERT INTO `Option` (`option_id`, `option`) VALUES
+INSERT INTO `TestApproach` (`option_id`, `option_label`) VALUES
 (1, 'Record through SNOMED CT Concepts'),
 (2, 'Record through ICPC2 Codes');
 
