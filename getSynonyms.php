@@ -3,7 +3,7 @@ include "inc/conn.php";
 
 $syn = $_POST["syn"];
 
-$result = mysql_query('select DISTINCT Synonym from ICPCSynonyms where conceptId like "'.$syn.'"') or die(mysql_error());
+$result = mysql_query('select DISTINCT Synonym from ICPCSynonyms where conceptId ="'.$syn.'"') or die(mysql_error());
 $rows = array();
 while($row = mysql_fetch_array($result)){
   $rows[] = array("synonym" => $row["Synonym"]);

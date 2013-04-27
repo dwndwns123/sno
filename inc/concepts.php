@@ -1,12 +1,19 @@
 <?php
-$result = mysql_query("SELECT * FROM SCT_Concepts") or die(mysql_error());
+
+if($recordType == "Health Issue")
+    {
+        $result = mysql_query("SELECT * FROM SCT_Concepts WHERE refset_type_id = 2") or die(mysql_error());
+    } else {
+        $result = mysql_query("SELECT * FROM SCT_Concepts WHERE refset_type_id = 1") or die(mysql_error());       
+    }
+
 while($row = mysql_fetch_array($result)){
   $selText = '';
   if($item){
-    $selText = ($item['sct_id'] == $row['ConceptId'] ? ' selected="selected"' : '');
+    $selText = ($item['sct_id'] == $row['concept_id'] ? ' selected="selected"' : '');
   }
   ?>
-  <option value="<?=$row['ConceptId'];?>"<?= $selText; ?>><?=$row['PT'];?></option>
+  <option value="<?=$row['concept_id'];?>"<?= $selText; ?>><?=$row['label'];?></option>
   <?php
 }
 ?>

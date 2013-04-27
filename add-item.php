@@ -112,7 +112,10 @@ if(!$_SESSION["logged"]){
             </div>
           </div>
 
-          <?php if($_SESSION["option"] == 1){ ?>  
+          <?php if($_SESSION["option"] == 1){ 
+          ?> 
+            
+          <!-- for the SNOMED CT first option -->
             
           <div class="row">
             <div class="span8 offset2">
@@ -150,6 +153,8 @@ if(!$_SESSION["logged"]){
                   <span>5</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation5" value="5"><span>Poorly</span>
                 </label>
               </div>
+
+
               <div id="representationValidation"></div>
               <hr>
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
@@ -180,6 +185,7 @@ if(!$_SESSION["logged"]){
               <hr>
               <p>6. If the ICPC-2 code is not an appropriate match, please record your preferred ICPC-2 code:</p>
               <select id="icpc2choice" name="icpc2choice" class="span8">
+<!-- example codes until they are available -->
                 <option value="">Select ICPC-2 code</option>
                 <option value="123">ICPC-2 code and label</option>
                 <option value="456">ICPC-2 code and label</option>
@@ -190,16 +196,28 @@ if(!$_SESSION["logged"]){
               
 <?php } else {  ?>
             
-          /* for the ICPC2 first option */    
+          <!-- for the ICPC2 first option -->
               
               
           <div class="row">
             <div class="span8 offset2">
-              <p>1. Search and (select) the ICPC2 concept that represents the <?= $recordType; ?> you wish to record.</p>
-              <p>4. The associated ICPC-2 code is: <span class="uneditable-input span3">123456</span></p>
-              <input type="hidden" id="icpc2" name="icpc2" value="123456">
+              <p>1. Search and (select) the ICPC-2 code that represents the <?= $recordType; ?> you wish to record.</p>
+
+              <div class="input-append">
+                <input id="icpcSearchBox" name="icpcSearchBox" type="text" maxlength="50">
+                <button id="icpcSearchBtn" class="btn" type="button">Search</button>
+              </div>
+              <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="5" data-required="true" data-error-container="#icpcValidation">
+                <option value="">Select ICPC-2 code</option>
+                <option value="123">ICPC-2 code and label</option>
+                <option value="456">ICPC-2 code and label</option>
+                <option value="789">ICPC-2 code and label</option>
+              </select>
+              
+              <button id="clearBtn" class="btn" type="button">Reset</button>
+              
               <hr>
-              <p>5. In your opinion, is this ICPC-2 code an appropriate match for the <?= $recordType; ?> you recorded?</p>
+              <p>2. In your opinion, is this ICPC-2 code an appropriate match for the <?= $recordType; ?> you recorded?</p>
               <div class="likert">
                 <label class="radio inline">
                   <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1" data-required="true" data-error-container="#appropriateValidation"><span>Very</span>
@@ -217,35 +235,14 @@ if(!$_SESSION["logged"]){
                   <span>5</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate5" value="5"><span>Not at all</span>
                 </label>
               </div>
-              <div id="appropriateValidation"></div>
-              <hr>
-              <p>6. If the ICPC-2 code is not an appropriate match, please record your preferred ICPC-2 code:</p>
-              <select id="icpc2choice" name="icpc2choice" class="span8">
-                <option value="">Select ICPC-2 code</option>
-                <option value="123">ICPC-2 code and label</option>
-                <option value="456">ICPC-2 code and label</option>
-                <option value="789">ICPC-2 code and label</option>
-              </select>
+ 
                 
-              /* SCT selection */
-              
-              <p>4. Selects a SNOMED CT concept that represents the <?= $recordType; ?> you wish to record.</p>
-              <div class="input-append">
-                <input id="searchBox" name="searchBox" type="text" maxlength="50">
-                <button id="searchBtn" class="btn" type="button">Search</button>
-              </div>
-              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-required="true" data-error-container="#conceptValidation">
-                <option value="">Select SNOMED concept</option>
-                <?php require('inc/concepts.php'); ?>
-              </select>
-              <button id="clearBtn" class="btn" type="button">Reset</button>
-              <div id="conceptValidation"></div>
-              <dl class="dl-horizontal synonyms">
-                <dt>Synonyms:</dt>
-                <dd></dd>
-              </dl>
-              <hr>
-              <p>2. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
+<!-- SCT selection -->
+ 			  <hr>
+ 			  <p>	
+ 			  	             
+              <p>4. The associated SNOMED CT concept: <span class="uneditable-input span3">example concept id & label</span></p>
+              <p>5. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
               <div class="likert">
                 <label class="radio inline">
                   <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-required="true" data-error-container="#representationValidation"><span>Very</span>
@@ -265,8 +262,25 @@ if(!$_SESSION["logged"]){
               </div>
               <div id="representationValidation"></div>
               <hr>
+              <p>6. If the SNOMED CT concept was not an accurate representation, please search for(and select) a SNOMED CT concept that represents the <?= $recordType; ?> you wish to record.</p>
+              <div class="input-append">
+                <input id="searchBox" name="searchBox" type="text" maxlength="50">
+                <button id="searchBtn" class="btn" type="button">Search</button>
+              </div>
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-required="true" data-error-container="#conceptValidation">
+                <option value="">Select SNOMED concept</option>
+                <?php require('inc/concepts.php'); ?>
+              </select>
+              <button id="clearBtn" class="btn" type="button">Reset</button>
+              <div id="conceptValidation"></div>
+              <dl class="dl-horizontal synonyms">
+                <dt>Synonyms:</dt>
+                <dd></dd>
+              </dl>
+<!--              <hr>
+
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
-              <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250">
+              <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250"> -->
 <?php } ?>              
               
               
