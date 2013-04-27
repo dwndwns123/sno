@@ -28,14 +28,7 @@ if($_POST["loginEmail"] && $_POST["loginPassword"]){
         $_SESSION["user_id"] = $user["user_id"];
         $_SESSION["option"] = $user["option_id"];
         $_SESSION["logged"] = true;
-        
-        if ($user["option_id"]==1)
-        {
-        	$option_label="SNOMED CT Concepts";
-        } else {
-        	$option_label="ICPC-2 Codes";
-		}        	
-        
+                
       } else {
         $message = '<div class="alert">You have not yet verified your email address.<br>Please retrieve the verification code from the email you should by now have received, and enter it <a href="verify.php">here</a>.</div>';
       }
@@ -111,6 +104,13 @@ if(!$_SESSION["logged"]){
   $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
   $user = mysql_fetch_array($rows);
 
+  if ($user["option_id"]==1)
+  {
+      	$option_label="SNOMED CT Concepts";
+  } else {
+     	$option_label="ICPC-2 Codes";
+  }        	
+
   $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
   $encounters = mysql_num_rows($encountersData);
 ?>
@@ -121,7 +121,7 @@ if(!$_SESSION["logged"]){
         <div class="span12">
           <div class="well">
             <p class="lead">Welcome, <?= ($_SESSION['title'] !== 'Other' ? $_SESSION['title'].' ' : ''); ?><?= $_SESSION['first_name'].' '.$_SESSION['last_name'] ?>.</p>
-            <p>You are participating in this field test by <?= $option_label; ?> encounters.</p>
+            <p>You are participating in this field test by selecting <?= $option_label; ?> first.</p>
             <p>You have completed <?= $encounters; ?> of <?= $configvars["encounters"]["maxencounters"]; ?> encounters.</p>
           </div>
         </div>

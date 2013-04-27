@@ -85,7 +85,7 @@ if(!$_SESSION["logged"]){
           </div>
 
           <ul class="unstyled bigButtons">
-            <li><a class="btn btn-large btn-block btn-primary" href="/">Home</a></li>
+            <li><a class="btn btn-large btn-block btn-primary" href="index.php">Home</a></li>
           </ul>
         </div>
       </div>
