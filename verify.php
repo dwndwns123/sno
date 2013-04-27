@@ -31,7 +31,7 @@ if($_SESSION["logged"]){
       $ver = md5(uniqid(mt_rand(), true));
       $pass = md5($_POST["regPassword"]);
 
-      $sql = sprintf("INSERT INTO Users (title_id,first_name,last_name,email,password,role,age,gender_id,country_id,verification) VALUES ('$_POST[regTitle]','%s','%s','%s','$pass','%s','$_POST[regAge]','$_POST[regGender]','$_POST[regOption]','$_POST[regCountry]','$ver')",
+      $sql = sprintf("INSERT INTO Users (title_id,first_name,last_name,email,password,role,age,gender_id,option_id,country_id,verification) VALUES ('$_POST[regTitle]','%s','%s','%s','$pass','%s','$_POST[regAge]','$_POST[regGender]','$_POST[regOption]','$_POST[regCountry]','$ver')",
                      mysql_real_escape_string($_POST[regFirstname]),
                      mysql_real_escape_string($_POST[regLastname]),
                      mysql_real_escape_string($_POST[regEmail]),
