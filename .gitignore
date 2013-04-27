@@ -14,3 +14,9 @@ Icon
 # Config file
 # should be copied from field-test-sample.ini and updated with correct values for installation environment
 field-test.ini
+
+*.properties
+
+nbproject/private/private.xml
+
+nbproject/project.xml
