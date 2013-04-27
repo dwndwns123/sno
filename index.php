@@ -26,7 +26,7 @@ if($_POST["loginEmail"] && $_POST["loginPassword"]){
         $_SESSION["last_name"] = $user["last_name"];
         $_SESSION["email"] = $user["email"];
         $_SESSION["user_id"] = $user["user_id"];
-        $_SESSION["option"] = $user["option"];
+        $_SESSION["option"] = $user["option_id"];
         $_SESSION["logged"] = true;
       } else {
         $message = '<div class="alert">You have not yet verified your email address.<br>Please retrieve the verification code from the email you should by now have received, and enter it <a href="verify.php">here</a>.</div>';
