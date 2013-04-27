@@ -60,9 +60,9 @@ if(!$_SESSION["logged"]){
               $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
               while($row = mysql_fetch_array($rows)){
                 if($row['refset_id'] == $x){
-                  $sql = mysql_query("SELECT * FROM SCT_Concepts WHERE ConceptId='$row[sct_id]'") or die(mysql_error());
+                  $sql = mysql_query("SELECT * FROM SCT_Concepts WHERE concept_id='$row[sct_id]'") or die(mysql_error());
                   $conceptArr = mysql_fetch_array($sql);
-                  $concept = $conceptArr['PT'];
+                  $concept = $conceptArr['label'];
                   ?>
                   <div class="accordion-group">
                     <div class="accordion-heading">
