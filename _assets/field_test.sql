@@ -379,6 +379,27 @@ INSERT INTO `Title` (`title_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Option`
+--
+
+DROP TABLE IF EXISTS `TestApproach`;
+CREATE TABLE `TestApproach` (
+  `option_id` smallint(6) NOT NULL,
+  `option_label` varchar(50) NOT NULL,
+  PRIMARY KEY (`option_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Option`
+--
+
+INSERT INTO `TestApproach` (`option_id`, `option_label`) VALUES
+(1, 'Record through SNOMED CT Concepts'),
+(2, 'Record through ICPC2 Codes');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Users`
 --
 
@@ -394,6 +415,7 @@ CREATE TABLE `Users` (
   `age` int(11) DEFAULT NULL,
   `gender_id` int(11) DEFAULT NULL,
   `country_id` int(11) NOT NULL,
+  `option_id` smallint(6) NOT NULL DEFAULT '1',
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `verification` varchar(256) DEFAULT NULL,
   `field_test_complete` smallint(6) NOT NULL DEFAULT '0',
@@ -406,5 +428,5 @@ CREATE TABLE `Users` (
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`user_id`, `title_id`, `first_name`, `last_name`, `email`, `password`, `role`, `age`, `gender_id`, `country_id`, `date_modified`, `date_created`, `verified`, `verification`) VALUES
-(1, 0, 'Bob', 'Smith', 'rda@ihtsdo.org', '80ec3d3b70f87a52e614bf66d050d245', 'Doctor', 36, 0, 229, '2013-04-17 05:53:49', '0000-00-00 00:00:00', 1, '24d1b323e1bcb772e3c1ac115009d8cb');
+INSERT INTO `Users` (`user_id`, `title_id`, `first_name`, `last_name`, `email`, `password`, `role`, `age`, `gender_id`, `country_id`, `option_id`, `verified`, `verification`, `field_test_complete`, `date_modified`, `date_created`) VALUES
+(1, 0, 'Bob', 'Smith', 'rda@ihtsdo.org', '80ec3d3b70f87a52e614bf66d050d245', 'Doctor', 36, 0, 229, 1, 1, '24d1b323e1bcb772e3c1ac115009d8cb', 0, '2013-04-17 05:53:49', '0000-00-00 00:00:00');
