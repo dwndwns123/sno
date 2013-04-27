@@ -400,7 +400,7 @@ INSERT INTO `Title` (`title_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Option`
+-- Table structure for table `TestApproach`
 --
 
 DROP TABLE IF EXISTS `TestApproach`;
@@ -412,7 +412,7 @@ CREATE TABLE `TestApproach` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Option`
+-- Dumping data for table `TestApproach`
 --
 
 INSERT INTO `TestApproach` (`option_id`, `option_label`) VALUES
