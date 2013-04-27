@@ -26,7 +26,7 @@ if(session_destroy()){
           <div class="well">
             <p class="lead">You have logged out of the SNOMED CT field test tool.</p>
             <p>Thank you for your participation.</p>
-            <a href="/" class="btn btn-primary">Home</a>
+            <a href="index.php" class="btn btn-primary">Home</a>
           </div>
         </div>
       </div>
