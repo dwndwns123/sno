@@ -337,6 +337,27 @@ INSERT INTO `Gender` (`gender_id`, `gender`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `RefSetType`
+--
+
+DROP TABLE IF EXISTS `RefSet_Type`;
+CREATE TABLE `RefSet_Type` (
+  `refset_type_id` int(11) NOT NULL,
+  `refset_type` varchar(20) NOT NULL,
+  UNIQUE KEY `id` (`refset_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `RefSetType`
+--
+
+INSERT INTO `RefSet_Type` (`refset_type_id`, `refset_type`) VALUES
+(1, 'RFE'),
+(2, 'Health Issue');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Map_Concepts`
 --
 
