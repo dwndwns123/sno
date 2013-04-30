@@ -2,9 +2,9 @@
 
 if($recordType == "Health Issue")
     {
-        $result = mysql_query("SELECT * FROM SCT_Concepts WHERE refset_type_id = 2") or die(mysql_error());
+        $result = mysql_query("SELECT * FROM SCT_Concepts WHERE refset_type_id = 2 ORDER BY label") or die(mysql_error());
     } else {
-        $result = mysql_query("SELECT * FROM SCT_Concepts WHERE refset_type_id = 1") or die(mysql_error());       
+        $result = mysql_query("SELECT * FROM SCT_Concepts WHERE refset_type_id = 1 ORDER BY label") or die(mysql_error());       
     }
 
 while($row = mysql_fetch_array($result)){

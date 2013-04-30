@@ -121,7 +121,7 @@ if(!$_SESSION["logged"]){
                   <p>Fetching items...</p>
               </div>
     -->          
-              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-required="true" data-error-container="#conceptValidation">
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-required="true" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>
               </select>

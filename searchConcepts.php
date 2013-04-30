@@ -12,7 +12,8 @@ if($recordType == "Health Issue")
 
 $result = mysql_query('select DISTINCT Syn.conceptId, SCT_Concepts.label AS term from ICPCSynonyms Syn 
 						INNER JOIN SCT_Concepts ON Syn.ConceptId = SCT_Concepts.concept_id 
-						WHERE Syn.Synonym like "%'.$searchText.'%" AND SCT_Concepts.refset_type_id = '.$refset_type) 
+						WHERE Syn.Synonym like "%'.$searchText.'%" AND SCT_Concepts.refset_type_id = "'.$refset_type.'"
+						ORDER BY term') 
 						or die(mysql_error());
 $rows = array();
 while($row = mysql_fetch_array($result)){
