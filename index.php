@@ -121,7 +121,7 @@ if(!$_SESSION["logged"]){
         <div class="span12">
           <div class="well">
             <p class="lead">Welcome, <?= ($_SESSION['title'] !== 'Other' ? $_SESSION['title'].' ' : ''); ?><?= $_SESSION['first_name'].' '.$_SESSION['last_name'] ?>.</p>
-            <p>You are participating in this field test by selecting <?= $option_label; ?> first.</p>
+            <p>You are participating in this field test by selecting <strong><?= $option_label; ?></strong> first.</p>
             <p>You have completed <?= $encounters; ?> of <?= $configvars["encounters"]["maxencounters"]; ?> encounters.</p>
           </div>
         </div>

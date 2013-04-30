@@ -11,7 +11,7 @@
       } else {
         $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE rfe_id = '$_POST[item]'") or die(mysql_error());
         $item = mysql_fetch_array($rows);
-        $recordType = ($item["refset_id"] == 0 ? "RFE" : "Health Issue");
+        $recordType = ($item["refset_id"] == 0 ? "Reason For Encounter" : "Health Issue");
         $_SESSION['rfe_id'] = $_POST['item'];
         $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$item[encounter_id]'") or die(mysql_error());
         $enc = mysql_fetch_array($encRows);
@@ -27,6 +27,12 @@
 
       <div class="page-header">
         <h1>Edit <?= $recordType; ?></h1>
+        <?php if ($recordType == "Reason For Encounter") 
+        { ?>
+        <p>RFE text - Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+		<?php } else { ?>
+        <p>HI text - Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+		<?php } ?>        
       </div>
 <?php
 if(!$_SESSION["logged"]){
@@ -45,10 +51,7 @@ if(!$_SESSION["logged"]){
                 <dl class="dl-horizontal">
                   <dt>Encounter ID:</dt>
                   <dd><?= $item["encounter_id"]; ?></dd>
-                  <dt><?= $recordType; ?> number:</dt>
-                  <dd><?= $item["rfe_id"]; ?></dd>
-                  <dt>Encounter label:</dt>
-                  <dd><?= ($enc["label"] == "" ? '<em>None</em>' : $enc["label"]); ?></dd>
+                  <dt><?= $recordType; ?></dt>
                 </dl>
               </div>
             </div>

@@ -57,6 +57,7 @@ if(!$_SESSION["logged"]){
               <?php
             }
             ?>
+            <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View encounters</a></li>
             <li><a class="btn btn-large btn-block btn-primary" href="index.php">Home</a></li>
           </ul>
         </div>

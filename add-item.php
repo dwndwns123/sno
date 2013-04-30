@@ -7,7 +7,7 @@
 
     if(!is_null($_GET["type"]) && !is_null($_GET["enc"])){ // came from the review page
       $_SESSION["add_mode"] = $_GET["type"];
-      $recordType = ($_GET["type"] == 0 ? "RFE" : "Health Issue");
+      $recordType = ($_GET["type"] == 0 ? "Reason For Encounter" : "Health Issue");
       $editLabel = false;
       $_SESSION["encounter_id"] = $_GET["enc"];
 
@@ -25,7 +25,7 @@
           $_SESSION["encounter_id"] = mysql_insert_id();
 
           $_SESSION["add_mode"] = 0;
-          $recordType = "RFE";
+          $recordType = "Reason For Encounter";
           $editLabel = true;
 
           $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
@@ -73,6 +73,13 @@
 
       <div class="page-header">
         <h1>Add <?= $recordType; ?></h1>
+        <?php if ($recordType == "Reason For Encounter") 
+        { ?>
+        <p>REF text - Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+		<?php } else { ?>
+        <p>HI text - Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+		<?php } ?>
+		
       </div>
 <?php
 if(!$_SESSION["logged"]){
@@ -91,22 +98,6 @@ if(!$_SESSION["logged"]){
                 <dl class="dl-horizontal">
                   <dt>Encounter ID:</dt>
                   <dd><?= $_SESSION["encounter_id"]; ?></dd>
-                  <dt><?= $recordType; ?> number:</dt>
-                  <dd><?= $_SESSION["rfe_id"]; ?></dd>
-                  <dt>Label (optional):</dt>
-                  <dd>
-                    <?php
-                    if($editLabel){
-                      ?>
-                      <input type="text" class="input-xlarge" id="label" name="label" maxlength="64">
-                      <?php
-                    } else {
-                      if($_SESSION["label"]){
-                        echo $_SESSION["label"];
-                      }
-                    }
-                    ?>
-                  </dd>
                 </dl>
               </div>
             </div>
@@ -119,11 +110,17 @@ if(!$_SESSION["logged"]){
             
           <div class="row">
             <div class="span8 offset2">
-              <p>1. Search for(and select) a SNOMED CT concept that represents the <?= $recordType; ?> you wish to record.</p>
+              <p>1. Search for(and select) a <strong>SNOMED CT</strong> concept that represents the <?= $recordType; ?> you wish to record.</p>
               <div class="input-append">
                 <input id="searchBox" name="searchBox" type="text" maxlength="50">
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
+<!--              
+              <div class="itemsHolder clearboth clearfix" id="SCT-spinner">
+                  <div class="spin"></div>
+                  <p>Fetching items...</p>
+              </div>
+    -->          
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-required="true" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>
@@ -203,7 +200,7 @@ if(!$_SESSION["logged"]){
               
           <div class="row">
             <div class="span8 offset2">
-              <p>1. Search and (select) the ICPC-2 code that represents the <?= $recordType; ?> you wish to record.</p>
+              <p>1. Search and (select) the <strong>ICPC-2</strong> code that represents the <?= $recordType; ?> you wish to record.</p>
 
               <div class="input-append">
                 <input id="icpcSearchBox" name="icpcSearchBox" type="text" maxlength="50">
@@ -303,7 +300,7 @@ if(!$_SESSION["logged"]){
                   <?php
                   if($_SESSION["add_mode"] == 0){
                     ?>
-                    <a id="nextBtn" class="btn" href="#">RFEs complete - add Health Issues</a>
+                    <a id="nextBtn" class="btn" href="#">Reason For Encounters complete - add Health Issues</a>
                     <?php
                   } else {
                     ?>

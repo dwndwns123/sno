@@ -42,12 +42,12 @@ if(!$_SESSION["logged"]){
 ?>
       <div class="row">
         <div class="span8 offset2">
-          <h2>Encounter <?= $_SESSION["encounter_id"].($_SESSION["label"] == '' ? '' : ' - '.$_SESSION["label"]); ?></h2>
+          <h2>Encounter <?= $_SESSION["encounter_id"].($_SESSION["label"] == '' ? '' : ''); ?></h2>
           <?php
           if($user["field_test_complete"] == 0){
             ?>
             <ul class="inline pull-right">
-              <li><a href="add-item.php?type=0&amp;enc=<?= $_SESSION['encounter_id']; ?>" class="btn">Add RFE</a></li>
+              <li><a href="add-item.php?type=0&amp;enc=<?= $_SESSION['encounter_id']; ?>" class="btn">Add Reason For Encounter</a></li>
               <li><a href="add-item.php?type=1&amp;enc=<?= $_SESSION['encounter_id']; ?>" class="btn">Add Health Issue</a></li>
             </ul>
             <?php
@@ -67,7 +67,7 @@ if(!$_SESSION["logged"]){
                   <div class="accordion-group">
                     <div class="accordion-heading">
                       <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['rfe_id']; ?>">
-                        <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue")." #".$row['rfe_id'].' - '.$concept; ?>
+                        <?= ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue").' - '.$concept; ?>
                       </a>
                     </div>
                     <div class="accordion-body collapse" id="collapse<?= $row['rfe_id']; ?>">
@@ -75,13 +75,13 @@ if(!$_SESSION["logged"]){
                         <dl>
                           <dt>SNOMED CT Concept</dt>
                           <dd><?= $concept; ?></dd>
-                          <dt>How well does this SNOMED CT concept adequately represent the <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very well, 5 = Poorly)</dt>
+                          <dt>How well does this SNOMED CT concept adequately represent the <?= ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue"); ?>? <br>(1 = Very well, 5 = Poorly)</dt>
                           <dd><?= $row['sct_scale']; ?></dd>
                           <dt>Alternative description of clinical term</dt>
                           <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
                           <dt>ICPC-2 code</dt>
                           <dd><?= $row['map_id']; ?></dd>
-                          <dt>Is this ICPC-2 code an appropriate match for the <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?>? (1 = Very, 5 = Not at all)</dt>
+                          <dt>Is this ICPC-2 code an appropriate match for the <?= ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue"); ?>? <br>(1 = Very, 5 = Not at all)</dt>
                           <dd><?= $row['map_scale']; ?></dd>
                           <dt>Alternate ICPC-2 code</dt>
                           <dd><?= $row['map_alt_id']; ?></dd>
@@ -100,8 +100,8 @@ if(!$_SESSION["logged"]){
                               ?>
                               <input type="hidden" id="numThis" name="numThis" value="<?= $num; ?>">
                               <ul class="inline pull-right">
-                                <li><button type="submit" class="btn">Edit this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
-                                <li><button class="btn btn-danger deleteItemBtn" id="delitem-<?= $row['rfe_id']; ?>">Delete this <?= ($row['refset_id'] == 0 ? "RFE" : "Health Issue"); ?></button></li>
+                                <li><button type="submit" class="btn">Edit this <?= ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue"); ?></button></li>
+                                <li><button class="btn btn-danger deleteItemBtn" id="delitem-<?= $row['rfe_id']; ?>">Delete this <?= ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue"); ?></button></li>
                               </ul>
                             </fieldset>
                           </form>

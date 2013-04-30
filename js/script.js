@@ -169,6 +169,7 @@ var ftt = {
       if(searchText == ''){
         $('#conceptsDropdown, dl.synonyms, #clearBtn').hide();
 		$('#ICPC-Code').hide();
+		$('#itemsHolder').hide();
         $('#conceptsDropdown')[0].selectedIndex = 0;
         $('#conceptsDropdown').unbind('change');
       } else {
@@ -180,6 +181,8 @@ var ftt = {
           success:  function(response, textStatus, jqXHR){
             tools.rewriteDropdown($('#conceptsDropdown'), response);
             $('#conceptsDropdown, #clearBtn').show();
+        	$('#itemsHolder').show();
+
             $('#conceptsDropdown').on('change', function(){
               ftt.concepts.getSynonyms();
             });
@@ -216,6 +219,7 @@ var ftt = {
         str += '<li>'+data[x].synonym+'</li>';
       }
       str += '</ul>';
+   	 $('#itemsHolder').hide();
       $('dl.synonyms dd').empty().append(str);
       $('dl.synonyms').show();
       $('#ICPC-Code').show();
@@ -225,7 +229,7 @@ var ftt = {
   items: {
     write: function(data){
       tools.dir(data);
-      var str = '<dl class="dl-horizontal"><dt>RFEs</dt><dd><ul>';
+      var str = '<dl class="dl-horizontal"><dt>Reason For Encounters</dt><dd><ul>';
       for(var x=0; x<data.length; x++){// RFEs only
         if(data[x].type === "0"){
           str += '<li>'+data[x].term+'</li>';

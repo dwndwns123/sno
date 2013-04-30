@@ -46,20 +46,11 @@ if(!$_SESSION["logged"]){
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['encounter_id']; ?>">
-                      Encounter #<?= $row['encounter_id']; ?> - <?= ($row['label'] == '' ? '<em>No label given</em>' : $row['label']) ?>
+                      Encounter #<?= $row['encounter_id']; ?> 
                     </a>
                   </div>
                   <div class="accordion-body collapse" id="collapse<?= $row['encounter_id']; ?>">
                     <div class="accordion-inner">
-                      <?php
-                      if($user["field_test_complete"] == 0){
-                        ?>
-                        <ul class="inline pull-right">
-                          <li><button class="btn editlabelBtn" data-encounterid="<?= $row['encounter_id']; ?>" data-currentlabel="<?= $row['label']; ?>">Edit label for this encounter</button></li>
-                        </ul>
-                        <?php
-                      }
-                      ?>
                       <div class="itemsHolder clearboth clearfix" id="enc-<?= $row['encounter_id']; ?>">
                         <div class="spin"></div>
                         <p>Fetching items...</p>
