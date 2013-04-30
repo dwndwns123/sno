@@ -160,6 +160,7 @@ if(!$_SESSION["logged"]){
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
               <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250">
               <hr>
+          <div id="ICPC-Code" style="display: none;">
               <p>4. The associated ICPC-2 code is: <span class="uneditable-input span3">123456</span></p>
               <input type="hidden" id="icpc2" name="icpc2" value="123456">
               <hr>
@@ -191,7 +192,8 @@ if(!$_SESSION["logged"]){
                 <option value="456">ICPC-2 code and label</option>
                 <option value="789">ICPC-2 code and label</option>
               </select>
-              
+          </div>
+             
               
               
 <?php } else {  ?>

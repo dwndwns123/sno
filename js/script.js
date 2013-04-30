@@ -168,6 +168,7 @@ var ftt = {
 
       if(searchText == ''){
         $('#conceptsDropdown, dl.synonyms, #clearBtn').hide();
+		$('#ICPC-Code').hide();
         $('#conceptsDropdown')[0].selectedIndex = 0;
         $('#conceptsDropdown').unbind('change');
       } else {
@@ -217,6 +218,8 @@ var ftt = {
       str += '</ul>';
       $('dl.synonyms dd').empty().append(str);
       $('dl.synonyms').show();
+      $('#ICPC-Code').show();
+
     }
   },
   items: {
