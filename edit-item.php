@@ -29,9 +29,13 @@
         <h1>Edit <?= $recordType; ?></h1>
         <?php if ($recordType == "Reason For Encounter") 
         { ?>
-        <p>RFE text - Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-		<?php } else { ?>
-        <p>HI text - Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+        <p class='muted'>
+        A Reason For Encounter is "an agreed statement of the reason(s) why a person enters the health care system, representing the demand for care by that person. The terms written down and later classified by the provider clarify the reason for encounter and consequently the patient’s demand for care without interpreting it in the form of a diagnosis. The reason for encounter should be recognised by the patient as an acceptable description of the demand for care” (Wonca Dictionary of General/Family Practice, 2003).
+        </p>
+        <?php } else { ?>
+        <p class='muted'>
+        A Health Issue is an “issue related to the health of a subject of care, as identified or stated by a specific health care party”. This is further defined in the notes as “according to this definition, a health issue can correspond to a health problem, a disease, an illness” (Health informatics – System of concepts to support continuity of care – Part 1: basic concepts (CEN 13940-1))
+        </p>
 		<?php } ?>        
       </div>
 <?php
@@ -59,7 +63,7 @@ if(!$_SESSION["logged"]){
 
           <div class="row">
             <div class="span8 offset2">
-              <p>1. Search for(and select) a SNOMED CT concept that represents the <?= $recordType; ?> you wish to record.</p>
+              <p>1. Search for (and select) a SNOMED CT concept that represents the <?= $recordType; ?> you wish to record.</p>
               <div class="input-append">
                 <input id="searchBox" name="searchBox" type="text" maxlength="50">
                 <button id="searchBtn" class="btn" type="button">Search</button>
@@ -78,7 +82,7 @@ if(!$_SESSION["logged"]){
               <p>2. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1"<?= ($item['sct_scale'] == 1) ? ' checked="checked"' : '' ?> data-required="true"><span>Very</span>
+                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1"<?= ($item['sct_scale'] == 1) ? ' checked="checked"' : '' ?> data-required="true"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2"<?= ($item['sct_scale'] == 2) ? ' checked="checked"' : '' ?>>
@@ -103,7 +107,7 @@ if(!$_SESSION["logged"]){
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the <?= $recordType; ?> you recorded?</p>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1"<?= ($item['map_scale'] == 1) ? ' checked="checked"' : '' ?> data-required="true"><span>Very</span>
+                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1"<?= ($item['map_scale'] == 1) ? ' checked="checked"' : '' ?> data-required="true"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate2" value="2"<?= ($item['map_scale'] == 2) ? ' checked="checked"' : '' ?>>
