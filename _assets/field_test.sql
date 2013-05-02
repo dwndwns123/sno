@@ -33,7 +33,6 @@ CREATE TABLE `Countries` (
 
 INSERT INTO `Countries` (`country_id`, `country_code`, `name`) VALUES
 (0, 'AF', 'Afghanistan\n'),
-(1, 'AX', 'Åland Islands\n'),
 (2, 'AL', 'Albania\n'),
 (3, 'DZ', 'Algeria\n'),
 (4, 'AS', 'American Samoa\n'),
