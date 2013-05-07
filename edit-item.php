@@ -11,6 +11,10 @@
       } else {
         $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE rfe_id = '$_POST[item]'") or die(mysql_error());
         $item = mysql_fetch_array($rows);
+        
+        $rows2 = mysql_query("SELECT * FROM SCT_Concepts WHERE concept_id='$item[sct_id]'") or die(mysql_error());
+		$sct_details= mysql_fetch_array($rows2);
+        
         $recordType = ($item["refset_id"] == 0 ? "Reason For Encounter" : "Health Issue");
         $_SESSION['rfe_id'] = $_POST['item'];
         $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$item[encounter_id]'") or die(mysql_error());
@@ -63,9 +67,10 @@ if(!$_SESSION["logged"]){
 
           <div class="row">
             <div class="span8 offset2">
-              <p>1. Search for (and select) a SNOMED CT concept that represents the <?= $recordType; ?> you wish to record.</p>
+              <p>The SNOMED CT concept previously selected was <strong><?= $sct_details["label"]; ?></strong></p>
+              <p>1. Search for (and select) a SNOMED CT concept that represents the <?= $recordType; ?> you wish to edit.</p>
               <div class="input-append">
-                <input id="searchBox" name="searchBox" type="text" maxlength="50">
+                <input id="searchBox" name="searchBox" type="text" maxlength="50" value="<?= $sct_details["label"]; ?>">
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" data-required="true" size="5" data-error-container="#conceptValidation">
