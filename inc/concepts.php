@@ -6,7 +6,7 @@ if($recordType == "Health Issue")
     } else {
         $result = mysql_query("SELECT * FROM SCT_Concepts WHERE refset_type_id = 1 ORDER BY label") or die(mysql_error());       
     }
-
+//$item = '';
 while($row = mysql_fetch_array($result)){
   $selText = '';
   if($item){

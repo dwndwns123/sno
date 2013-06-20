@@ -6,6 +6,9 @@
     require('inc/head.php');
 
     if(!is_null($_GET["type"]) && !is_null($_GET["enc"])){ // came from the review page
+
+      error_log("I am in here - the first if");
+    
       $_SESSION["add_mode"] = $_GET["type"];
       $recordType = ($_GET["type"] == 0 ? "Reason For Encounter" : "Health Issue");
       $editLabel = false;
@@ -18,8 +21,13 @@
       $returnTo = "review-encounter.php";
 
     } else {
+      error_log("I am in here - the first if else place");
+
       if($_SESSION["logged"]){
         if(!$_SESSION["encounter_id"]){ // no encounter id, so create new encounter and new RFE
+            error_log("I am in here - no encounter id, so create new encounter and new RFE");
+        
+        
           $sql = "INSERT INTO Encounters (user_id) VALUES ('$_SESSION[user_id]')";
           mysql_query($sql) or die(mysql_error());
           $_SESSION["encounter_id"] = mysql_insert_id();
@@ -31,11 +39,19 @@
           $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
           mysql_query($sql) or die(mysql_error());
           $_SESSION["rfe_id"] = mysql_insert_id();
-        } else { // there is an encounter id
+        } 
+        else 
+        { // there is an encounter id
+            error_log("I am in here - no encounter id, so create new encounter and new RFE - the else bit");
+        
+        if($_SESSION["option"]==3) { // this is for refset verification only
 
-          if($_POST["conceptsDropdown"] && $_POST["conceptRepresentation"] && $_POST["icpc2"] && $_POST["icpc2appropriate"]){ // all mandatory fields posted
-            $sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', sct_alt = '%s', map_id = '$_POST[icpc2]', map_scale = '$_POST[icpc2appropriate]'".(!is_null($_POST["icpc2choice"]) ? ", map_alt_id = '$_POST[icpc2choice]'" : "")." WHERE rfe_id = '$_SESSION[rfe_id]'",
-                           mysql_real_escape_string($_POST[conceptFreeText]));
+            $sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
+                sct_alt = '%s' WHERE rfe_id = '$_SESSION[rfe_id]'",
+                mysql_real_escape_string($_POST[conceptFreeText]));
+
+            error_log($sql);
+ 
             mysql_query($sql) or die(mysql_error());
             $message = '<div class="alert alert-success">'.($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue").' successfully recorded.</div>';
 
@@ -56,8 +72,50 @@
             $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
             mysql_query($sql) or die(mysql_error());
             $_SESSION["rfe_id"] = mysql_insert_id();
-          } else if($_POST["conceptsDropdown"] || $_POST["conceptRepresentation"] || $_POST["icpc2"] || $_POST["icpc2appropriate"]){
+              
+              
+        } else { // this is for mapping verification
+
+           error_log("I am in here - mapping verification for an encounter id");
+        
+                
+          if(($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && ($_POST["icpc2"] || $_POST["icpc2choice"]) ){ // all mandatory fields posted
+
+           	$sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
+            	sct_alt = '%s', map_id = '$_POST[icpc2]', map_scale = '$_POST[icpc2appropriate]'".(!is_null($_POST["icpc2choice"]) ? 
+            	", map_alt_id = '$_POST[icpc2choice]'" : "")." WHERE rfe_id = '$_SESSION[rfe_id]'",
+                mysql_real_escape_string($_POST[conceptFreeText]));
+
+            error_log($sql);
+               
+            
+            mysql_query($sql) or die(mysql_error());
+            
+            
+            $message = '<div class="alert alert-success">'.($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue").' successfully recorded.</div>';
+
+            if($_POST["label"]){
+              $sql = sprintf("UPDATE Encounters SET label = '%s' WHERE encounter_id = '$_SESSION[encounter_id]'",
+                             mysql_real_escape_string($_POST[label]));
+              mysql_query($sql) or die(mysql_error());
+              $_SESSION["label"] = $_POST["label"];
+            }
+
+            if($_POST["addAnother"] == "false"){
+              $_SESSION["add_mode"] = 1;
+            }
+
+            $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+            $editLabel = false;
+
+            $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
+            mysql_query($sql) or die(mysql_error());
+            $_SESSION["rfe_id"] = mysql_insert_id();
+          } 
+          else if(($_POST["conceptsDropdown"] || $_POST["conceptRepresentation"] || $_POST["icpc2"] || $_POST["icpc2appropriate"]) )
+          {
             $message = '<div class="alert alert-error">There was an error - RFE/Health Issue was not recorded.</div>';
+          }
           }
         }
       }
@@ -107,7 +165,9 @@ if(!$_SESSION["logged"]){
             </div>
           </div>
 
-          <?php if($_SESSION["option"] == 1){ 
+          <?php 
+  			switch ($_SESSION["option"]) {
+  			  case 1:
           ?> 
             
           <!-- for the SNOMED CT first option -->
@@ -197,7 +257,10 @@ if(!$_SESSION["logged"]){
              
               
               
-<?php } else {  ?>
+<?php 
+        break;
+    case 2:
+?>
             
           <!-- for the ICPC2 first option -->
               
@@ -207,10 +270,10 @@ if(!$_SESSION["logged"]){
               <p>1. Search and (select) the <strong>ICPC-2</strong> code that represents the <?= $recordType; ?> you wish to record.</p>
 
               <div class="input-append">
-                <input id="icpcSearchBox" name="icpcSearchBox" type="text" maxlength="50">
+                <input id="icpc2" name="icpc2" type="text" maxlength="50">
                 <button id="icpcSearchBtn" class="btn" type="button">Search</button>
               </div>
-              <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="5" data-required="true" data-error-container="#icpcValidation">
+              <select class="input-xlarge" id="icpc2choice" name="icpc2choice" size="5" data-required="true" data-error-container="#icpcValidation">
                 <option value="">Select ICPC-2 code</option>
                 <option value="123">ICPC-2 code and label</option>
                 <option value="456">ICPC-2 code and label</option>
@@ -280,12 +343,72 @@ if(!$_SESSION["logged"]){
                 <dt>Synonyms:</dt>
                 <dd></dd>
               </dl>
+          </div>
 <!--              <hr>
 
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
               <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250"> -->
-<?php } ?>              
-              
+<?php 
+        break;
+    case 3:
+?>              
+
+		<!-- Refset member verification only option -->
+            
+          <div class="row">
+            <div class="span8 offset2">
+              <p>1. Search for (and select) a <strong>SNOMED CT</strong> concept that represents the <?= $recordType; ?> you wish to record.</p>
+              <div class="input-append">
+                <input id="searchBox" name="searchBox" type="text" maxlength="50">
+                <button id="searchBtn" class="btn" type="button">Search</button>
+              </div>
+<!--              
+              <div class="itemsHolder clearboth clearfix" id="SCT-spinner">
+                  <div class="spin"></div>
+                  <p>Fetching items...</p>
+              </div>
+    -->          
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-required="true" data-error-container="#conceptValidation">
+                <option value="">Select SNOMED concept</option>
+                <?php require('inc/concepts.php'); ?>
+              </select>
+              <button id="clearBtn" class="btn" type="button">Reset</button>
+              <div id="conceptValidation"></div>
+              <dl class="dl-horizontal synonyms">
+                <dt>Synonyms:</dt>
+                <dd></dd>
+              </dl>
+              <hr>
+              <p>2. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
+              <div class="likert">
+                <label class="radio inline">
+                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-required="true" data-error-container="#representationValidation"><span>Very well</span>
+                </label>
+                <label class="radio inline">
+                  <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2">
+                </label>
+                <label class="radio inline">
+                  <span>3</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation3" value="3">
+                </label>
+                <label class="radio inline">
+                  <span>4</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation4" value="4">
+                </label>
+                <label class="radio inline">
+                  <span>5</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation5" value="5"><span>Poorly</span>
+                </label>
+              </div>
+
+
+              <div id="representationValidation"></div>
+              <hr>
+              <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
+              <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250">
+              <hr>
+ 
+<?php 
+        break;
+  }         	
+?>              
               
     
               

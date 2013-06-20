@@ -416,8 +416,8 @@ CREATE TABLE `TestApproach` (
 
 INSERT INTO `TestApproach` (`option_id`, `option_label`) VALUES
 (1, 'Record through SNOMED CT Concepts'),
-(2, 'Record through ICPC2 Codes');
-
+(2, 'Record through ICPC2 Codes'),
+(3, 'Verify refset members');
 -- --------------------------------------------------------
 
 --

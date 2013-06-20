@@ -104,12 +104,17 @@ if(!$_SESSION["logged"]){
   $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
   $user = mysql_fetch_array($rows);
 
-  if ($user["option_id"]==1)
-  {
-      	$option_label="SNOMED CT Concepts";
-  } else {
-     	$option_label="ICPC-2 Codes";
-  }        	
+  switch ($user["option_id"]) {
+    case 1:
+        $option_label="selecting via SNOMED CT Concepts";
+        break;
+    case 2:
+        $option_label="selecting via ICPC-2 Codes";
+        break;
+    case 3:
+        $option_label="verifying the SNOMED CT refset members";
+        break;
+  }         	
 
   $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
   $encounters = mysql_num_rows($encountersData);
@@ -121,7 +126,7 @@ if(!$_SESSION["logged"]){
         <div class="span12">
           <div class="well">
             <p class="lead">Welcome, <?= ($_SESSION['title'] !== 'Other' ? $_SESSION['title'].' ' : ''); ?><?= $_SESSION['first_name'].' '.$_SESSION['last_name'] ?>.</p>
-            <p>You are participating in this field test by selecting <strong><?= $option_label; ?></strong> first.</p>
+            <p>You are participating in this field test by <strong><?= $option_label; ?></strong>.</p>
             <p>You have completed <?= $encounters; ?> of <?= $configvars["encounters"]["maxencounters"]; ?> encounters.</p>
           </div>
         </div>

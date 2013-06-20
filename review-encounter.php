@@ -15,7 +15,9 @@ if($_SESSION["logged"]){
     $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$_POST[enc]'") or die(mysql_error());
     $enc = mysql_fetch_array($encRows);
     $_SESSION["label"] = $enc["label"];
-  } else if($_POST["conceptsDropdown"] && $_POST["conceptRepresentation"] && $_POST["icpc2"] && $_POST["icpc2appropriate"]){ // all mandatory fields posted
+  } else 
+  // if($_POST["conceptsDropdown"] && $_POST["conceptRepresentation"] && $_POST["icpc2"] && $_POST["icpc2appropriate"])
+  { // all mandatory fields posted
     $sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', sct_alt = '%s', map_id = '$_POST[icpc2]', map_scale = '$_POST[icpc2appropriate]'".(!is_null($_POST["icpc2choice"]) ? ", map_alt_id = '$_POST[icpc2choice]'" : "")." WHERE rfe_id = '$_SESSION[rfe_id]'",
                    mysql_real_escape_string($_POST[conceptFreeText]));
     mysql_query($sql) or die(mysql_error());
@@ -79,12 +81,20 @@ if(!$_SESSION["logged"]){
                           <dd><?= $row['sct_scale']; ?></dd>
                           <dt>Alternative description of clinical term</dt>
                           <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
+                          
+                        <?php
+                        if($_SESSION["option"]<3){  //does not show ICPC-2 codes for users only reviewing SCT refset members
+                          ?>  
                           <dt>ICPC-2 code</dt>
                           <dd><?= $row['map_id']; ?></dd>
                           <dt>Is this ICPC-2 code an appropriate match for the <?= ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue"); ?>? <br>(1 = Very, 5 = Not at all)</dt>
                           <dd><?= $row['map_scale']; ?></dd>
                           <dt>Alternate ICPC-2 code</dt>
                           <dd><?= $row['map_alt_id']; ?></dd>
+                        <?php
+                        }
+                        ?>                        
+                        
                         </dl>
                         <?php
                         if($user["field_test_complete"] == 0){
