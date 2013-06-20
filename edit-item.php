@@ -65,6 +65,11 @@ if(!$_SESSION["logged"]){
             </div>
           </div>
 
+          <?php 
+            switch ($_SESSION["option"]) {
+              case 1:
+          ?> 
+
           <div class="row">
             <div class="span8 offset2">
               <p>The SNOMED CT concept previously selected was <strong><?= $sct_details["label"]; ?></strong></p>
@@ -135,7 +140,66 @@ if(!$_SESSION["logged"]){
                 <option value="456">ICPC-2 code and label</option>
                 <option value="789">ICPC-2 code and label</option>
               </select>
+<?php 
+        break;
+    case 2:
+?>
+            
+          <!-- for the ICPC2 first option -->
+          
+<?php 
+        break;
+    case 3:
+?>
+            
+          <!-- for the ICPC2 first option -->          
+                    <div class="row">
+            <div class="span8 offset2">
+              <p>The SNOMED CT concept previously selected was <strong><?= $sct_details["label"]; ?></strong></p>
+              <p>1. Search for (and select) a SNOMED CT concept that represents the <?= $recordType; ?> you wish to edit.</p>
+              <div class="input-append">
+                <input id="searchBox" name="searchBox" type="text" maxlength="50" value="<?= $sct_details["label"]; ?>">
+                <button id="searchBtn" class="btn" type="button">Search</button>
+              </div>
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" data-required="true" size="5" data-error-container="#conceptValidation">
+                <option value="">Select SNOMED concept</option>
+                <?php require('inc/concepts.php'); ?>
+              </select>
+              <button id="clearBtn" class="btn" type="button">Reset</button>
+              <div id="conceptValidation"></div>
+              <dl class="dl-horizontal synonyms">
+                <dt>Synonyms:</dt>
+                <dd></dd>
+              </dl>
+              <hr>
+              <p>2. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
+              <div class="likert">
+                <label class="radio inline">
+                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1"<?= ($item['sct_scale'] == 1) ? ' checked="checked"' : '' ?> data-required="true"><span>Very well</span>
+                </label>
+                <label class="radio inline">
+                  <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2"<?= ($item['sct_scale'] == 2) ? ' checked="checked"' : '' ?>>
+                </label>
+                <label class="radio inline">
+                  <span>3</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation3" value="3"<?= ($item['sct_scale'] == 3) ? ' checked="checked"' : '' ?>>
+                </label>
+                <label class="radio inline">
+                  <span>4</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation4" value="4"<?= ($item['sct_scale'] == 4) ? ' checked="checked"' : '' ?>>
+                </label>
+                <label class="radio inline">
+                  <span>5</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation5" value="5"<?= ($item['sct_scale'] == 5) ? ' checked="checked"' : '' ?>><span>Poorly</span>
+                </label>
+              </div>
+              <hr>
+              <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
+              <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250" value="<?= $item['sct_alt']; ?>">
 
+<?php 
+        break;
+        }
+?>
+            
+          <!-- for the ICPC2 first option -->
               <div class="form-actions">
                 <a id="cancelBtn" class="btn" href="<?= $_POST['from'] ?>">Cancel</a>
                 <button type="submit" class="btn">Submit changes</button>
