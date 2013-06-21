@@ -161,12 +161,20 @@ var ftt = {
          $('#searchBtn').click();
        }
      });
+    // any keypress in alternative box triggers fields to be displayed
+    $('#conceptFreeText').bind('keypress', function(e){
+       var altText = $('#conceptFreeText').val();
+       if(altText != ''){
+			$('#ICPC-Code').show();
+       }
+     });
   },
   concepts: {
     refine: function(){
       var searchText = $('#searchBox').val();
+      var altText = $('#conceptFreeText').val();
 
-      if(searchText == ''){
+      if((searchText == '') && (altText == '')){
         $('#conceptsDropdown, dl.synonyms, #clearBtn').hide();
 		$('#ICPC-Code').hide();
 		$('#itemsHolder').hide();

@@ -133,13 +133,15 @@
         <h1>Add <?= $recordType; ?></h1>
         <?php if ($recordType == "Reason For Encounter") 
         { ?>
-        <p class='muted'>
-        A Reason For Encounter is "an agreed statement of the reason(s) why a person enters the health care system, representing the demand for care by that person. The terms written down and later classified by the provider clarify the reason for encounter and consequently the patient’s demand for care without interpreting it in the form of a diagnosis. The reason for encounter should be recognised by the patient as an acceptable description of the demand for care” (Wonca Dictionary of General/Family Practice, 2003).
-        </p>
+        <blockquote>
+            A Reason For Encounter is "an agreed statement of the reason(s) why a person enters the health care system, representing the demand for care by that person. The terms written down and later classified by the provider clarify the reason for encounter and consequently the patient’s demand for care without interpreting it in the form of a diagnosis. The reason for encounter should be recognised by the patient as an acceptable description of the demand for care” 
+            <small>(Wonca Dictionary of General/Family Practice, 2003).</small>
+        </blockquote>
         <?php } else { ?>
-        <p class='muted'>
-        A Health Issue is an “issue related to the health of a subject of care, as identified or stated by a specific health care party”. This is further defined in the notes as “according to this definition, a health issue can correspond to a health problem, a disease, an illness” (Health informatics – System of concepts to support continuity of care – Part 1: basic concepts (CEN 13940-1))
-        </p>
+        <blockquote>
+            A Health Issue is an “issue related to the health of a subject of care, as identified or stated by a specific health care party”. This is further defined in the notes as “according to this definition, a health issue can correspond to a health problem, a disease, an illness”<br />
+            <small>(Health informatics – System of concepts to support continuity of care – Part 1: basic concepts (CEN 13940-1))</small>
+        </blockquote>
         <?php } ?>
 		
       </div>
@@ -168,6 +170,7 @@ if(!$_SESSION["logged"]){
           <?php 
   			switch ($_SESSION["option"]) {
   			  case 1:
+                  
           ?> 
             
           <!-- for the SNOMED CT first option -->
@@ -185,7 +188,7 @@ if(!$_SESSION["logged"]){
                   <p>Fetching items...</p>
               </div>
     -->          
-              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-required="true" data-error-container="#conceptValidation">
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>
               </select>
@@ -199,7 +202,7 @@ if(!$_SESSION["logged"]){
               <p>2. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-required="true" data-error-container="#representationValidation"><span>Very well</span>
+                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-error-container="#representationValidation"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2">
@@ -228,7 +231,7 @@ if(!$_SESSION["logged"]){
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the <?= $recordType; ?> you recorded?</p>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1" data-required="true" data-error-container="#appropriateValidation"><span>Very well</span>
+                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1" data-error-container="#appropriateValidation"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate2" value="2">
@@ -273,7 +276,7 @@ if(!$_SESSION["logged"]){
                 <input id="icpc2" name="icpc2" type="text" maxlength="50">
                 <button id="icpcSearchBtn" class="btn" type="button">Search</button>
               </div>
-              <select class="input-xlarge" id="icpc2choice" name="icpc2choice" size="5" data-required="true" data-error-container="#icpcValidation">
+              <select class="input-xlarge" id="icpc2choice" name="icpc2choice" size="5" data-error-container="#icpcValidation">
                 <option value="">Select ICPC-2 code</option>
                 <option value="123">ICPC-2 code and label</option>
                 <option value="456">ICPC-2 code and label</option>
@@ -286,7 +289,7 @@ if(!$_SESSION["logged"]){
               <p>2. In your opinion, is this ICPC-2 code an appropriate match for the <?= $recordType; ?> you recorded?</p>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1" data-required="true" data-error-container="#appropriateValidation"><span>Very well</span>
+                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1" data-error-container="#appropriateValidation"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate2" value="2">
@@ -311,7 +314,7 @@ if(!$_SESSION["logged"]){
               <p>5. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-required="true" data-error-container="#representationValidation"><span>Very well</span>
+                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-error-container="#representationValidation"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2">
@@ -333,7 +336,7 @@ if(!$_SESSION["logged"]){
                 <input id="searchBox" name="searchBox" type="text" maxlength="50">
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
-              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-required="true" data-error-container="#conceptValidation">
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>
               </select>
@@ -343,7 +346,7 @@ if(!$_SESSION["logged"]){
                 <dt>Synonyms:</dt>
                 <dd></dd>
               </dl>
-          </div>
+          
 <!--              <hr>
 
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
@@ -368,7 +371,7 @@ if(!$_SESSION["logged"]){
                   <p>Fetching items...</p>
               </div>
     -->          
-              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-required="true" data-error-container="#conceptValidation">
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>
               </select>
@@ -382,7 +385,7 @@ if(!$_SESSION["logged"]){
               <p>2. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-required="true" data-error-container="#representationValidation"><span>Very well</span>
+                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-error-container="#representationValidation"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2">
@@ -419,23 +422,30 @@ if(!$_SESSION["logged"]){
                 if(!is_null($_GET["type"]) && !is_null($_GET["enc"])){
                   ?>
                   <button type="submit" class="btn">Add this <?= $recordType; ?></button>
+                   &nbsp;&nbsp;
+                 
                   <?php
                 } else {
                   ?>
                   <input type="hidden" id="addAnother" name="addAnother" value="true">
                   <button type="submit" class="btn">Add another <?= $recordType; ?></button>
+                  &nbsp;&nbsp;
                   <?php
                   if($_SESSION["add_mode"] == 0){
                     ?>
                     <a id="nextBtn" class="btn" href="#">Reason For Encounters complete - add Health Issues</a>
+                    &nbsp;&nbsp;
                     <?php
                   } else {
                     ?>
                     <a id="finishedBtn" class="btn" href="#">Health Issues complete - review encounter</a>
+                    &nbsp;&nbsp;
                     <?php
                   }
                 }
                 ?>
+                   <a id="cancelBtn" class="btn" href="index.php">Cancel</a>
+
               </div>
 
             </div>
