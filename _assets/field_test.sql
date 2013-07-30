@@ -1,14 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 3.5.5
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Apr 17, 2013 at 07:54 AM
--- Server version: 5.5.29
--- PHP Version: 5.4.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+/* create the database */
+drop database if exists `field-test`;
+create database if not exists `field-test`;
+use `field-test`;
 
 --
 -- Database: `field-test`
@@ -404,7 +401,6 @@ INSERT INTO `Title` (`title_id`, `title`) VALUES
 
 DROP TABLE IF EXISTS `TestApproach`;
 CREATE TABLE `TestApproach` (
-<<<<<<< HEAD
   `option_id` smallint(6) NOT NULL,
   `option_label` varchar(50) NOT NULL,
   PRIMARY KEY (`option_id`)
