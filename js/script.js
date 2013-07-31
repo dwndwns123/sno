@@ -193,6 +193,7 @@ var ftt = {
 
             $('#conceptsDropdown').on('change', function(){
               ftt.concepts.getSynonyms();
+              ftt.concepts.getICPC();
             });
           },
           error:    function(jqXHR, textStatus, errorThrown){
@@ -231,8 +232,30 @@ var ftt = {
       $('dl.synonyms dd').empty().append(str);
       $('dl.synonyms').show();
       $('#ICPC-Code').show();
-
-    }
+    },
+    
+    getICPC: function(){
+      var codeid = $('#conceptsDropdown').val();
+      
+      $.ajax({
+        url:      'getICPC.php',
+        type:     'POST',
+        data:     'codeid='+codeid,
+        dataType: 'json',
+        success:  function(response, textStatus, jqXHR){
+          ftt.concepts.showICPC(response);
+        },
+        error:    function(jqXHR, textStatus, errorThrown){
+          alert('error: getICPC - '+errorThrown +' ' +textStatus+' ' +codeid);
+        }
+      });
+    },   
+    
+    showICPC: function(data){
+      var str = data[0].id + " - " + data[0].title;
+      $('span.icpcCode').empty().append(str);
+    },
+    
   },
   items: {
     write: function(data){

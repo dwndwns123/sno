@@ -182,12 +182,6 @@ if(!$_SESSION["logged"]){
                 <input id="searchBox" name="searchBox" type="text" maxlength="50">
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
-<!--              
-              <div class="itemsHolder clearboth clearfix" id="SCT-spinner">
-                  <div class="spin"></div>
-                  <p>Fetching items...</p>
-              </div>
-    -->          
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>
@@ -225,7 +219,7 @@ if(!$_SESSION["logged"]){
               <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250">
               <hr>
           <div id="ICPC-Code" style="display: none;">
-              <p>4. The associated ICPC-2 code is: <span class="uneditable-input span3">123456</span></p>
+              <p>4. The associated ICPC-2 code is: <span class="uneditable-input span3 icpcCode"></span></p>
               <input type="hidden" id="icpc2" name="icpc2" value="123456">
               <hr>
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the <?= $recordType; ?> you recorded?</p>
