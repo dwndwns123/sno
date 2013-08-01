@@ -243,13 +243,15 @@ if(!$_SESSION["logged"]){
               <div id="appropriateValidation"></div>
               <hr>
               <p>6. If the ICPC-2 code is not an appropriate match, please record your preferred ICPC-2 code:</p>
-              <select id="icpc2choice" name="icpc2choice" class="span8">
-<!-- example codes until they are available -->
+              <div class="input-append">
+                <input id="icpcSearchBox" name="searchBox" type="text" maxlength="50">
+                <button id="icpcSearchBtn" class="btn" type="button">Search</button>
+              </div>
+              <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="8" data-error-container="#icpcValidation">
                 <option value="">Select ICPC-2 code</option>
-                <option value="123">ICPC-2 code and label</option>
-                <option value="456">ICPC-2 code and label</option>
-                <option value="789">ICPC-2 code and label</option>
+                <?php require('inc/icpccodes.php'); ?>
               </select>
+              <button id="icpcClearBtn" class="btn" type="button">Reset</button>
           </div>
              
               
@@ -359,12 +361,7 @@ if(!$_SESSION["logged"]){
                 <input id="searchBox" name="searchBox" type="text" maxlength="50">
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
-<!--              
-              <div class="itemsHolder clearboth clearfix" id="SCT-spinner">
-                  <div class="spin"></div>
-                  <p>Fetching items...</p>
-              </div>
-    -->          
+   
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
                 <?php require('inc/concepts.php'); ?>

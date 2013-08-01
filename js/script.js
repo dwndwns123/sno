@@ -28,6 +28,12 @@ var ftt = {
     $('#clearBtn').on('click', function(){
       ftt.concepts.reset();
     });
+    $('#icpcSearchBtn').on('click', function(){
+      ftt.icpccodes.refine();
+    });
+    $('#icpcClearBtn').on('click', function(){
+      ftt.icpccodes.reset();
+    });
     $('#nextBtn').on('click', function(e){
       e.preventDefault();
       $('#addAnother').val("false");
@@ -169,13 +175,49 @@ var ftt = {
        }
      });
   },
+  
+  // icpcCode specific searches and result displays
+  icpccodes: {
+    refine: function(){
+      var searchText = $('#icpcSearchBox').val();
+
+      if(searchText == ''){
+        $('#icpcDropdown, #icpcClearBtn').hide();
+        $('#icpcDropdown')[0].selectedIndex = 0;
+        $('#icpcDropdown').unbind('change');
+      } else {
+        $.ajax({
+          url:      'searchICPC.php',
+          type:     'POST',
+          data:     'searchText='+searchText,
+          dataType: 'json',
+          success:  function(response, textStatus, jqXHR){
+            tools.rewriteDropdown($('#icpcDropdown'), response);
+            $('#icpcDropdown, #icpcClearBtn').show();
+        	$('#itemsHolder').show();
+          },
+          error:    function(jqXHR, textStatus, errorThrown){
+            alert('error: '+errorThrown);
+          }
+        });
+      }
+    },
+    
+    reset: function(){
+      $('#icpcSearchBox').val('');
+      ftt.icpccodes.refine();
+    },
+  		
+  },
+  
+  // SCT concept specific searches and result displays
   concepts: {
     refine: function(){
       var searchText = $('#searchBox').val();
       var altText = $('#conceptFreeText').val();
 
       if((searchText == '') && (altText == '')){
-        $('#conceptsDropdown, dl.synonyms, #clearBtn').hide();
+        $('#conceptsDropdown, dl.synonyms, #clearBtn, #icpcDropdown').hide();
 		$('#ICPC-Code').hide();
 		$('#itemsHolder').hide();
         $('#conceptsDropdown')[0].selectedIndex = 0;
@@ -190,7 +232,7 @@ var ftt = {
             tools.rewriteDropdown($('#conceptsDropdown'), response);
             $('#conceptsDropdown, #clearBtn').show();
         	$('#itemsHolder').show();
-
+			$('#icpcDropdown').hide();
             $('#conceptsDropdown').on('change', function(){
               ftt.concepts.getSynonyms();
               ftt.concepts.getICPC();
@@ -202,6 +244,7 @@ var ftt = {
         });
       }
     },
+    
     reset: function(){
       $('#searchBox').val('');
       ftt.concepts.refine();
