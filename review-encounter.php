@@ -17,25 +17,18 @@ if($_SESSION["logged"]){
     $enc = mysql_fetch_array($encRows);
     $_SESSION["label"] = $enc["label"];
   } else 
-  if(($_POST["conceptsDropdown"] || $_POST["conceptRepresentation"]) && ($_POST["icpc2"] || $_POST["icpc2appropriate"]))
-  { // all mandatory fields posted
-/*    $sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', 
-                        sct_scale = '$_POST[conceptRepresentation]', sct_alt = '%s', icpc_id = '$_POST[icpc2], 
-                        icpc_scale = '$_POST[icpc2appropriate]', icpc_alt_id = '$_POST[icpc2choice]' WHERE reason_id = '$_SESSION[rfe_id]'",
-                   mysql_real_escape_string($_POST[conceptFreeText]));
-*/    
+  if(($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && ($_POST["icpc2"] || $_POST["icpc2choice"]))  // all mandatory fields posted
+  { 
+    // debug messages
+    error_log("debugflag - encounter_id var after entering review-enc is - '$_SESSION[encounter_id]'");
+    error_log("debugflag - add_mode var after newly set is - '$_SESSION[add_mode]'");
 
-                              error_log("debugflag - encounter_id var after entering review-enc is - ");
-                              error_log($_SESSION["encounter_id"]);
-                              error_log("debugflag - add_mode var after newly set is - ");
-                              error_log($_SESSION["add_mode"]);
-
-$sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
-                                        VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$_POST[icpc2]',
-'$_POST[icpc2appropriate]','$_POST[icpcDropdown]')",
-mysql_real_escape_string($_POST["conceptFreeText"]));
+    $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
+                    VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$_POST[icpc2]',
+                    '$_POST[icpc2appropriate]','$_POST[icpcDropdown]')",
+    mysql_real_escape_string($_POST["conceptFreeText"]));
                 
-error_log("review encounter update incoming");
+    error_log("review encounter update incoming");
     error_log($sql);                
     mysql_query($sql) or die(mysql_error());
     

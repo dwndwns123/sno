@@ -230,7 +230,6 @@ var ftt = {
       var altText = $('#conceptFreeText').val();
 
       if((searchText == '') && (altText == '')){
-        $('#conceptsDropdown, dl.synonyms, #clearBtn, #icpcDropdown', '#icpcClearBtn').hide();
 		$('#ICPC-Code').hide();
 		$('#addSameBtn').hide();
 		$('#nextBtn').hide();
@@ -238,6 +237,7 @@ var ftt = {
 		$('#itemsHolder').hide();
         $('#conceptsDropdown')[0].selectedIndex = 0;
         $('#conceptsDropdown').unbind('change');
+        $('#conceptsDropdown, dl.synonyms, #clearBtn, #icpcDropdown, #icpcClearBtn').hide();
       } else {
         $.ajax({
           url:      'searchConcepts.php',
