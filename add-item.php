@@ -1,4 +1,4 @@
-<?php include "inc/conn.php"; ?>
+<?php include "inc/conn.php"; session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,122 +7,164 @@
 
     if(!is_null($_GET["type"]) && !is_null($_GET["enc"])){ // came from the review page
 
-      error_log("I am in here - the first if");
+      error_log("I am in here - the came from review page");
     
       $_SESSION["add_mode"] = $_GET["type"];
       $recordType = ($_GET["type"] == 0 ? "Reason For Encounter" : "Health Issue");
-      $editLabel = false;
       $_SESSION["encounter_id"] = $_GET["enc"];
 
-      $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_GET[enc]','$_GET[type]')";
+/*      $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_GET[enc]','$_GET[type]')";
       mysql_query($sql) or die(mysql_error());
       $_SESSION["rfe_id"] = mysql_insert_id();
-
+*/
       $returnTo = "review-encounter.php";
 
     } else {
       error_log("I am in here - the first if else place");
+	  error_log("debugflag - encounter_id var is - ");
+	  error_log($_SESSION["encounter_id"]);
+	  
+        if($_SESSION["logged"]){
+                error_log("I am in here");
+            
+                if($_SESSION["option"]==3) { // this is for refset verification only
+    
+                        if($_POST["conceptsDropdown"] || $_POST["conceptRepresentation"] ) {
 
-      if($_SESSION["logged"]){
-        if(!$_SESSION["encounter_id"]){ // no encounter id, so create new encounter and new RFE
-            error_log("I am in here - no encounter id, so create new encounter and new RFE");
-        
-        
-          $sql = "INSERT INTO Encounters (user_id) VALUES ('$_SESSION[user_id]')";
-          mysql_query($sql) or die(mysql_error());
-          $_SESSION["encounter_id"] = mysql_insert_id();
-
-          $_SESSION["add_mode"] = 0;
-          $recordType = "Reason For Encounter";
-          $editLabel = true;
-
-          $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
-          mysql_query($sql) or die(mysql_error());
-          $_SESSION["rfe_id"] = mysql_insert_id();
-        } 
-        else 
-        { // there is an encounter id
-            error_log("I am in here - no encounter id, so create new encounter and new RFE - the else bit");
-        
-        if($_SESSION["option"]==3) { // this is for refset verification only
-
-            $sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
-                sct_alt = '%s' WHERE rfe_id = '$_SESSION[rfe_id]'",
-                mysql_real_escape_string($_POST[conceptFreeText]));
-
-            error_log($sql);
- 
-            mysql_query($sql) or die(mysql_error());
-            $message = '<div class="alert alert-success">'.($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue").' successfully recorded.</div>';
-
-            if($_POST["label"]){
-              $sql = sprintf("UPDATE Encounters SET label = '%s' WHERE encounter_id = '$_SESSION[encounter_id]'",
-                             mysql_real_escape_string($_POST[label]));
-              mysql_query($sql) or die(mysql_error());
-              $_SESSION["label"] = $_POST["label"];
-            }
-
-            if($_POST["addAnother"] == "false"){
-              $_SESSION["add_mode"] = 1;
-            }
-
-            $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
-            $editLabel = false;
-
-            $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
-            mysql_query($sql) or die(mysql_error());
-            $_SESSION["rfe_id"] = mysql_insert_id();
-              
-              
-        } else { // this is for mapping verification
-
-           error_log("I am in here - mapping verification for an encounter id");
-        
+                            if(!$_SESSION["encounter_id"]){ // no encounter id, so create new encounter and new RFE
+                              error_log("I am in here - no encounter id, so create new encounter and new RFE");
+                              
+                              $sql = "INSERT INTO Encounters (user_id) VALUES ('$_SESSION[user_id]')";
+                              mysql_query($sql) or die(mysql_error());
+                              $_SESSION["encounter_id"] = mysql_insert_id();
+                    
+                              $_SESSION["add_mode"] = 0;
+                              $recordType = "Reason For Encounter";
+                    
+/*                              $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
+                              mysql_query($sql) or die(mysql_error());
+                              $_SESSION["rfe_id"] = mysql_insert_id();
+*/                    
+                              error_log("debugflag - encounter_id var after newly set is - ");
+                              error_log($_SESSION["encounter_id"]);
+                              error_log("debugflag - recordType var after newly set is - ");
+                              error_log($recordType);
+                              error_log("debugflag - encounter details refid var after newly set is - ");
+                              error_log($_SESSION["rfe_id"]);
+                              
+                            } 
+                            $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt) 
+                                        VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s')",
+                                mysql_real_escape_string($_POST["conceptFreeText"]));
+/*                            $sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
+                                sct_alt = '%s' WHERE reason_id = '$_SESSION[rfe_id]'",
+                                mysql_real_escape_string($_POST["conceptFreeText"]));
+*/                
+                            error_log($sql);
+                 
+                            mysql_query($sql) or die(mysql_error());
+                            $message = '<div class="alert alert-success">'.($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue").' successfully recorded.</div>';
                 
-          if(($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && ($_POST["icpc2"] || $_POST["icpc2choice"]) ){ // all mandatory fields posted
+                            if($_POST["addAnother"] == "false"){
+                              $_SESSION["add_mode"] = 1;
+                            }
+                
+                            $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+                
+/*                            $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
+                            mysql_query($sql) or die(mysql_error());
+                            $_SESSION["rfe_id"] = mysql_insert_id(); */
+                        }
+                        else
+                        {
+                            $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - Please ensure the relevant fields are populated.</div>';
+                        }
+                                                                
+                } else 
+                { // this is for mapping verification
+    
+                        error_log("I am in here - option 1 & 2 verification");
+                        
+                        error_log("debugflag - concepts dropdown after newly set is - ");
+                        error_log($_POST["conceptsDropdown"]);
+                        error_log("debugflag - concepts dropdown after newly set is - ");
+                        error_log($_POST["conceptFreeText"]);
+    
+                    
+                        if(($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && ($_POST["icpc2"] || $_POST["icpc2choice"]) ) { // all mandatory fields posted
+    
 
-           	$sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
-            	sct_alt = '%s', map_id = '$_POST[icpc2]', map_scale = '$_POST[icpc2appropriate]'".(!is_null($_POST["icpc2choice"]) ? 
-            	", map_alt_id = '$_POST[icpc2choice]'" : "")." WHERE rfe_id = '$_SESSION[rfe_id]'",
-                mysql_real_escape_string($_POST[conceptFreeText]));
-
-            error_log($sql);
-               
-            
-            mysql_query($sql) or die(mysql_error());
-            
-            
-            $message = '<div class="alert alert-success">'.($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue").' successfully recorded.</div>';
-
-            if($_POST["label"]){
-              $sql = sprintf("UPDATE Encounters SET label = '%s' WHERE encounter_id = '$_SESSION[encounter_id]'",
-                             mysql_real_escape_string($_POST[label]));
-              mysql_query($sql) or die(mysql_error());
-              $_SESSION["label"] = $_POST["label"];
-            }
-
-            if($_POST["addAnother"] == "false"){
-              $_SESSION["add_mode"] = 1;
-            }
-
-            $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
-            $editLabel = false;
-
-            $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
-            mysql_query($sql) or die(mysql_error());
-            $_SESSION["rfe_id"] = mysql_insert_id();
-          } 
-          else if(($_POST["conceptsDropdown"] || $_POST["conceptRepresentation"] || $_POST["icpc2"] || $_POST["icpc2appropriate"]) )
-          {
-            $message = '<div class="alert alert-error">There was an error - RFE/Health Issue was not recorded.</div>';
-          }
-          }
-        }
-      }
+                            if(!$_SESSION["encounter_id"]){ // no encounter id, so create new encounter and new RFE
+                              error_log("I am in option 1&2 and the fields are populated - no encounter id, so create new encounter and new RFE");
+                              
+                              $sql = "INSERT INTO Encounters (user_id) VALUES ('$_SESSION[user_id]')";
+                              mysql_query($sql) or die(mysql_error());
+                              $_SESSION["encounter_id"] = mysql_insert_id();
+                    
+                              $_SESSION["add_mode"] = 0;
+                              $recordType = "Reason For Encounter";
+                    
+/*                              $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
+                              mysql_query($sql) or die(mysql_error());
+                              $_SESSION["rfe_id"] = mysql_insert_id();
+*/                    
+                              error_log("debugflag - encounter_id var after newly set is - ");
+                              error_log($_SESSION["encounter_id"]);
+                              error_log("debugflag - recordType var after newly set is - ");
+                              error_log($recordType);
+                              error_log("debugflag - encounter details refid var after newly set is - ");
+                              error_log($_SESSION["rfe_id"]);
+                              
+                            } 
+    
+    
+                            $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
+                                        VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$_POST[icpc2]',
+                                        '$_POST[icpc2appropriate]','$_POST[icpcDropdown]')",
+                                mysql_real_escape_string($_POST["conceptFreeText"]));
+        
+    /*                       	$sql = sprintf("UPDATE Encounter_Reasons SET refset_id = '$_SESSION[add_mode]', sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
+                            	sct_alt = '%s', icpc_id = '$_POST[icpc2]', icpc_scale = '$_POST[icpc2appropriate]', icpc_alt_id = '$_POST[icpcDropdown]' WHERE reason_id = '$_SESSION[rfe_id]'",
+                                mysql_real_escape_string($_POST["conceptFreeText"]));
+      */          
+                            error_log($sql);
+                            mysql_query($sql) or die(mysql_error());
+                            
+                            
+                            $message = '<div class="alert alert-success">'.($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue").' successfully recorded.</div>';
+                
+                            error_log("debugflag - addAnother var is - " + $_POST["addAnother"]);
+                            error_log("debugflag - add_mode var is - " + $_SESSION["add_mode"]);
+                            
+                            
+                            if($_POST["addAnother"] == "false"){
+                              $_SESSION["add_mode"] = 1;
+                            }
+                
+                            $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+                
+/*                            $sql = "INSERT INTO Encounter_Reasons (encounter_id, refset_id) VALUES ('$_SESSION[encounter_id]','$_SESSION[add_mode]')";
+                            mysql_query($sql) or die(mysql_error());
+                            $_SESSION["rfe_id"] = mysql_insert_id(); */
+                        } 
+                        else // if((($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && ($_POST["icpc2"] || $_POST["icpc2appropriate"])) )
+                        {
+                                    
+                            if(!$_SESSION["encounter_id"]) {
+                                $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+                            } else {
+                                $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - RFE/Health Issue was not recorded. Please ensure the relevant fields are populated.</div>';
+                            }
+                        }
+                } //endif of checking the approach option
+      }  //endif of is logged in and page origin check
+      
       $returnTo = "add-item.php";
     }
   ?>
-  <title>SNOMED CT GP/FP RefSet Field Test - Add <?= $recordType; ?></title>
+  
+  
+ <title>SNOMED CT GP/FP RefSet Field Test - Add <?= $recordType; ?></title>
 </head>
 <body>
   <div class="container">
@@ -148,7 +190,7 @@
 <?php
 if(!$_SESSION["logged"]){
   include('inc/not-logged-in.php');
-} else {
+} else { 
   if($message){
     echo $message;
   }
@@ -161,7 +203,14 @@ if(!$_SESSION["logged"]){
               <div class="well">
                 <dl class="dl-horizontal">
                   <dt>Encounter ID:</dt>
-                  <dd><?= $_SESSION["encounter_id"]; ?></dd>
+                  <dd>
+                   <?php if (!$_SESSION["encounter_id"]){ ?>
+                       <i>not yet generated</i>
+                       <?php 
+                   } else {                      
+                      echo $_SESSION["encounter_id"]; 
+                   } ?>   
+                      </dd>
                 </dl>
               </div>
             </div>
@@ -182,9 +231,9 @@ if(!$_SESSION["logged"]){
                 <input id="searchBox" name="searchBox" type="text" maxlength="50">
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
-              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation">
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation" >
                 <option value="">Select SNOMED concept</option>
-                <?php require('inc/concepts.php'); ?>
+             <!--   <?php require('inc/concepts.php'); ?> -->
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation"></div>
@@ -219,8 +268,8 @@ if(!$_SESSION["logged"]){
               <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250">
               <hr>
           <div id="ICPC-Code" style="display: none;">
-              <p>4. The associated ICPC-2 code is: <span class="uneditable-input span3 icpcCode"></span></p>
-              <input type="hidden" id="icpc2" name="icpc2" value="123456">
+              <p>4. The associated ICPC-2 code is: <strong><span class="icpcCode"></span></strong></p>
+              <input type="hidden" id="icpc2" name="icpc2">
               <hr>
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the <?= $recordType; ?> you recorded?</p>
               <div class="likert">
@@ -249,9 +298,9 @@ if(!$_SESSION["logged"]){
               </div>
               <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="8" data-error-container="#icpcValidation">
                 <option value="">Select ICPC-2 code</option>
-                <?php require('inc/icpccodes.php'); ?>
+                <!-- <?php require('inc/icpccodes.php'); ?> -->
               </select>
-              <button id="icpcClearBtn" class="btn" type="button">Reset</button>
+<!--              <button id="icpcClearBtn" class="btn" type="button" style="a">Reset</button> -->
           </div>
              
               
@@ -334,7 +383,7 @@ if(!$_SESSION["logged"]){
               </div>
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
-                <?php require('inc/concepts.php'); ?>
+             <!--   <?php require('inc/concepts.php'); ?> -->
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation"></div>
@@ -364,7 +413,7 @@ if(!$_SESSION["logged"]){
    
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
-                <?php require('inc/concepts.php'); ?>
+             <!--   <?php require('inc/concepts.php'); ?> -->
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation"></div>
@@ -419,6 +468,7 @@ if(!$_SESSION["logged"]){
                 } else {
                   ?>
                   <input type="hidden" id="addAnother" name="addAnother" value="true">
+<!--                  <a id="addSameBtn" class="btn" href="#">Add another <?= $recordType; ?></a> -->
                   <button type="submit" class="btn">Add another <?= $recordType; ?></button>
                   &nbsp;&nbsp;
                   <?php

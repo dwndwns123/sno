@@ -17,6 +17,19 @@ var ftt = {
     top: 'auto', // Top position relative to parent in px
     left: 'auto' // Left position relative to parent in px
   },
+  
+	validateItemForm: function()
+	{
+		var check1 = $('#conceptsDropdown')[0].selectedIndex;
+		var check2 = $('#conceptFreeText').val();
+		if ((check2==null || check2=="") || (check1==0))
+	  	{
+  			return false;
+  		} else {
+  			return true;
+  		}
+	},
+	  
   init: function(){
     // implement nice maxlength plugin
     $('input[maxlength]').maxlength();
@@ -192,7 +205,7 @@ var ftt = {
           data:     'searchText='+searchText,
           dataType: 'json',
           success:  function(response, textStatus, jqXHR){
-            tools.rewriteDropdown($('#icpcDropdown'), response);
+            tools.rewriteICPCDropdown($('#icpcDropdown'), response);
             $('#icpcDropdown, #icpcClearBtn').show();
         	$('#itemsHolder').show();
           },
@@ -217,8 +230,11 @@ var ftt = {
       var altText = $('#conceptFreeText').val();
 
       if((searchText == '') && (altText == '')){
-        $('#conceptsDropdown, dl.synonyms, #clearBtn, #icpcDropdown').hide();
+        $('#conceptsDropdown, dl.synonyms, #clearBtn, #icpcDropdown', '#icpcClearBtn').hide();
 		$('#ICPC-Code').hide();
+		$('#addSameBtn').hide();
+		$('#nextBtn').hide();
+		$('#finishedBtn').hide();
 		$('#itemsHolder').hide();
         $('#conceptsDropdown')[0].selectedIndex = 0;
         $('#conceptsDropdown').unbind('change');
@@ -232,11 +248,11 @@ var ftt = {
             tools.rewriteDropdown($('#conceptsDropdown'), response);
             $('#conceptsDropdown, #clearBtn').show();
         	$('#itemsHolder').show();
-			$('#icpcDropdown').hide();
             $('#conceptsDropdown').on('change', function(){
               ftt.concepts.getSynonyms();
               ftt.concepts.getICPC();
             });
+			$('#icpcDropdown', '#icpcClearBtn').hide();
           },
           error:    function(jqXHR, textStatus, errorThrown){
             alert('error: '+errorThrown);
@@ -297,6 +313,7 @@ var ftt = {
     showICPC: function(data){
       var str = data[0].id + " - " + data[0].title;
       $('span.icpcCode').empty().append(str);
+      $('#icpc2').val(data[0].id);
     },
     
   },
@@ -336,14 +353,24 @@ var tools = {
     }
   },
 
-  // dropdown rebuilding from JSON
+  // SCT concept dropdown rebuilding from JSON
   rewriteDropdown: function($obj, data){
     var $tmp = $obj.find('option')[0];
     $obj.empty().append($tmp);
     for(var x=0; x<data.length; x++){
       $obj.append('<option value="'+data[x].conceptId+'">'+data[x].term+'</option>');
     }
+  },
+
+  // ICPC Code dropdown rebuilding from JSON
+  rewriteICPCDropdown: function($obj, data){
+    var $tmp = $obj.find('option')[0];
+    $obj.empty().append($tmp);
+    for(var x=0; x<data.length; x++){
+      $obj.append('<option value="'+data[x].id+'">'+data[x].title+'</option>');
+    }
   }
+
 };
 
 $(function(){

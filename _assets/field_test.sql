@@ -296,17 +296,17 @@ CREATE TABLE `Encounters` (
 
 DROP TABLE IF EXISTS `Encounter_Reasons`;
 CREATE TABLE `Encounter_Reasons` (
-  `rfe_id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `reason_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `encounter_id` mediumint(9) NOT NULL,
   `refset_id` int(11) NOT NULL COMMENT 'this differentiates between health issues & RFE - 0 for RFE, 1 for HI',
   `sct_id` int(11) DEFAULT NULL,
   `sct_scale` int(11) DEFAULT NULL,
   `sct_alt` varchar(250) DEFAULT NULL,
-  `map_id` int(11) DEFAULT NULL,
-  `map_scale` int(11) DEFAULT NULL,
-  `map_alt_id` int(11) DEFAULT NULL,
+  `icpc_id` varchar(10) DEFAULT NULL,
+  `icpc_scale` int(11) DEFAULT NULL,
+  `icpc_alt_id` varchar(10) DEFAULT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`rfe_id`)
+  PRIMARY KEY (`reason_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -348,23 +348,10 @@ CREATE TABLE `RefSet_Type` (
 --
 
 INSERT INTO `RefSet_Type` (`refset_type_id`, `refset_type`) VALUES
-(1, 'RFE'),
-(2, 'Health Issue');
+(0, 'RFE'),
+(1, 'Health Issue');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `Map_Concepts`
---
-
-DROP TABLE IF EXISTS `Map_Concepts`;
-CREATE TABLE `Map_Concepts` (
-  `map_id` int(11) NOT NULL,
-  `map_code` varchar(25) NOT NULL,
-  `label` varchar(250) NOT NULL,
-  `sct_id` mediumint(9) NOT NULL,
-  PRIMARY KEY (`map_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

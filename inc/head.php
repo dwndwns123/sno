@@ -10,7 +10,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
-<meta name="author" content="Clive Murray for That Guy Ltd under contract to IHTSDO">
+<meta name="author" content="IHTSDO">
 
 <!--[if lt IE 9]>
   <script src="/js/html5shiv.js"></script>

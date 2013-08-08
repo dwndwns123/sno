@@ -11,8 +11,10 @@
 
 
 
-<div class="well hidden">
-<p><big><strong>DEBUG</strong></big></p>
+<!--<div class="well hidden"> -->
+<div>
+<p>-------------------------------
+    <big><strong>DEBUG</strong></big></p>
 <?php
 foreach ($_SESSION as $key=>$value){
   print "\$_ SESSION [\"$key\"] == $value<br>";
