@@ -284,9 +284,22 @@ CREATE TABLE `Encounters` (
   `encounter_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `complete` tinyint(2) NOT NULL DEFAULT '0',
+  `active` varchar(1) NOT NULL DEFAULT 'y',
   `label` varchar(64) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00', 
   PRIMARY KEY (`encounter_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Triggers `Encounters`
+--
+DROP TRIGGER IF EXISTS `encounters_date_mod`;
+DELIMITER //
+CREATE TRIGGER `encounters_date_mod` BEFORE INSERT ON `Encounters`
+ FOR EACH ROW SET NEW.date_modified = CURRENT_TIMESTAMP
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -305,9 +318,21 @@ CREATE TABLE `Encounter_Reasons` (
   `icpc_id` varchar(10) DEFAULT NULL,
   `icpc_scale` int(11) DEFAULT NULL,
   `icpc_alt_id` varchar(10) DEFAULT NULL,
+  `active` varchar(1) NOT NULL DEFAULT 'y',
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00', 
   PRIMARY KEY (`reason_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Triggers `Encounter_Reasons`
+--
+DROP TRIGGER IF EXISTS `reasons_date_mod`;
+DELIMITER //
+CREATE TRIGGER `reasons_date_mod` BEFORE INSERT ON `Encounter_Reasons`
+ FOR EACH ROW SET NEW.date_modified = CURRENT_TIMESTAMP
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -423,8 +448,8 @@ CREATE TABLE `Users` (
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `verification` varchar(256) DEFAULT NULL,
   `field_test_complete` smallint(6) NOT NULL DEFAULT '0',
-  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00', 
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -432,5 +457,17 @@ CREATE TABLE `Users` (
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`user_id`, `title_id`, `first_name`, `last_name`, `email`, `password`, `role`, `age`, `gender_id`, `country_id`, `option_id`, `verified`, `verification`, `field_test_complete`, `date_modified`, `date_created`) VALUES
-(1, 0, 'Bob', 'Smith', 'rda@ihtsdo.org', '80ec3d3b70f87a52e614bf66d050d245', 'Doctor', 36, 0, 229, 1, 1, '24d1b323e1bcb772e3c1ac115009d8cb', 0, '2013-04-17 05:53:49', '0000-00-00 00:00:00');
+INSERT INTO `Users` (`user_id`, `title_id`, `first_name`, `last_name`, `email`, `password`, `role`, `age`, `gender_id`, `country_id`, `option_id`, `verified`, `verification`, `field_test_complete`) VALUES
+(1, 0, 'Bob', 'Smith', 'rda@ihtsdo.org', '80ec3d3b70f87a52e614bf66d050d245', 'Doctor', 36, 0, 229, 1, 1, '24d1b323e1bcb772e3c1ac115009d8cb', 0),
+(2, 5, 'ICPC', 'First', 'fieldtesttool@ihtsdo.org', '80ec3d3b70f87a52e614bf66d050d245', 'Doctor', 23, 1, 72, 2, 1, 'f31da5de60581be02dec07fbbbe707e6', 0),
+(3, 6, 'Only', 'Refset', 'refsettest@ihtsdo.org', '80ec3d3b70f87a52e614bf66d050d245', 'Nurse', 34, 0, 58, 3, 1, '09377f32e5a980f5f371f7ff34ed8398', 0);
+
+--
+-- Triggers `Users`
+--
+DROP TRIGGER IF EXISTS `user_date_mod`;
+DELIMITER //
+CREATE TRIGGER `user_date_mod` BEFORE INSERT ON `Users`
+ FOR EACH ROW SET NEW.date_modified = CURRENT_TIMESTAMP
+//
+DELIMITER ;
