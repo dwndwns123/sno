@@ -14,13 +14,15 @@ require ('inc/head.php');
 <?php
 if ($_SESSION["logged"]) {
     if ($_POST["enc"]) {
+
         $_SESSION["encounter_id"] = $_POST["enc"];
-        echo("and the encounter is - " + $_POST["enc"]);
+        echo("and the encounter from enc page is - '$_POST[enc]'");
         $_SESSION["return_to"] = "encounters.php";
         $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$_POST[enc]'") or die(mysql_error());
         $enc = mysql_fetch_array($encRows);
-        $_SESSION["label"] = $enc["label"];
+
     } else {
+
         $icpcfield = ($_SESSION["option"] == 1 ? $_POST["icpc2"] : $_POST["icpcDropdown"]);
         $icpcAltfield = ($_SESSION["option"] == 1 ? $_POST["icpcDropdown"] : "");
 
@@ -29,11 +31,20 @@ if ($_SESSION["logged"]) {
             // debug messages
             error_log("debugflag - encounter_id var after entering review-enc is - '$_SESSION[encounter_id]'");
             error_log("debugflag - add_mode var after newly set is - '$_SESSION[add_mode]'");
+            
+            if ($_POST["edit_reason"]) {
+                error_log("Come from the edit page");
+                $sql = sprintf("UPDATE Encounter_Reasons SET sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
+                        sct_alt = '%s', icpc_id = '$icpcfield', icpc_scale = '$_POST[icpc2appropriate]', icpc_alt_id = '$icpcAltfield' 
+                        WHERE reason_id = '$_POST[edit_reason]'", mysql_real_escape_string($_POST[conceptFreeText]));
+                $_SESSION["encounter_id"] = $_POST["encid"];
+                error_log("session enc id is now - '$_SESSION[encounter_id]'");   
 
-            $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
-                    VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
-                    '$_POST[icpc2appropriate]','$icpcAltfield')", mysql_real_escape_string($_POST["conceptFreeText"]));
-
+            } else {
+                $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
+                        VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
+                        '$_POST[icpc2appropriate]','$icpcAltfield')", mysql_real_escape_string($_POST["conceptFreeText"]));
+            }
             error_log("review encounter update incoming");
             error_log($sql);
             mysql_query($sql) or die(mysql_error());
@@ -84,7 +95,7 @@ if(!$_SESSION["logged"]){
               $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
               
               error_log("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'");
-              error_log("x is - " + $x);
+              error_log("x is - '$x'");
               
               while($row = mysql_fetch_array($rows)){
                 error_log("and the reason id is - '$row[reason_id]'");
@@ -143,6 +154,7 @@ if(!$_SESSION["logged"]){
                             <fieldset>
                               <input type="hidden" id="item" name="item" value="<?= $row['reason_id']; ?>">
                               <input type="hidden" id="from" name="from" value="review-encounter.php">
+                              <input type="hidden" id="encid" name="encid" value="<?= $_SESSION[encounter_id]; ?>">
                               <input type="hidden" id="itemType" name="itemType" value="<?= $row['refset_id']; ?>">
                               <?php
                             $sql = mysql_query("SELECT reason_id FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' AND refset_id='$row[refset_id]'") or die(mysql_error());

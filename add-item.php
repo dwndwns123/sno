@@ -382,10 +382,7 @@ if(!$_SESSION["logged"]){
     }
 ?>              
               
-    
-              
-              
-              
+                
               <div class="form-actions">
                 <?php
                 if(!is_null($_GET["type"]) && !is_null($_GET["enc"])){
@@ -397,7 +394,6 @@ if(!$_SESSION["logged"]){
                 } else {9
                   ?>
                   <input type="hidden" id="addAnother" name="addAnother" value="true">
-<!--                  <a id="addSameBtn" class="btn" href="#">Add another <?= $recordType; ?></a> -->
                   <button type="submit" class="btn">Add another <?= $recordType; ?></button>
                   &nbsp;&nbsp;
                   <?php
