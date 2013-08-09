@@ -83,6 +83,19 @@ footer {
 #clearBtn {
   display: none;
 }
+#icpcDropdown {
+  display: none;
+}
+#icpcClearBtn2 {
+  display: none;
+}
+#icpcClearBtn {
+  display: none;
+}
+#dropdownLabel {
+  vertical-align: top;
+}
+
 .synonyms {
   display: none;
 }
@@ -106,7 +119,12 @@ footer {
 #clearBtn {
   vertical-align: top;
 }
-
+#icpcClearBtn {
+  vertical-align: top;
+}
+#icpcClearBtn2 {
+  vertical-align: top;
+}
 
 
 input.parsley-error {
