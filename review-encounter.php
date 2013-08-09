@@ -16,7 +16,7 @@ if ($_SESSION["logged"]) {
     if ($_POST["enc"]) {
 
         $_SESSION["encounter_id"] = $_POST["enc"];
-        echo("and the encounter from enc page is - '$_POST[enc]'");
+        error_log("and the encounter from enc page is - '$_POST[enc]'");
         $_SESSION["return_to"] = "encounters.php";
         $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$_POST[enc]'") or die(mysql_error());
         $enc = mysql_fetch_array($encRows);
@@ -37,9 +37,11 @@ if ($_SESSION["logged"]) {
                 $sql = sprintf("UPDATE Encounter_Reasons SET sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
                         sct_alt = '%s', icpc_id = '$icpcfield', icpc_scale = '$_POST[icpc2appropriate]', icpc_alt_id = '$icpcAltfield' 
                         WHERE reason_id = '$_POST[edit_reason]'", mysql_real_escape_string($_POST[conceptFreeText]));
-                $_SESSION["encounter_id"] = $_POST["encid"];
-                error_log("session enc id is now - '$_SESSION[encounter_id]'");   
 
+                if ($_SESSION["encounter_id"] == "") {
+                    $_SESSION["encounter_id"] = $_POST["encid"];
+                    error_log("session enc id is now - '$_SESSION[encounter_id]'");   
+                }
             } else {
                 $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
                         VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
@@ -94,33 +96,29 @@ if(!$_SESSION["logged"]){
             for($x = 0; $x <= 1; $x++){ // loop through once for RFEs and once for HIs
               $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
               
-              error_log("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'");
-              error_log("x is - '$x'");
-              
               while($row = mysql_fetch_array($rows)){
-                error_log("and the reason id is - '$row[reason_id]'");
                 if($row['refset_id'] == $x){
                   $sql = mysql_query("SELECT * FROM SCT_Concepts WHERE concept_id='$row[sct_id]'") or die(mysql_error());
                   $conceptArr = mysql_fetch_array($sql);
                   $conceptId = $conceptArr['concept_id'];
                   $concept = $conceptArr['label'];
 
-                  error_log("SELECT * FROM SCT_Concepts WHERE concept_id='$row[sct_id]'");
-                  error_log("concept label - '$concept'");
-
                   $sql = mysql_query("SELECT * FROM ICPC_Codes WHERE id='$row[icpc_id]'") or die(mysql_error());
                   $icpcArr = mysql_fetch_array($sql);
                   $icpcId = $icpcArr['id'];
                   $icpc = $icpcArr['title'];
 
-                  error_log("icpc label - '$icpc'");
-                  
+                  if ($_SESSION["option"] == 2) {
+                      $rowLabel = $icpcArr['title'];
+                  } else {
+                      $rowLabel = $conceptArr['label'];
+                  }
 
                   ?>
                   <div class="accordion-group">
                     <div class="accordion-heading">
                       <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['reason_id']; ?>">
-                        #<?= $row['reason_id'] . ' - ' . ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue") . ' - ' . $concept; ?>
+                        #<?= $row['reason_id'] . ' - ' . ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue") . ' - ' . $rowLabel; ?>
                       </a>
                     </div>
                     <div class="accordion-body collapse" id="collapse<?= $row['reason_id']; ?>">

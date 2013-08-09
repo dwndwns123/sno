@@ -42,11 +42,14 @@ if ($_SESSION["logged"]) {
             A Reason For Encounter is "an agreed statement of the reason(s) why a person enters the health care system, representing the demand for care by that person. The terms written down and later classified by the provider clarify the reason for encounter and consequently the patient’s demand for care without interpreting it in the form of a diagnosis. The reason for encounter should be recognised by the patient as an acceptable description of the demand for care” 
             <small>(Wonca Dictionary of General/Family Practice, 2003).</small>
         </blockquote>
-        <?php } else { ?>
+        <input type="hidden" id="refType" name="refType" value="0">
+        <?php 
+         } else { ?>
         <blockquote>
             A Health Issue is an “issue related to the health of a subject of care, as identified or stated by a specific health care party”. This is further defined in the notes as “according to this definition, a health issue can correspond to a health problem, a disease, an illness”<br />
             <small>(Health informatics – System of concepts to support continuity of care – Part 1: basic concepts (CEN 13940-1))</small>
         </blockquote>
+        <input type="hidden" id="refType" name="refType" value="1">
         <?php } ?>     
       </div>
 <?php
@@ -67,6 +70,7 @@ if(!$_SESSION["logged"]){
             switch ($_SESSION["option"]) {
               case 1:
           ?> 
+          <!-- for the SCT first option -->
 
           <div class="row">
             <div class="span8 offset2">
@@ -142,17 +146,73 @@ if(!$_SESSION["logged"]){
 
 <?php
                 break;
-                case 2:
+              case 2:
             ?>
-            
           <!-- for the ICPC2 first option -->
-          
+              
+          <div class="row">
+            <div class="span8 offset2">
+              <p>The ICPC-2 code previously selected was <strong><?= $icpc_details['id']; ?> - <?= $icpc_details['title']; ?></strong></p>
+              <p>1. Search and (select) the <strong>ICPC-2</strong> code that represents the <?= $recordType; ?> you wish to record.</p>
+              <div class="input-append">
+                   <input id="icpcSearchBox" name="icpc2Search" type="text" maxlength="50" value="<?= $icpc_details["title"]; ?>">
+                   <button id="icpcSearchBtn2" class="btn" type="button">Search</button>
+              </div>
+              <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="8" data-error-container="#icpcValidation">
+                <option value="<?= $icpc_details['id']; ?>" selected><?= $icpc_details['title']; ?></option>
+              </select>
+              <button id="icpcClearBtn2" class="btn" type="button">Reset</button>
+              <div id="icpcValidation"></div>
+
+              <!-- SCT mapped concepts -->
+              
+                  <hr>
+                  <p>The SNOMED CT concept previously associated is <strong><?= $sct_details["concept_id"]; ?> - <?= $sct_details["label"]; ?></strong></p>
+                  <div id="SCT-Code" style="display: none;">
+                      <p id="dropdownLabel">2. Select an associated SNOMED CT concept &nbsp;&nbsp;&nbsp;
+                      <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-error-container="#conceptValidation">
+                            <option value="<?= $sct_details["concept_id"]; ?>" selected><?= $sct_details["label"]; ?></option>
+                      </select>
+                      </p>
+    
+                      <dl class="dl-horizontal synonyms">
+                        <dt>Synonyms:</dt>
+                        <dd></dd>
+                      </dl>
+                  </div>    
+                  <hr>
+
+                  <p>2. How well does this SNOMED CT concept adequately represent the <?= $recordType; ?> you wish to record?</p>
+                  <div class="likert">
+                    <label class="radio inline">
+                      <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1"<?= ($item['sct_scale'] == 1) ? ' checked="checked"' : '' ?>><span>Very well</span>
+                    </label>
+                    <label class="radio inline">
+                      <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2"<?= ($item['sct_scale'] == 2) ? ' checked="checked"' : '' ?>>
+                    </label>
+                    <label class="radio inline">
+                      <span>3</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation3" value="3"<?= ($item['sct_scale'] == 3) ? ' checked="checked"' : '' ?>>
+                    </label>
+                    <label class="radio inline">
+                      <span>4</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation4" value="4"<?= ($item['sct_scale'] == 4) ? ' checked="checked"' : '' ?>>
+                    </label>
+                    <label class="radio inline">
+                      <span>5</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation5" value="5"<?= ($item['sct_scale'] == 5) ? ' checked="checked"' : '' ?>><span>Poorly</span>
+                    </label>
+                  </div>
+                  <div id="representationValidation"></div>
+
+                  <hr>
+                  <p>4. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
+                  <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250" value="<?= $item['sct_alt']; ?>">
+                  <hr>
+                      
 <?php
             break;
             case 3:
         ?>
             
-          <!-- for the ICPC2 first option -->          
+          <!-- for the Refset Only option -->          
                     <div class="row">
             <div class="span8 offset2">
               <p>The SNOMED CT concept previously selected was <strong><?= $sct_details["label"]; ?></strong></p>

@@ -60,7 +60,7 @@ if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review 
                     $_SESSION["add_mode"] = 1;
                 }
 
-                $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+                $recordType = ($_SESSION["add_mode"] == 0 ? "Reason For Encounter" : "Health Issue");
 
             } else {
                 $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - Please ensure the relevant fields are populated.</div>';
@@ -116,12 +116,12 @@ if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review 
                     $_SESSION["add_mode"] = 1;
                 }
 
-                $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+                $recordType = ($_SESSION["add_mode"] == 0 ? "Reason For Encounter" : "Health Issue");
             } else// if((($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && ($_POST["icpc2"] || $_POST["icpc2appropriate"])) )
             {
 
                 if (!$_SESSION["encounter_id"]) {
-                    $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+                    $recordType = ($_SESSION["add_mode"] == 0 ? "Reason For Encounter" : "Health Issue");
                 } else {
                     $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - RFE/Health Issue was not recorded. Please ensure the relevant fields are populated.</div>';
                 }
