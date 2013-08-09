@@ -1,11 +1,6 @@
 <?php
-include "inc/conn.php";
- ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <?php
 require ('inc/head.php');
+require ('inc/conn.php');
 
 if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review page
 

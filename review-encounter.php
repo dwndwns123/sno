@@ -1,16 +1,12 @@
 <?php
-include "inc/conn.php";
- ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <?php
 require ('inc/head.php');
- ?>
+require ('inc/conn.php');
+?>
 
-  <title>SNOMED CT GP/FP RefSet Field Test - Review encounter</title>
+<title>SNOMED CT GP/FP RefSet Field Test - Review encounter</title>
 </head>
 <body>
+    
 <?php
 if ($_SESSION["logged"]) {
     if ($_POST["enc"]) {

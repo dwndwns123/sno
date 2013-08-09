@@ -1,8 +1,7 @@
-<?php include "inc/conn.php"; ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<?php require ('inc/head.php');
+<?php
+require ('inc/head.php');
+require ('inc/conn.php');
+
 
 if ($_SESSION["logged"]) {
     if (!$_POST["item"]) {
@@ -81,7 +80,7 @@ if(!$_SESSION["logged"]){
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-error-container="#conceptValidation">
-                <option value="<?= $sct_details["concept_id"]; ?>" selected><?= $sct_details["label"]; ?></option>
+                <option value="<?= $sct_details["concept_id"]; ?>" selected></option>
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation"></div>
@@ -141,7 +140,6 @@ if(!$_SESSION["logged"]){
               </div>
               <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="8" data-error-container="#icpcValidation">
                 <option value="">Select ICPC-2 code</option>
-                <?php /* require('inc/icpccodes.php'); */ ?> 
               </select>
 
 <?php
@@ -159,7 +157,7 @@ if(!$_SESSION["logged"]){
                    <button id="icpcSearchBtn2" class="btn" type="button">Search</button>
               </div>
               <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="8" data-error-container="#icpcValidation">
-                <option value="<?= $icpc_details['id']; ?>" selected><?= $icpc_details['title']; ?></option>
+                <option value="<?= $icpc_details['id']; ?>" selected></option>
               </select>
               <button id="icpcClearBtn2" class="btn" type="button">Reset</button>
               <div id="icpcValidation"></div>
@@ -171,7 +169,7 @@ if(!$_SESSION["logged"]){
                   <div id="SCT-Code" style="display: none;">
                       <p id="dropdownLabel">2. Select an associated SNOMED CT concept &nbsp;&nbsp;&nbsp;
                       <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-error-container="#conceptValidation">
-                            <option value="<?= $sct_details["concept_id"]; ?>" selected><?= $sct_details["label"]; ?></option>
+                            <option value="<?= $sct_details["concept_id"]; ?>" selected></option>
                       </select>
                       </p>
     
