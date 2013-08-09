@@ -19,37 +19,69 @@ if ($_SESSION["logged"]) {
 
     } else {
 
-        $icpcfield = ($_SESSION["option"] == 1 ? $_POST["icpc2"] : $_POST["icpcDropdown"]);
-        $icpcAltfield = ($_SESSION["option"] == 1 ? $_POST["icpcDropdown"] : "");
+        if ($_SESSION["option"] == 3) {
+            if ($_POST["conceptsDropdown"] || $_POST["conceptFreeText"])// all mandatory fields posted
+            {
+                // debug messages
+                error_log("debugflag - Refset Only encounter_id var after entering review-enc is - '$_SESSION[encounter_id]'");
+                error_log("debugflag - Refset Only add_mode var after newly set is - '$_SESSION[add_mode]'");
 
-        if (($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && (($icpcfield != "" || $icpcAltfield != "")))// all mandatory fields posted
-        {
-            // debug messages
-            error_log("debugflag - encounter_id var after entering review-enc is - '$_SESSION[encounter_id]'");
-            error_log("debugflag - add_mode var after newly set is - '$_SESSION[add_mode]'");
-            
-            if ($_POST["edit_reason"]) {
-                error_log("Come from the edit page");
-                $sql = sprintf("UPDATE Encounter_Reasons SET sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
+                if ($_POST["edit_reason"]) {
+                    error_log("Come from the edit page");
+                    $sql = sprintf("UPDATE Encounter_Reasons SET sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
+                        sct_alt = '%s' WHERE reason_id = '$_POST[edit_reason]'", mysql_real_escape_string($_POST[conceptFreeText]));
+
+                    if ($_SESSION["encounter_id"] == "") {
+                        $_SESSION["encounter_id"] = $_POST["encid"];
+                        error_log("session enc id is now - '$_SESSION[encounter_id]'");
+                    }
+                } else {
+                    $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt) 
+                        VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s')", 
+                        mysql_real_escape_string($_POST["conceptFreeText"]));
+                }
+                error_log("review encounter update incoming");
+                error_log($sql);
+                mysql_query($sql) or die(mysql_error());
+
+                $message = '<div class="alert alert-success">' . ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue") . ' successfully recorded.</div>';
+            } else {
+                $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - RFE/Health Issue was not recorded. Please ensure the relevant fields are populated.</div>';
+            }
+
+        } else {
+            $icpcfield = ($_SESSION["option"] == 1 ? $_POST["icpc2"] : $_POST["icpcDropdown"]);
+            $icpcAltfield = ($_SESSION["option"] == 1 ? $_POST["icpcDropdown"] : "");
+
+            if (($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && (($icpcfield != "" || $icpcAltfield != "")))// all mandatory fields posted
+            {
+                // debug messages
+                error_log("debugflag - encounter_id var after entering review-enc is - '$_SESSION[encounter_id]'");
+                error_log("debugflag - add_mode var after newly set is - '$_SESSION[add_mode]'");
+
+                if ($_POST["edit_reason"]) {
+                    error_log("Come from the edit page");
+                    $sql = sprintf("UPDATE Encounter_Reasons SET sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
                         sct_alt = '%s', icpc_id = '$icpcfield', icpc_scale = '$_POST[icpc2appropriate]', icpc_alt_id = '$icpcAltfield' 
                         WHERE reason_id = '$_POST[edit_reason]'", mysql_real_escape_string($_POST[conceptFreeText]));
 
-                if ($_SESSION["encounter_id"] == "") {
-                    $_SESSION["encounter_id"] = $_POST["encid"];
-                    error_log("session enc id is now - '$_SESSION[encounter_id]'");   
-                }
-            } else {
-                $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
+                    if ($_SESSION["encounter_id"] == "") {
+                        $_SESSION["encounter_id"] = $_POST["encid"];
+                        error_log("session enc id is now - '$_SESSION[encounter_id]'");
+                    }
+                } else {
+                    $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
                         VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
                         '$_POST[icpc2appropriate]','$icpcAltfield')", mysql_real_escape_string($_POST["conceptFreeText"]));
-            }
-            error_log("review encounter update incoming");
-            error_log($sql);
-            mysql_query($sql) or die(mysql_error());
+                }
+                error_log("review encounter update incoming");
+                error_log($sql);
+                mysql_query($sql) or die(mysql_error());
 
-            $message = '<div class="alert alert-success">' . ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue") . ' successfully recorded.</div>';
-        } else {
-            $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - RFE/Health Issue was not recorded. Please ensure the relevant fields are populated.</div>';
+                $message = '<div class="alert alert-success">' . ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue") . ' successfully recorded.</div>';
+            } else {
+                $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - RFE/Health Issue was not recorded. Please ensure the relevant fields are populated.</div>';
+            }
         }
     }
 }

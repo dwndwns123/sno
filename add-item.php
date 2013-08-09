@@ -55,12 +55,12 @@ if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review 
                     $_SESSION["add_mode"] = 1;
                 }
 
-                $recordType = ($_SESSION["add_mode"] == 0 ? "Reason For Encounter" : "Health Issue");
 
-            } else {
+            } /*else {
                 $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - Please ensure the relevant fields are populated.</div>';
-            }
-
+            } */
+            $recordType = ($_SESSION["add_mode"] == 0 ? "Reason For Encounter" : "Health Issue");
+            
         } else {// this is for mapping verification
 
             // debug notices
@@ -389,12 +389,13 @@ if(!$_SESSION["logged"]){
                 } else {9
                   ?>
                   <input type="hidden" id="addAnother" name="addAnother" value="true">
+              <div id="ActionButtons" style="display: none;">
                   <button type="submit" class="btn">Add another <?= $recordType; ?></button>
                   &nbsp;&nbsp;
                   <?php
                   if($_SESSION["add_mode"] == 0){
                     ?>
-                    <a id="nextBtn" class="btn" href="#">Reason For Encounters complete - add Health Issues</a>
+                    <a id="nextBtn" class="btn" href="#">RFEs complete - add Health Issues</a>
                     &nbsp;&nbsp;
                     <?php
                     } else {
@@ -405,6 +406,7 @@ if(!$_SESSION["logged"]){
                     }
                     }
                 ?>
+              </div>
                    <a id="cancelBtn" class="btn" href="index.php">Cancel</a>
 
               </div>

@@ -319,7 +319,7 @@ CREATE TABLE `Encounter_Reasons` (
   `icpc_scale` int(11) DEFAULT NULL,
   `icpc_alt_id` varchar(10) DEFAULT NULL,
   `active` varchar(1) NOT NULL DEFAULT 'y',
-  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00', 
   PRIMARY KEY (`reason_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
