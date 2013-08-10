@@ -1,10 +1,9 @@
-<?php include "inc/conn.php"; ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <?php require('inc/head.php'); ?>
+<?php
+require ('inc/head.php');
+require ('inc/conn.php');
+?>
 
-  <title>SNOMED CT GP/FP RefSet Field Test - Change password</title>
+<title>SNOMED CT GP/FP RefSet Field Test - Change password</title>
 </head>
 <body>
   <div class="container">

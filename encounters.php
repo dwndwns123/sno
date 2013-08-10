@@ -1,10 +1,9 @@
-<?php include "inc/conn.php"; ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <?php require('inc/head.php'); ?>
+<?php
+require ('inc/head.php');
+require ('inc/conn.php');
+?>
 
-  <title>SNOMED CT GP/FP RefSet Field Test - Encounters</title>
+<title>SNOMED CT GP/FP RefSet Field Test - Encounters</title>
 </head>
 <body>
   <div class="container">
@@ -42,11 +41,14 @@ if(!$_SESSION["logged"]){
           <?php
             if(mysql_num_rows($encountersData)){
               while($row = mysql_fetch_array($encountersData)){
+              
+              	$date = date_create($row['date_created']);
+              	
                 ?>
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['encounter_id']; ?>">
-                      Encounter #<?= $row['encounter_id']; ?> 
+                      Encounter #<?= $row['encounter_id']; ?>  - created <?php echo date_format($date, '\o\n l\, jS F Y'); ?>
                     </a>
                   </div>
                   <div class="accordion-body collapse" id="collapse<?= $row['encounter_id']; ?>">

@@ -1,11 +1,6 @@
 <?php
-include "inc/conn.php";
- ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <?php
 require ('inc/head.php');
+require ('inc/conn.php');
 
 if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review page
 
@@ -60,12 +55,12 @@ if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review 
                     $_SESSION["add_mode"] = 1;
                 }
 
-                $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
 
-            } else {
+            } /*else {
                 $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - Please ensure the relevant fields are populated.</div>';
-            }
-
+            } */
+            $recordType = ($_SESSION["add_mode"] == 0 ? "Reason For Encounter" : "Health Issue");
+            
         } else {// this is for mapping verification
 
             // debug notices
@@ -116,12 +111,12 @@ if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review 
                     $_SESSION["add_mode"] = 1;
                 }
 
-                $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+                $recordType = ($_SESSION["add_mode"] == 0 ? "Reason For Encounter" : "Health Issue");
             } else// if((($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && ($_POST["icpc2"] || $_POST["icpc2appropriate"])) )
             {
 
                 if (!$_SESSION["encounter_id"]) {
-                    $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
+                    $recordType = ($_SESSION["add_mode"] == 0 ? "Reason For Encounter" : "Health Issue");
                 } else {
                     $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - RFE/Health Issue was not recorded. Please ensure the relevant fields are populated.</div>';
                 }
@@ -382,10 +377,7 @@ if(!$_SESSION["logged"]){
     }
 ?>              
               
-    
-              
-              
-              
+                
               <div class="form-actions">
                 <?php
                 if(!is_null($_GET["type"]) && !is_null($_GET["enc"])){
@@ -397,13 +389,13 @@ if(!$_SESSION["logged"]){
                 } else {9
                   ?>
                   <input type="hidden" id="addAnother" name="addAnother" value="true">
-<!--                  <a id="addSameBtn" class="btn" href="#">Add another <?= $recordType; ?></a> -->
+              <div id="ActionButtons" style="display: none;">
                   <button type="submit" class="btn">Add another <?= $recordType; ?></button>
                   &nbsp;&nbsp;
                   <?php
                   if($_SESSION["add_mode"] == 0){
                     ?>
-                    <a id="nextBtn" class="btn" href="#">Reason For Encounters complete - add Health Issues</a>
+                    <a id="nextBtn" class="btn" href="#">RFEs complete - add Health Issues</a>
                     &nbsp;&nbsp;
                     <?php
                     } else {
@@ -414,6 +406,7 @@ if(!$_SESSION["logged"]){
                     }
                     }
                 ?>
+              </div>
                    <a id="cancelBtn" class="btn" href="index.php">Cancel</a>
 
               </div>

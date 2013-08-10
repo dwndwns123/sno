@@ -1,16 +1,9 @@
 <?php
-    header('Cache-Control: no-cache');
-    header('Pragma: no-cache');
-include "inc/conn.php";
- ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <?php
-    require ('inc/head.php');
-  ?>
+require ('inc/head.php');
+require ('inc/conn.php');
+?>
 
-  <title>SNOMED CT GP/FP RefSet Field Test - Home</title>
+<title>SNOMED CT GP/FP RefSet Field Test - Home</title>
 </head>
 <body>
 
