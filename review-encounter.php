@@ -123,6 +123,7 @@ if(!$_SESSION["logged"]){
 
             for($x = 0; $x <= 1; $x++){ // loop through once for RFEs and once for HIs
               $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
+         	  $date = date_create($rows['date_created']);
               
               while($row = mysql_fetch_array($rows)){
                 if($row['refset_id'] == $x){
@@ -172,6 +173,10 @@ if(!$_SESSION["logged"]){
                           <dd><?= $row['icpc_scale']; ?></dd>
                           <dt>Alternate ICPC-2 code</dt>
                           <dd><?= $row['icpc_alt_id']; ?></dd>
+                          <dt></dt>
+                          <dd> </dd>
+                          <dt>Date created</dt>
+                          <dd><?= date_format($date, 'l\, jS F Y'); ?></dd>
                         </dl>
                         <?php
                         if($user["field_test_complete"] == 0){
@@ -211,6 +216,12 @@ if(!$_SESSION["logged"]){
                           <dd><?= $row['sct_scale']; ?></dd>
                           <dt>Alternative description of clinical term</dt>
                           <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
+                          <dt></dt>
+                          <dd> </dd>
+                          <dt>Date created</dt>
+                          <dd><?= date_format($date, 'l\, jS F Y'); ?></dd>
+
+                          
                           
                         </dl>
                         <?php
@@ -244,6 +255,10 @@ if(!$_SESSION["logged"]){
                           <dd><?= $row['sct_scale']; ?></dd>
                           <dt>Alternative description of clinical term</dt>
                           <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
+                          <dt>Date created</dt>
+                          <dd><?= date_format($date, 'l\, jS F Y'); ?></dd>
+
+
                         </dl>
                         <?php
                         if($user["field_test_complete"] == 0){
