@@ -1,18 +1,14 @@
 <?php
 session_start();
-// set time-out period (in seconds)
-$inactive = 600;
 
-// check to see if $_SESSION["timeout"] is set
-if (isset($_SESSION["timeout"])) {
-    // calculate the session's "time to live"
-    $sessionTTL = time() - $_SESSION["timeout"];
-    if ($sessionTTL > $inactive) {
-        session_destroy();
-        header("Location: /logout.php");
-    }
+if (( $_SESSION['last_activity'] < time()-$_SESSION['expire_time'] ) && ($_SESSION['logged'])) { //have we expired?
+    //redirect to logout.php
+	session_destroy();
+    header('Location: logout.php'); 
+} else{ //if we haven't expired:
+    $_SESSION['last_activity'] = time(); //this was the moment of last activity.
 }
-$_SESSION["timeout"] = time();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
