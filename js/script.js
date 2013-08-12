@@ -47,7 +47,7 @@ var ftt = {
 		$('#nextBtn').on('click', function(e) {
 			e.preventDefault();
 			$('#addAnother').val("false");
-			$(this).closest('form').submit();
+			$(this).closest('form').attr('action', 'add-hi.php').submit();
 		});
 		$('#finishedBtn').on('click', function(e) {
 			e.preventDefault();
@@ -213,7 +213,6 @@ var ftt = {
 		refine : function() {
 			var searchText = $('#searchBox').val();
 			var altText = $('#conceptFreeText').val();
-			alert('searchbox is - ' + searchText);
 			
 			if ((searchText == '') && (altText == '')) {
 				$('#ICPC-Code').hide();

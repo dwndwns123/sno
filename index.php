@@ -138,7 +138,7 @@ $encounters = mysql_num_rows($encountersData);
             <?php
             if($encounters < $configvars["encounters"]["maxencounters"]){
               ?>
-              <li><a class="btn btn-large btn-block btn-primary" href="add-item.php">Add encounter</a></li>
+              <li><a class="btn btn-large btn-block btn-primary" href="add-rfe.php?new=1">Add encounter</a></li>
               <?php
             }
             ?>
