@@ -33,7 +33,7 @@ if($_SESSION["logged"]){
 if(!$_SESSION["logged"]){
   include('inc/not-logged-in.php');
 } else {
-  $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
+  $rows = mysql_query("SELECT * FROM Users U, TestApproach T WHERE user_id='$_SESSION[user_id]' and T.option_id = U.option_id") or die(mysql_error());
   $user = mysql_fetch_array($rows);
   $userCountry = mysql_fetch_array(mysql_query("SELECT name FROM Countries WHERE country_id='$user[country_id]'")) or die(mysql_error());
   $userGender = mysql_fetch_array(mysql_query("SELECT gender FROM Gender WHERE gender_id='$user[gender_id]'")) or die(mysql_error());
@@ -48,6 +48,8 @@ if(!$_SESSION["logged"]){
         <div class="span8 offset2">
           <form class="form-horizontal faux-form">
             <dl class="dl-horizontal">
+              <dt>Field test option</dt>
+              <dd><?= $user['option_label']; ?><br><br></dd>
               <dt>Name</dt>
               <dd><?= ($_SESSION['title'] !== 'Other' ? $_SESSION['title'].' ' : ''); ?><?= $user['first_name'].' '.$user['last_name']; ?></dd>
               <dt>Email</dt>

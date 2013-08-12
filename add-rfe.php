@@ -338,10 +338,10 @@ if(!$_SESSION["logged"]){
                   <?php
                 } else {
                   ?>
-                   <input type="hidden" id="addAnother" name="addAnother" value="true">
-                      <button type="submit" class="btn">Add another RFE</button>
-                  &nbsp;&nbsp;
-                      <a id="nextBtn" class="btn" href="#">RFEs complete - add Health Issues</a>
+                    <input type="hidden" id="addAnother" name="addAnother" value="true">
+                    <button type="submit" class="btn">Add another RFE</button>
+                    &nbsp;&nbsp;
+                    <a id="nextBtn" class="btn" href="#">RFEs complete - add Health Issues</a>
                     &nbsp;&nbsp;
                 <?php
                 }

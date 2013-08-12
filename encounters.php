@@ -19,14 +19,14 @@ if(!$_SESSION["logged"]){
   $_SESSION ["encounter_id"] = null;
   $_SESSION ["add_mode"] = null;
 
-  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
+  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y'") or die(mysql_error());
 
   $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
   $user = mysql_fetch_array($rows);
 
   if($user["field_test_complete"]){
     ?>
-    <div class="alert alert-info">Encounters may not be edited since your field test results have been submitted.</div>
+    <div class="alert alert-warning">Encounters may not be edited since your field test results have been submitted.</div>
     <?php
   }
 ?>
@@ -56,7 +56,13 @@ if(!$_SESSION["logged"]){
                       <form action="review-encounter.php" method="post">
                         <input type="hidden" id="enc" name="enc" value="<?= $row['encounter_id']; ?>">
                         <ul class="inline pull-right">
-                          <li><button type="submit" class="btn">Review/edit this encounter</button></li>
+<?php  if($user["field_test_complete"]){
+    ?>
+                          <li><button type="submit" class="btn">Review this encounter</button></li>
+<?php } else {
+    ?>
+                          <li><button type="submit" class="btn">Review/Edit this encounter</button></li>
+<?php } ?>
                         </ul>
                       </form>
                     </div>
@@ -67,7 +73,7 @@ if(!$_SESSION["logged"]){
             } else {
               ?>
               <p class="lead">You have not yet completed any encounters.</p>
-              <a href="add-rfe.php?new=1" class="btn">Add encounter</a>
+              <a href="add-rfe.php?new=1" class="btn">Add Encounter</a>
               <?php
             }
           ?>

@@ -102,7 +102,7 @@ if(!$_SESSION["logged"]){
 $_SESSION ["add_mode"] = null;*/
 error_log("thrown into the INDEX page for some reason - so the enc will be set to null");
 
-$rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
+$rows = mysql_query("SELECT * FROM Users U, TestApproach T WHERE user_id='$_SESSION[user_id]' and T.option_id = U.option_id") or die(mysql_error());
 $user = mysql_fetch_array($rows);
 
 switch ($user["option_id"]) {
@@ -117,7 +117,7 @@ $option_label="verifying the SNOMED CT refset members";
 break;
 }
 
-$encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
+$encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y'") or die(mysql_error());
 $encounters = mysql_num_rows($encountersData);
 ?>
       <div class="page-header">
@@ -127,7 +127,7 @@ $encounters = mysql_num_rows($encountersData);
         <div class="span12">
           <div class="well">
             <p class="lead">Welcome, <?= ($_SESSION['title'] !== 'Other' ? $_SESSION['title'] . ' ' : ''); ?><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>.</p>
-            <p>You are participating in this field test by <strong><?= $option_label; ?></strong>.</p>
+            <p>You are participating in this field test by the <strong><?= $user["option_label"]; ?></strong> option.</p>
             <p>You have completed <?= $encounters; ?> of <?= $configvars["encounters"]["maxencounters"]; ?> encounters.</p>
           </div>
         </div>
@@ -136,17 +136,23 @@ $encounters = mysql_num_rows($encountersData);
         <div class="span4 offset4">
           <ul class="unstyled bigButtons">
             <?php
-            if($encounters < $configvars["encounters"]["maxencounters"]){
-              ?>
-              <li><a class="btn btn-large btn-block btn-primary" href="add-rfe.php?new=1">Add encounter</a></li>
-              <?php
-            }
+            if ($encounters == 0) {
             ?>
-            <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View encounters</a></li>
-            <?php
-            if(($encounters == $configvars["encounters"]["maxencounters"]) && ($user["field_test_complete"] == 0)){
+              <li><a class="btn btn-large btn-block btn-primary" href="add-rfe.php?new=1">Start Field Test</a></li>
+              <?php
+            } else if($encounters < $configvars["encounters"]["maxencounters"]){
+              ?>
+              <li><a class="btn btn-large btn-block btn-primary" href="add-rfe.php?new=1">Resume Field Test</a></li>
+              <?php
+            } else if(($encounters == $configvars["encounters"]["maxencounters"]) && ($user["field_test_complete"] == 0)){
               ?>
               <li><a class="btn btn-large btn-block btn-warning" href="complete-test.php">Submit Field Test</a></li>
+              <?php
+            }
+                
+            if ($encounters > 0) {
+            ?>
+                <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View Encounters</a></li>
               <?php
             }
             ?>

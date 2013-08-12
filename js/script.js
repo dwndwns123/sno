@@ -235,9 +235,6 @@ var ftt = {
 			
 			if ((searchText == '') && (altText == '')) {
 				$('#ICPC-Code').hide();
-				$('#addSameBtn').hide();
-				$('#nextBtn').hide();
-				$('#finishedBtn').hide();
 				$('#conceptValidation').hide();
 				$('#ActionButtons').hide();
 				$('#conceptsDropdown')[0].selectedIndex = 0;
@@ -256,7 +253,6 @@ var ftt = {
 						if (response.length > 0) {
 							$('#conceptValidation').hide();
 							$('#conceptsDropdown, #clearBtn').show();
-							$('#itemsHolder').show();
 						} else {
 							$('#conceptsDropdown, #clearBtn').hide();
 							$('#conceptValidation').show();

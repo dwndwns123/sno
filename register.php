@@ -105,13 +105,13 @@ if($_SESSION["logged"]){
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="regAge"><span class="req">*</span> Age</label>
+                <label class="control-label" for="regAge"> Age</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" id="regAge" name="regAge" placeholder="Age" data-required="true">
+                  <input type="text" class="input-xlarge" id="regAge" name="regAge" placeholder="Age" >
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="regOption"><span class="req">*</span> Field Test Approach</label>
+                <label class="control-label" for="regOption"><span class="req">*</span> Field Test Option</label>
                 <div class="controls">
                   <select class="input-xlarge" id="regOption" name="regOption" data-required="true">
                     <option value="">Please select</option>
@@ -144,8 +144,21 @@ if($_SESSION["logged"]){
           </form>
       <div class="row disclaimer">
         <div class="span8">
-          <h2 class="h4">Licensing information/disclaimer</h2>
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+          <h2 class="h4">Terms of Agreement</h2>
+            <p>
+                <ol>
+                    <li>That the use of ICPC-2 and SNOMED CT shall be purely and strictly for the purposes of the field test of the International Family Medicine/General Practice SNOMED CT RefSet and map to ICPC-2.</li>
+                    <li>That permission to use ICPC-2 and SNOMED CT for the purposes stated in clause 1, shall be granted free of charge.</li>
+                    <li>That the use of ICPC-2 and SNOMED CT for the field testing will be valid until the end of December 2013.</li>
+                    <li>That the copyright of ICPC-2 belongs to, and remains with, WONCA. That the copyright of SNOMED CT belongs to, and remains with, IHTSDO.</li>
+                    <li>That no attempt is made to copy or reproduce ICPC-2 or SNOMED CT by any means or in any form without the prior written consent of the copyright holders as identified in clause 4.</li>
+                    <li>That any work published as a result of the field testing and trials shall formally acknowledge WONCA and IHTSDO. These acknowledgements will be display the following statements: 
+                    <ul><li>“ICPC-2 is Copyright © WONCA 2000”</li>
+                    <li>“This material includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the International Health Terminology Standards Development Organisation (IHTSDO).  All rights reserved.  SNOMED CT® was originally created by The College of American Pathologists.  “SNOMED” and “SNOMED CT” are registered trademarks of the IHTSDO.”</li>
+                    </ul>
+                    </li>
+                </ol>
+            </p>
 		  </p>        
         </div>
       </div>

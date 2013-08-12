@@ -410,22 +410,23 @@ INSERT INTO `Title` (`title_id`, `title`) VALUES
 --
 -- Table structure for table `TestApproach`
 --
-
 DROP TABLE IF EXISTS `TestApproach`;
+
 CREATE TABLE `TestApproach` (
   `option_id` smallint(6) NOT NULL,
   `option_label` varchar(50) NOT NULL,
   PRIMARY KEY (`option_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 --
 -- Dumping data for table `TestApproach`
 --
 
 INSERT INTO `TestApproach` (`option_id`, `option_label`) VALUES
-(1, 'Record through SNOMED CT Concepts'),
-(2, 'Record through ICPC2 Codes'),
-(3, 'Verify refset members');
+(1, 'GP/FP SNOMED CT RefSet + map to ICPC-2'),
+(2, 'ICPC-2 map + GP/FP SNOMED CT RefSet'),
+(3, 'GP/FP SNOMED CT RefSet only');
 -- --------------------------------------------------------
 
 --

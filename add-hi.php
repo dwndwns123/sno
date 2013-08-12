@@ -341,6 +341,7 @@ if(!$_SESSION["logged"]){
               
                 
               <div class="form-actions">
+               <div id="ActionButtons" style="display: none;">
                 <?php
                 if(!is_null($_GET["enc"])){
                   ?>
@@ -350,7 +351,6 @@ if(!$_SESSION["logged"]){
                 } else {
                   ?>
                   <input type="hidden" id="addAnother" name="addAnother" value="true">
-              <div id="ActionButtons" style="display: none;">
                   <button type="submit" class="btn">Add another Health Issue</button>
                   &nbsp;&nbsp;
                   <a id="finishedBtn" class="btn" href="#">Health Issues complete - review encounter</a>
