@@ -39,10 +39,7 @@ if (!is_null($_GET["enc"])) {// came from the review page
                 mysql_query($sql) or die(mysql_error());
                 $message = '<div class="alert alert-success">Reason For Encounter successfully recorded.</div>';
 
-            } else {
-                $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - Please ensure the relevant fields are populated.</div>';
-            } 
-            
+            }
         } else {// this is for mapping verification
 
             // debug notices
@@ -83,13 +80,11 @@ if (!is_null($_GET["enc"])) {// came from the review page
                     $_SESSION["add_mode"] = 1;
                 }
 
-            } else {
-//                $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - Health Issue/Health Issue was not recorded. Please ensure the relevant fields are populated.</div>';
-            }
+            } 
         } //endif of checking the approach option
     }//endif of is logged in and page origin check
 
-    $returnTo = "add-item.php";
+    $returnTo = "add-rfe.php";
 }
   ?>
   
@@ -136,21 +131,22 @@ if(!$_SESSION["logged"]){
                 <input id="searchBox" name="searchBox" type="text" maxlength="50">
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
-              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation" >
+              <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
                 <?php /* require('inc/concepts.php'); */ ?> 
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
-              <div id="conceptValidation"></div>
+              <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
                 <dd></dd>
               </dl>
               <hr>
               <p>2. How well does this SNOMED CT concept adequately represent the RFE you wish to record?</p>
+              <div id="representationValidation"></div>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-error-container="#representationValidation"><span>Very well</span>
+                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-error-container="#representationValidation" data-required="true"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2">
@@ -165,10 +161,9 @@ if(!$_SESSION["logged"]){
                   <span>5</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation5" value="5"><span>Poorly</span>
                 </label>
               </div>
-              <div id="representationValidation"></div>
               <hr>
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
-              <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250">
+              <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250" data-error-container="#representationValidation">
               <hr>
               
           <!-- Display ICPC Codes after being matched (or not) to the chosen SCT code -->    
@@ -177,9 +172,10 @@ if(!$_SESSION["logged"]){
               <input type="hidden" id="icpc2" name="icpc2">
               <hr>
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the RFE you recorded?</p>
+              <div id="appropriateValidation"></div>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1" data-error-container="#appropriateValidation"><span>Very well</span>
+                  <span>1</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate1" value="1" data-error-container="#appropriateValidation" data-required="true"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate2" value="2">
@@ -194,7 +190,6 @@ if(!$_SESSION["logged"]){
                   <span>5</span><input type="radio" name="icpc2appropriate" id="icpc2appropriate5" value="5"><span>Not at all</span>
                 </label>
               </div>
-              <div id="appropriateValidation"></div>
               <hr>
               <p>6. If the ICPC-2 code is not an appropriate match, please record your preferred ICPC-2 code:</p>
               <div class="input-append">
@@ -205,6 +200,7 @@ if(!$_SESSION["logged"]){
                 <option value="">Select ICPC-2 code</option>
                 <?php /* require('inc/icpccodes.php'); */ ?> 
               </select>
+              <div id="icpcValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
 <!--              <button id="icpcClearBtn" class="btn" type="button" style="a">Reset</button> -->
           </div>
              
@@ -229,7 +225,7 @@ if(!$_SESSION["logged"]){
                    <?php /* require('inc/icpccodes.php'); */ ?> 
               </select>
               <button id="icpcClearBtn2" class="btn" type="button">Reset</button>
-              <div id="icpcValidation"></div>
+              <div id="icpcValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
 
               <!-- SCT mapped concepts -->
               
@@ -240,6 +236,7 @@ if(!$_SESSION["logged"]){
                         <option value="">Select SNOMED concept</option>
                   </select>
                   </p>
+                  <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
 
                   <dl class="dl-horizontal synonyms">
                     <dt>Synonyms:</dt>
@@ -249,9 +246,10 @@ if(!$_SESSION["logged"]){
                   <hr>
 
                   <p>3. How well does this SNOMED CT concept adequately represent the RFE you wish to record?</p>
+                  <div id="representationValidation"></div>
                   <div class="likert">
                     <label class="radio inline">
-                      <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-error-container="#representationValidation"><span>Very well</span>
+                      <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-error-container="#representationValidation" data-required="true"><span>Very well</span>
                     </label>
                     <label class="radio inline">
                       <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2">
@@ -266,7 +264,6 @@ if(!$_SESSION["logged"]){
                       <span>5</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation5" value="5"><span>Poorly</span>
                     </label>
                   </div>
-                  <div id="representationValidation"></div>
 
                   <hr>
                   <p>4. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
@@ -294,16 +291,17 @@ if(!$_SESSION["logged"]){
                 <?php /* require('inc/concepts.php'); */ ?> 
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
-              <div id="conceptValidation"></div>
+              <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
                 <dd></dd>
               </dl>
               <hr>
               <p>2. How well does this SNOMED CT concept adequately represent the RFE you wish to record?</p>
+              <div id="representationValidation"></div>
               <div class="likert">
                 <label class="radio inline">
-                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-error-container="#representationValidation"><span>Very well</span>
+                  <span>1</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation1" value="1" data-error-container="#representationValidation" data-required="true"><span>Very well</span>
                 </label>
                 <label class="radio inline">
                   <span>2</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation2" value="2">
@@ -318,9 +316,6 @@ if(!$_SESSION["logged"]){
                   <span>5</span><input type="radio" name="conceptRepresentation" id="conceptRepresentation5" value="5"><span>Poorly</span>
                 </label>
               </div>
-
-
-              <div id="representationValidation"></div>
               <hr>
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
               <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250">
@@ -333,6 +328,7 @@ if(!$_SESSION["logged"]){
               
                 
               <div class="form-actions">
+                <div id="ActionButtons" style="display: none;">
                 <?php
                 if(!is_null($_GET["enc"])){
                   ?>
@@ -342,8 +338,7 @@ if(!$_SESSION["logged"]){
                   <?php
                 } else {
                   ?>
-                  <div id="ActionButtons" style="display: none;">
-                      <input type="hidden" id="addAnother" name="addAnother" value="true">
+                   <input type="hidden" id="addAnother" name="addAnother" value="true">
                       <button type="submit" class="btn">Add another RFE</button>
                   &nbsp;&nbsp;
                       <a id="nextBtn" class="btn" href="#">RFEs complete - add Health Issues</a>
@@ -352,6 +347,7 @@ if(!$_SESSION["logged"]){
                 }
                 ?>
                   </div>
+                  <a id="cancelBtn" class="btn" href="index.php">Cancel</a>
 
               </div>
 

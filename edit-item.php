@@ -81,7 +81,7 @@ if(!$_SESSION["logged"]){
                 <option value="<?= $sct_details["concept_id"]; ?>" selected>Select SNOMED concept</option>
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
-              <div id="conceptValidation"></div>
+              <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
                 <dd></dd>
@@ -139,6 +139,7 @@ if(!$_SESSION["logged"]){
               <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="8" data-error-container="#icpcValidation">
                 <option value="">Select ICPC-2 code</option>
               </select>
+              <div id="icpcValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
 
 <?php
                 break;
@@ -158,7 +159,7 @@ if(!$_SESSION["logged"]){
                 <option value="<?= $icpc_details['id']; ?>" selected>Select ICPC-2 code</option>
               </select>
               <button id="icpcClearBtn2" class="btn" type="button">Reset</button>
-              <div id="icpcValidation"></div>
+              <div id="icpcValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
 
               <!-- SCT mapped concepts -->
               
@@ -169,6 +170,7 @@ if(!$_SESSION["logged"]){
                       <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-error-container="#conceptValidation">
                             <option value="<?= $sct_details["concept_id"]; ?>" selected>Select SNOMED concept</option>
                       </select>
+                      <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
                       </p>
     
                       <dl class="dl-horizontal synonyms">
@@ -222,7 +224,7 @@ if(!$_SESSION["logged"]){
                 <?php /* require ('inc/concepts.php'); */ ?>
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
-              <div id="conceptValidation"></div>
+              <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
                 <dd></dd>
@@ -256,8 +258,10 @@ if(!$_SESSION["logged"]){
 ?>
             
               <div class="form-actions">
-                <a id="cancelBtn" class="btn" href="<?= $_POST['from'] ?>">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a id="cancelBtn" class="btn" href="<?= $_POST['from'] ?>?cancel=1">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <div id="ActionButtons" style="display: none;">
                 <button type="submit" class="btn">Submit changes</button>
+              </div>
               </div>
 
             </div>

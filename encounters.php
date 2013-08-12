@@ -67,7 +67,7 @@ if(!$_SESSION["logged"]){
             } else {
               ?>
               <p class="lead">You have not yet completed any encounters.</p>
-              <a href="add-item.php" class="btn">Add encounter</a>
+              <a href="add-rfe.php?new=1" class="btn">Add encounter</a>
               <?php
             }
           ?>

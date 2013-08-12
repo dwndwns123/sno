@@ -17,6 +17,7 @@ if ($_SESSION["logged"]) {
     } else {
 
         if ($_SESSION["option"] == 3) {
+            error_log("Reviewing in option 3, dropdown is - '$_POST[conceptsDropdown]' - alt field is - '$_POST[conceptFreeText]'");
             if ($_POST["conceptsDropdown"] || $_POST["conceptFreeText"])// all mandatory fields posted
             {
                 // debug messages
@@ -24,14 +25,13 @@ if ($_SESSION["logged"]) {
 
                 if ($_POST["edit_reason"]) {
                     error_log("Come from the edit page");
+                    error_log("refset type before inserting is - '$_POST[refType]'");
+
                     $sql = sprintf("UPDATE Encounter_Reasons SET sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
                         sct_alt = '%s' WHERE reason_id = '$_POST[edit_reason]'", mysql_real_escape_string($_POST[conceptFreeText]));
 
-/*                    if ($_SESSION["encounter_id"] == "") {
-                        $_SESSION["encounter_id"] = $_POST["encid"];
-                        error_log("session enc id is now - '$_SESSION[encounter_id]'");
-                    }
-*/                } else {
+                } else {
+    
                     $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt) 
                         VALUES ('$_SESSION[encounter_id]', 1, '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s')", 
                         mysql_real_escape_string($_POST["conceptFreeText"]));
@@ -40,9 +40,11 @@ if ($_SESSION["logged"]) {
                 error_log($sql);
                 mysql_query($sql) or die(mysql_error());
 
-                $message = '<div class="alert alert-success">Health Issue successfully recorded.</div>';
+                $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "RFE" : "Health Issue") . ' successfully recorded.</div>';
             } else {
-                $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - Health Issue was not recorded.</div>';
+                if ($_GET["cancel"] != '1') {
+                    $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - ' . ($_POST["refType"] == 0 ? "RFE" : "Health Issue") . ' was not recorded.</div>';
+                }
             }
 
         } else {
@@ -61,20 +63,9 @@ if ($_SESSION["logged"]) {
                         sct_alt = '%s', icpc_id = '$icpcfield', icpc_scale = '$_POST[icpc2appropriate]', icpc_alt_id = '$icpcAltfield' 
                         WHERE reason_id = '$_POST[edit_reason]'", mysql_real_escape_string($_POST[conceptFreeText]));
 
-                    if ($_SESSION["encounter_id"] == "") {
-                        error_log("session enc id was empty");
-                        $_SESSION["encounter_id"] = $_POST["encid"];
-                        error_log("session enc id is now - '$_SESSION[encounter_id]'");
-                    }
                 } else {
                         
                     error_log("session enc id for adding HI is now - '$_SESSION[encounter_id]' - and the post enc id is - '$_POST[encid]'");                   
-                    
-/*                    if ($_SESSION["encounter_id"] == "") {
-                        error_log("session enc id before the INSERT was empty");
-                        $_SESSION["encounter_id"] = $_POST["encid"];
-                        error_log("session enc id is now - '$_SESSION[encounter_id]'");
-                    } */
                     
                     $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
                         VALUES ('$_SESSION[encounter_id]', 1, '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
@@ -84,9 +75,11 @@ if ($_SESSION["logged"]) {
                 error_log($sql);
                 mysql_query($sql) or die(mysql_error());
 
-                $message = '<div class="alert alert-success">Health Issue successfully recorded.</div>';
+                $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "RFE" : "Health Issue") . ' successfully recorded.</div>';
             } else {
-                $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - Health Issue was not recorded.</div>';
+                if ($_GET["cancel"] != '1') {
+                    $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - ' . ($_POST["refType"] == 0 ? "RFE" : "Health Issue") . ' was not recorded.</div>';
+                }
             }
         }
     }
@@ -142,11 +135,18 @@ if(!$_SESSION["logged"]){
                   $icpcArr = mysql_fetch_array($sql);
                   $icpcId = $icpcArr['id'];
                   $icpc = $icpcArr['title'];
+                  $sql = mysql_query("SELECT * FROM ICPC_Codes WHERE id='$row[icpc_alt_id]'") or die(mysql_error());
+                  $icpcArr = mysql_fetch_array($sql);
+                  $icpcAltLabel = $icpcArr['title'];
 
                   if ($_SESSION["option"] == 2) {
-                      $rowLabel = $icpcArr['title'];
+                      $rowLabel = $icpc;
                   } else {
-                      $rowLabel = $conceptArr['label'];
+                      if ($conceptArr['label'] == '') {
+                          $rowLabel = $row['sct_alt'];
+                      } else {
+                          $rowLabel = $conceptArr['label'];
+                      }
                   }
 
                   ?>
@@ -173,12 +173,12 @@ if(!$_SESSION["logged"]){
                           <dt>Alternative description of clinical term</dt>
                           <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
                           
-                          <dt>ICPC-2 code</dt>
+                          <dt>Mapped ICPC-2 code</dt>
                           <dd><?= $icpcId; ?> - <?= $icpc; ?></dd>
                           <dt>Is this ICPC-2 code an appropriate match for the <?= ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue"); ?>? <br>(1 = Very, 5 = Not at all)</dt>
                           <dd><?= $row['icpc_scale']; ?></dd>
                           <dt>Alternate ICPC-2 code</dt>
-                          <dd><?= $row['icpc_alt_id']; ?></dd>
+                          <dd><?= $row['icpc_alt_id']; ?> - <?= $icpcAltLabel; ?></dd>
                           <dt></dt>
                           <dd> </dd>
                           <dt>Date created</dt>

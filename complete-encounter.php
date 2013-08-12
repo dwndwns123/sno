@@ -45,7 +45,7 @@ if(!$_SESSION["logged"]){
             <?php
             if($encounters < $configvars["encounters"]["maxencounters"]){
               ?>
-              <li><a class="btn btn-large btn-block btn-primary" href="add-item.php">Add another encounter</a></li>
+              <li><a class="btn btn-large btn-block btn-primary" href="add-rfe.php?new=1">Add another encounter</a></li>
               <?php
             } else if(!$user["field_test_complete"]){
               ?>

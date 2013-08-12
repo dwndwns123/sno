@@ -27,7 +27,13 @@ while ($row = mysql_fetch_array($result)) {
         $concept = mysql_fetch_array($conceptResult);
 
         error_log($sql);
-        $rows[] = array("reason_id" => $row["reason_id"], "term" => $concept["label"], "type" => $row["refset_id"]);
+        
+        if ($row['sct_id'] == '0') {
+            $rows[] = array("reason_id" => $row["reason_id"], "term" => $row["sct_alt"], "type" => $row["refset_id"]);
+        } else {
+            $rows[] = array("reason_id" => $row["reason_id"], "term" => $concept["label"], "type" => $row["refset_id"]);
+        }
+        
     }
 }
 

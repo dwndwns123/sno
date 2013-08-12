@@ -10,19 +10,18 @@
 
 
 
-<!--
+
 <div class="well hidden"> 
---><div>
 <p>-------------------------------
     <big><strong>DEBUG</strong></big></p>
-<?php /*
+<?php 
 foreach ($_SESSION as $key=>$value){
   print "\$_ SESSION [\"$key\"] == $value<br>";
 }
 
 print"<br /><br />POST:";
 print_r($_POST);
-*/
+
 $pageName = basename($_SERVER['SCRIPT_NAME']);
 error_log("Bottom of the page... This page is - '$pageName'");
 $prevPage = $_SERVER['HTTP_REFERER'];
