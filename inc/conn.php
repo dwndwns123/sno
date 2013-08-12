@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 // Get config vars from ini file
 $configvars = parse_ini_file("config/field-test.ini", true);
 

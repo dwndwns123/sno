@@ -1,6 +1,5 @@
 <?php
 require ('inc/head.php');
-require ('inc/conn.php');
 
 if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review page
 
@@ -38,8 +37,7 @@ if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review 
                     error_log($_SESSION["encounter_id"]);
                     error_log("debugflag - recordType var after newly set is - ");
                     error_log($recordType);
-                    error_log("debugflag - encounter details refid var after newly set is - ");
-                    error_log($_SESSION["rfe_id"]);
+                    error_log("debugFlag - session enc id is now - '$_SESSION[encounter_id]'");
 
                 }
                 
@@ -65,6 +63,7 @@ if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review 
 
             // debug notices
             error_log("I am in here - option 1 & 2 verification");
+            error_log("debugFlag - session enc id is now - '$_SESSION[encounter_id]'");
             error_log("debugflag - concepts dropdown after newly set is - '$_POST[conceptsDropdown]'");
             error_log("debugflag - concepts alt text after newly set is - '$_POST[conceptFreeText]'");
             error_log("debugflag - icpc after newly set is - '$_POST[icpc2]'");
@@ -82,12 +81,9 @@ if (!is_null($_GET["type"]) && !is_null($_GET["enc"])) {// came from the review 
                     $_SESSION["add_mode"] = 0;
                     $recordType = "Reason For Encounter";
 
-                    error_log("debugflag - encounter_id var after newly set is - ");
-                    error_log($_SESSION["encounter_id"]);
+                    error_log("debugflag - encounter_id var after newly set (opt 1&2) is - '$_SESSION[encounter_id]'");
                     error_log("debugflag - recordType var after newly set is - ");
                     error_log($recordType);
-                    error_log("debugflag - encounter details refid var after newly set is - ");
-                    error_log($_SESSION["rfe_id"]);
 
                 }
                 $icpcfield = ($_SESSION["option"] == 1 ? $_POST["icpc2"] : $_POST["icpcDropdown"] );
@@ -185,7 +181,7 @@ if(!$_SESSION["logged"]){
               </div>
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation" >
                 <option value="">Select SNOMED concept</option>
-                <?php /* require('inc/concepts.php');  */ ?> 
+                <?php /* require('inc/concepts.php'); */ ?> 
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation"></div>
@@ -259,7 +255,7 @@ if(!$_SESSION["logged"]){
               
 <?php
                 break;
-                case 2:
+              case 2:
             ?>
             
           <!-- for the ICPC2 first option -->
@@ -284,6 +280,7 @@ if(!$_SESSION["logged"]){
      			  <hr>
                   <p id="dropdownLabel">2. Select an associated SNOMED CT concept &nbsp;&nbsp;&nbsp;
                   <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-error-container="#conceptValidation">
+                        <option value="">Select SNOMED concept</option>
                   </select>
                   </p>
 
@@ -407,7 +404,6 @@ if(!$_SESSION["logged"]){
                     }
                 ?>
               </div>
-                   <a id="cancelBtn" class="btn" href="index.php">Cancel</a>
 
               </div>
 

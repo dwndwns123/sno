@@ -1,7 +1,4 @@
-<?php
-require ('inc/head.php');
-require ('inc/conn.php');
-?>
+<?php require ('inc/head.php'); ?>
 
   <title>SNOMED CT GP/FP RefSet Field Test - Resend verification</title>
 </head>

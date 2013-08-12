@@ -1,6 +1,5 @@
 <?php
 require ('inc/head.php');
-require ('inc/conn.php');
 ?>
 
 <title>SNOMED CT GP/FP RefSet Field Test - Encounters</title>
@@ -17,11 +16,8 @@ if(!$_SESSION["logged"]){
   include('inc/not-logged-in.php');
 } else {
   $_SESSION["return_to"] = null;
-
   $_SESSION ["encounter_id"] = null;
   $_SESSION ["add_mode"] = null;
-  $_SESSION ["rfe_id"] = null;
-  $_SESSION ["label"] = null;
 
   $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
 

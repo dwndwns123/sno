@@ -213,7 +213,8 @@ var ftt = {
 		refine : function() {
 			var searchText = $('#searchBox').val();
 			var altText = $('#conceptFreeText').val();
-
+			alert('searchbox is - ' + searchText);
+			
 			if ((searchText == '') && (altText == '')) {
 				$('#ICPC-Code').hide();
 				$('#addSameBtn').hide();
@@ -231,6 +232,7 @@ var ftt = {
 					data : 'searchText=' + searchText,
 					dataType : 'json',
 					success : function(response, textStatus, jqXHR) {
+//						$('#conceptsDropdown').empty();
 						tools.rewriteDropdown($('#conceptsDropdown'), response);
 						$('#conceptsDropdown, #clearBtn').show();
 						$('#itemsHolder').show();
@@ -330,6 +332,7 @@ var ftt = {
 						$('#icpcDropdown, #icpcClearBtn2').show();
 						$('#icpcDropdown').on('change', function() {
 							ftt.icpccodesFirst.getSCTMap();
+							$('#ActionButtons').hide();
 						});
 					},
 					error : function(jqXHR, textStatus, errorThrown) {

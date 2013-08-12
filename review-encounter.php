@@ -1,7 +1,4 @@
-<?php
-require ('inc/head.php');
-require ('inc/conn.php');
-?>
+<?php require ('inc/head.php'); ?>
 
 <title>SNOMED CT GP/FP RefSet Field Test - Review encounter</title>
 </head>
@@ -66,14 +63,25 @@ if ($_SESSION["logged"]) {
                         WHERE reason_id = '$_POST[edit_reason]'", mysql_real_escape_string($_POST[conceptFreeText]));
 
                     if ($_SESSION["encounter_id"] == "") {
+                        error_log("session enc id was empty");
                         $_SESSION["encounter_id"] = $_POST["encid"];
                         error_log("session enc id is now - '$_SESSION[encounter_id]'");
                     }
                 } else {
+                        
+                    error_log("session enc id for adding HI is now - '$_SESSION[encounter_id]' - and the post enc id is - '$_POST[encid]'");                   
+                    
+                    if ($_SESSION["encounter_id"] == "") {
+                        error_log("session enc id before the INSERT was empty");
+                        $_SESSION["encounter_id"] = $_POST["encid"];
+                        error_log("session enc id is now - '$_SESSION[encounter_id]'");
+                    }
+                 
+                    
                     $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
                         VALUES ('$_SESSION[encounter_id]', '$_SESSION[add_mode]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
                         '$_POST[icpc2appropriate]','$icpcAltfield')", mysql_real_escape_string($_POST["conceptFreeText"]));
-                }
+                                        }
                 error_log("review encounter update incoming");
                 error_log($sql);
                 mysql_query($sql) or die(mysql_error());
@@ -122,7 +130,7 @@ if(!$_SESSION["logged"]){
             <?php
 
             for($x = 0; $x <= 1; $x++){ // loop through once for RFEs and once for HIs
-              $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
+              $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' and active='y'") or die(mysql_error());
          	  $date = date_create($rows['date_created']);
               
               while($row = mysql_fetch_array($rows)){

@@ -1,5 +1,4 @@
-<?php
-include "inc/conn.php";
+<?php include "inc/conn.php";
 
 // This function is to retrieve the SCT mapped codes depending on the provided ICPC-2 code 
 

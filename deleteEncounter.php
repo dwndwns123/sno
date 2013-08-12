@@ -1,5 +1,4 @@
-<?php
-include "inc/conn.php";
+<?php include "inc/conn.php";
 
 $enc = $_POST["id"];
 

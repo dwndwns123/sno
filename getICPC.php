@@ -1,5 +1,4 @@
-<?php
-include "inc/conn.php";
+<?php include "inc/conn.php";
 
 $codeid = $_POST["codeid"];
 

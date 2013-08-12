@@ -1,20 +1,17 @@
-<?php
-require ('inc/head.php');
-require ('inc/conn.php');
-?>
+<?php require ('inc/head.php'); ?>
 
 <title>SNOMED CT GP/FP RefSet Field Test - Complete encounter</title>
 </head>
 <body>
 <?php
 if($_SESSION["logged"]){
+  error_log("Enc complete session enc id is now - '$_SESSION[encounter_id]'");
+    
   if(!is_null($_SESSION["encounter_id"])){
     $sql = "UPDATE Encounters SET complete = 1 WHERE encounter_id = '$_SESSION[encounter_id]'";
     mysql_query($sql) or die(mysql_error());
     $_SESSION ["encounter_id"] = null;
     $_SESSION ["add_mode"] = null;
-    $_SESSION ["rfe_id"] = null;
-    $_SESSION ["label"] = null;
 
     $message = '<div class="alert alert-success">Encounter successfully completed</div>';
   }

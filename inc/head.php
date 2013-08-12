@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php require ('inc/conn.php');
 
 if (( $_SESSION['last_activity'] < time()-$_SESSION['expire_time'] ) && ($_SESSION['logged'])) { //have we expired?
     //redirect to logout.php
@@ -8,7 +7,8 @@ if (( $_SESSION['last_activity'] < time()-$_SESSION['expire_time'] ) && ($_SESSI
 } else{ //if we haven't expired:
     $_SESSION['last_activity'] = time(); //this was the moment of last activity.
 }
-
+$pageName = basename($_SERVER['SCRIPT_NAME']);
+error_log("This page is - '$pageName'");
 ?>
 <!DOCTYPE html>
 <html lang="en">

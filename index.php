@@ -1,6 +1,5 @@
 <?php
 require ('inc/head.php');
-require ('inc/conn.php');
 ?>
 
 <title>SNOMED CT GP/FP RefSet Field Test - Home</title>
@@ -99,10 +98,9 @@ if(!$_SESSION["logged"]){
       </div>
 <?php
 } else {
-$_SESSION ["encounter_id"] = null;
-$_SESSION ["add_mode"] = null;
-$_SESSION ["rfe_id"] = null;
-$_SESSION ["label"] = null;
+/*$_SESSION ["encounter_id"] = null;
+$_SESSION ["add_mode"] = null;*/
+error_log("thrown into the INDEX page for some reason - so the enc will be set to null");
 
 $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
 $user = mysql_fetch_array($rows);
