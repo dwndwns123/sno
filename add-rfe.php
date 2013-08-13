@@ -37,7 +37,7 @@ if (!is_null($_GET["enc"])) {// came from the review page
                 error_log($sql);
 
                 mysql_query($sql) or die(mysql_error());
-                $message = '<div class="alert alert-success">Reason For Encounter successfully recorded.</div>';
+                $message = '<div class="alert alert-success">Reason For Encounter successfully recorded. Please do not press back as this will re-submit the Reason For Encounter</div>';
 
             }
         } else {// this is for mapping verification
@@ -74,7 +74,7 @@ if (!is_null($_GET["enc"])) {// came from the review page
                 error_log($sql);
                 mysql_query($sql) or die(mysql_error());
 
-                $message = '<div class="alert alert-success">Reason For Encounter successfully recorded.</div>';
+                $message = '<div class="alert alert-success">Reason For Encounter successfully recorded. Please do not press back or refresh the page as this will re-submit the Reason For Encounter</div>';
 
                 if ($_POST["addAnother"] == "false") {
                     $_SESSION["add_mode"] = 1;

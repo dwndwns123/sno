@@ -36,7 +36,7 @@ if (!is_null($_GET["enc"])) {// came from the review page
                 error_log($sql);
 
                 mysql_query($sql) or die(mysql_error());
-                $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "RFE" : "Health Issue") . ' successfully recorded.</div>';
+                $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . ' successfully recorded. Please do not press back, or refresh the page, as this will re-submit the ' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . '</div>';
 
             } else {
                 $message = '<div class="alert alert-error" id="errorMsg" name="errorMsg">There was an error - Please ensure the relevant fields are populated.</div>';
@@ -82,7 +82,7 @@ if (!is_null($_GET["enc"])) {// came from the review page
                 error_log($sql);
                 mysql_query($sql) or die(mysql_error());
 
-                $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "RFE" : "Health Issue") . ' successfully recorded.</div>';
+                $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . ' successfully recorded. Please do not press back, or refresh the page, as this will re-submit the ' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . '</div>';
             
             } else {
                 $prevPage = $_SERVER['HTTP_REFERER'];

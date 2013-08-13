@@ -70,7 +70,7 @@ var ftt = {
 							data : 'id=' + wId,
 							success : function(response, textStatus, jqXHR) {
 								bootbox.alert(thisType + " #" + wId + " successfully deleted.", function() {
-									window.location.href = "review-encounter.php";
+									window.location.href = "review-encounter.php?cancel=1";
 								})
 							},
 							error : function(jqXHR, textStatus, errorThrown) {
@@ -232,7 +232,7 @@ var ftt = {
 		refine : function() {
 			var searchText = $('#searchBox').val();
 			var altText = $('#conceptFreeText').val();
-			
+
 			if ((searchText == '') && (altText == '')) {
 				$('#ICPC-Code').hide();
 				$('#conceptValidation').hide();
@@ -288,6 +288,13 @@ var ftt = {
 
 		reset : function() {
 			$('#searchBox').val('');
+			$('#conceptFreeText').val('');
+			$('#icpcSearchBox').val('');
+			var str = "No match";
+			$('span.icpcCode').empty().append(str);
+			$('#icpc2').val('');
+			$('#conceptValidation').hide();
+			$('#icpcValidation').hide();
 			ftt.concepts.refine();
 		},
 		getSynonyms : function() {
@@ -327,8 +334,15 @@ var ftt = {
 				data : 'codeid=' + codeid,
 				dataType : 'json',
 				success : function(response, textStatus, jqXHR) {
-					ftt.concepts.showICPC(response);
-					$('#ActionButtons').show();
+					if (response.length > 0) {
+						ftt.concepts.showICPC(response);
+						$('#ActionButtons').show();
+					} else {
+						$('#ActionButtons').hide();
+						var str = "No match";
+						$('span.icpcCode').empty().append(str);
+						$('#icpc2').val('');
+					}
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
 					alert('error: getICPC - ' + errorThrown + ' ' + textStatus + ' ' + codeid);
@@ -377,6 +391,8 @@ var ftt = {
 							$('#icpcValidation').show();
 							$('#icpcDropdown, #icpcClearBtn2').hide();
 							$('#ActionButtons').hide();
+							$('#conceptFreeText').val('');
+							$('#conceptValidation').hide();
 							$('#SCT-Code, dl.synonyms').hide();
 
 /*							var str = "No match";
@@ -394,6 +410,9 @@ var ftt = {
 
 		reset : function() {
 			$('#icpcSearchBox').val('');
+			$('#conceptFreeText').val('');
+			$('#conceptValidation').hide();
+			$('#icpcValidation').hide();
 			ftt.icpccodesFirst.refine();
 		},
 
@@ -417,12 +436,19 @@ var ftt = {
 						$('#conceptValidation').hide();
 						$('#conceptsDropdown, #icpcClearBtn2').show();
 						$('#conceptsDropdown').on('change', function() {
-							ftt.concepts.getSynonyms();
-							$('#ActionButtons').show();
+							var cid = $('#conceptsDropdown').val();
+							if (cid != '') {
+								ftt.concepts.getSynonyms();
+								$('#ActionButtons').show();
+							} else {
+								$('dl.synonyms').hide();
+								$('#ActionButtons').hide();
+							}
 						});
 					} else {
 						$('#conceptValidation').show();
-						$('#conceptsDropdown, #icpcClearBtn2').hide();
+						$('dl.synonyms').hide();
+						$('#conceptsDropdown').hide();
 						$('#ActionButtons').hide();
 					}
 
@@ -483,7 +509,7 @@ var tools = {
 	rewriteDropdown : function($obj, data) {
 		var $tmp = $obj.find('option')[0];
 		if (data.length == 0) {
-			$tmp = "<option value=''></option>";
+			$tmp = "<option value=''>Select SCT Concept</option>";
 		}
 		$obj.empty().append($tmp);
 		for (var x = 0; x < data.length; x++) {
