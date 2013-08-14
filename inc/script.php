@@ -21,11 +21,5 @@ foreach ($_SESSION as $key=>$value){
 
 print"<br /><br />POST:";
 print_r($_POST);
-
-$pageName = basename($_SERVER['SCRIPT_NAME']);
-error_log("Bottom of the page... This page is - '$pageName'");
-$prevPage = $_SERVER['HTTP_REFERER'];
-error_log("The prev page was - '$prevPage'");
-
 ?>
 </div>

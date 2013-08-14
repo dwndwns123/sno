@@ -139,25 +139,37 @@ var ftt = {
 			$('#collapse' + wId).parent().find('.accordion-toggle').trigger('click');
 		}
 
-		// trap pressing RETURN on add/edit form - send focus to search box
+		/* trap pressing RETURN on add/edit form - send focus to search box
 		$('form#addItem, form#editItem').bind('keypress', function(e) {
 			if (e.keyCode === 13) {
 				e.preventDefault();
 				$('#searchBox').focus();
 			}
-		});
+		}); */
+		
 		// if already in SCT search box, RETURN triggers search
 		$('#searchBox').bind('keypress', function(e) {
 			if (e.keyCode === 13) {
 				e.preventDefault();
 				$('#searchBtn').click();
+				$('#searchBox').focus();
 			}
 		});
 		// if already in ICPC search box, RETURN triggers search
 		$('#icpcSearchBox').bind('keypress', function(e) {
 			if (e.keyCode === 13) {
 				e.preventDefault();
-				$('#icpcSearchBox').click();
+				$('#icpcSearchBtn').click();
+				$('#icpcSearchBox').focus();
+			}
+		});
+
+		// if already in ICPC2 search box, RETURN triggers search
+		$('#icpcSearchBox2').bind('keypress', function(e) {
+			if (e.keyCode === 13) {
+				e.preventDefault();
+				$('#icpcSearchBtn2').click();
+				$('#icpcSearchBox2').focus();
 			}
 		});
 
@@ -168,7 +180,7 @@ var ftt = {
 			if (altText != '') {
 				$('#ICPC-Code').show();
 				if (icpcCode == '') {
-					$('#ActionButtons').hide();					
+					$('#ActionButtons').hide();
 				} else {
 					$('#ActionButtons').show();
 				}
@@ -183,6 +195,8 @@ var ftt = {
 
 			if (searchText == '') {
 				$('#icpcDropdown, #icpcClearBtn').hide();
+				$('span.icpcSelected').empty();
+				$('#icpcSelectedDiv').hide();
 				$('#icpcDropdown')[0].selectedIndex = 0;
 				$('#icpcDropdown').unbind('change');
 			} else {
@@ -200,15 +214,21 @@ var ftt = {
 							$('#icpcDropdown').on('change', function() {
 								var cid = $('#icpcDropdown').val();
 								if (cid != '') {
+									$('#icpcSelectedDiv').show();
+									var str = cid + ' ' + $('#icpcDropdown option:selected').text();
+									$('span.icpcSelected').empty().append(str);
+									$('#icpcDropdown').focus();
 									$('#ActionButtons').show();
 								} else {
+									$('span.icpcSelected').empty();
+									$('#icpcSelectedDiv').hide();
 									$('#ActionButtons').hide();
 								}
 							});
 						} else {
 							$('#icpcDropdown, #icpcClearBtn').hide();
 							$('#icpcValidation').show();
-							if ($('#icpc2').val() == '' ) {
+							if ($('#icpc2').val() == '') {
 								$('#ActionButtons').hide();
 							}
 						}
@@ -247,9 +267,9 @@ var ftt = {
 					data : 'searchText=' + searchText,
 					dataType : 'json',
 					success : function(response, textStatus, jqXHR) {
-//						$('#conceptsDropdown').empty();
+						//						$('#conceptsDropdown').empty();
 						tools.rewriteDropdown($('#conceptsDropdown'), response);
-						
+
 						if (response.length > 0) {
 							$('#conceptValidation').hide();
 							$('#conceptsDropdown, #clearBtn').show();
@@ -262,7 +282,7 @@ var ftt = {
 							$('span.icpcCode').empty().append(str);
 							$('#icpc2').val('');
 						}
-												
+
 						$('#conceptsDropdown').on('change', function() {
 							var cid = $('#conceptsDropdown').val();
 							if (cid != '') {
@@ -299,7 +319,7 @@ var ftt = {
 		},
 		getSynonyms : function() {
 			var cid = $('#conceptsDropdown').val();
-			
+
 			$.ajax({
 				url : 'getSynonyms.php',
 				type : 'POST',
@@ -336,6 +356,7 @@ var ftt = {
 				success : function(response, textStatus, jqXHR) {
 					if (response.length > 0) {
 						ftt.concepts.showICPC(response);
+						ftt.icpccodes.reset();
 						$('#ActionButtons').show();
 					} else {
 						$('#ActionButtons').hide();
@@ -362,7 +383,7 @@ var ftt = {
 
 	icpccodesFirst : {
 		refine : function() {
-			var searchText = $('#icpcSearchBox').val();
+			var searchText = $('#icpcSearchBox2').val();
 			//			alert("search box val is - " + searchText);
 
 			if (searchText == '') {
@@ -395,10 +416,11 @@ var ftt = {
 							$('#conceptValidation').hide();
 							$('#SCT-Code, dl.synonyms').hide();
 
-/*							var str = "No match";
-							$('span.icpcCode').empty().append(str);
-							$('#icpc2').val('');
-	*/					}
+							/*							var str = "No match";
+							 $('span.icpcCode').empty().append(str);
+							 $('#icpc2').val('');
+							 */
+						}
 
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
@@ -409,7 +431,7 @@ var ftt = {
 		},
 
 		reset : function() {
-			$('#icpcSearchBox').val('');
+			$('#icpcSearchBox2').val('');
 			$('#conceptFreeText').val('');
 			$('#conceptValidation').hide();
 			$('#icpcValidation').hide();
