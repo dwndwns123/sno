@@ -94,12 +94,6 @@ if(!$_SESSION["logged"]){
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label" for="editAge">Age</label>
-                <div class="controls">
-                  <input type="text" class="input-xlarge" id="editAge" name="editAge" value="<?= $user['age']; ?>" placeholder="Age" data-required="true">
-                </div>
-              </div>
-              <div class="control-group">
                 <div class="controls">
                   <input type="submit" class="btn" value="Save">
                   <a class="btn" href="profile.php">Cancel</a>

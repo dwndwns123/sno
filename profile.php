@@ -5,8 +5,8 @@
 <body>
 <?php
 if($_SESSION["logged"]){
-  if(!is_null($_POST["editTitle"]) && $_POST["editFirstname"] && $_POST["editLastname"] && !is_null($_POST["editCountry"]) && $_POST["editRole"] && !is_null($_POST["editGender"]) && $_POST["editAge"]){
-    $sql = sprintf("UPDATE Users SET title_id = '$_POST[editTitle]', first_name = '%s', last_name = '%s', country_id = '$_POST[editCountry]', role = '%s', gender_id = '$_POST[editGender]', age = '$_POST[editAge]' WHERE user_id = $_SESSION[user_id]",
+  if(!is_null($_POST["editTitle"]) && $_POST["editFirstname"] && $_POST["editLastname"] && !is_null($_POST["editCountry"]) && $_POST["editRole"] && !is_null($_POST["editGender"])) {
+    $sql = sprintf("UPDATE Users SET title_id = '$_POST[editTitle]', first_name = '%s', last_name = '%s', country_id = '$_POST[editCountry]', role = '%s', gender_id = '$_POST[editGender]' WHERE user_id = $_SESSION[user_id]",
                    mysql_real_escape_string($_POST[editFirstname]),
                    mysql_real_escape_string($_POST[editLastname]),
                    mysql_real_escape_string($_POST[editRole]));
@@ -60,8 +60,6 @@ if(!$_SESSION["logged"]){
               <dd><?= $user['role']; ?></dd>
               <dt>Gender</dt>
               <dd><?= $userGender['gender']; ?></dd>
-              <dt>Age</dt>
-              <dd><?= $user['age']; ?></dd>
             </dl>
 
             <div class="control-group">

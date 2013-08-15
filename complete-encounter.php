@@ -15,7 +15,9 @@ if($_SESSION["logged"]){
     $_SESSION ["encounter_id"] = null;
     $_SESSION ["add_mode"] = null;
     $_SESSION["completed_encs"] = $newEnc;
-    $message = '<div class="alert alert-success">Patient encounter successfully completed</div>';
+    $message = '<div class="alert alert-success">Patient encounter successfully completed. Please do not press back, or refresh the page, as this will re-submit the encounter.</div>';
+  } else {
+    $message = '<div class="alert alert-error">Unless you have just pressed the back or refresh button, there has been a system error. Please contact fieldtesttool@ihtsdo.org other return to the home page</div>';  
   }
 }
 ?>
