@@ -5,14 +5,16 @@
 <body>
 <?php
 if($_SESSION["logged"]){
-  error_log("Enc complete session enc id is now - '$_SESSION[encounter_id]'");
-    
+  $userEncId = intval($_SESSION["completed_encs"]);
   if(!is_null($_SESSION["encounter_id"])){
-    $sql = "UPDATE Encounters SET complete = 1 WHERE encounter_id = '$_SESSION[encounter_id]'";
+    $newEnc = $userEncId+1;
+    $newEnc2 = $userEncId++;
+    
+    $sql = "UPDATE Encounters SET complete = 1, user_encounter_id = '$newEnc' WHERE encounter_id = '$_SESSION[encounter_id]'";
     mysql_query($sql) or die(mysql_error());
     $_SESSION ["encounter_id"] = null;
     $_SESSION ["add_mode"] = null;
-
+    $_SESSION["completed_encs"] = $newEnc;
     $message = '<div class="alert alert-success">Patient encounter successfully completed</div>';
   }
 }

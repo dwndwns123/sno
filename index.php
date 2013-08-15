@@ -117,6 +117,10 @@ break;
 
 $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y'") or die(mysql_error());
 $encounters = mysql_num_rows($encountersData);
+if (!$_SESSION["completed_encs"]) {
+    $_SESSION["completed_encs"] = $encounters;
+    error_log("encounters completed is - '$_SESSION[completed_encs]'");
+}
 ?>
       <div class="page-header">
         <h1>Home</h1>

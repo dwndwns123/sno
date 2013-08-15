@@ -13,8 +13,11 @@ if ($_SESSION["logged"]) {
         $_SESSION["return_to"] = "encounters.php";
         $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$_POST[enc]'") or die(mysql_error());
         $enc = mysql_fetch_array($encRows);
+        $endUserId = $enc['user_encounter_id'];
 
     } else {
+        $userEncId = intval($_SESSION["completed_encs"]);
+        $endUserId = $userEncId+1;
 
         if ($_SESSION["option"] == 3) {
             error_log("Reviewing in option 3, dropdown is - '$_POST[conceptsDropdown]' - alt field is - '$_POST[conceptFreeText]'");
@@ -106,7 +109,7 @@ if(!$_SESSION["logged"]){
 ?>
       <div class="row">
         <div class="span8 offset2">
-          <h2>Encounter <?= $_SESSION["encounter_id"] . ($_SESSION["label"] == '' ? '' : ''); ?></h2>
+          <h2>Encounter #<?= $endUserId; ?></h2>
           <?php
           if($user["field_test_complete"] == 0){
             ?>

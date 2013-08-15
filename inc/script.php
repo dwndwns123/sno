@@ -21,7 +21,8 @@
 </script>
 
 
-<div class="well hidden"> 
+<!--<div class="well hidden"> 
+--><div>
 <p>-------------------------------
     <big><strong>DEBUG</strong></big></p>
 <?php 

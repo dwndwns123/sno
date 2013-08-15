@@ -44,7 +44,7 @@ if(!$_SESSION["logged"]){
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['encounter_id']; ?>">
-                      Encounter #<?= $row['encounter_id']; ?>  - created <?php echo date_format($date, '\o\n l\, jS F Y'); ?>
+                      Encounter #<?= $row['user_encounter_id']; ?>  - created <?php echo date_format($date, '\o\n l\, jS F Y'); ?>
                     </a>
                   </div>
                   <div class="accordion-body collapse" id="collapse<?= $row['encounter_id']; ?>">
