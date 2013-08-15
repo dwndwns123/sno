@@ -104,13 +104,13 @@ if($_SESSION["logged"]){
                   </select>
                 </div>
               </div>
-              <div class="control-group">
+<!--              <div class="control-group">
                 <label class="control-label" for="regAge"> Age</label>
                 <div class="controls">
                   <input type="text" class="input-xlarge" id="regAge" name="regAge" placeholder="Age" >
                 </div>
               </div>
-              <div class="control-group">
+-->              <div class="control-group">
                 <label class="control-label" for="regOption"><span class="req">*</span> Field Test Option</label>
                 <div class="controls">
                   <select class="input-xlarge" id="regOption" name="regOption" data-required="true">
