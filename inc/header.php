@@ -1,7 +1,7 @@
 <header>
   <div class="navbar">
     <div class="navbar-inner">
-      <a class="brand" href="index.php">GP/FP RefSet and ICPC mapping project - Field Test</a>
+      <a class="brand" href="index.php">GP/FP SNOMED CT RefSet and ICPC-2 mapping project - Field Test</a>
       <?php
       if($_SESSION["logged"]){
       ?>

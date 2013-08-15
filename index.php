@@ -27,7 +27,7 @@ if ($_POST["loginEmail"] && $_POST["loginPassword"]) {
 
                 $_SESSION["logged"] = true;
 				$_SESSION['last_activity'] = time(); //your last activity was now, having logged in.
-				$_SESSION['expire_time'] = 10*60; //expire time in seconds: three hours (you must change this)
+				$_SESSION['expire_time'] = 15*60; //expire time in seconds: three hours (you must change this)
 
             } else {
                 $message = '<div class="alert">You have not yet verified your email address.<br>Please retrieve the verification code from the email you should by now have received, and enter it <a href="verify.php">here</a>.</div>';
@@ -150,7 +150,7 @@ $encounters = mysql_num_rows($encountersData);
                 
             if ($encounters > 0) {
             ?>
-                <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View Encounters</a></li>
+                <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View Patient Encounters</a></li>
               <?php
             }
             ?>

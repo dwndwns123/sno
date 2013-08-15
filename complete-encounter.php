@@ -1,6 +1,6 @@
 <?php require ('inc/head.php'); ?>
 
-<title>SNOMED CT GP/FP RefSet Field Test - Complete encounter</title>
+<title>GP/FP SNOMED CT RefSet Field Test - Complete patient encounter</title>
 </head>
 <body>
 <?php
@@ -13,7 +13,7 @@ if($_SESSION["logged"]){
     $_SESSION ["encounter_id"] = null;
     $_SESSION ["add_mode"] = null;
 
-    $message = '<div class="alert alert-success">Encounter successfully completed</div>';
+    $message = '<div class="alert alert-success">Patient encounter successfully completed</div>';
   }
 }
 ?>
@@ -53,7 +53,7 @@ if(!$_SESSION["logged"]){
               <?php
             }
             ?>
-            <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View encounters</a></li>
+            <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View patient encounters</a></li>
             <li><a class="btn btn-large btn-block btn-primary" href="index.php">Home</a></li>
           </ul>
         </div>

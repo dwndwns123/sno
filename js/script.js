@@ -24,12 +24,22 @@ var ftt = {
 
 		// SCT First button actions
 		$('#searchBtn').on('click', function() {
+			$('#ICPC-Code').hide();
+			$('#conceptValidation').hide();
+			$('#ActionButtons').hide();
+			$('#conceptsDropdown')[0].selectedIndex = 0;
+			$('#conceptsDropdown').unbind('change');
+			$('dl.synonyms, #icpcDropdown, #icpcClearBtn').hide();
 			ftt.concepts.refine();
 		});
 		$('#clearBtn').on('click', function() {
 			ftt.concepts.reset();
 		});
 		$('#icpcSearchBtn').on('click', function() {
+			$('span.icpcSelected').empty();
+			$('#icpcSelectedDiv').hide();
+			$('#icpcDropdown')[0].selectedIndex = 0;
+			$('#icpcDropdown').unbind('change');
 			ftt.icpccodes.refine();
 		});
 		$('#icpcClearBtn').on('click', function() {
@@ -38,6 +48,11 @@ var ftt = {
 
 		// ICPC First button actions
 		$('#icpcSearchBtn2').on('click', function() {
+			$('#SCT-Code').hide();
+			$('#ActionButtons').hide();
+			$('#icpcDropdown')[0].selectedIndex = 0;
+			$('#icpcDropdown').unbind('change');
+
 			ftt.icpccodesFirst.refine();
 		});
 		$('#icpcClearBtn2').on('click', function() {
