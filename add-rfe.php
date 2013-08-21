@@ -115,6 +115,7 @@ if(!$_SESSION["logged"]){
 
       <form method="post" action="<?= $returnTo; ?>" id="addItem" name="addItem" data-validate="parsley">
         <input type="hidden" id="refType" name="refType" value="0">
+        <input type="hidden" id="option" name="option" value="<?= $_SESSION["option"] ?>">
         <fieldset>
 
        <?php 
