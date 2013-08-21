@@ -2,14 +2,14 @@
 require ('inc/head.php');
 ?>
 
-<title>SNOMED CT GP/FP RefSet Field Test - Encounters</title>
+<title>SNOMED CT GP/FP RefSet Field Test - Patient Encounters</title>
 </head>
 <body>
   <div class="container">
     <?php require('inc/header.php'); ?>
     <div class="main clearfix">
       <div class="page-header">
-        <h1>Encounters</h1>
+        <h1>Patient Encounters</h1>
       </div>
 <?php
 if(!$_SESSION["logged"]){
@@ -44,7 +44,7 @@ if(!$_SESSION["logged"]){
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['encounter_id']; ?>">
-                      Encounter #<?= $row['encounter_id']; ?>  - created <?php echo date_format($date, '\o\n l\, jS F Y'); ?>
+                      Encounter #<?= $row['user_encounter_id']; ?>  - created <?php echo date_format($date, '\o\n l\, jS F Y'); ?>
                     </a>
                   </div>
                   <div class="accordion-body collapse" id="collapse<?= $row['encounter_id']; ?>">
@@ -73,7 +73,7 @@ if(!$_SESSION["logged"]){
             } else {
               ?>
               <p class="lead">You have not yet completed any encounters.</p>
-              <a href="add-rfe.php?new=1" class="btn">Add Encounter</a>
+              <a href="add-rfe.php?new=1" class="btn">Add Patient Encounter</a>
               <?php
             }
           ?>

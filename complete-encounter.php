@@ -1,19 +1,23 @@
 <?php require ('inc/head.php'); ?>
 
-<title>SNOMED CT GP/FP RefSet Field Test - Complete encounter</title>
+<title>GP/FP SNOMED CT RefSet Field Test - Complete patient encounter</title>
 </head>
 <body>
 <?php
 if($_SESSION["logged"]){
-  error_log("Enc complete session enc id is now - '$_SESSION[encounter_id]'");
-    
+  $userEncId = intval($_SESSION["completed_encs"]);
   if(!is_null($_SESSION["encounter_id"])){
-    $sql = "UPDATE Encounters SET complete = 1 WHERE encounter_id = '$_SESSION[encounter_id]'";
+    $newEnc = $userEncId+1;
+    $newEnc2 = $userEncId++;
+    
+    $sql = "UPDATE Encounters SET complete = 1, user_encounter_id = '$newEnc' WHERE encounter_id = '$_SESSION[encounter_id]'";
     mysql_query($sql) or die(mysql_error());
     $_SESSION ["encounter_id"] = null;
     $_SESSION ["add_mode"] = null;
-
-    $message = '<div class="alert alert-success">Encounter successfully completed</div>';
+    $_SESSION["completed_encs"] = $newEnc;
+    $message = '<div class="alert alert-success">Patient encounter successfully completed. Please do not press back, or refresh the page, as this will re-submit the encounter.</div>';
+  } else {
+    $message = '<div class="alert alert-error">Unless you have just pressed the back or refresh button, there has been a system error. Please contact fieldtesttool@ihtsdo.org other return to the home page</div>';  
   }
 }
 ?>
@@ -53,7 +57,7 @@ if(!$_SESSION["logged"]){
               <?php
             }
             ?>
-            <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View encounters</a></li>
+            <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View patient encounters</a></li>
             <li><a class="btn btn-large btn-block btn-primary" href="index.php">Home</a></li>
           </ul>
         </div>

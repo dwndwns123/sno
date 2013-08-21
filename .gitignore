@@ -1,6 +1,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.project
 Icon
 
 
@@ -20,3 +21,5 @@ field-test.ini
 nbproject/private/private.xml
 
 nbproject/project.xml
+404.html
+index.html

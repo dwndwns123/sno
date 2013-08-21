@@ -27,7 +27,7 @@ if ($_POST["loginEmail"] && $_POST["loginPassword"]) {
 
                 $_SESSION["logged"] = true;
 				$_SESSION['last_activity'] = time(); //your last activity was now, having logged in.
-				$_SESSION['expire_time'] = 10*60; //expire time in seconds: three hours (you must change this)
+				$_SESSION['expire_time'] = 15*60; //expire time in seconds: three hours (you must change this)
 
             } else {
                 $message = '<div class="alert">You have not yet verified your email address.<br>Please retrieve the verification code from the email you should by now have received, and enter it <a href="verify.php">here</a>.</div>';
@@ -100,8 +100,6 @@ if(!$_SESSION["logged"]){
 } else {
 /*$_SESSION ["encounter_id"] = null;
 $_SESSION ["add_mode"] = null;*/
-error_log("thrown into the INDEX page for some reason - so the enc will be set to null");
-
 $rows = mysql_query("SELECT * FROM Users U, TestApproach T WHERE user_id='$_SESSION[user_id]' and T.option_id = U.option_id") or die(mysql_error());
 $user = mysql_fetch_array($rows);
 
@@ -119,6 +117,10 @@ break;
 
 $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y'") or die(mysql_error());
 $encounters = mysql_num_rows($encountersData);
+if (!$_SESSION["completed_encs"]) {
+    $_SESSION["completed_encs"] = $encounters;
+    error_log("encounters completed is - '$_SESSION[completed_encs]'");
+}
 ?>
       <div class="page-header">
         <h1>Home</h1>
@@ -152,7 +154,7 @@ $encounters = mysql_num_rows($encountersData);
                 
             if ($encounters > 0) {
             ?>
-                <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View Encounters</a></li>
+                <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View Patient Encounters</a></li>
               <?php
             }
             ?>

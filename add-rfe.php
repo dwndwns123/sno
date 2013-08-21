@@ -191,7 +191,7 @@ if(!$_SESSION["logged"]){
                 </label>
               </div>
               <hr>
-              <p>6. If the ICPC-2 code is not an appropriate match, please record your preferred ICPC-2 code:</p>
+              <p>6. If the ICPC-2 code is not an appropriate match, please record your preferred ICPC-2 code or do a text search:</p>
               <div class="input-append">
                 <input id="icpcSearchBox" name="searchBox" type="text" maxlength="50">
                 <button id="icpcSearchBtn" class="btn" type="button">Search</button>
@@ -201,6 +201,8 @@ if(!$_SESSION["logged"]){
                 <?php /* require('inc/icpccodes.php'); */ ?> 
               </select>
               <div id="icpcValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
+              <div id="icpcSelectedDiv" style="display: none;">7. <strong><span class="icpcSelected"></span></strong> has been selected as the preferred code.</div>
+
 <!--              <button id="icpcClearBtn" class="btn" type="button" style="a">Reset</button> -->
           </div>
              
@@ -215,9 +217,9 @@ if(!$_SESSION["logged"]){
               
           <div class="row">
             <div class="span8 offset2">
-              <p>1. Search and (select) the <strong>ICPC-2</strong> code that represents the RFE you wish to record.</p>
+              <p>1. Search and (select) the <strong>ICPC-2</strong> code that represents the RFE you wish to record,  or do a text search:</p>
               <div class="input-append">
-                   <input id="icpcSearchBox" name="icpc2Search" type="text" maxlength="50">
+                   <input id="icpcSearchBox2" name="icpc2Search" type="text" maxlength="50">
                    <button id="icpcSearchBtn2" class="btn" type="button">Search</button>
               </div>
               <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="8" data-error-container="#icpcValidation">

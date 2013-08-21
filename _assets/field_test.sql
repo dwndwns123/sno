@@ -285,7 +285,7 @@ CREATE TABLE `Encounters` (
   `user_id` int(11) NOT NULL,
   `complete` tinyint(2) NOT NULL DEFAULT '0',
   `active` varchar(1) NOT NULL DEFAULT 'y',
-  `label` varchar(64) DEFAULT NULL,
+  `user_encounter_id` INT( 4 ) NULL DEFAULT '0',
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00', 
   PRIMARY KEY (`encounter_id`)
