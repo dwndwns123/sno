@@ -56,8 +56,11 @@ if(!$_SESSION["logged"]){
       <div class="row">
         <div class="span12">
           <div class="hero-unit">
-            <h1>Lorem ipsum headline</h1>
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+            <h2>GP/FP SNOMED CT RefSet and ICPC-2 mapping project - Field Test</h2>
+            <p>Welcome to the Field Test of the GP/FP SNOMED CT RefSet and map to ICPC</p>
+            <p>Clinical input is needed to ensure that both the GP/FP RefSet and map to ICPC-2 are of the highest quality possible. The involvement of many GPs/FPs from multiple countries will ensure that both products are acceptable for future implementation at a local level in electronic health records. </p>
+            <p>Thank you for your participation.</p>    
+            <p>Instructions for completing the Field Test are available here</p>
           </div>
         </div>
       </div>
