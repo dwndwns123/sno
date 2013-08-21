@@ -259,7 +259,7 @@ if(!$_SESSION["logged"]){
             
               <div class="form-actions">
                 <a id="cancelBtn" class="btn" href="<?= $_POST['from'] ?>?cancel=1">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;
-              <div id="ActionButtons" style="display: none;">
+              <div id="ActionButtons">
                 <button type="submit" class="btn">Submit changes</button>
               </div>
               </div>
