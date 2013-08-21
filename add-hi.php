@@ -227,7 +227,7 @@ if(!$_SESSION["logged"]){
               
           <div class="row">
             <div class="span8 offset2">
-              <p>1. Search and (select) the <strong>ICPC-2</strong> code that represents the RFE you wish to record,  or do a text search:</p>
+              <p>1. Search and (select) the <strong>ICPC-2</strong> code that represents the Health Issue you wish to record,  or do a text search:</p>
               <div class="input-append">
                    <input id="icpcSearchBox2" name="icpc2Search" type="text" maxlength="50">
                    <button id="icpcSearchBtn2" class="btn" type="button">Search</button>
