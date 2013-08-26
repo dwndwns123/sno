@@ -6,8 +6,8 @@ use snomedct;
 
 /* create the Full S-CT data tables */
 
-drop table if exists curr_concept_f;
-create table curr_concept_f(
+drop table if exists curr_concept_s;
+create table curr_concept_s(
 id varchar(18) not null,
 effectivetime char(8) not null,
 active char(1) not null,
@@ -21,8 +21,8 @@ key idx_definitionstatusid(definitionstatusid)
 ) engine=myisam default charset=utf8;
 
 
-drop table if exists curr_description_f;
-create table curr_description_f(
+drop table if exists curr_description_s;
+create table curr_description_s(
 id varchar(18) not null,
 effectivetime char(8) not null,
 active char(1) not null,
@@ -43,8 +43,8 @@ key idx_term(term),
 key idx_casesignificanceid(casesignificanceid)
 ) engine=myisam default charset=utf8;
 
-drop table if exists curr_textdefinition_f;
-create table curr_textdefinition_f(
+drop table if exists curr_textdefinition_s;
+create table curr_textdefinition_s(
 id varchar(18) not null,
 effectivetime char(8) not null,
 active char(1) not null,
@@ -65,8 +65,8 @@ key idx_term(term),
 key idx_casesignificanceid(casesignificanceid)
 ) engine=myisam default charset=utf8;
 
-drop table if exists curr_relationship_f;
-create table curr_relationship_f(
+drop table if exists curr_relationship_s;
+create table curr_relationship_s(
 id varchar(18) not null,
 effectivetime char(8) not null,
 active char(1) not null,
@@ -89,8 +89,8 @@ key idx_characteristictypeid(characteristictypeid),
 key idx_modifierid(modifierid)
 ) engine=myisam default charset=utf8;
 
-drop table if exists curr_stated_relationship_f;
-create table curr_stated_relationship_f(
+drop table if exists curr_stated_relationship_s;
+create table curr_stated_relationship_s(
 id varchar(18) not null,
 effectivetime char(8) not null,
 active char(1) not null,
@@ -113,8 +113,8 @@ key idx_characteristictypeid(characteristictypeid),
 key idx_modifierid(modifierid)
 ) engine=myisam default charset=utf8;
 
-drop table if exists curr_langrefset_f;
-create table curr_langrefset_f(
+drop table if exists curr_langrefset_s;
+create table curr_langrefset_s(
 id varchar(36) not null,
 effectivetime char(8) not null,
 active char(1) not null,
@@ -149,8 +149,8 @@ key idx_referencedcomponentid(referencedcomponentid),
 key idx_targetcomponentid(targetcomponentid)
 ) engine=myisam default charset=utf8;
 
-drop table if exists curr_attributevaluerefset_f;
-create table curr_attributevaluerefset_f(
+drop table if exists curr_attributevaluerefset_s;
+create table curr_attributevaluerefset_s(
 id varchar(36) not null,
 effectivetime char(8) not null,
 active char(1) not null,
@@ -167,8 +167,8 @@ key idx_referencedcomponentid(referencedcomponentid),
 key idx_valueid(valueid)
 ) engine=myisam default charset=utf8;
 
-drop table if exists curr_simplemaprefset_f;
-create table curr_simplemaprefset_f(
+drop table if exists curr_simplemaprefset_s;
+create table curr_simplemaprefset_s(
 id varchar(36) not null,
 effectivetime char(8) not null,
 active char(1) not null,
@@ -185,8 +185,8 @@ key idx_referencedcomponentid(referencedcomponentid),
 key idx_maptarget(maptarget)
 ) engine=myisam default charset=utf8;
 
-drop table if exists curr_simplerefset_f;
-create table curr_simplerefset_f(
+drop table if exists curr_simplerefset_s;
+create table curr_simplerefset_s(
 	id varchar(36) not null,
 	effectivetime char(8) not null,
 	active char(1) not null,
@@ -201,8 +201,8 @@ create table curr_simplerefset_f(
 	key idx_referencedcomponentid(referencedcomponentid)
 ) engine=myisam default charset=utf8;
 
-drop table if exists curr_complexmaprefset_f;
-create table curr_complexmaprefset_f(
+drop table if exists curr_complexmaprefset_s;
+create table curr_complexmaprefset_s(
 	id varchar(36) not null,
 	effectivetime char(8) not null,
 	active char(1) not null,
