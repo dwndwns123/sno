@@ -1,5 +1,8 @@
 <?php require ('inc/conn.php');
 
+// extra error logging for hosting solution
+include('inc/logging.php');
+
 if (( $_SESSION['last_activity'] < time()-$_SESSION['expire_time'] ) && ($_SESSION['logged'])) { //have we expired?
     //redirect to logout.php
 	session_destroy();
@@ -10,6 +13,7 @@ if (( $_SESSION['last_activity'] < time()-$_SESSION['expire_time'] ) && ($_SESSI
 $pageName = basename($_SERVER['SCRIPT_NAME']);
 error_log("This page is - '$pageName'");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

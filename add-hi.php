@@ -3,13 +3,13 @@
 $refset_id = 1;
 
 if (!is_null($_GET["enc"])) {// came from the review page
-    error_log("I am in here - the came from review page");
+    $log -> user("I am in here - the came from review page");
     $encounter_id = $_GET["enc"];
     $returnTo = "review-encounter.php";
 
 } else {
-    error_log("I am in the add-hi page - the first if else place");
-    error_log("debugflag - encounter_id var is - '$_SESSION[encounter_id]'");
+    $log -> user("I am in the add-hi page - the first if else place");
+    $log -> user("debugflag - encounter_id var is - '$_SESSION[encounter_id]'");
 
     if ($_SESSION["logged"]) {
         if ($_SESSION["option"] == 3) {// this is for refset verification only
@@ -17,15 +17,15 @@ if (!is_null($_GET["enc"])) {// came from the review page
             if ($_POST["conceptsDropdown"] || $_POST["conceptRepresentation"]) {
 
                 if (!$_SESSION["encounter_id"]) {// no encounter id, so create new encounter and new Health Issue
-                    error_log("I am in the add-hi page - no encounter id, so create new encounter and new Health Issue");
+                    $log -> user("I am in the add-hi page - no encounter id, so create new encounter and new Health Issue");
 
                     $sql = "INSERT INTO Encounters (user_id) VALUES ('$_SESSION[user_id]')";
                     mysql_query($sql) or die(mysql_error());
                     $_SESSION["encounter_id"] = mysql_insert_id();
 
-                    error_log("debugFlag - session enc id is now - '$_SESSION[encounter_id]'");
+                    $log -> user("debugFlag - session enc id is now - '$_SESSION[encounter_id]'");
                 } 
-                error_log("refset type before inserting is - '$_POST[refType]'");
+                $log -> user("refset type before inserting is - '$_POST[refType]'");
                 $tmpRefsetType = $refset_id;
                 if ($_POST[refType] == 0){
                     $tmpRefsetType = 0;
@@ -33,7 +33,7 @@ if (!is_null($_GET["enc"])) {// came from the review page
                 $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt) 
                                         VALUES ('$_SESSION[encounter_id]', '$tmpRefsetType', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s')", mysql_real_escape_string($_POST["conceptFreeText"]));
 
-                error_log($sql);
+                $log -> user($sql);
 
                 mysql_query($sql) or die(mysql_error());
                 $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . ' successfully recorded. Please do not press back, or refresh the page, as this will re-submit the ' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . '</div>';
@@ -45,31 +45,31 @@ if (!is_null($_GET["enc"])) {// came from the review page
         } else {// this is for mapping verification
 
             // debug notices
-            error_log("I am in here, ref adding - option 1 & 2 verification");
-            error_log("debugFlag - session enc id is now - '$_SESSION[encounter_id]'");
-            error_log("debugflag - concepts dropdown after newly set is - '$_POST[conceptsDropdown]'");
-            error_log("debugflag - concepts alt text after newly set is - '$_POST[conceptFreeText]'");
-            error_log("debugflag - icpc after newly set is - '$_POST[icpc2]'");
-            error_log("debugflag - icpc alt text after newly set is - '$_POST[icpcDropdown]'");
+            $log -> user("I am in here, ref adding - option 1 & 2 verification");
+            $log -> user("debugFlag - session enc id is now - '$_SESSION[encounter_id]'");
+            $log -> user("debugflag - concepts dropdown after newly set is - '$_POST[conceptsDropdown]'");
+            $log -> user("debugflag - concepts alt text after newly set is - '$_POST[conceptFreeText]'");
+            $log -> user("debugflag - icpc after newly set is - '$_POST[icpc2]'");
+            $log -> user("debugflag - icpc alt text after newly set is - '$_POST[icpcDropdown]'");
 
             if (($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && ($_POST["icpc2"] || $_POST["icpcDropdown"])) {// all mandatory fields posted
 
                 if (!$_SESSION["encounter_id"]) {// no encounter id, so create new encounter and new Health Issue
-                    error_log("I am in option 1&2 and the fields are populated - no encounter id, so create new encounter and new Health Issue");
+                    $log -> user("I am in option 1&2 and the fields are populated - no encounter id, so create new encounter and new Health Issue");
 
                     $sql = "INSERT INTO Encounters (user_id) VALUES ('$_SESSION[user_id]')";
                     mysql_query($sql) or die(mysql_error());
                     $_SESSION["encounter_id"] = mysql_insert_id();
 
-                    error_log("debugflag - encounter_id var after newly set (opt 1&2) is - '$_SESSION[encounter_id]'");
-                    error_log("debugflag - recordType var after newly set is - ");
+                    $log -> user("debugflag - encounter_id var after newly set (opt 1&2) is - '$_SESSION[encounter_id]'");
+                    $log -> user("debugflag - recordType var after newly set is - ");
 
                 }
                 $icpcfield = ($_SESSION["option"] == 1 ? $_POST["icpc2"] : $_POST["icpcDropdown"] );
                 $icpcAltfield = ($_SESSION["option"] == 1 ? $_POST["icpcDropdown"] : "" );
-                error_log("icpcfield is '$icpcfield' and icpcAltfield is '$icpcAltfield'");
+                $log -> user("icpcfield is '$icpcfield' and icpcAltfield is '$icpcAltfield'");
                 
-                error_log("refset type before inserting is - '$_POST[refType]'");
+                $log -> user("refset type before inserting is - '$_POST[refType]'");
                 $tmpRefsetType = $refset_id;
                 if ($_POST[refType] == 0){
                     $tmpRefsetType = 0;
@@ -79,7 +79,7 @@ if (!is_null($_GET["enc"])) {// came from the review page
                                         VALUES ('$_SESSION[encounter_id]', '$tmpRefsetType', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
                                         '$_POST[icpc2appropriate]','$icpcAltfield')", mysql_real_escape_string($_POST["conceptFreeText"]));
 
-                error_log($sql);
+                $log -> user($sql);
                 mysql_query($sql) or die(mysql_error());
 
                 $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . ' successfully recorded. Please do not press back, or refresh the page, as this will re-submit the ' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . '</div>';

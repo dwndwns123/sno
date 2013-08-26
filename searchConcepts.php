@@ -1,5 +1,6 @@
 <?php
 include "inc/conn.php";
+include "inc/logging.php";
 
 $recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
 
@@ -11,14 +12,14 @@ if ($recordType == "Health Issue") {
 
 $searchWords = explode(" ", $searchText);
 $arrayCount = count($searchWords);
-error_log("easrch words index 1 - '$searchWords[1]'");
-error_log("easrch words length is - '$arrayCount'");
+$log -> user("easrch words index 1 - '$searchWords[1]'");
+$log -> user("easrch words length is - '$arrayCount'");
 if ($arrayCount > 1) {
     $searchText = ('"%'.$searchWords[0].'%"');
     for ($x = 1; $x < $arrayCount; $x++) {
         if ($searchWords[$x] != '') {
             $searchText = (''.$searchText.' AND Syn.Synonym LIKE "%'.$searchWords[$x].'%"');
-            error_log($searchText);
+            $log -> user($searchText);
         }
     }
 } else {
@@ -32,7 +33,7 @@ $sql = ('select DISTINCT Syn.conceptId, SCT_Concepts.label AS term from ICPCSyno
 
 $result = mysql_query($sql) or die(mysql_error());
 $rows = array();
-error_log($sql);
+$log -> user($sql);
 
 while ($row = mysql_fetch_array($result)) {
     $rows[] = array("conceptId" => $row["conceptId"], "term" => $row["term"]);
