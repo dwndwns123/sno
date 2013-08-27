@@ -1,4 +1,5 @@
 <?php include "inc/conn.php";
+include "inc/logging.php";
 
 // This function is to retrieve the SCT mapped codes depending on the provided ICPC-2 code 
 
@@ -10,7 +11,7 @@ $result = mysql_query($sql) or die(mysql_error());
 
 $rows = array();
 
-error_log($sql);
+$log -> user($sql);
 
 while($row = mysql_fetch_array($result)){
   $rows[] = array("conceptId" => $row["concept_id"], "term" => $row["label"]);

@@ -267,6 +267,9 @@ var ftt = {
 		refine : function() {
 			var searchText = $('#searchBox').val();
 			var altText = $('#conceptFreeText').val();
+//			alert('searchText - ' + searchText + ' and altText - ' + altText);
+			
+
 
 			if ((searchText == '') && (altText == '')) {
 				$('#ICPC-Code').hide();
@@ -300,10 +303,17 @@ var ftt = {
 
 						$('#conceptsDropdown').on('change', function() {
 							var cid = $('#conceptsDropdown').val();
+							var optid = $('#option').val();
+
+//							alert('cid on the dropdown is - ' + cid);
+//							alert('option is is - ' + optid);
+
 							if (cid != '') {
 								$('#ActionButtons').show();
 								ftt.concepts.getSynonyms();
-								ftt.concepts.getICPC();
+								if (optid == 1) {
+									ftt.concepts.getICPC();
+								}
 							} else {
 								var str = "No match";
 								$('span.icpcCode').empty().append(str);

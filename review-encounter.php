@@ -9,7 +9,7 @@ if ($_SESSION["logged"]) {
     if ($_POST["enc"]) {
 
         $_SESSION["encounter_id"] = $_POST["enc"];
-        error_log("and the encounter from enc page is - '$_POST[enc]'");
+        $log -> user("and the encounter from enc page is - '$_POST[enc]'");
         $_SESSION["return_to"] = "encounters.php";
         $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$_POST[enc]'") or die(mysql_error());
         $enc = mysql_fetch_array($encRows);
@@ -20,15 +20,15 @@ if ($_SESSION["logged"]) {
         $endUserId = $userEncId+1;
 
         if ($_SESSION["option"] == 3) {
-            error_log("Reviewing in option 3, dropdown is - '$_POST[conceptsDropdown]' - alt field is - '$_POST[conceptFreeText]'");
+            $log -> user("Reviewing in option 3, dropdown is - '$_POST[conceptsDropdown]' - alt field is - '$_POST[conceptFreeText]'");
             if ($_POST["conceptsDropdown"] || $_POST["conceptFreeText"])// all mandatory fields posted
             {
                 // debug messages
-                error_log("debugflag - Refset Only encounter_id var after entering review-enc is - '$_SESSION[encounter_id]'");
+                $log -> user("debugflag - Refset Only encounter_id var after entering review-enc is - '$_SESSION[encounter_id]'");
 
                 if ($_POST["edit_reason"]) {
-                    error_log("Come from the edit page");
-                    error_log("refset type before inserting is - '$_POST[refType]'");
+                    $log -> user("Come from the edit page");
+                    $log -> user("refset type before inserting is - '$_POST[refType]'");
 
                     $sql = sprintf("UPDATE Encounter_Reasons SET sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
                         sct_alt = '%s' WHERE reason_id = '$_POST[edit_reason]'", mysql_real_escape_string($_POST[conceptFreeText]));
@@ -39,8 +39,8 @@ if ($_SESSION["logged"]) {
                         VALUES ('$_SESSION[encounter_id]', 1, '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s')", 
                         mysql_real_escape_string($_POST["conceptFreeText"]));
                 }
-                error_log("review encounter update incoming");
-                error_log($sql);
+                $log -> user("review encounter update incoming");
+                $log -> user($sql);
                 mysql_query($sql) or die(mysql_error());
 
                 $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . ' successfully recorded. Please do not press back, or refresh the page, as this will re-submit the ' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . '</div>';
@@ -57,25 +57,25 @@ if ($_SESSION["logged"]) {
             if (($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && (($icpcfield != "" || $icpcAltfield != "")))// all mandatory fields posted
             {
                 // debug messages
-                error_log("debugflag - encounter_id var after entering review-enc is - '$_SESSION[encounter_id]'");
-                error_log("debugflag - add_mode var after newly set is - '$_SESSION[add_mode]'");
+                $log -> user("debugflag - encounter_id var after entering review-enc is - '$_SESSION[encounter_id]'");
+                $log -> user("debugflag - add_mode var after newly set is - '$_SESSION[add_mode]'");
 
                 if ($_POST["edit_reason"]) {
-                    error_log("Come from the edit page");
+                    $log -> user("Come from the edit page");
                     $sql = sprintf("UPDATE Encounter_Reasons SET sct_id = '$_POST[conceptsDropdown]', sct_scale = '$_POST[conceptRepresentation]', 
                         sct_alt = '%s', icpc_id = '$icpcfield', icpc_scale = '$_POST[icpc2appropriate]', icpc_alt_id = '$icpcAltfield' 
                         WHERE reason_id = '$_POST[edit_reason]'", mysql_real_escape_string($_POST[conceptFreeText]));
 
                 } else {
                         
-                    error_log("session enc id for adding HI is now - '$_SESSION[encounter_id]' - and the post enc id is - '$_POST[encid]'");                   
+                    $log -> user("session enc id for adding HI is now - '$_SESSION[encounter_id]' - and the post enc id is - '$_POST[encid]'");                   
                     
                     $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
                         VALUES ('$_SESSION[encounter_id]', 1, '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
                         '$_POST[icpc2appropriate]','$icpcAltfield')", mysql_real_escape_string($_POST["conceptFreeText"]));
                                         }
-                error_log("review encounter update incoming");
-                error_log($sql);
+                $log -> user("review encounter update incoming");
+                $log -> user($sql);
                 mysql_query($sql) or die(mysql_error());
 
                 $message = '<div class="alert alert-success">' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . ' successfully recorded. Please do not press back, or refresh the page, as this will re-submit the ' . ($_POST["refType"] == 0 ? "Reason For Encounter" : "Health Issue") . '</div>';
