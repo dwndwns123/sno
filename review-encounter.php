@@ -182,7 +182,14 @@ if(!$_SESSION["logged"]){
                           <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
                           
                           <dt>Mapped ICPC-2 code</dt>
-                          <dd><?= $icpcId; ?> - <?= $icpc; ?></dd>
+                          <dd><?php
+                            if (strpos($icpcId, 'UNMCH') === false) {
+                          ?>
+                              <?= $icpcId; ?>  - <?= $icpc; ?>
+                          <?php } else { ?>    
+                              <?= $icpc; ?>
+                          <?php } ?>
+                          </dd>
                           <dt>Is this ICPC-2 code an appropriate match for the <?= ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue"); ?>? <br>(1 = Very, 5 = Not at all)</dt>
                           <dd><?= $row['icpc_scale']; ?></dd>
                           <dt>Alternate ICPC-2 code</dt>

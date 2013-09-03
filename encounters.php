@@ -19,7 +19,7 @@ if(!$_SESSION["logged"]){
   $_SESSION ["encounter_id"] = null;
   $_SESSION ["add_mode"] = null;
 
-  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y'") or die(mysql_error());
+  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y' ORDER BY user_encounter_id ASC") or die(mysql_error());
 
   $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
   $user = mysql_fetch_array($rows);

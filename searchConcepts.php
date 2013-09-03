@@ -2,13 +2,9 @@
 include "inc/conn.php";
 include "inc/logging.php";
 
-$recordType = ($_SESSION["add_mode"] == 0 ? "RFE" : "Health Issue");
-
-$refset_type = 0;
 $searchText = $_POST["searchText"];
-if ($recordType == "Health Issue") {
-    $refset_type = 1;
-}
+$refset_type = $_POST["refid"];
+
 
 $searchWords = explode(" ", $searchText);
 $arrayCount = count($searchWords);

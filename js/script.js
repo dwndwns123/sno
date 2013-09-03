@@ -280,10 +280,15 @@ var ftt = {
 				$('#conceptsDropdown').unbind('change');
 				$('#conceptsDropdown, dl.synonyms, #clearBtn, #icpcDropdown, #icpcClearBtn').hide();
 			} else {
+				var refid = $('#refType').val();
+
 				$.ajax({
 					url : 'searchConcepts.php',
 					type : 'POST',
-					data : 'searchText=' + searchText,
+					data : {
+						searchText : searchText,
+						refid : refid
+					},
 					dataType : 'json',
 					success : function(response, textStatus, jqXHR) {
 						//						$('#conceptsDropdown').empty();
@@ -398,7 +403,12 @@ var ftt = {
 		},
 
 		showICPC : function(data) {
+			var id = data[0].id;
 			var str = data[0].id + " - " + data[0].title;
+			if (id.indexOf("UNMCH")!== -1) 
+			{
+				str = data[0].title;
+			}
 			$('span.icpcCode').empty().append(str);
 			$('#icpc2').val(data[0].id);
 		},

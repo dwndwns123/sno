@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `ICPC_Codes`;
 CREATE TABLE `ICPC_Codes` (
   `id` varchar(10) NOT NULL,
-  `title` varchar(50) NOT NULL
+  `title` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
