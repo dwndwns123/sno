@@ -52,7 +52,7 @@ var ftt = {
 			$('#ActionButtons').hide();
 			$('#icpcDropdown')[0].selectedIndex = 0;
 			$('#icpcDropdown').unbind('change');
-
+			//alert('clicked button');
 			ftt.icpccodesFirst.refine();
 		});
 		$('#icpcClearBtn2').on('click', function() {
@@ -231,7 +231,7 @@ var ftt = {
 								var cid = $('#icpcDropdown').val();
 								if (cid != '') {
 									$('#icpcSelectedDiv').show();
-									var str = cid + ' ' + $('#icpcDropdown option:selected').text();
+									var str = $('#icpcDropdown option:selected').text();
 									$('span.icpcSelected').empty().append(str);
 									$('#icpcDropdown').focus();
 									$('#ActionButtons').show();
@@ -317,7 +317,8 @@ var ftt = {
 							if (cid != '') {
 								$('#ActionButtons').show();
 								$('dl.selectedConceptDL').show();
-								$('span.selectedConcept').empty().append($("#conceptsDropdown option:selected").text());
+								var str = cid + ' - ' + $("#conceptsDropdown option:selected").text();
+								$('span.selectedConcept').empty().append(str);
 								ftt.concepts.getSynonyms();
 								if (optid == 1) {
 									ftt.concepts.getICPC();
@@ -439,7 +440,7 @@ var ftt = {
 	icpccodesFirst : {
 		refine : function() {
 			var searchText = $('#icpcSearchBox2').val();
-			//			alert("search box val is - " + searchText);
+			//alert("search box val is - " + searchText);
 
 			if (searchText == '') {
 				$('#SCT-Code').hide();
@@ -608,7 +609,7 @@ var tools = {
 		var $tmp = $obj.find('option')[0];
 		$obj.empty().append($tmp);
 		for (var x = 0; x < data.length; x++) {
-			$obj.append('<option value="' + data[x].id + '">' + data[x].title + '</option>');
+			$obj.append('<option value="' + data[x].id + '">' + data[x].id + ' - ' + data[x].title + '</option>');
 		}
 	}
 };

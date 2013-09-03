@@ -174,7 +174,7 @@ if(!$_SESSION["logged"]){
               <p>The ICPC-2 code previously selected was <strong><?= $icpc_details['id']; ?> - <?= $icpc_details['title']; ?></strong></p>
               <p>1. Search and (select) the <strong>ICPC-2</strong> code that represents the <?= $recordType; ?> you wish to record.</p>
               <div class="input-append">
-                   <input id="icpcSearchBox" name="icpc2Search" type="text" maxlength="50" value="<?= $icpc_details["title"]; ?>">
+                   <input id="icpcSearchBox2" name="icpc2Search" type="text" maxlength="50" value="<?= $icpc_details["title"]; ?>">
                    <button id="icpcSearchBtn2" class="btn" type="button">Search</button>
               </div>
               <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="8" data-error-container="#icpcValidation">
@@ -182,6 +182,10 @@ if(!$_SESSION["logged"]){
               </select>
               <button id="icpcClearBtn2" class="btn" type="button">Reset</button>
               <div id="icpcValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
+              <dl class="dl-horizontal selectedICPCDL">
+                <dt>Selected ICPC-2 code:</dt>
+                <dd><ul><li><strong><span class="selectedICPC"></span></strong></li></ul></dd>
+              </dl>
 
               <!-- SCT mapped concepts -->
               
@@ -195,6 +199,10 @@ if(!$_SESSION["logged"]){
                       <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
                       </p>
     
+                      <dl class="dl-horizontal selectedConceptDL">
+                        <dt>Selected SNOMED<br>Concept:</dt>
+                        <dd><ul><li><strong><span class="selectedConcept"></span></strong></li></ul></dd>
+                      </dl>
                       <dl class="dl-horizontal synonyms">
                         <dt>Synonyms:</dt>
                         <dd></dd>

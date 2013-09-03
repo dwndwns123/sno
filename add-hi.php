@@ -112,6 +112,9 @@ if (!is_null($_GET["enc"])) {// came from the review page
             A Health Issue is an “issue related to the health of a subject of care, as identified or stated by a specific health care party”. This is further defined in the notes as “according to this definition, a health issue can correspond to a health problem, a disease, an illness”<br />
             <small>(Health informatics – System of concepts to support continuity of care – Part 1: basic concepts (CEN 13940-1))</small>
         </blockquote>
+        <p>
+            <a id="homeBtn" class="btn" href="index.php">Return Home</a>
+        </p>
       </div>
 <?php
 if(!$_SESSION["logged"]){
