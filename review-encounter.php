@@ -161,7 +161,7 @@ if(!$_SESSION["logged"]){
                   <div class="accordion-group">
                     <div class="accordion-heading">
                       <a class="accordion-toggle" data-toggle="collapse" href="#collapse<?= $row['reason_id']; ?>">
-                        #<?= $row['reason_id'] . ' - ' . ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue") . ' - ' . $rowLabel; ?>
+                        <?= ($row['refset_id'] == 0 ? "Reason For Encounter" : "Health Issue") . ' - ' . $rowLabel; ?>
                       </a>
                     </div>
                     <div class="accordion-body collapse" id="collapse<?= $row['reason_id']; ?>">
@@ -189,8 +189,8 @@ if(!$_SESSION["logged"]){
                           <dd><?= $row['icpc_alt_id']; ?> - <?= $icpcAltLabel; ?></dd>
                           <dt></dt>
                           <dd> </dd>
-                          <dt>Date created</dt>
-                          <dd><?= date_format($date, 'l\, jS F Y'); ?></dd>
+<!--                          <dt>Date created</dt>
+                          <dd><?= date_format($date, 'l\, jS F Y'); ?></dd> -->
                         </dl>
                         <?php
                         if($user["field_test_complete"] == 0){
@@ -232,9 +232,9 @@ if(!$_SESSION["logged"]){
                           <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
                           <dt></dt>
                           <dd> </dd>
-                          <dt>Date created</dt>
+<!--                          <dt>Date created</dt>
                           <dd><?= date_format($date, 'l\, jS F Y'); ?></dd>
-
+-->
                           
                           
                         </dl>
@@ -269,9 +269,9 @@ if(!$_SESSION["logged"]){
                           <dd><?= $row['sct_scale']; ?></dd>
                           <dt>Alternative description of clinical term</dt>
                           <dd><?= ($row['sct_alt'] == '' ? '<em>None given</em>' : $row['sct_alt']); ?></dd>
-                          <dt>Date created</dt>
+<!--                          <dt>Date created</dt>
                           <dd><?= date_format($date, 'l\, jS F Y'); ?></dd>
-
+-->
 
                         </dl>
                         <?php

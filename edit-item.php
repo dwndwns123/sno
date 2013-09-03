@@ -62,6 +62,7 @@ if(!$_SESSION["logged"]){
         <fieldset>
             <input type="hidden" id="edit_reason" name="edit_reason" value="<?= $_POST[item]; ?>">
             <input type="hidden" id="encid" name="encid" value="<?= $_POST[encid]; ?>">
+            <input type="hidden" id="option" name="option" value="<?= $_SESSION["option"] ?>">
 
           <?php 
             switch ($_SESSION["option"]) {
@@ -258,8 +259,8 @@ if(!$_SESSION["logged"]){
 ?>
             
               <div class="form-actions">
-                <a id="cancelBtn" class="btn" href="<?= $_POST['from'] ?>?cancel=1">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;
               <div id="ActionButtons">
+                <a id="cancelBtn" class="btn" href="<?= $_POST['from'] ?>?cancel=1">Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="submit" class="btn">Submit changes</button>
               </div>
               </div>
