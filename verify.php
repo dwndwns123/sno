@@ -22,7 +22,14 @@ if($_SESSION["logged"]){
       $exists=1;
       $message = '<div class="alert alert-error">That email address is already registered.</div>';  
     } else {
-      $ver = md5(uniqid(mt_rand(), true));
+      // generate random reg verification
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $randomString = '';
+      for ($i = 0; $i < 10; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+      }  
+      $ver = $randomString;  
+//      $ver = md5(uniqid(mt_rand(), true));
       $pass = md5($_POST["regPassword"]);
 
       $sql = sprintf("INSERT INTO Users (title_id,first_name,last_name,email,password,role,age,gender_id,option_id,country_id,verification) VALUES ('$_POST[regTitle]','%s','%s','%s','$pass','%s','$age','$_POST[regGender]','$_POST[regOption]','$_POST[regCountry]','$ver')",
