@@ -83,6 +83,10 @@ if(!$_SESSION["logged"]){
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
+              <dl class="dl-horizontal selectedConceptDL">
+                <dt>Selected SNOMED<br>Concept:</dt>
+                <dd><strong><span class="selectedConcept"></span></strong></dd>
+              </dl>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
                 <dd></dd>
@@ -110,7 +114,23 @@ if(!$_SESSION["logged"]){
               <p>3. If the SNOMED CT concept was not an accurate representation, or no appropriate SNOMED CT concept was found, please write in free text the clinical term you wished to record.</p>
               <input type="text" class="span8" id="conceptFreeText" name="conceptFreeText" maxlength="250" value="<?= $item['sct_alt']; ?>">
               <hr>
-              <p>4. The associated ICPC-2 code is: <strong><span class="icpcCode"><?= $icpc_details['id']; ?> - <?= $icpc_details['title']; ?></span></strong></p>
+              <p class="icpcListlabel">4. Select the appropriate ICPC-2 code: 
+              <select class="input-xlarge" id="icpcCodeDropdown" name="icpcCodeDropdown" size="4">
+                <?php
+                     if (strpos($icpc_details['id'], 'UNMCH') === false) {
+                ?>
+                    <option value="<?= $icpc_details['id']; ?>" selected><?= $icpc_details['id']; ?> - <?= $icpc_details['title']; ?></option>
+                              <?= $icpcId; ?>  - <?= $icpc; ?>
+                <?php } else { ?>    
+                    <option value="<?= $icpc_details['id']; ?>" selected><?= $icpc_details['title']; ?></option>
+                <?php } ?>
+
+              </select>
+              </p>
+              <dl class="dl-horizontal selectedICPCDL">
+                <dt>Selected ICPC-2 code:</dt>
+                <dd><ul><li><strong><span class="selectedICPC"></span></strong></li></ul></dd>
+              </dl>
               <input type="hidden" id="icpc2" name="icpc2" value="<?= $icpc_details['id']; ?>">
               <hr>
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the <?= $recordType; ?> you recorded?</p>
@@ -141,6 +161,7 @@ if(!$_SESSION["logged"]){
                 <option value="">Select ICPC-2 code</option>
               </select>
               <div id="icpcValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
+              <div id="icpcSelectedDiv" style="display: none;">7. <strong><span class="icpcSelected"></span></strong> has been selected as the preferred code.</div>
 
 <?php
                 break;
@@ -222,10 +243,13 @@ if(!$_SESSION["logged"]){
               </div>
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
-                <?php /* require ('inc/concepts.php'); */ ?>
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
+              <dl class="dl-horizontal selectedConceptDL">
+                <dt>Selected SNOMED<br>Concept:</dt>
+                <dd><ul><li><strong><span class="selectedConcept"></span></strong></li></ul></dd>
+              </dl>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
                 <dd></dd>

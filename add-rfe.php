@@ -134,10 +134,13 @@ if(!$_SESSION["logged"]){
               </div>
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
-                <?php /* require('inc/concepts.php'); */ ?> 
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
+              <dl class="dl-horizontal selectedConceptDL">
+                <dt>Selected SNOMED<br>Concept:</dt>
+                <dd><ul><li><strong><span class="selectedConcept"></span></strong></li></ul></dd>
+              </dl>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
                 <dd></dd>
@@ -169,7 +172,13 @@ if(!$_SESSION["logged"]){
               
           <!-- Display ICPC Codes after being matched (or not) to the chosen SCT code -->    
           <div id="ICPC-Code" style="display: none;">
-              <p>4. The associated ICPC-2 code is: <strong><span class="icpcCode"></span></strong></p>
+              <p class="icpcListlabel">4. Select the appropriate ICPC-2 code: 
+              <select class="input-xlarge" id="icpcCodeDropdown" name="icpcCodeDropdown" size="4">
+              </select></p>
+              <dl class="dl-horizontal selectedICPCDL">
+                <dt>Selected ICPC-2 code:</dt>
+                <dd><ul><li><strong><span class="selectedICPC"></span></strong></li></ul></dd>
+              </dl>
               <input type="hidden" id="icpc2" name="icpc2">
               <hr>
               <p>5. In your opinion, is this ICPC-2 code an appropriate match for the RFE you recorded?</p>
@@ -225,10 +234,13 @@ if(!$_SESSION["logged"]){
               </div>
               <select class="input-xlarge" id="icpcDropdown" name="icpcDropdown" size="8" data-error-container="#icpcValidation">
               <option value="">Select ICPC-2 code</option>
-                   <?php /* require('inc/icpccodes.php'); */ ?> 
               </select>
               <button id="icpcClearBtn2" class="btn" type="button">Reset</button>
               <div id="icpcValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
+              <dl class="dl-horizontal selectedICPCDL">
+                <dt>Selected ICPC-2 code:</dt>
+                <dd><ul><li><strong><span class="selectedICPC"></span></strong></li></ul></dd>
+              </dl>
 
               <!-- SCT mapped concepts -->
               
@@ -241,6 +253,10 @@ if(!$_SESSION["logged"]){
                   </p>
                   <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
 
+                  <dl class="dl-horizontal selectedConceptDL">
+                    <dt>Selected SNOMED<br>Concept:</dt>
+                    <dd><ul><li><strong><span class="selectedConcept"></span></strong></li></ul></dd>
+                  </dl>
                   <dl class="dl-horizontal synonyms">
                     <dt>Synonyms:</dt>
                     <dd></dd>
@@ -291,10 +307,13 @@ if(!$_SESSION["logged"]){
    
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="8" data-error-container="#conceptValidation">
                 <option value="">Select SNOMED concept</option>
-                <?php /* require('inc/concepts.php'); */ ?> 
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
+              <dl class="dl-horizontal selectedConceptDL">
+                <dt>Selected SNOMED<br>Concept:</dt>
+                <dd><ul><li><strong><span class="selectedConcept"></span></strong></li></ul></dd>
+              </dl>
               <dl class="dl-horizontal synonyms">
                 <dt>Synonyms:</dt>
                 <dd></dd>

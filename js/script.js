@@ -157,12 +157,12 @@ var ftt = {
 
 		/* trap pressing RETURN on add/edit form - send focus to search box
 		$('form#addItem, form#editItem').bind('keypress', function(e) {
-			if (e.keyCode === 13) {
-				e.preventDefault();
-				$('#searchBox').focus();
-			}
+		if (e.keyCode === 13) {
+		e.preventDefault();
+		$('#searchBox').focus();
+		}
 		}); */
-		
+
 		// if already in SCT search box, RETURN triggers search
 		$('#searchBox').bind('keypress', function(e) {
 			if (e.keyCode === 13) {
@@ -260,6 +260,8 @@ var ftt = {
 		reset : function() {
 			$('#icpcSearchBox').val('');
 			ftt.icpccodes.refine();
+			$('span.selectedICPC').empty().append('');
+			$('dl.selectedICPCDL').hide();
 		},
 	},
 
@@ -268,9 +270,7 @@ var ftt = {
 		refine : function() {
 			var searchText = $('#searchBox').val();
 			var altText = $('#conceptFreeText').val();
-//			alert('searchText - ' + searchText + ' and altText - ' + altText);
-			
-
+			//			alert('searchText - ' + searchText + ' and altText - ' + altText);
 
 			if ((searchText == '') && (altText == '')) {
 				$('#ICPC-Code').hide();
@@ -278,7 +278,7 @@ var ftt = {
 				$('#ActionButtons').hide();
 				$('#conceptsDropdown')[0].selectedIndex = 0;
 				$('#conceptsDropdown').unbind('change');
-				$('#conceptsDropdown, dl.synonyms, #clearBtn, #icpcDropdown, #icpcClearBtn').hide();
+				$('#conceptsDropdown, dl.synonyms, #clearBtn, #icpcDropdown, #icpcClearBtn, dl.selectedConceptDL').hide();
 			} else {
 				var refid = $('#refType').val();
 
@@ -301,9 +301,9 @@ var ftt = {
 							$('#conceptsDropdown, #clearBtn').hide();
 							$('#conceptValidation').show();
 							$('#ActionButtons').hide();
-							$('#ICPC-Code, dl.synonyms').hide();
-							var str = "No match";
-							$('span.icpcCode').empty().append(str);
+							$('#ICPC-Code, dl.synonyms, dl.selectedConceptDL').hide();
+//							var str = "No match";
+							$('span.icpcCode').empty().append('');
 							$('#icpc2').val('');
 						}
 
@@ -311,20 +311,24 @@ var ftt = {
 							var cid = $('#conceptsDropdown').val();
 							var optid = $('#option').val();
 
-//							alert('cid on the dropdown is - ' + cid);
-//							alert('option is is - ' + optid);
+							//							alert('cid on the dropdown is - ' + cid);
+							//							alert('option is is - ' + optid);
 
 							if (cid != '') {
 								$('#ActionButtons').show();
+								$('dl.selectedConceptDL').show();
+								$('span.selectedConcept').empty().append($("#conceptsDropdown option:selected").text());
 								ftt.concepts.getSynonyms();
 								if (optid == 1) {
 									ftt.concepts.getICPC();
 								}
 							} else {
 								var str = "No match";
-								$('span.icpcCode').empty().append(str);
+								$('span.selectedConcept').empty().append('');
+								$('span.selectedICPC').empty().append('');
+								$('span.icpcCode').empty().append('');
 								$('#icpc2').val('');
-								$('#ICPC-Code, dl.synonyms').hide();
+								$('#ICPC-Code, dl.synonyms, dl.selectedConceptDL').hide();
 								$('#ActionButtons').hide();
 							}
 						});
@@ -341,8 +345,8 @@ var ftt = {
 			$('#searchBox').val('');
 			$('#conceptFreeText').val('');
 			$('#icpcSearchBox').val('');
-			var str = "No match";
-			$('span.icpcCode').empty().append(str);
+//			var str = "No match";
+			$('span.icpcCode').empty().append('');
 			$('#icpc2').val('');
 			$('#conceptValidation').hide();
 			$('#icpcValidation').hide();
@@ -388,11 +392,20 @@ var ftt = {
 					if (response.length > 0) {
 						ftt.concepts.showICPC(response);
 						ftt.icpccodes.reset();
-						$('#ActionButtons').show();
+						$('#ActionButtons').hide();
+						$('#icpcCodeDropdown').on('change', function() {
+							$('#ActionButtons').show();
+							$('dl.selectedICPCDL').show();
+							$('span.selectedICPC').empty().append($("#icpcCodeDropdown option:selected").text());
+							var icpcid = $('#icpcCodeDropdown').val();
+							$('#icpc2').val(icpcid);
+						});
+						
 					} else {
 						$('#ActionButtons').hide();
 						var str = "No match";
-						$('span.icpcCode').empty().append(str);
+						$('dl.selectedICPCDL').show();
+						$('span.selectedICPC').empty().append(str);
 						$('#icpc2').val('');
 					}
 				},
@@ -403,14 +416,20 @@ var ftt = {
 		},
 
 		showICPC : function(data) {
-			var id = data[0].id;
-			var str = data[0].id + " - " + data[0].title;
-			if (id.indexOf("UNMCH")!== -1) 
-			{
-				str = data[0].title;
+			var $obj = $('#icpcCodeDropdown');
+			$obj.empty();
+			var id;
+			var str;
+			for (var x = 0; x < data.length; x++) {
+				id = data[x].id;
+				str = id + " - " + data[x].title;
+				if (id.indexOf("UNMCH") !== -1) {
+					str = data[x].title;
+				}
+				$obj.append('<option value="' + id + '">' + str + '</option>');
+				$('#icpc2').val(data[x].id);
 			}
-			$('span.icpcCode').empty().append(str);
-			$('#icpc2').val(data[0].id);
+
 		},
 	},
 
@@ -427,7 +446,7 @@ var ftt = {
 				$('#ActionButtons').hide();
 				$('#icpcDropdown')[0].selectedIndex = 0;
 				$('#icpcDropdown').unbind('change');
-				$('#icpcDropdown, #icpcClearBtn2').hide();
+				$('#icpcDropdown, #icpcClearBtn2, dl.selectedICPCDL').hide();
 			} else {
 				$.ajax({
 					url : 'searchICPC.php',
@@ -441,6 +460,8 @@ var ftt = {
 							$('#icpcValidation').hide();
 							$('#icpcDropdown, #icpcClearBtn2').show();
 							$('#icpcDropdown').on('change', function() {
+								$('dl.selectedICPCDL').show();
+								$('span.selectedICPC').empty().append($("#icpcDropdown option:selected").text());
 								ftt.icpccodesFirst.getSCTMap();
 								$('#ActionButtons').hide();
 							});
@@ -451,6 +472,8 @@ var ftt = {
 							$('#conceptFreeText').val('');
 							$('#conceptValidation').hide();
 							$('#SCT-Code, dl.synonyms').hide();
+							$('dl.selectedICPCDL').hide();
+							$('span.selectedICPC').empty().append('');
 
 							/*							var str = "No match";
 							 $('span.icpcCode').empty().append(str);
@@ -496,18 +519,23 @@ var ftt = {
 						$('#conceptsDropdown').on('change', function() {
 							var cid = $('#conceptsDropdown').val();
 							if (cid != '') {
+								$('dl.selectedConceptDL').show();
+								$('span.selectedConcept').empty().append($("#conceptsDropdown option:selected").text());
 								ftt.concepts.getSynonyms();
 								$('#ActionButtons').show();
 							} else {
-								$('dl.synonyms').hide();
+								$('dl.synonyms, dl.selectedConceptDL').hide();
 								$('#ActionButtons').hide();
+								$('span.selectedConcept').empty().append('');
+
 							}
 						});
 					} else {
 						$('#conceptValidation').show();
-						$('dl.synonyms').hide();
 						$('#conceptsDropdown').hide();
+						$('dl.synonyms, dl.selectedConceptDL').hide();
 						$('#ActionButtons').hide();
+						$('span.selectedConcept').empty().append('');
 					}
 
 				},

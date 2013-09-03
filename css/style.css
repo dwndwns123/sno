@@ -96,6 +96,22 @@ footer {
   vertical-align: top;
 }
 
+.selectedConceptDL {
+  display: none;
+}
+
+.selectedConceptDL ul li {
+  list-style-type: none;
+}
+
+.selectedICPCDL {
+  display: none;
+}
+
+.selectedICPCDL ul li {
+  list-style-type: none;
+}
+
 .synonyms {
   display: none;
 }
@@ -123,6 +139,9 @@ footer {
   vertical-align: top;
 }
 #icpcClearBtn2 {
+  vertical-align: top;
+}
+.icpcListlabel {
   vertical-align: top;
 }
 
