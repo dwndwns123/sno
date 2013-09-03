@@ -347,21 +347,21 @@ if(!$_SESSION["logged"]){
                 <?php
                 if(!is_null($_GET["enc"])){
                   ?>
-                  <button type="submit" class="btn">Add this Health Issue</button>
+                  <button type="submit" class="btn">Save this Health Issue</button>
                    &nbsp;&nbsp;
                   <?php
                 } else {
                   ?>
                   <input type="hidden" id="addAnother" name="addAnother" value="true">
-                  <button type="submit" class="btn">Add another Health Issue</button>
+                  <button type="submit" class="btn">Save & add another Health Issue</button>
                   &nbsp;&nbsp;
                   <a id="finishedBtn" class="btn" href="#">Health Issues complete - review encounter</a>
                   &nbsp;&nbsp;
                 <?php
                 }
                 ?>
-              </div>
               <a id="cancelBtn" class="btn" href="index.php">Cancel</a>
+              </div>
               </div>
 
             </div>

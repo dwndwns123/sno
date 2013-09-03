@@ -335,22 +335,22 @@ if(!$_SESSION["logged"]){
                 <?php
                 if(!is_null($_GET["enc"])){
                   ?>
-                  <button type="submit" class="btn">Add this RFE</button>
+                  <button type="submit" class="btn">Save this RFE</button>
                    &nbsp;&nbsp;
                  
                   <?php
                 } else {
                   ?>
                     <input type="hidden" id="addAnother" name="addAnother" value="true">
-                    <button type="submit" class="btn">Add another RFE</button>
+                    <button type="submit" class="btn">Save & add another RFE</button>
                     &nbsp;&nbsp;
                     <a id="nextBtn" class="btn" href="#">RFEs complete - add Health Issues</a>
                     &nbsp;&nbsp;
                 <?php
                 }
                 ?>
-                  </div>
                   <a id="cancelBtn" class="btn" href="index.php">Cancel</a>
+                  </div>
 
               </div>
 

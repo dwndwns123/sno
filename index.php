@@ -147,9 +147,23 @@ if (!$_SESSION["completed_encs"]) {
               <li><a class="btn btn-large btn-block btn-primary" href="add-rfe.php?new=1">Start Field Test</a></li>
               <?php
             } else if($encounters < $configvars["encounters"]["maxencounters"]){
+                // check if there is a previous unfinished encounter
+                $encounterData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' ORDER BY encounter_id DESC LIMIT 1 ") or die(mysql_error());
+                $encounter = mysql_fetch_array($encounterData);
+                $log -> user("last encounter id is - '$encounter[encounter_id]'");
+                $log -> user("last encounter completed is - '$encounter[complete]'");
+                
+                if ($encounter["complete"] == 0)
+                {
+                    $_SESSION["return_to"] = '';
+              ?>
+              <li><a class="btn btn-large btn-block btn-primary" href="review-encounter.php?enc=<?=$encounter["encounter_id"]; ?>&cancel=1">Resume Unfinished Encounter</a></li>
+              <?php
+                } else {
               ?>
               <li><a class="btn btn-large btn-block btn-primary" href="add-rfe.php?new=1">Resume Field Test</a></li>
               <?php
+                }
             } else if(($encounters == $configvars["encounters"]["maxencounters"]) && ($user["field_test_complete"] == 0)){
               ?>
               <li><a class="btn btn-large btn-block btn-warning" href="complete-test.php">Submit Field Test</a></li>

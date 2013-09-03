@@ -100,7 +100,8 @@ var ftt = {
 			e.preventDefault();
 			var $this = $(e.target);
 			var wId = $this.attr('id').split('-')[1];
-			bootbox.confirm("Delete Encounter #" + wId + " - Are you sure?", function(result) {
+			var wLabel = $this.attr('id').split('-')[2];
+			bootbox.confirm("Delete Encounter #" + wLabel + " - Are you sure?", function(result) {
 				if (result) {
 					// TODO: show some kind of spinner (spin.js) while this call is made
 					$.ajax({
@@ -108,7 +109,7 @@ var ftt = {
 						type : 'POST',
 						data : 'id=' + wId,
 						success : function(response, textStatus, jqXHR) {
-							bootbox.alert("Encounter #" + wId + " successfully deleted.", function() {
+							bootbox.alert("Encounter #" + wLabel + " successfully deleted.", function() {
 								window.location.href = "index.php";
 							});
 						},

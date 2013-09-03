@@ -5,7 +5,12 @@
 <body>
     
 <?php
+
 if ($_SESSION["logged"]) {
+    if ($_GET["enc"]) {
+        $log -> user("and the encounter from enc page is - '$_GET[enc]'");
+        $_SESSION["encounter_id"] = $_GET["enc"];
+    }
     if ($_POST["enc"]) {
 
         $_SESSION["encounter_id"] = $_POST["enc"];
@@ -124,7 +129,7 @@ if(!$_SESSION["logged"]){
             <?php
 
             for($x = 0; $x <= 1; $x++){ // loop through once for RFEs and once for HIs
-              $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' and active='y'") or die(mysql_error());
+              $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
          	  $date = date_create($rows['date_created']);
               
               while($row = mysql_fetch_array($rows)){
@@ -311,7 +316,7 @@ if(!$_SESSION["logged"]){
             <?php
             if($user["field_test_complete"] == 0){
               ?>
-              <li><button class="btn btn-danger deleteEncounterBtn" id="delenc-<?= $_SESSION['encounter_id']; ?>">Delete this encounter</button></li>
+              <li><button class="btn btn-danger deleteEncounterBtn" id="delenc-<?= $_SESSION['encounter_id']; ?>-<?=$endUserId; ?>">Delete this encounter</button></li>
               <?php
             }
             if($_SESSION["return_to"]){

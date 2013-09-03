@@ -10,7 +10,7 @@ if($_SESSION["logged"]){
     $newEnc = $userEncId+1;
     $newEnc2 = $userEncId++;
     
-    $sql = "UPDATE Encounters SET complete = 1, user_encounter_id = '$newEnc' WHERE encounter_id = '$_SESSION[encounter_id]'";
+    $sql = "UPDATE Encounters SET complete = 1, active = 'y', user_encounter_id = '$newEnc' WHERE encounter_id = '$_SESSION[encounter_id]'";
     mysql_query($sql) or die(mysql_error());
     $_SESSION ["encounter_id"] = null;
     $_SESSION ["add_mode"] = null;
