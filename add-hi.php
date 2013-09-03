@@ -263,6 +263,10 @@ if(!$_SESSION["logged"]){
                   </p>
                   <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
 
+                  <dl class="dl-horizontal selectedConceptDL">
+                    <dt>Selected SNOMED<br>Concept:</dt>
+                    <dd><ul><li><strong><span class="selectedConcept"></span></strong></li></ul></dd>
+                  </dl>
                   <dl class="dl-horizontal synonyms">
                     <dt>Synonyms:</dt>
                     <dd></dd>
