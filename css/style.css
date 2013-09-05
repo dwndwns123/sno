@@ -157,3 +157,9 @@ ul.parsley-error-list li {
   color: #c00;
   font-size: 16px;
 }
+
+.form-horizontal input {
+    background-color: #ffffff;
+    color: #464646;
+    font-family: Arial;
+}
