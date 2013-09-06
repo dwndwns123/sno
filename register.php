@@ -144,8 +144,8 @@ if($_SESSION["logged"]){
           </form>
       <div class="row disclaimer">
         <div class="span8">
-          <h2 class="h4">Terms of Agreement</h2>
-            <p>
+          <h2 class="h4">Field Test Participant Agreement for the use of ICPC-2 and SNOMED CT for Field Testing</h2>
+            <p>The field test participant accepts: 
                 <ol>
                     <li>That the use of ICPC-2 and SNOMED CT shall be purely and strictly for the purposes of the field test of the International Family Medicine/General Practice SNOMED CT RefSet and map to ICPC-2.</li>
                     <li>That permission to use ICPC-2 and SNOMED CT for the purposes stated in clause 1, shall be granted free of charge.</li>
@@ -158,6 +158,7 @@ if($_SESSION["logged"]){
                     </ul>
                     </li>
                 </ol>
+                5th September, 2013
             </p>
 		  </p>        
         </div>
