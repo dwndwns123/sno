@@ -119,6 +119,14 @@ if(!$_SESSION["logged"]){
       <form method="post" action="<?= $returnTo; ?>" id="addItem" name="addItem" data-validate="parsley">
         <input type="hidden" id="refType" name="refType" value="0">
         <input type="hidden" id="option" name="option" value="<?= $_SESSION["option"] ?>">
+        <?php 
+            $log -> user("Checking if need to not increment - " + $returnTo);
+        
+         if ($returnTo == "review-encounter.php") {
+        ?>
+            <input type="hidden" id="noEncIncrement" name="noEncIncrement" value="1">
+        <?php    
+        } ?>
         <fieldset>
        <?php 
   			switch ($_SESSION["option"]) {

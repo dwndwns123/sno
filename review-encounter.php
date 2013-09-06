@@ -22,9 +22,12 @@ if ($_SESSION["logged"]) {
 
     } else {
         $userEncId = intval($_SESSION["completed_encs"]);
-
-        if ($_POST["edit_reason"]) {
-            $endUserId = $userEncId;
+        $log -> user("increment encounter is - '$_POST[noEncIncrement]'");
+        $log -> user("completed encounters is - '$userEncId'");
+        if ($_POST["noEncIncrement"] == 1) {
+            $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$_SESSION[encounter_id]'") or die(mysql_error());
+            $enc = mysql_fetch_array($encRows);
+            $endUserId = $enc['user_encounter_id'];
         } else {
             $endUserId = $userEncId+1;
         }
@@ -81,7 +84,7 @@ if ($_SESSION["logged"]) {
                     $log -> user("session enc id for adding HI is now - '$_SESSION[encounter_id]' - and the post enc id is - '$_POST[encid]'");                   
                     
                     $sql = sprintf("INSERT INTO Encounter_Reasons (encounter_id, refset_id, sct_id, sct_scale, sct_alt, icpc_id, icpc_scale, icpc_alt_id) 
-                        VALUES ('$_SESSION[encounter_id]', 1, '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
+                        VALUES ('$_SESSION[encounter_id]', '$_POST[refType]', '$_POST[conceptsDropdown]', '$_POST[conceptRepresentation]', '%s', '$icpcfield',
                         '$_POST[icpc2appropriate]','$icpcAltfield')", mysql_real_escape_string($_POST["conceptFreeText"]));
                                         }
                 $log -> user("review encounter update incoming");

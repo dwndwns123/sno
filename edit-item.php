@@ -59,6 +59,7 @@ if(!$_SESSION["logged"]){
       <form method="post" action="<?= $_POST['from'] ?>" id="editItem" name="editItem" data-validate="parsley">
         <fieldset>
             <input type="hidden" id="edit_reason" name="edit_reason" value="<?= $_POST[item]; ?>">
+            <input type="hidden" id="noEncIncrement" name="noEncIncrement" value="1">
             <input type="hidden" id="encid" name="encid" value="<?= $_POST[encid]; ?>">
             <input type="hidden" id="option" name="option" value="<?= $_SESSION["option"] ?>">
             <?php if ($recordType == "Reason For Encounter") 

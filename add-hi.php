@@ -128,6 +128,14 @@ if(!$_SESSION["logged"]){
       <form method="post" action="<?= $returnTo; ?>" id="addItem" name="addItem" data-validate="parsley">
         <input type="hidden" id="option" name="option" value="<?= $_SESSION["option"] ?>">
         <input type="hidden" id="refType" name="refType" value="1">
+        <?php 
+        if ($returnTo == "review-encounter.php") {
+        ?>
+            <input type="hidden" id="noEncIncrement" name="noEncIncrement" value="1">
+        <?php    
+        } ?>
+
+
         <fieldset>
 
        <?php 
