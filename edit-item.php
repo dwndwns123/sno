@@ -39,14 +39,12 @@ if ($_SESSION["logged"]) {
             A Reason For Encounter is "an agreed statement of the reason(s) why a person enters the health care system, representing the demand for care by that person. The terms written down and later classified by the provider clarify the reason for encounter and consequently the patient’s demand for care without interpreting it in the form of a diagnosis. The reason for encounter should be recognised by the patient as an acceptable description of the demand for care” 
             <small>(Wonca Dictionary of General/Family Practice, 2003).</small>
         </blockquote>
-        <input type="hidden" id="refType" name="refType" value="0">
         <?php 
          } else { ?>
         <blockquote>
             A Health Issue is an “issue related to the health of a subject of care, as identified or stated by a specific health care party”. This is further defined in the notes as “according to this definition, a health issue can correspond to a health problem, a disease, an illness”<br />
             <small>(Health informatics – System of concepts to support continuity of care – Part 1: basic concepts (CEN 13940-1))</small>
         </blockquote>
-        <input type="hidden" id="refType" name="refType" value="1">
         <?php } ?>     
       </div>
 <?php
@@ -63,8 +61,15 @@ if(!$_SESSION["logged"]){
             <input type="hidden" id="edit_reason" name="edit_reason" value="<?= $_POST[item]; ?>">
             <input type="hidden" id="encid" name="encid" value="<?= $_POST[encid]; ?>">
             <input type="hidden" id="option" name="option" value="<?= $_SESSION["option"] ?>">
+            <?php if ($recordType == "Reason For Encounter") 
+            { ?>
+            <input type="hidden" id="refType" name="refType" value="0">
+             <?php 
+             } else { ?>
+            <input type="hidden" id="refType" name="refType" value="1">
+           <?php }
 
-          <?php 
+          
             switch ($_SESSION["option"]) {
               case 1:
           ?> 
@@ -250,7 +255,7 @@ if(!$_SESSION["logged"]){
                 <button id="searchBtn" class="btn" type="button">Search</button>
               </div>
               <select class="input-xlarge" id="conceptsDropdown" name="conceptsDropdown" size="5" data-error-container="#conceptValidation">
-                <option value="">Select SNOMED concept</option>
+                <option value="<?= $sct_details["concept_id"]; ?>" selected>Select SNOMED concept</option>
               </select>
               <button id="clearBtn" class="btn" type="button">Reset</button>
               <div id="conceptValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>

@@ -22,8 +22,13 @@ if ($_SESSION["logged"]) {
 
     } else {
         $userEncId = intval($_SESSION["completed_encs"]);
-        $endUserId = $userEncId+1;
 
+        if ($_POST["edit_reason"]) {
+            $endUserId = $userEncId;
+        } else {
+            $endUserId = $userEncId+1;
+        }
+       
         if ($_SESSION["option"] == 3) {
             $log -> user("Reviewing in option 3, dropdown is - '$_POST[conceptsDropdown]' - alt field is - '$_POST[conceptFreeText]'");
             if ($_POST["conceptsDropdown"] || $_POST["conceptFreeText"])// all mandatory fields posted
