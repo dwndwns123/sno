@@ -27,7 +27,7 @@ if ($_POST["loginEmail"] && $_POST["loginPassword"]) {
 
                 $_SESSION["logged"] = true;
 				$_SESSION['last_activity'] = time(); //your last activity was now, having logged in.
-				$_SESSION['expire_time'] = 30*60; //expire time in seconds
+				$_SESSION['expire_time'] = 40*60; //expire time in seconds
 
             } else {
                 $message = '<div class="alert">You have not yet verified your email address.<br>Please retrieve the verification code from the email you should by now have received, and enter it <a href="verify.php">here</a>.</div>';

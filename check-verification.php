@@ -37,7 +37,7 @@ if($_SESSION["logged"]){
         $_SESSION["user_id"] = $user["user_id"];
         $_SESSION["logged"] = true;
         $_SESSION['last_activity'] = time(); //your last activity was now, having logged in.
-        $_SESSION['expire_time'] = 30*60; //expire time in seconds
+        $_SESSION['expire_time'] = 40*60; //expire time in seconds
 
                         $emailText = "Thanks for registering on the SNOMED CT Field Test Website.\r\n\r\nYour email address has now been verified and you can now log in normally at ".$configvars["environment"]["url"]." any time.";
         $subject = $configvars["email"]["subjecttag"]." - Registration Verified";
