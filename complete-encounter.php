@@ -8,7 +8,6 @@ if($_SESSION["logged"]){
   $userEncId = intval($_SESSION["completed_encs"]);
   if(!is_null($_SESSION["encounter_id"])){
     $newEnc = $userEncId+1;
-    $newEnc2 = $userEncId++;
     
     $sql = "UPDATE Encounters SET complete = 1, active = 'y', user_encounter_id = '$newEnc' WHERE encounter_id = '$_SESSION[encounter_id]'";
     mysql_query($sql) or die(mysql_error());
@@ -38,7 +37,7 @@ if(!$_SESSION["logged"]){
   $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
   $user = mysql_fetch_array($rows);
 
-  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1'") or die(mysql_error());
+  $encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y'") or die(mysql_error());
   $encounters = mysql_num_rows($encountersData);
 ?>
       <div class="row">

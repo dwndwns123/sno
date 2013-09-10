@@ -6,18 +6,6 @@
 <body>
 
 <?php
-    if($_SESSION["logged"]) {
-        
-        // clean up unfinished encounters and encounter reasons on logging out based on complete flag and user id, setting them with active = 'n'
-
-        $sql = "UPDATE Encounter_Reasons SET active = 'n' WHERE encounter_id IN (SELECT encounter_id FROM Encounters WHERE complete = '0' AND user_id = '$_SESSION[user_id]')";
-        mysql_query($sql) or die(mysql_error());
-        error_log($sql);
-    
-        $sql = "UPDATE Encounters SET active = 'n' WHERE complete = '0' AND user_id = '$_SESSION[user_id]'";
-        mysql_query($sql) or die(mysql_error());
-        error_log($sql);
-    }
     session_unset();
     session_destroy();
     session_write_close();

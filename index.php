@@ -119,12 +119,17 @@ $option_label="verifying the SNOMED CT refset members";
 break;
 }
 
-$encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y'") or die(mysql_error());
-$encounters = mysql_num_rows($encountersData);
 if (!$_SESSION["completed_encs"]) {
-    $_SESSION["completed_encs"] = $encounters;
-    $log -> user("encounters completed is - '$_SESSION[completed_encs]'");
+    $encountersData = mysql_query("SELECT MAX(user_encounter_id) AS user_encounter_id FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y'") or die(mysql_error());
+    
+    while($encounters = mysql_fetch_assoc($encountersData)) {
+            $_SESSION["completed_encs"] = $encounters["user_encounter_id"];
+            $log -> user("encounters completed is - '$_SESSION[completed_encs]'");
+    }
 }
+$encountersData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND complete='1' AND active='y'") or die(mysql_error());
+$encountersCompleted = mysql_num_rows($encountersData);
+
 ?>
       <div class="page-header">
         <h1>Home</h1>
@@ -134,7 +139,7 @@ if (!$_SESSION["completed_encs"]) {
           <div class="well">
             <p class="lead">Welcome, <?= ($_SESSION['title'] !== 'Other' ? $_SESSION['title'] . ' ' : ''); ?><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>.</p>
             <p>You are participating in this field test by the <strong><?= $user["option_label"]; ?></strong> option.</p>
-            <p>You have completed <?= $encounters; ?> of <?= $configvars["encounters"]["maxencounters"]; ?> encounters.</p>
+            <p>You have completed <?= $encountersCompleted; ?> of <?= $configvars["encounters"]["maxencounters"]; ?> encounters.</p>
           </div>
         </div>
       </div>
@@ -142,9 +147,9 @@ if (!$_SESSION["completed_encs"]) {
         <div class="span4 offset4">
           <ul class="unstyled bigButtons">
             <?php
-            if ($encounters == 0) {
+            if ($encountersCompleted == 0) {
                 // check if there is a previous unfinished encounter
-                $encounterData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' ORDER BY encounter_id DESC LIMIT 1 ") or die(mysql_error());
+                $encounterData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND active='y' ORDER BY encounter_id DESC LIMIT 1 ") or die(mysql_error());
                 $encounter = mysql_fetch_array($encounterData);
                 $log -> user("last encounter id is - '$encounter[encounter_id]'");
                 $log -> user("last encounter completed is - '$encounter[complete]'");
@@ -160,9 +165,9 @@ if (!$_SESSION["completed_encs"]) {
                  <li><a class="btn btn-large btn-block btn-primary" href="review-encounter.php?enc=<?=$encounter["encounter_id"]; ?>&cancel=1">Resume Unfinished Encounter</a></li>
               <?php
                 }
-            } else if($encounters < $configvars["encounters"]["maxencounters"]){
+            } else if($encountersCompleted < $configvars["encounters"]["maxencounters"]){
                 // check if there is a previous unfinished encounter
-                $encounterData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' ORDER BY encounter_id DESC LIMIT 1 ") or die(mysql_error());
+                $encounterData = mysql_query("SELECT * FROM Encounters WHERE user_id='$_SESSION[user_id]' AND active='y' ORDER BY encounter_id DESC LIMIT 1 ") or die(mysql_error());
                 $encounter = mysql_fetch_array($encounterData);
                 $log -> user("last encounter id is - '$encounter[encounter_id]'");
                 $log -> user("last encounter completed is - '$encounter[complete]'");
@@ -178,13 +183,13 @@ if (!$_SESSION["completed_encs"]) {
               <li><a class="btn btn-large btn-block btn-primary" href="add-rfe.php?new=1">Resume Field Test</a></li>
               <?php
                 }
-            } else if(($encounters == $configvars["encounters"]["maxencounters"]) && ($user["field_test_complete"] == 0)){
+            } else if(($encounters["user_encounter_id"] == $configvars["encounters"]["maxencounters"]) && ($user["field_test_complete"] == 0)){
               ?>
               <li><a class="btn btn-large btn-block btn-warning" href="complete-test.php">Submit Field Test</a></li>
               <?php
             }
                 
-            if ($encounters > 0) {
+            if ($encountersCompleted > 0) {
             ?>
                 <li><a class="btn btn-large btn-block btn-primary" href="encounters.php">View Patient Encounters</a></li>
               <?php

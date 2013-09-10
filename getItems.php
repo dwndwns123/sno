@@ -5,7 +5,7 @@ $enc = $_POST["enc"];
 $option = $_SESSION["option"];
 $log -> user("enc is - '$enc' - and option is - '$option'");
 
-$reasonSQL = "SELECT * FROM Encounter_Reasons WHERE encounter_id = '$enc'";
+$reasonSQL = "SELECT * FROM Encounter_Reasons WHERE encounter_id = '$enc' and active='y'";
 $result = mysql_query($reasonSQL) or die(mysql_error());
 $log -> user($reasonSQL);
 

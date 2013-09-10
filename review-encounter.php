@@ -147,7 +147,7 @@ if(!$_SESSION["logged"]){
             <?php
 
             for($x = 0; $x <= 1; $x++){ // loop through once for RFEs and once for HIs
-              $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]'") or die(mysql_error());
+              $rows = mysql_query("SELECT * FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' and active='y'") or die(mysql_error());
          	  $date = date_create($rows['date_created']);
               
               while($row = mysql_fetch_array($rows)){
@@ -233,7 +233,7 @@ if(!$_SESSION["logged"]){
                               <input type="hidden" id="encid" name="encid" value="<?= $_SESSION[encounter_id]; ?>">
                               <input type="hidden" id="itemType" name="itemType" value="<?= $row['refset_id']; ?>">
                               <?php
-                            $sql = mysql_query("SELECT reason_id FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' AND refset_id='$row[refset_id]'") or die(mysql_error());
+                            $sql = mysql_query("SELECT reason_id FROM Encounter_Reasons WHERE encounter_id='$_SESSION[encounter_id]' AND refset_id='$row[refset_id]' AND active='y'") or die(mysql_error());
                             $num = mysql_num_rows($sql);
                               ?>
                               <input type="hidden" id="numThis" name="numThis" value="<?= $num; ?>">
