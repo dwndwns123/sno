@@ -21,10 +21,9 @@ if ($_SESSION["logged"]) {
         $endUserId = $enc['user_encounter_id'];
 
     } else {
+        // checking to see if the encounter id needs to be incremented
         $userEncId = intval($_SESSION["completed_encs"]);
-        $log -> user("increment encounter is - '$_POST[noEncIncrement]'");
-        $log -> user("completed encounters is - '$userEncId'");
-        if ($_POST["noEncIncrement"] == 1) {
+        if (($_POST["noEncIncrement"] == 1) || ($_GET["cancel"] == '1')) {
             $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$_SESSION[encounter_id]'") or die(mysql_error());
             $enc = mysql_fetch_array($encRows);
             $endUserId = $enc['user_encounter_id'];

@@ -44,14 +44,15 @@ if (!is_null($_GET["enc"])) {// came from the review page
             
         } else {// this is for mapping verification
 
-            // debug notices
+            /* debug notices
             $log -> user("I am in here, ref adding - option 1 & 2 verification");
             $log -> user("debugFlag - session enc id is now - '$_SESSION[encounter_id]'");
             $log -> user("debugflag - concepts dropdown after newly set is - '$_POST[conceptsDropdown]'");
             $log -> user("debugflag - concepts alt text after newly set is - '$_POST[conceptFreeText]'");
             $log -> user("debugflag - icpc after newly set is - '$_POST[icpc2]'");
             $log -> user("debugflag - icpc alt text after newly set is - '$_POST[icpcDropdown]'");
-
+            */
+             
             if (($_POST["conceptsDropdown"] || $_POST["conceptFreeText"]) && ($_POST["icpc2"] || $_POST["icpcDropdown"])) {// all mandatory fields posted
 
                 if (!$_SESSION["encounter_id"]) {// no encounter id, so create new encounter and new Health Issue
@@ -113,7 +114,13 @@ if (!is_null($_GET["enc"])) {// came from the review page
             <small>(Health informatics – System of concepts to support continuity of care – Part 1: basic concepts (CEN 13940-1))</small>
         </blockquote>
         <p>
+        <?php
+        if (!is_null($_GET["enc"])) {
+        ?>
+            <a id="homeBtn" class="btn" href="review-encounter.php?cancel=1">Cancel</a>
+        <?php } else { ?>
             <a id="homeBtn" class="btn" href="index.php">Return Home</a>
+        <?php } ?>
         </p>
       </div>
 <?php

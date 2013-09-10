@@ -103,9 +103,13 @@ if (!is_null($_GET["enc"])) {// came from the review page
             A Reason For Encounter is "an agreed statement of the reason(s) why a person enters the health care system, representing the demand for care by that person. The terms written down and later classified by the provider clarify the reason for encounter and consequently the patient’s demand for care without interpreting it in the form of a diagnosis. The reason for encounter should be recognised by the patient as an acceptable description of the demand for care” 
             <small>(Wonca Dictionary of General/Family Practice, 2003).</small>
         </blockquote>
-        <p>
+        <?php
+        if (!is_null($_GET["enc"])) {
+        ?>
+            <a id="homeBtn" class="btn" href="review-encounter.php?cancel=1">Cancel</a>
+        <?php } else { ?>
             <a id="homeBtn" class="btn" href="index.php">Return Home</a>
-        </p>
+        <?php } ?>
       </div>
 <?php
 if(!$_SESSION["logged"]){
