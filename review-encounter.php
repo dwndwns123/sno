@@ -5,10 +5,10 @@
 <body>
     
 <?php
-
 if ($_SESSION["logged"]) {
+    
     if ($_GET["enc"]) {
-        $log -> user("and the encounter from enc page is - '$_GET[enc]'");
+        $log -> user("and the encounter from index page is - '$_GET[enc]'");
         $_SESSION["encounter_id"] = $_GET["enc"];
     }
     if ($_POST["enc"]) {
@@ -23,10 +23,19 @@ if ($_SESSION["logged"]) {
     } else {
         // checking to see if the encounter id needs to be incremented
         $userEncId = intval($_SESSION["completed_encs"]);
+
+        $log ->user("number of userEndId - '$userEndId'");
+
         if (($_POST["noEncIncrement"] == 1) || ($_GET["cancel"] == '1')) {
             $encRows = mysql_query("SELECT * FROM Encounters WHERE encounter_id = '$_SESSION[encounter_id]'") or die(mysql_error());
             $enc = mysql_fetch_array($encRows);
             $endUserId = $enc['user_encounter_id'];
+            
+            $log ->user("number of endUserId - '$endUserId'");
+            
+            if ($endUserId == 0) {
+                $endUserId = $userEncId+1;
+            }
         } else {
             $endUserId = $userEncId+1;
         }
@@ -115,6 +124,8 @@ if(!$_SESSION["logged"]){
   if($message){
     echo $message;
   }
+  $itemsRFECheck = 0;
+  $itemsHiCheck = 0;
 
   $rows = mysql_query("SELECT * FROM Users WHERE user_id='$_SESSION[user_id]'") or die(mysql_error());
   $user = mysql_fetch_array($rows);
@@ -141,6 +152,12 @@ if(!$_SESSION["logged"]){
               
               while($row = mysql_fetch_array($rows)){
                 if($row['refset_id'] == $x){
+                  if ($row['refset_id'] == 0) {
+                    $itemsRFECheck = $itemsHiCheck+1;     
+                  } else {
+                    $itemsHiCheck = $itemsHiCheck+1;
+                  }
+                  
                   $sql = mysql_query("SELECT * FROM SCT_Concepts WHERE concept_id='$row[sct_id]'") or die(mysql_error());
                   $conceptArr = mysql_fetch_array($sql);
                   $conceptId = $conceptArr['concept_id'];
@@ -337,7 +354,7 @@ if(!$_SESSION["logged"]){
               ?>
                 <li><a href="<?= $_SESSION["return_to"]; ?>" class="btn">Review encounters</a></li>
               <?php
-            } else if($user["field_test_complete"] == 0){
+            } else if(($user["field_test_complete"] == 0) && (($itemsHiCheck>0) && ($itemsRFECheck>0))){
               ?>
                 <li><a href="complete-encounter.php" class="btn btn-success">Complete encounter</a></li>
               <?php
