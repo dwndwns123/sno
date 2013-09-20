@@ -29,7 +29,9 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `ICPC_SCT_Map`;
 CREATE TABLE `ICPC_SCT_Map` (
   `sct_id` varchar(18) NOT NULL,
-  `icpc_id` varchar(10) NOT NULL
+  `icpc_id` varchar(10) NOT NULL,
+  KEY `sct_id` (`sct_id`),
+  KEY `icpc_id` (`icpc_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -588,7 +590,6 @@ INSERT INTO `ICPC_SCT_Map` (`sct_id`, `icpc_id`) VALUES
 ('25702006', 'P16'),
 ('25786006', 'P29'),
 ('25825004', 'W03'),
-('', ''),
 ('25906001', 'H99'),
 ('26006005', 'D99'),
 ('26079004', 'N08'),

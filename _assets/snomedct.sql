@@ -31491,7 +31491,8 @@ DROP TABLE IF EXISTS `SCT_Concepts`;
 CREATE TABLE `SCT_Concepts` (
   `concept_id` varchar(18) NOT NULL,
   `label` varchar(300) DEFAULT NULL,
-  `refset_type_id` varchar(18) NOT NULL
+  `refset_type_id` varchar(18) NOT NULL,
+  KEY `concept_id` (`concept_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
