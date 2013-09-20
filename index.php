@@ -61,7 +61,7 @@ if(!$_SESSION["logged"]){
             <p>Welcome to the Field Test of the GP/FP SNOMED CT RefSet and map to ICPC</p>
             <p>Clinical input is needed to ensure that both the GP/FP RefSet and map to ICPC-2 are of the highest quality possible. The involvement of many GPs/FPs from multiple countries will ensure that both products are acceptable for future implementation at a local level in electronic health records. </p>
             <p>Thank you for your participation.</p>    
-            <p>Instructions for completing the Field Test are available here</p>
+            <p>Instructions for completing the Field Test are available <a href="userGuide.php" target="_blank"> in the User Guide</a></p>
           </div>
         </div>
       </div>
