@@ -28,7 +28,8 @@ refsetid varchar(18) not null
 CREATE TABLE SCT_Concepts (
 concept_id VARCHAR(18) NOT NULL,
 label VARCHAR(300),
-refset_type_id varchar(18) not null
+refset_type_id varchar(18) not null,
+KEY `concept_id` (`concept_id`)
 );
 
 ##### Load up Health Issue RefSet
