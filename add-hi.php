@@ -264,7 +264,7 @@ if(!$_SESSION["logged"]){
               <option value="">Select ICPC-2 code</option>
               </select>
               <button id="icpcClearBtn2" class="btn" type="button">Reset</button>
-              <div id="icpcValidation"></div>
+              <div id="icpcValidation" style="display: none;"><font color='red'><strong>No Matches Found</strong></font></div>
               <dl class="dl-horizontal selectedICPCDL">
                 <dt>Selected ICPC-2 code:</dt>
                 <dd><ul><li><strong><span class="selectedICPC"></span></strong></li></ul></dd>
