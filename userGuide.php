@@ -43,54 +43,55 @@
 					</div>
 				</div>
 			</div>
-            <div class="row">
-                <div class="span4">
-                    <h4>Word Guide</h4>
-                </div>
-                <div class="span4">
-                    <h4>PDF Guide</h4>
-                </div>
-                <div class="span4">
-                    <h4>Online Google Doc</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="span4">
-                    <p>
-                        a word document link
-                    </p>
-                </div>
-                <div class="span4">
-                    <p>
-                        a pdf document link
-                    </p>
-                </div>
-                <div class="span4">
-                    <p>
-                        <a href="https://docs.google.com/document/d/1cOI4ozv_JEMU9T0-74DSd0jAsJ4bK8FmgVQanDkntUE/edit?usp=sharing" target="_blank">Online Google Document</a>
-                    </p>
-                </div>
-            </div>
-            
-            <hr>
-    
-            <div class="row">
-                <div class="span12">
-			<p>
-				If you experience any technical issues during the field test, please contact your local Project Group member. Contact details for Project Group members in each participating country are available from INSERT LINK.
-			</p>
-			<p>
-				Alternatively, a Google Group has been set up for participants to ask questions and share feedback on the field test. All questions will be answered by a member of the Project Group. You can access the Google Group by going directly to <a href="https://groups.google.com/forum/?hl=en#!forum/ihtsdo-wonca-field-test">https://groups.google.com/forum/?hl=en#!forum/ihtsdo-wonca-field-test</a>,
-				or go to <a href="http://groups.google.com">groups.google.com</a> and search for 'GP/FP RefSet'.
-			</p>
-                </div>
-            </div>
+			<div class="row">
+				<div class="span4">
+					<h4>MS Word Version</h4>
+				</div>
+				<div class="span4">
+					<h4>PDF Version</h4>
+				</div>
+				<div class="span4">
+					<h4>Online Version</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span4">
+					<p>
+						<a href="guide/User Guide for Field Test.docx"><img src="img/Document-Microsoft-Word-icon.png"></a>
+					</p>
+				</div>
+				<div class="span4">
+					<p>
+						<a href="guide/User Guide for Field Test.pdf" target="_blank"><img src="img/Adobe-PDF-Document-icon.png"></a>
+					</p>
+				</div>
+				<div class="span4">
+					<p>
+						<a href="http://goo.gl/nYNEDL" target="_blank"><img src="img/google-doc-icon.png"></a>
+					</p>
+				</div>
+			</div>
+			<hr>
 
+			<div class="row">
+				<div class="span12">
+					<p>
+						If you experience any technical issues during the field test, please contact your local Project Group member. Contact details for Project Group members in each participating country are available from INSERT LINK.
+					</p>
+					<p>
+						Alternatively, a Google Group has been set up for participants to ask questions and share feedback on the field test. All questions will be answered by a member of the Project Group. You can access the Google Group by going directly to <a href="https://groups.google.com/forum/?hl=en#!forum/ihtsdo-wonca-field-test">https://groups.google.com/forum/?hl=en#!forum/ihtsdo-wonca-field-test</a>,
+						or go to <a href="http://groups.google.com">groups.google.com</a> and search for 'GP/FP RefSet'.
+					</p>
+					<p>
+						<small>Document icons - &copy;2013 <a href="http://www.iconarchive.com/artist/deleket.html" target="_blank">Jojo Mendoza</a>, used under a <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">Creative Commons Attribution--NonCommercial-NoDerivs license</a></small>
+					</p>
+				</div>
+			</div>
 
-		<footer>
-			<a href="http://www.globalfamilydoctor.com/" target="_blank"><img class="pull-left" src="/img/logos/footer-logo-wonca.png" alt="WONCA Global Family Doctor"></a>
-			<a href="http://www.ihtsdo.org" target="_blank"><img class="pull-right" src="/img/logos/footer-logo.png" alt="IHTSDO delivering SNOMED CT, the global clinical terminology"></a>
-		</footer>
+			<footer>
+				<a href="http://www.globalfamilydoctor.com/" target="_blank"><img class="pull-left" src="/img/logos/footer-logo-wonca.png" alt="WONCA Global Family Doctor"></a>
+				<a href="http://www.ihtsdo.org" target="_blank"><img class="pull-right" src="/img/logos/footer-logo.png" alt="IHTSDO delivering SNOMED CT, the global clinical terminology"></a>
+			</footer>
 		</div>
 
 		<!-- scripts -->

@@ -12,7 +12,7 @@
             <li role="presentation"><a href="index.php" tabindex="-1" role="menuitem">Home</a></li>
             <li role="presentation"><a href="profile.php" tabindex="-1" role="menuitem">Profile</a></li>
             <li role="presentation"><a href="encounters.php" tabindex="-1" role="menuitem">Encounters</a></li>
-            <li role="presentation"><a href="userGuide.php" tabindex="-1" role="menuitem">User Guide</a></li>
+            <li role="presentation"><a href="userGuide.php" tabindex="-1" role="menuitem" target="_blank">User Guide</a></li>
             <li role="presentation"><a href="logout.php" tabindex="-1" role="menuitem">Log out</a></li>
           </ul>
         </li>
