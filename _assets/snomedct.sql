@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 23, 2013 at 09:01 AM
+-- Generation Time: Sep 27, 2013 at 08:44 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -18,7 +18,6 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `snomedct`
--- Files based v1.04 of RefSet files
 --
 
 -- --------------------------------------------------------
@@ -1316,8 +1315,6 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('250343011', '102481003', 'Generalised chronic body aches', '900000000000013009', '450994008'),
 ('250344017', '102481003', 'Generalised chronic body pains', '900000000000013009', '450994008'),
 ('541527011', '102481003', 'Generalized chronic body pains (finding)', '900000000000003001', '450994008'),
-('207514013', '128867006', 'Mange', '900000000000013009', '450994008'),
-('732917010', '128867006', 'Mange (disorder)', '900000000000003001', '450994008'),
 ('2462416017', '249307003', 'Nasal symptom (finding)', '900000000000003001', '450994008'),
 ('2470117011', '249307003', 'Nasal symptom', '900000000000013009', '450994008'),
 ('285400014', '185383005', 'Asked to come in - investigation result', '900000000000013009', '450994008'),
@@ -1731,10 +1728,10 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1490339011', '363215001', 'Orthopedic examination', '900000000000013009', '450994008'),
 ('1490768010', '363215001', 'Examination of musculoskeletal structure', '900000000000013009', '450994008'),
 ('1490769019', '363215001', 'Musculoskeletal examination', '900000000000013009', '450994008'),
-('482355019', '363215001', 'Musculoskeletal system physical examination', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('482355019', '363215001', 'Musculoskeletal system physical examination', '900000000000013009', '450994008'),
 ('755014016', '363215001', 'Musculoskeletal system physical examination (procedure)', '900000000000003001', '450994008'),
-('444909013', '302912005', 'Vocal cord palsy', '900000000000013009', '450994008'),
+('444909013', '302912005', 'Vocal cord palsy', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('444910015', '302912005', 'Vocal cord paresis', '900000000000013009', '450994008'),
 ('444911016', '302912005', 'Vocal cord paralysis', '900000000000013009', '450994008'),
 ('444912011', '302912005', 'VCP - Vocal cord palsy', '900000000000013009', '450994008'),
@@ -2295,10 +2292,10 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('804506019', '65046005', 'Infertility therapy (procedure)', '900000000000003001', '450994008'),
 ('443811013', '302229004', 'Salmonella food poisoning', '900000000000013009', '450994008'),
 ('698120012', '302229004', 'Salmonella food poisoning (disorder)', '900000000000003001', '450994008'),
-('501847011', '71303008', 'Atypical facial pain', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('501847011', '71303008', 'Atypical facial pain', '900000000000013009', '450994008'),
 ('811455017', '71303008', 'Atypical facial pain (finding)', '900000000000003001', '450994008'),
-('2475694016', '208929003', 'Closed traumatic dislocation of patella', '900000000000013009', '450994008'),
+('2475694016', '208929003', 'Closed traumatic dislocation of patella', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('319573012', '208929003', 'Closed traumatic dislocation of patellofemoral joint', '900000000000013009', '450994008'),
 ('594605010', '208929003', 'Closed traumatic dislocation of patellofemoral joint (disorder)', '900000000000003001', '450994008'),
 ('301453013', '195951007', 'Acute exacerbation of chronic obstructive airways disease', '900000000000013009', '450994008'),
@@ -2856,10 +2853,10 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('395792010', '266261006', 'Raynaud''s phenomenon', '900000000000013009', '450994008'),
 ('395793017', '266261006', 'Paroxysmal digital cyanosis', '900000000000013009', '450994008'),
 ('374107016', '250980009', 'Conversion of cardiac rhythm', '900000000000013009', '450994008'),
-('374109018', '250980009', 'Cardioversion', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('374109018', '250980009', 'Cardioversion', '900000000000013009', '450994008'),
 ('641438014', '250980009', 'Cardioversion (procedure)', '900000000000003001', '450994008'),
-('424693012', '285636001', 'CIN - Cervical intraepithelial neoplasia', '900000000000013009', '450994008'),
+('424693012', '285636001', 'CIN - Cervical intraepithelial neoplasia', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('424694018', '285636001', 'Cervical intraepithelial neoplasia', '900000000000013009', '450994008'),
 ('679665015', '285636001', 'Cervical intraepithelial neoplasia (disorder)', '900000000000003001', '450994008'),
 ('59586017', '35726004', 'Sprain of lateral collateral ligament of knee', '900000000000013009', '450994008'),
@@ -3417,10 +3414,10 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2839472011', '57044006', 'Cyst of Bartholin gland duct', '900000000000013009', '450994008'),
 ('497777012', '57044006', 'Bartholin''s cyst', '900000000000013009', '450994008'),
 ('497778019', '57044006', 'Bartholin''s gland cyst', '900000000000013009', '450994008'),
-('497779010', '57044006', 'Cyst of Bartholin''s gland', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('497779010', '57044006', 'Cyst of Bartholin''s gland', '900000000000013009', '450994008'),
 ('795623010', '57044006', 'Cyst of Bartholin''s gland duct (disorder)', '900000000000003001', '450994008'),
-('94870010', '57044006', 'Cyst of Bartholin''s gland duct', '900000000000013009', '450994008'),
+('94870010', '57044006', 'Cyst of Bartholin''s gland duct', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('94871014', '57044006', 'Bartholin''s gland duct cyst', '900000000000013009', '450994008'),
 ('123048010', '74107003', 'Acromegaly', '900000000000013009', '450994008'),
 ('123049019', '74107003', 'Growth hormone hypersecretion syndrome', '900000000000013009', '450994008'),
@@ -3981,11 +3978,11 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('805803014', '66214007', 'Substance abuse (disorder)', '900000000000003001', '450994008'),
 ('2162249014', '224977004', 'Feeling distress', '900000000000013009', '450994008'),
 ('338139012', '224977004', 'Feeling upset', '900000000000013009', '450994008'),
-('338140014', '224977004', 'Upset', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('338140014', '224977004', 'Upset', '900000000000013009', '450994008'),
 ('338141013', '224977004', 'Distressed', '900000000000013009', '450994008'),
 ('612166019', '224977004', 'Feeling upset (finding)', '900000000000003001', '450994008'),
-('71016016', '42570001', 'Pruritus senilis', '900000000000013009', '450994008'),
+('71016016', '42570001', 'Pruritus senilis', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('71017013', '42570001', 'Senile pruritus', '900000000000013009', '450994008'),
 ('779483018', '42570001', 'Pruritus senilis (disorder)', '900000000000003001', '450994008'),
 ('1234288015', '78768009', 'Subconjunctival bleed', '900000000000013009', '450994008'),
@@ -4532,11 +4529,11 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('372859014', '249966004', 'Spasm - movement', '900000000000013009', '450994008'),
 ('640455016', '249966004', 'Spasmodic movement (finding)', '900000000000003001', '450994008'),
 ('134361016', '81000006', 'Pediculosis capitis', '900000000000013009', '450994008'),
-('504576015', '81000006', 'Head lice infestation', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('504576015', '81000006', 'Head lice infestation', '900000000000013009', '450994008'),
 ('504577012', '81000006', 'Lousy hair', '900000000000013009', '450994008'),
 ('504578019', '81000006', 'Nits', '900000000000013009', '450994008'),
-('504579010', '81000006', 'Pediculus capitis infestation', '900000000000013009', '450994008'),
+('504579010', '81000006', 'Pediculus capitis infestation', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('504580013', '81000006', 'Lice infested hair', '900000000000013009', '450994008'),
 ('504581012', '81000006', 'Nit infested hair', '900000000000013009', '450994008'),
 ('504582017', '81000006', 'Head louse infestation', '900000000000013009', '450994008'),
@@ -5105,11 +5102,11 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('166332012', '102906002', 'Delinquency', '900000000000013009', '450994008'),
 ('256322018', '102906002', 'Delinquent behaviour', '900000000000013009', '450994008'),
 ('546135016', '102906002', 'Delinquent behavior (finding)', '900000000000003001', '450994008'),
-('1234997010', '8493009', 'CG - Chronic gastritis', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('1234997010', '8493009', 'CG - Chronic gastritis', '900000000000013009', '450994008'),
 ('15005019', '8493009', 'Chronic gastritis', '900000000000013009', '450994008'),
 ('826878016', '8493009', 'Chronic gastritis (disorder)', '900000000000003001', '450994008'),
-('2819966011', '442433009', 'Anasarca', '900000000000013009', '450994008'),
+('2819966011', '442433009', 'Anasarca', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2819967019', '442433009', 'Generalised oedema', '900000000000013009', '450994008'),
 ('2819968012', '442433009', 'Generalized edema', '900000000000013009', '450994008'),
 ('2819969016', '442433009', 'Anasarca (finding)', '900000000000003001', '450994008'),
@@ -5672,11 +5669,11 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('699860015', '303650005', 'Removal of mole of skin by excision (procedure)', '900000000000003001', '450994008'),
 ('116406017', '70090004', 'Cowpox', '900000000000013009', '450994008'),
 ('810107018', '70090004', 'Cowpox (disorder)', '900000000000003001', '450994008'),
-('102111015', '61462000', 'Malaria', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('102111015', '61462000', 'Malaria', '900000000000013009', '450994008'),
 ('102113017', '61462000', 'Paludism', '900000000000013009', '450994008'),
 ('102114011', '61462000', 'Plasmodiosis', '900000000000013009', '450994008'),
-('800527016', '61462000', 'Malaria (disorder)', '900000000000003001', '450994008'),
+('800527016', '61462000', 'Malaria (disorder)', '900000000000003001', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('136536017', '82314000', 'German measles vaccination', '900000000000013009', '450994008'),
 ('136537014', '82314000', 'Rubella vaccination', '900000000000013009', '450994008'),
 ('136538016', '82314000', 'Rubella immunization', '900000000000013009', '450994008'),
@@ -6239,11 +6236,11 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('620290017', '110244000', 'Contusion of forehead (disorder)', '900000000000003001', '450994008'),
 ('2573323019', '419230002', 'Renal bruit (finding)', '900000000000003001', '450994008'),
 ('2576597019', '419230002', 'Renal bruit', '900000000000013009', '450994008'),
-('1764248012', '396331005', 'Celiac disease (disorder)', '900000000000003001', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('1764248012', '396331005', 'Celiac disease (disorder)', '900000000000003001', '450994008'),
 ('1772803017', '396331005', 'Coeliac disease', '900000000000013009', '450994008'),
 ('1774089018', '396331005', 'Celiac disease', '900000000000013009', '450994008'),
-('1783556014', '396331005', 'CD - Coeliac disease', '900000000000013009', '450994008'),
+('1783556014', '396331005', 'CD - Coeliac disease', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('1783557017', '396331005', 'CS - Coeliac sprue', '900000000000013009', '450994008'),
 ('1783558010', '396331005', 'Coeliac sprue', '900000000000013009', '450994008'),
 ('1783559019', '396331005', 'Idiopathic steatorrhoea', '900000000000013009', '450994008'),
@@ -6795,11 +6792,11 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('795082018', '56557000', 'Fibrositis (disorder)', '900000000000003001', '450994008'),
 ('94059016', '56557000', 'Fibrositis', '900000000000013009', '450994008'),
 ('130398014', '78580004', 'Mumps orchitis', '900000000000013009', '450994008'),
-('819535017', '78580004', 'Mumps orchitis (disorder)', '900000000000003001', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('819535017', '78580004', 'Mumps orchitis (disorder)', '900000000000003001', '450994008'),
 ('129405018', '77971008', 'Iridocyclitis', '900000000000013009', '450994008'),
 ('129408016', '77971008', 'Anterior uveitis', '900000000000013009', '450994008'),
-('818860016', '77971008', 'Iridocyclitis (disorder)', '900000000000003001', '450994008'),
+('818860016', '77971008', 'Iridocyclitis (disorder)', '900000000000003001', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('1228242012', '35089004', 'TV - Trichomonas vaginalis infection', '900000000000013009', '450994008'),
 ('1228243019', '35089004', 'Urogenital trichomonas', '900000000000013009', '450994008'),
 ('1228244013', '35089004', 'Trichs - Trichomonas vaginalis infection', '900000000000013009', '450994008'),
@@ -7354,11 +7351,11 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('196648010', '28122003', 'Langerhans cell histiocytosis, unifocal, pulmonary', '900000000000013009', '450994008'),
 ('2551214011', '28122003', 'Eosinophilic granuloma of lung', '900000000000013009', '450994008'),
 ('2551215012', '28122003', 'Isolated histiocytosis X of lung', '900000000000013009', '450994008'),
-('47079016', '28122003', 'Pulmonary eosinophilic granuloma', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('47079016', '28122003', 'Pulmonary eosinophilic granuloma', '900000000000013009', '450994008'),
 ('758767011', '28122003', 'Pulmonary eosinophilic granuloma (disorder)', '900000000000003001', '450994008'),
 ('249814013', '160314003', 'FH: Hypercholesterolemia', '900000000000013009', '450994008'),
-('249815014', '160314003', 'FH: Hypercholesterolaemia', '900000000000013009', '450994008'),
+('249815014', '160314003', 'FH: Hypercholesterolaemia', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2606997016', '160314003', 'Family history: Hypercholesterolemia (situation)', '900000000000003001', '450994008'),
 ('2666462016', '160314003', 'Family history: Hypercholesterolemia', '900000000000013009', '450994008'),
 ('2841081010', '160314003', 'Family history: Hypercholesterolaemia', '900000000000013009', '450994008'),
@@ -7912,11 +7909,11 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2610923012', '302690004', 'Encopresis (finding)', '900000000000003001', '450994008'),
 ('444507015', '302690004', 'Encopresis', '900000000000013009', '450994008'),
 ('430074010', '290085007', 'Breast problem', '900000000000013009', '450994008'),
-('684610013', '290085007', 'Breast problem (finding)', '900000000000003001', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('684610013', '290085007', 'Breast problem (finding)', '900000000000003001', '450994008'),
 ('368990015', '247081001', 'PVD - Posterior vitreous detachment', '900000000000013009', '450994008'),
 ('368991016', '247081001', 'Posterior vitreous detachment', '900000000000013009', '450994008'),
-('637208013', '247081001', 'Posterior vitreous detachment (disorder)', '900000000000003001', '450994008'),
+('637208013', '247081001', 'Posterior vitreous detachment (disorder)', '900000000000003001', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2610546015', '275937001', 'Family history of cancer (situation)', '900000000000003001', '450994008'),
 ('411910010', '275937001', 'Family history of cancer', '900000000000013009', '450994008'),
 ('411911014', '275937001', 'FH: Cancer - *', '900000000000013009', '450994008'),
@@ -8205,8 +8202,6 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2868834012', '64613007', 'Inflammation of small intestine (disorder)', '900000000000003001', '450994008'),
 ('2871273013', '64613007', 'Enteritis of small intestine', '900000000000013009', '450994008'),
 ('2871274019', '64613007', 'Inflammation of small intestine', '900000000000013009', '450994008'),
-('449298015', '306318004', 'Referral to urologist', '900000000000013009', '450994008'),
-('702712010', '306318004', 'Referral to urologist (procedure)', '900000000000003001', '450994008'),
 ('57295017', '34319007', 'Induration of skin', '900000000000013009', '450994008'),
 ('765828013', '34319007', 'Induration of skin (disorder)', '900000000000003001', '450994008'),
 ('1197436015', '372143007', 'Carcinoma of stomach (disorder)', '900000000000003001', '450994008'),
@@ -8482,14 +8477,14 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('135728018', '81817003', 'Atherosclerosis of aorta', '900000000000013009', '450994008'),
 ('2923328010', '81817003', 'Atherosclerosis aorta', '900000000000013009', '450994008'),
 ('823130012', '81817003', 'Atherosclerosis of aorta (disorder)', '900000000000003001', '450994008'),
-('301143015', '195747001', 'Chest cold', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('301143015', '195747001', 'Chest cold', '900000000000013009', '450994008'),
 ('579884019', '195747001', 'Chest cold (disorder)', '900000000000003001', '450994008'),
 ('409904016', '274139008', 'Shoulder syndrome', '900000000000013009', '450994008'),
 ('666861010', '274139008', 'Shoulder syndrome (disorder)', '900000000000003001', '450994008'),
 ('1221874017', '18165001', 'Icteric', '900000000000013009', '450994008'),
 ('1221875016', '18165001', 'Jaundiced', '900000000000013009', '450994008'),
-('30676010', '18165001', 'Jaundice', '900000000000013009', '450994008'),
+('30676010', '18165001', 'Jaundice', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('30679015', '18165001', 'Icterus', '900000000000013009', '450994008'),
 ('745551013', '18165001', 'Jaundice (finding)', '900000000000003001', '450994008'),
 ('141016010', '85057007', 'Hepatic cyst', '900000000000013009', '450994008'),
@@ -9044,13 +9039,13 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1233846014', '75229002', 'Blood in anterior chamber', '900000000000013009', '450994008'),
 ('124940012', '75229002', 'Hyphema', '900000000000013009', '450994008'),
 ('124941011', '75229002', 'Hyphemia', '900000000000013009', '450994008'),
-('124942016', '75229002', 'Hyphaema', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('124942016', '75229002', 'Hyphaema', '900000000000013009', '450994008'),
 ('502959013', '75229002', 'Hyphaemia', '900000000000013009', '450994008'),
 ('815815016', '75229002', 'Hyphema (disorder)', '900000000000003001', '450994008'),
 ('1231764015', '57781000', 'Disorder of vocal cord', '900000000000013009', '450994008'),
 ('2468868012', '57781000', 'Disorder of vocal cord (disorder)', '900000000000003001', '450994008'),
-('2773715017', '266569009', 'Nodular hyperplasia of prostate gland', '900000000000013009', '450994008'),
+('2773715017', '266569009', 'Nodular hyperplasia of prostate gland', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('396731012', '266569009', 'Benign prostatic hyperplasia', '900000000000013009', '450994008'),
 ('396732017', '266569009', 'Hyperplasia of prostate', '900000000000013009', '450994008'),
 ('396733010', '266569009', 'Prostatic hypertrophy', '900000000000013009', '450994008'),
@@ -9443,16 +9438,6 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('142425010', '85915003', 'Laryngotracheobronchitis', '900000000000013009', '450994008'),
 ('506814018', '85915003', 'LTB - Laryngotracheobronchitis', '900000000000013009', '450994008'),
 ('828069018', '85915003', 'Laryngotracheobronchitis (disorder)', '900000000000003001', '450994008'),
-('197809019', '44598004', 'Plexiform leiomyoma', '900000000000013009', '450994008'),
-('197810012', '44598004', 'Lipoleiomyoma', '900000000000013009', '450994008'),
-('2771037012', '44598004', 'Leiomyoma, no ICD-O subtype', '900000000000013009', '450994008'),
-('74391019', '44598004', 'Leiomyoma', '900000000000013009', '450994008'),
-('74393016', '44598004', 'Fibroid uterus', '900000000000013009', '450994008'),
-('74394010', '44598004', 'Fibromyoma', '900000000000013009', '450994008'),
-('74395011', '44598004', 'Leiomyofibroma', '900000000000013009', '450994008'),
-('74397015', '44598004', 'Fibroleiomyoma', '900000000000013009', '450994008'),
-('74398013', '44598004', 'Uterine fibroids', '900000000000013009', '450994008'),
-('781744014', '44598004', 'Leiomyoma, no ICD-O subtype (morphologic abnormality)', '900000000000003001', '450994008'),
 ('1231908013', '59026006', 'Spasm of eyelids', '900000000000013009', '450994008'),
 ('2579435013', '59026006', 'Essential blepharospasm', '900000000000013009', '450994008'),
 ('2579436014', '59026006', 'Benign essential blepharospasm', '900000000000013009', '450994008'),
@@ -9608,8 +9593,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1219972015', '11437003', 'Superficial bruising of back', '900000000000013009', '450994008'),
 ('19788015', '11437003', 'Contusion of back', '900000000000013009', '450994008'),
 ('658390015', '11437003', 'Contusion of back (disorder)', '900000000000003001', '450994008'),
-('149715015', '90325002', 'Vomiting of pregnancy', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('149715015', '90325002', 'Vomiting of pregnancy', '900000000000013009', '450994008'),
 ('149718018', '90325002', 'Vomiting as reason for care in pregnancy', '900000000000013009', '450994008'),
 ('833406012', '90325002', 'Vomiting of pregnancy (disorder)', '900000000000003001', '450994008'),
 ('354406016', '236423003', 'Renal impairment', '900000000000013009', '450994008'),
@@ -9624,7 +9608,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('136070010', '82035006', 'Resection of polyp', '900000000000013009', '450994008'),
 ('136073012', '82035006', 'Polypectomy', '900000000000013009', '450994008'),
 ('823373011', '82035006', 'Resection of polyp (procedure)', '900000000000003001', '450994008'),
-('39855010', '23737006', 'Chickenpox with complication', '900000000000013009', '450994008'),
+('39855010', '23737006', 'Chickenpox with complication', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('753293019', '23737006', 'Chickenpox with complication (disorder)', '900000000000003001', '450994008'),
 ('145655017', '87860000', 'Testicular mass', '900000000000013009', '450994008'),
 ('145659011', '87860000', 'Testicular lump', '900000000000013009', '450994008'),
@@ -10175,8 +10160,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('81184018', '48723006', 'Male hypogonadism', '900000000000013009', '450994008'),
 ('252318014', '161898004', 'Falls', '900000000000013009', '450994008'),
 ('542979015', '161898004', 'Falls (finding)', '900000000000003001', '450994008'),
-('122185010', '73583000', 'Epicondylitis', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('122185010', '73583000', 'Epicondylitis', '900000000000013009', '450994008'),
 ('813987015', '73583000', 'Epicondylitis (disorder)', '900000000000003001', '450994008'),
 ('1198921012', '373621006', 'Chronic pain syndrome (disorder)', '900000000000003001', '450994008'),
 ('1212086019', '373621006', 'Chronic pain syndrome', '900000000000013009', '450994008'),
@@ -10189,7 +10173,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('401449010', '268461001', 'Sheath contraception', '900000000000013009', '450994008'),
 ('661206013', '268461001', 'Sheath contraception (finding)', '900000000000003001', '450994008'),
 ('125722013', '75694006', 'Pancreatitis', '900000000000013009', '450994008'),
-('816332017', '75694006', 'Pancreatitis (disorder)', '900000000000003001', '450994008'),
+('816332017', '75694006', 'Pancreatitis (disorder)', '900000000000003001', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('1460994015', '386816005', 'Emotional problems (finding)', '900000000000003001', '450994008'),
 ('1480935014', '386816005', 'Emotional problems', '900000000000013009', '450994008'),
 ('1491814017', '386816005', 'Abnormal feeling', '900000000000013009', '450994008'),
@@ -10737,8 +10722,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('128639015', '77489003', 'Pterygium', '900000000000013009', '450994008'),
 ('200664014', '77489003', 'Web eye', '900000000000013009', '450994008'),
 ('818324018', '77489003', 'Pterygium (disorder)', '900000000000003001', '450994008'),
-('31978018', '18973006', 'Uterovaginal prolapse', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('31978018', '18973006', 'Uterovaginal prolapse', '900000000000013009', '450994008'),
 ('31981011', '18973006', 'Vaginal AND cervical prolapse', '900000000000013009', '450994008'),
 ('746613010', '18973006', 'Uterovaginal prolapse (disorder)', '900000000000003001', '450994008'),
 ('55507017', '33261009', 'Abscess of tonsil', '900000000000013009', '450994008'),
@@ -10752,7 +10736,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2792941016', '438479005', 'Injury of ligament of knee', '900000000000013009', '450994008'),
 ('65880011', '39288006', 'Purulent otitis media', '900000000000013009', '450994008'),
 ('65883013', '39288006', 'Suppurative otitis media', '900000000000013009', '450994008'),
-('775710019', '39288006', 'Purulent otitis media (disorder)', '900000000000003001', '450994008'),
+('775710019', '39288006', 'Purulent otitis media (disorder)', '900000000000003001', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('113810015', '68525005', 'Varicella vaccination', '900000000000013009', '450994008'),
 ('113811016', '68525005', 'Chickenpox vaccination', '900000000000013009', '450994008'),
 ('808370016', '68525005', 'Varicella vaccination (procedure)', '900000000000003001', '450994008'),
@@ -11298,8 +11283,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('379886010', '254956000', 'Pituitary adenoma', '900000000000013009', '450994008'),
 ('645921012', '254956000', 'Pituitary adenoma (disorder)', '900000000000003001', '450994008'),
 ('150085018', '90560007', 'Gout', '900000000000013009', '450994008'),
-('833690019', '90560007', 'Gout (disorder)', '900000000000003001', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('833690019', '90560007', 'Gout (disorder)', '900000000000003001', '450994008'),
 ('22068011', '12866006', 'Pneumococcal vaccination', '900000000000013009', '450994008'),
 ('732680019', '12866006', 'Pneumococcal vaccination (procedure)', '900000000000003001', '450994008'),
 ('166829019', '103284002', 'Positional vertigo', '900000000000013009', '450994008'),
@@ -11314,7 +11298,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('785119018', '47639008', 'Cyst - pilonidal (disorder)', '900000000000003001', '450994008'),
 ('79401013', '47639008', 'Pilonidal sinus', '900000000000013009', '450994008'),
 ('79402018', '47639008', 'Coccygeal fistula', '900000000000013009', '450994008'),
-('79403011', '47639008', 'Coccygeal sinus', '900000000000013009', '450994008'),
+('79403011', '47639008', 'Coccygeal sinus', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('79404017', '47639008', 'Pilonidal fistula', '900000000000013009', '450994008'),
 ('79405016', '47639008', 'Piliferous cyst', '900000000000013009', '450994008'),
 ('1229956010', '43038000', 'Examination of cardiovascular system', '900000000000013009', '450994008'),
@@ -11846,8 +11831,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('507678016', '8765009', 'Vomiting blood', '900000000000013009', '450994008'),
 ('507679012', '8765009', 'Haematemesis', '900000000000013009', '450994008'),
 ('830169012', '8765009', 'Hematemesis (disorder)', '900000000000003001', '450994008'),
-('178616011', '111378004', 'Respiratory alkalosis', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('178616011', '111378004', 'Respiratory alkalosis', '900000000000013009', '450994008'),
 ('630882016', '111378004', 'Respiratory alkalosis (disorder)', '900000000000003001', '450994008'),
 ('290373014', '188991008', 'Lipoma of anterior chest wall', '900000000000013009', '450994008'),
 ('572354016', '188991008', 'Lipoma of anterior chest wall (disorder)', '900000000000003001', '450994008'),
@@ -11861,7 +11845,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('14103017', '7916009', 'Alcoholic polyneuropathy', '900000000000013009', '450994008'),
 ('14104011', '7916009', 'Alcohol-induced polyneuropathy', '900000000000013009', '450994008'),
 ('820180017', '7916009', 'Alcoholic polyneuropathy (disorder)', '900000000000003001', '450994008'),
-('145113013', '87527008', 'Term pregnancy', '900000000000013009', '450994008'),
+('145113013', '87527008', 'Term pregnancy', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('830019019', '87527008', 'Term pregnancy (finding)', '900000000000003001', '450994008'),
 ('107316012', '64576003', 'Abscess of buttock', '900000000000013009', '450994008'),
 ('107317015', '64576003', 'Abscess of gluteal region', '900000000000013009', '450994008'),
@@ -12411,8 +12396,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('400338014', '268029009', 'Pathological fracture', '900000000000013009', '450994008'),
 ('400339018', '268029009', 'Spontaneous fracture', '900000000000013009', '450994008'),
 ('660721013', '268029009', 'Pathological fracture (disorder)', '900000000000003001', '450994008'),
-('1495307018', '271789005', 'Giddiness', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('1495307018', '271789005', 'Giddiness', '900000000000013009', '450994008'),
 ('1495308011', '271789005', 'Dizziness - giddy', '900000000000013009', '450994008'),
 ('1495309015', '271789005', 'Dizzy', '900000000000013009', '450994008'),
 ('406731010', '271789005', 'Dizziness and giddiness', '900000000000013009', '450994008'),
@@ -12425,7 +12409,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('270947017', '174929002', 'Mechanical prosthetic aortic valve replacement', '900000000000013009', '450994008'),
 ('270948010', '174929002', 'Replacement of aortic valve with prosthesis', '900000000000013009', '450994008'),
 ('557419018', '174929002', 'Mechanical prosthetic aortic valve replacement (procedure)', '900000000000003001', '450994008'),
-('320555019', '209799008', 'Sprain of costal cartilage', '900000000000013009', '450994008'),
+('320555019', '209799008', 'Sprain of costal cartilage', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('320556018', '209799008', 'Sprained rib', '900000000000013009', '450994008'),
 ('595500018', '209799008', 'Sprain of costal cartilage (disorder)', '900000000000003001', '450994008'),
 ('2923421015', '194983005', 'Aortic valve regurgitation, nonrheumatic', '900000000000013009', '450994008'),
@@ -12966,8 +12951,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('764854010', '33449004', 'Personality disorder (disorder)', '900000000000003001', '450994008'),
 ('1196481012', '371186005', 'Amputation of toe (procedure)', '900000000000003001', '450994008'),
 ('1209883019', '371186005', 'Amputation of toe', '900000000000013009', '450994008'),
-('1230726010', '49436004', 'AF - Atrial fibrillation', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('1230726010', '49436004', 'AF - Atrial fibrillation', '900000000000013009', '450994008'),
 ('787114012', '49436004', 'Atrial fibrillation (disorder)', '900000000000003001', '450994008'),
 ('82343012', '49436004', 'Atrial fibrillation', '900000000000013009', '450994008'),
 ('112591015', '67787004', 'Tongue tie', '900000000000013009', '450994008'),
@@ -12981,7 +12965,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2966351017', '57797005', 'Termination of pregnancy', '900000000000013009', '450994008'),
 ('2966354013', '57797005', 'Induced termination of pregnancy', '900000000000013009', '450994008'),
 ('2966404015', '57797005', 'Induced termination of pregnancy (disorder)', '900000000000003001', '450994008'),
-('96109012', '57797005', 'Induced abortion', '900000000000013009', '450994008'),
+('96109012', '57797005', 'Induced abortion', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('344353010', '229721007', 'Slow to talk', '900000000000013009', '450994008'),
 ('344354016', '229721007', 'Speech delay', '900000000000013009', '450994008'),
 ('617451017', '229721007', 'Speech delay (disorder)', '900000000000003001', '450994008'),
@@ -13524,8 +13509,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1197357012', '372064008', 'Malignant neoplasm of female breast (disorder)', '900000000000003001', '450994008'),
 ('1210642019', '372064008', 'Malignant neoplasm of female breast', '900000000000013009', '450994008'),
 ('252139014', '161805006', 'H/O: caesarean section', '900000000000013009', '450994008'),
-('252140011', '161805006', 'H/O: cesarean section', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('252140011', '161805006', 'H/O: cesarean section', '900000000000013009', '450994008'),
 ('2607152017', '161805006', 'History of - cesarean section (situation)', '900000000000003001', '450994008'),
 ('2666598010', '161805006', 'History of - cesarean section', '900000000000013009', '450994008'),
 ('350042013', '233598009', 'Acute bacterial bronchitis', '900000000000013009', '450994008'),
@@ -13538,7 +13522,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('267508012', '172790004', 'SMR - Submucous resection of nasal septum', '900000000000013009', '450994008'),
 ('267509016', '172790004', 'SMR - Submucous resection', '900000000000013009', '450994008'),
 ('267510014', '172790004', 'Submucous resection', '900000000000013009', '450994008'),
-('555023016', '172790004', 'Submucous resection of nasal septum (procedure)', '900000000000003001', '450994008'),
+('555023016', '172790004', 'Submucous resection of nasal septum (procedure)', '900000000000003001', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2760457012', '429998004', 'Vascular dementia (disorder)', '900000000000003001', '450994008'),
 ('2770951017', '429998004', 'Vascular dementia', '900000000000013009', '450994008'),
 ('2641098012', '424619006', 'Prenatal visit (regime/therapy)', '900000000000003001', '450994008'),
@@ -14085,8 +14070,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2579587010', '409073007', 'Teaching', '900000000000013009', '450994008'),
 ('2670794016', '363101005', 'Drug withdrawal syndrome', '900000000000013009', '450994008'),
 ('482236016', '363101005', 'Drug withdrawal', '900000000000013009', '450994008'),
-('754887012', '363101005', 'Drug withdrawal (disorder)', '900000000000003001', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('754887012', '363101005', 'Drug withdrawal (disorder)', '900000000000003001', '450994008'),
 ('1495092011', '237101004', 'Leukorrhagia', '900000000000013009', '450994008'),
 ('355392018', '237101004', 'Leucorrhoea', '900000000000013009', '450994008'),
 ('355393011', '237101004', 'Leukorrhea', '900000000000013009', '450994008'),
@@ -14101,7 +14085,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('659606016', '267038008', 'Edema (finding)', '900000000000003001', '450994008'),
 ('398763012', '267369002', 'Non-toxic goiter', '900000000000013009', '450994008'),
 ('398764018', '267369002', 'Non-toxic simple goiter', '900000000000013009', '450994008'),
-('398765017', '267369002', 'Simple goiter', '900000000000013009', '450994008'),
+('398765017', '267369002', 'Simple goiter', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('398766016', '267369002', 'Non-toxic simple goitre', '900000000000013009', '450994008'),
 ('398767013', '267369002', 'Non-toxic goitre', '900000000000013009', '450994008'),
 ('398768015', '267369002', 'Simple goitre', '900000000000013009', '450994008'),
@@ -14646,8 +14631,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('145857010', '87991007', 'Gender identity disorder', '900000000000013009', '450994008'),
 ('145860015', '87991007', 'Sexual orientation disturbance', '900000000000013009', '450994008'),
 ('830581019', '87991007', 'Gender identity disorder (disorder)', '900000000000003001', '450994008'),
-('1230737011', '49526009', 'Age-related hearing loss', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('1230737011', '49526009', 'Age-related hearing loss', '900000000000013009', '450994008'),
 ('2572177018', '49526009', 'Presbycusis (disorder)', '900000000000003001', '450994008'),
 ('82490013', '49526009', 'Presbycusis', '900000000000013009', '450994008'),
 ('82491012', '49526009', 'Senile deafness', '900000000000013009', '450994008'),
@@ -14661,7 +14645,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('542951014', '161873000', 'Heavy legs (finding)', '900000000000003001', '450994008'),
 ('259778018', '167252002', 'Urine pregnancy test', '900000000000013009', '450994008'),
 ('548849016', '167252002', 'Urine pregnancy test (procedure)', '900000000000003001', '450994008'),
-('1230107011', '44558001', 'Inguinal hernioplasty', '900000000000013009', '450994008'),
+('1230107011', '44558001', 'Inguinal hernioplasty', '900000000000013009', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('74324015', '44558001', 'Repair of inguinal hernia', '900000000000013009', '450994008'),
 ('74327010', '44558001', 'Inguinal herniorrhaphy', '900000000000013009', '450994008'),
 ('781700011', '44558001', 'Repair of inguinal hernia (procedure)', '900000000000003001', '450994008'),
@@ -15216,8 +15201,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('475189012', '13277001', 'Cystic acne vulgaris', '900000000000013009', '450994008'),
 ('737363018', '13277001', 'Cystic acne (disorder)', '900000000000003001', '450994008'),
 ('354718014', '236647003', 'Urethral stenosis', '900000000000013009', '450994008'),
-('625269011', '236647003', 'Urethral stenosis (disorder)', '900000000000003001', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('625269011', '236647003', 'Urethral stenosis (disorder)', '900000000000003001', '450994008'),
 ('1218885012', '102874004', 'Think I am pregnant', '900000000000013009', '450994008'),
 ('1218886013', '102874004', 'Think I am going to have a baby', '900000000000013009', '450994008'),
 ('255918010', '102874004', 'Possible pregnancy', '900000000000013009', '450994008'),
@@ -15231,7 +15215,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('88684012', '53332000', 'Degenerative spinal arthritis', '900000000000013009', '450994008'),
 ('2951776016', '231437006', 'Reactive psychosis', '900000000000013009', '450994008'),
 ('346896012', '231437006', 'Reactive psychoses', '900000000000013009', '450994008'),
-('619368014', '231437006', 'Reactive psychoses (disorder)', '900000000000003001', '450994008'),
+('619368014', '231437006', 'Reactive psychoses (disorder)', '900000000000003001', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('57790011', '34630004', 'Pityriasis', '900000000000013009', '450994008'),
 ('766176018', '34630004', 'Pityriasis (disorder)', '900000000000003001', '450994008'),
 ('348223013', '232429001', 'Pseudocroup', '900000000000013009', '450994008'),
@@ -15781,8 +15766,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('658608010', '266151007', 'Dermatophytosis of the body (disorder)', '900000000000003001', '450994008'),
 ('1466209017', '392029006', 'Uveitis-hyphema-glaucoma syndrome (disorder)', '900000000000003001', '450994008'),
 ('1486016016', '392029006', 'Uveitis-hyphema-glaucoma syndrome', '900000000000013009', '450994008'),
-('1493844012', '392029006', 'UGH syndrome', '900000000000013009', '450994008');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('1493844012', '392029006', 'UGH syndrome', '900000000000013009', '450994008'),
 ('2470356014', '392029006', 'Uveitis-glaucoma-hyphema syndrome', '900000000000013009', '450994008'),
 ('3403019', '1376001', 'Obsessive compulsive personality disorder', '900000000000013009', '450994008'),
 ('475486014', '1376001', 'Anancastic personality disorder', '900000000000013009', '450994008'),
@@ -15796,7 +15780,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2560242017', '105441003', 'Death of spouse (event)', '900000000000003001', '450994008'),
 ('252557017', '162030005', 'Waterbrash symptom', '900000000000013009', '450994008'),
 ('252558010', '162030005', 'Waterbrash', '900000000000013009', '450994008'),
-('543126019', '162030005', 'Waterbrash (finding)', '900000000000003001', '450994008'),
+('543126019', '162030005', 'Waterbrash (finding)', '900000000000003001', '450994008');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2868800011', '444735002', 'Instability of pelvic floor (disorder)', '900000000000003001', '450994008'),
 ('2870632013', '444735002', 'Instability of pelvic floor', '900000000000013009', '450994008'),
 ('102489017', '61683000', 'Drop attack', '900000000000013009', '450994008'),
@@ -15824,6 +15809,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('485971018', '34842007', 'Antepartum haemorrhage', '900000000000013009', '450994008'),
 ('58149017', '34842007', 'Antepartum hemorrhage', '900000000000013009', '450994008'),
 ('766413012', '34842007', 'Antepartum hemorrhage (disorder)', '900000000000003001', '450994008'),
+('283665014', '183552008', 'Referred to urologist', '900000000000013009', '450994008'),
+('567047012', '183552008', 'Referred to urologist (finding)', '900000000000003001', '450994008'),
 ('2646842012', '301913002', 'Lid lesion', '900000000000013009', '450994008'),
 ('2920602019', '301913002', 'Lesion eyelid', '900000000000013009', '450994008'),
 ('443421014', '301913002', 'Lesion of eyelid', '900000000000013009', '450994008'),
@@ -16349,8 +16336,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('696284018', '300589005', 'Excision of sebaceous cyst (procedure)', '900000000000003001', '450994009'),
 ('403809019', '269533000', 'Carcinoma of colon', '900000000000013009', '450994009'),
 ('662407016', '269533000', 'Carcinoma of colon (disorder)', '900000000000003001', '450994009'),
-('457029010', '313172000', 'Colonoscopy abnormal', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('457029010', '313172000', 'Colonoscopy abnormal', '900000000000013009', '450994009'),
 ('709926013', '313172000', 'Colonoscopy abnormal (finding)', '900000000000003001', '450994009'),
 ('32715019', '19418005', 'Psychopathic personality trait', '900000000000013009', '450994009'),
 ('747518017', '19418005', 'Psychopathic personality trait (finding)', '900000000000003001', '450994009'),
@@ -16362,7 +16348,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('62351017', '37373007', 'Persistent vitelline duct', '900000000000013009', '450994009'),
 ('62352012', '37373007', 'Persistent intestinal end of vitelline duct', '900000000000013009', '450994009'),
 ('2837781013', '363732003', 'Addison disease', '900000000000013009', '450994009'),
-('485624014', '363732003', 'Addison''s disease', '900000000000013009', '450994009'),
+('485624014', '363732003', 'Addison''s disease', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('765190014', '363732003', 'Addison''s disease (disorder)', '900000000000003001', '450994009'),
 ('1231098019', '52254009', 'NS - Nephrotic syndrome', '900000000000013009', '450994009'),
 ('790243010', '52254009', 'Nephrotic syndrome (disorder)', '900000000000003001', '450994009'),
@@ -16728,9 +16715,6 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('368491014', '246679005', 'Runny eye - discharging', '900000000000013009', '450994009'),
 ('368492019', '246679005', 'Discharge from eye', '900000000000013009', '450994009'),
 ('636758013', '246679005', 'Discharge from eye (finding)', '900000000000003001', '450994009'),
-('2920802017', '272588001', 'Malnutrition, calorie', '900000000000013009', '450994009'),
-('407752010', '272588001', 'Malnutrition (calorie)', '900000000000013009', '450994009'),
-('665128014', '272588001', 'Malnutrition (calorie) (disorder)', '900000000000003001', '450994009'),
 ('283604010', '183521007', 'Referral to neurology service', '900000000000013009', '450994009'),
 ('283605011', '183521007', 'Neurological referral', '900000000000013009', '450994009'),
 ('567013014', '183521007', 'Referral to neurology service (procedure)', '900000000000003001', '450994009'),
@@ -16908,8 +16892,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('578167019', '194204009', 'Furunculosis of external auditory meatus (disorder)', '900000000000003001', '450994009'),
 ('406560016', '271687003', 'Swelling of scrotum', '900000000000013009', '450994009'),
 ('406561017', '271687003', 'Swollen scrotum', '900000000000013009', '450994009'),
-('664112014', '271687003', 'Swelling of scrotum (finding)', '900000000000003001', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('664112014', '271687003', 'Swelling of scrotum (finding)', '900000000000003001', '450994009'),
 ('360302013', '240536007', 'Filiform wart', '900000000000013009', '450994009'),
 ('629693018', '240536007', 'Filiform wart (disorder)', '900000000000003001', '450994009'),
 ('109043017', '65636009', 'Keratoconus', '900000000000013009', '450994009'),
@@ -16925,7 +16908,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('492217012', '367466007', 'Skin irritation', '900000000000013009', '450994009'),
 ('776250010', '367466007', 'Skin irritation (disorder)', '900000000000003001', '450994009'),
 ('1230529018', '4788002', 'Closed fracture zygoma', '900000000000013009', '450994009'),
-('2882642010', '4788002', 'Closed fracture of malar bone', '900000000000013009', '450994009'),
+('2882642010', '4788002', 'Closed fracture of malar bone', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('785387016', '4788002', 'Closed fracture of zygoma (disorder)', '900000000000003001', '450994009'),
 ('8984015', '4788002', 'Closed fracture of zygoma', '900000000000013009', '450994009'),
 ('118689010', '71444005', 'Cerebral thrombosis', '900000000000013009', '450994009'),
@@ -17201,8 +17185,6 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('250343011', '102481003', 'Generalised chronic body aches', '900000000000013009', '450994009'),
 ('250344017', '102481003', 'Generalised chronic body pains', '900000000000013009', '450994009'),
 ('541527011', '102481003', 'Generalized chronic body pains (finding)', '900000000000003001', '450994009'),
-('207514013', '128867006', 'Mange', '900000000000013009', '450994009'),
-('732917010', '128867006', 'Mange (disorder)', '900000000000003001', '450994009'),
 ('21525015', '12519004', 'Sprain of sacroiliac ligament', '900000000000013009', '450994009'),
 ('473481018', '12519004', 'Sprain of ligament of sacroiliac joint', '900000000000013009', '450994009'),
 ('473482013', '12519004', 'Sacroiliac sprain', '900000000000013009', '450994009'),
@@ -17472,8 +17454,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('109101014', '65668001', 'Drainage from external ear canal', '900000000000013009', '450994009'),
 ('109102019', '65668001', 'Otorrhoea', '900000000000013009', '450994009'),
 ('805196011', '65668001', 'Otorrhea (disorder)', '900000000000003001', '450994009'),
-('62268016', '37323009', 'Recurrent herpes simplex', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('62268016', '37323009', 'Recurrent herpes simplex', '900000000000013009', '450994009'),
 ('769178018', '37323009', 'Recurrent herpes simplex (disorder)', '900000000000003001', '450994009'),
 ('178473019', '111255008', 'Avascular necrosis of the capital femoral epiphysis', '900000000000013009', '450994009'),
 ('2646298019', '111255008', 'Perthes disease - osteochondritis of the femoral head', '900000000000013009', '450994009'),
@@ -17490,7 +17471,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('810075012', '7006003', 'Clumsiness (finding)', '900000000000003001', '450994009'),
 ('194083011', '125595000', 'Injury of upper arm', '900000000000013009', '450994009'),
 ('729443011', '125595000', 'Injury of upper arm (disorder)', '900000000000003001', '450994009'),
-('444087010', '302415002', 'Removal of suture from skin', '900000000000013009', '450994009'),
+('444087010', '302415002', 'Removal of suture from skin', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('698321017', '302415002', 'Removal of suture from skin (procedure)', '900000000000003001', '450994009'),
 ('119846018', '111395007', 'Nephrogenic diabetes insipidus', '900000000000013009', '450994009'),
 ('361940010', '111395007', 'NDI - Nephrogenic diabetes insipidus', '900000000000013009', '450994009'),
@@ -18039,8 +18021,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('11002011', '6020002', 'Epidermophytosis pedis', '900000000000013009', '450994009'),
 ('11003018', '6020002', 'Athlete''s foot', '900000000000013009', '450994009'),
 ('2536410013', '6020002', 'Dermatophytosis of foot', '900000000000013009', '450994009'),
-('498673016', '6020002', 'TP - Tinea pedis', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('498673016', '6020002', 'TP - Tinea pedis', '900000000000013009', '450994009'),
 ('498674010', '6020002', 'Ringworm of foot', '900000000000013009', '450994009'),
 ('799126013', '6020002', 'Tinea pedis (disorder)', '900000000000003001', '450994009'),
 ('448998019', '306110004', 'Referral to medical service', '900000000000013009', '450994009'),
@@ -18058,7 +18039,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('484525011', '30233002', 'Swallowing painful', '900000000000013009', '450994009'),
 ('50595018', '30233002', 'Odynophagia', '900000000000013009', '450994009'),
 ('50596017', '30233002', 'Painful swallowing', '900000000000013009', '450994009'),
-('50597014', '30233002', 'Pain on swallowing', '900000000000013009', '450994009'),
+('50597014', '30233002', 'Pain on swallowing', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('761215019', '30233002', 'Swallowing painful (finding)', '900000000000003001', '450994009'),
 ('1771117014', '403191005', 'Second degree burn (disorder)', '900000000000003001', '450994009'),
 ('1782263017', '403191005', 'Second degree burn', '900000000000013009', '450994009'),
@@ -18602,8 +18584,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2575902019', '268533009', 'Sterilisation education', '900000000000013009', '450994009'),
 ('1768050016', '400130008', 'Temporal arteritis (disorder)', '900000000000003001', '450994009'),
 ('1779388019', '400130008', 'Temporal arteritis', '900000000000013009', '450994009'),
-('1787109017', '400130008', 'Cranial arteritis', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('1787109017', '400130008', 'Cranial arteritis', '900000000000013009', '450994009'),
 ('1787110010', '400130008', 'Horton''s disease', '900000000000013009', '450994009'),
 ('1787111014', '400130008', 'TA - Temporal arteritis', '900000000000013009', '450994009'),
 ('1787112019', '400130008', 'Temporal giant cell arteritis', '900000000000013009', '450994009'),
@@ -18621,7 +18602,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('351393018', '234532001', 'Immunodeficiency disorder', '900000000000013009', '450994009'),
 ('351394012', '234532001', 'Immunodeficiency disease', '900000000000013009', '450994009'),
 ('351395013', '234532001', 'Immunodeficiency', '900000000000013009', '450994009'),
-('622866015', '234532001', 'Immunodeficiency disorder (disorder)', '900000000000003001', '450994009'),
+('622866015', '234532001', 'Immunodeficiency disorder (disorder)', '900000000000003001', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('1229712015', '4106009', 'Rotator cuff rupture', '900000000000013009', '450994009'),
 ('1229713013', '4106009', 'Rotator cuff tear', '900000000000013009', '450994009'),
 ('1229714019', '4106009', 'Rupture of rotator cuff of shoulder', '900000000000013009', '450994009'),
@@ -19162,8 +19144,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('350415017', '233873004', 'Hypertrophic cardiomyopathy', '900000000000013009', '450994009'),
 ('350416016', '233873004', 'HCM - Hypertrophic cardiomyopathy', '900000000000013009', '450994009'),
 ('350417013', '233873004', 'Primary hypertrophic cardiomyopathy', '900000000000013009', '450994009'),
-('622117015', '233873004', 'Hypertrophic cardiomyopathy (disorder)', '900000000000003001', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('622117015', '233873004', 'Hypertrophic cardiomyopathy (disorder)', '900000000000003001', '450994009'),
 ('2568937019', '22181003', 'Diplacusis (disorder)', '900000000000003001', '450994009'),
 ('37241015', '22181003', 'Diplacusis', '900000000000013009', '450994009'),
 ('37242010', '22181003', 'Double disharmonic hearing', '900000000000013009', '450994009'),
@@ -19181,7 +19162,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1233553011', '72863001', 'Snores', '900000000000013009', '450994009'),
 ('1233554017', '72863001', 'Finding of snoring', '900000000000013009', '450994009'),
 ('813187016', '72863001', 'Snoring (finding)', '900000000000003001', '450994009'),
-('2818315017', '442085002', 'Greenstick fracture', '900000000000013009', '450994009'),
+('2818315017', '442085002', 'Greenstick fracture', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2818316016', '442085002', 'Greenstick fracture (morphologic abnormality)', '900000000000003001', '450994009'),
 ('379223011', '254651007', 'Squamous cell carcinoma of skin', '900000000000013009', '450994009'),
 ('379224017', '254651007', 'SCC - Cutaneous squamous cell carcinoma', '900000000000013009', '450994009'),
@@ -19728,8 +19710,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('39293013', '23407003', 'Pes planovalgus', '900000000000013009', '450994009'),
 ('39294019', '23407003', 'Pes planus', '900000000000013009', '450994009'),
 ('752924018', '23407003', 'Congenital pes planus (disorder)', '900000000000003001', '450994009'),
-('46256016', '27635008', 'Aching', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('46256016', '27635008', 'Aching', '900000000000013009', '450994009'),
 ('483607018', '27635008', 'Aching pain', '900000000000013009', '450994009'),
 ('758225015', '27635008', 'Aching pain (finding)', '900000000000003001', '450994009'),
 ('451841014', '308485000', 'Referral to gynecologist', '900000000000013009', '450994009'),
@@ -19747,7 +19728,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('282571017', '182782007', 'Dermatitis', '900000000000013009', '450994009'),
 ('282572012', '182782007', 'Inflammation of skin', '900000000000013009', '450994009'),
 ('566189010', '182782007', 'Dermatitis (disorder)', '900000000000003001', '450994009'),
-('442763015', '301460003', 'Ingrowing eyelash', '900000000000013009', '450994009'),
+('442763015', '301460003', 'Ingrowing eyelash', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('697259012', '301460003', 'Ingrowing eyelash (disorder)', '900000000000003001', '450994009'),
 ('1765969013', '398050005', 'Diverticular disease of colon (disorder)', '900000000000003001', '450994009'),
 ('1777620011', '398050005', 'Diverticular disease of colon', '900000000000013009', '450994009'),
@@ -20282,8 +20264,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('132091016', '79619009', 'Mitral valve stenosis', '900000000000013009', '450994009'),
 ('820689017', '79619009', 'Mitral valve stenosis (disorder)', '900000000000003001', '450994009'),
 ('121357019', '73063007', 'Colicky pain', '900000000000013009', '450994009'),
-('813410015', '73063007', 'Colicky pain (finding)', '900000000000003001', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('813410015', '73063007', 'Colicky pain (finding)', '900000000000003001', '450994009'),
 ('2476049019', '26889001', 'Muscle inflammation', '900000000000013009', '450994009'),
 ('44991019', '26889001', 'Myositis', '900000000000013009', '450994009'),
 ('757392010', '26889001', 'Myositis (disorder)', '900000000000003001', '450994009'),
@@ -20302,7 +20283,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('368424013', '246636008', 'Mist over eyes', '900000000000013009', '450994009'),
 ('368425014', '246636008', 'Cloudy vision', '900000000000013009', '450994009'),
 ('368426010', '246636008', 'Misty vision', '900000000000013009', '450994009'),
-('368427018', '246636008', 'Blurred vision - hazy', '900000000000013009', '450994009'),
+('368427018', '246636008', 'Blurred vision - hazy', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('368428011', '246636008', 'Hazy vision', '900000000000013009', '450994009'),
 ('636709014', '246636008', 'Hazy vision (disorder)', '900000000000003001', '450994009'),
 ('354789010', '236704009', 'ASB - Asymptomatic bacteriuria', '900000000000013009', '450994009'),
@@ -20803,6 +20785,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2580186011', '419603000', 'Sebaceous cyst', '900000000000013009', '450994009'),
 ('2580187019', '419603000', 'Steatoma', '900000000000013009', '450994009'),
 ('2580188012', '419603000', 'Wen', '900000000000013009', '450994009'),
+('283665014', '183552008', 'Referred to urologist', '900000000000013009', '450994009'),
+('567047012', '183552008', 'Referred to urologist (finding)', '900000000000003001', '450994009'),
 ('194673013', '128079007', 'Reflex sympathetic dystrophy', '900000000000013009', '450994009'),
 ('206355016', '128079007', 'Complex regional pain syndrome, type I', '900000000000013009', '450994009'),
 ('2475469012', '128079007', 'Sudek''s atrophy', '900000000000013009', '450994009'),
@@ -20855,8 +20839,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1231868010', '58703003', 'Puerperal depression', '900000000000013009', '450994009'),
 ('797465010', '58703003', 'Postpartum depression (disorder)', '900000000000003001', '450994009'),
 ('97552012', '58703003', 'Postpartum depression', '900000000000013009', '450994009'),
-('2912801017', '449710006', 'Cellulitis of lower limb (disorder)', '900000000000003001', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('2912801017', '449710006', 'Cellulitis of lower limb (disorder)', '900000000000003001', '450994009'),
 ('2912869018', '449710006', 'Cellulitis of lower limb', '900000000000013009', '450994009'),
 ('1230691015', '49218002', 'Arthralgia of hip', '900000000000013009', '450994009'),
 ('198184013', '49218002', 'Hip joint pain', '900000000000013009', '450994009'),
@@ -20873,7 +20856,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('456108012', '312403005', 'Legionnaire''s disease', '900000000000013009', '450994009'),
 ('709075012', '312403005', 'Legionnaire''s disease (disorder)', '900000000000003001', '450994009'),
 ('13601014', '7632005', 'Dermatographic urticaria', '900000000000013009', '450994009'),
-('13602019', '7632005', 'Dermatographia', '900000000000013009', '450994009'),
+('13602019', '7632005', 'Dermatographia', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('13603012', '7632005', 'Ebbecke''s reaction', '900000000000013009', '450994009'),
 ('13604018', '7632005', 'Dermagraphy', '900000000000013009', '450994009'),
 ('13606016', '7632005', 'Autographism', '900000000000013009', '450994009'),
@@ -21426,8 +21410,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2920809014', '44635007', 'Fecal impaction in rectum', '900000000000013009', '450994009'),
 ('493965013', '44635007', 'Impacted stool in rectum', '900000000000013009', '450994009'),
 ('493966014', '44635007', 'Impacted feces', '900000000000013009', '450994009'),
-('493967017', '44635007', 'Faecal impaction', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('493967017', '44635007', 'Faecal impaction', '900000000000013009', '450994009'),
 ('493968010', '44635007', 'Impacted faeces', '900000000000013009', '450994009'),
 ('493969019', '44635007', 'Fecal impaction', '900000000000013009', '450994009'),
 ('74456011', '44635007', 'Fecal impaction of rectum', '900000000000013009', '450994009'),
@@ -21443,7 +21426,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1785527011', '396275006', 'Hypertrophic polyarthritis', '900000000000013009', '450994009'),
 ('1785528018', '396275006', 'Osteoarthrosis', '900000000000013009', '450994009'),
 ('1785529014', '396275006', 'Degenerative arthropathy', '900000000000013009', '450994009'),
-('2530369013', '415105001', 'Placental abruption (disorder)', '900000000000003001', '450994009'),
+('2530369013', '415105001', 'Placental abruption (disorder)', '900000000000003001', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2533807017', '415105001', 'Placental abruption', '900000000000013009', '450994009'),
 ('2537192015', '415105001', 'Ablatio placentae', '900000000000013009', '450994009'),
 ('2537193013', '415105001', 'Abruptio placentae', '900000000000013009', '450994009'),
@@ -21990,8 +21974,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('503483019', '77176002', 'Current smoker', '900000000000013009', '450994009'),
 ('1231937012', '59282003', 'PE - Pulmonary embolism', '900000000000013009', '450994009'),
 ('798107010', '59282003', 'Pulmonary embolism (disorder)', '900000000000003001', '450994009'),
-('98484016', '59282003', 'Pulmonary embolism', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('98484016', '59282003', 'Pulmonary embolism', '900000000000013009', '450994009'),
 ('451329014', '308028008', 'Injection of steroid into shoulder joint', '900000000000013009', '450994009'),
 ('704529014', '308028008', 'Injection of steroid into shoulder joint (procedure)', '900000000000003001', '450994009'),
 ('1765766010', '397847006', 'Family bereavement (finding)', '900000000000003001', '450994009'),
@@ -22006,7 +21989,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('788892010', '51037009', 'Fracture of patella (disorder)', '900000000000003001', '450994009'),
 ('85039010', '51037009', 'Fracture of patella', '900000000000013009', '450994009'),
 ('141235016', '85189001', 'Acute appendicitis', '900000000000013009', '450994009'),
-('827189018', '85189001', 'Acute appendicitis (disorder)', '900000000000003001', '450994009'),
+('827189018', '85189001', 'Acute appendicitis (disorder)', '900000000000003001', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('169732013', '105611005', 'Sprain of joint', '900000000000013009', '450994009'),
 ('2659580012', '105611005', 'Sprain of ligament of joint', '900000000000013009', '450994009'),
 ('573403013', '105611005', 'Sprain of ligament of joint (disorder)', '900000000000003001', '450994009'),
@@ -22546,8 +22530,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2162390010', '399939002', 'Pilosis', '900000000000013009', '450994009'),
 ('2162391014', '399939002', 'Hirsutes', '900000000000013009', '450994009'),
 ('2573330013', '419045004', 'Loss of consciousness (finding)', '900000000000003001', '450994009'),
-('2576604010', '419045004', 'Loss of consciousness', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('2576604010', '419045004', 'Loss of consciousness', '900000000000013009', '450994009'),
 ('496504011', '52967002', 'MF - Myelofibrosis', '900000000000013009', '450994009'),
 ('496505012', '52967002', 'Myelosclerosis', '900000000000013009', '450994009'),
 ('496506013', '52967002', 'Agnogenic myeloid metaplasia', '900000000000013009', '450994009'),
@@ -22563,7 +22546,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('121974010', '73452002', 'Abscess of lung', '900000000000013009', '450994009'),
 ('813842018', '73452002', 'Abscess of lung (disorder)', '900000000000003001', '450994009'),
 ('158289015', '95566004', 'Urolithiasis', '900000000000013009', '450994009'),
-('839746014', '95566004', 'Urolithiasis (disorder)', '900000000000003001', '450994009'),
+('839746014', '95566004', 'Urolithiasis (disorder)', '900000000000003001', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2662645015', '426284001', 'Chemical burn (disorder)', '900000000000003001', '450994009'),
 ('2674287011', '426284001', 'Chemical burn', '900000000000013009', '450994009'),
 ('1224853017', '25289003', 'Sounds seem unnaturally loud', '900000000000013009', '450994009'),
@@ -23109,8 +23093,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('61798013', '37042000', 'Psoriasis guttata', '900000000000013009', '450994009'),
 ('768863016', '37042000', 'Guttate psoriasis (disorder)', '900000000000003001', '450994009'),
 ('28380017', '16761005', 'Esophagitis', '900000000000013009', '450994009'),
-('28383015', '16761005', 'Oesophagitis', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('28383015', '16761005', 'Oesophagitis', '900000000000013009', '450994009'),
 ('743848012', '16761005', 'Esophagitis (disorder)', '900000000000003001', '450994009'),
 ('206336016', '127040003', 'Sickle cell disease', '900000000000013009', '450994009'),
 ('206337013', '127040003', 'Hemoglobin S-S disease', '900000000000013009', '450994009'),
@@ -23126,7 +23109,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('474026013', '127040003', 'Hb S disease', '900000000000013009', '450994009'),
 ('474027016', '127040003', 'Sickle cell syndrome', '900000000000013009', '450994009'),
 ('731078012', '127040003', 'Hereditary hemoglobinopathy disorder homozygous for hemoglobin S (disorder)', '900000000000003001', '450994009'),
-('142125016', '85746008', 'Anemia due to protein deficiency', '900000000000013009', '450994009'),
+('142125016', '85746008', 'Anemia due to protein deficiency', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('142126015', '85746008', 'Anemia related to kwashiorkor', '900000000000013009', '450994009'),
 ('142127012', '85746008', 'Protein deficiency anemia', '900000000000013009', '450994009'),
 ('506707014', '85746008', 'Anaemia due to protein deficiency', '900000000000013009', '450994009'),
@@ -23667,8 +23651,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('498664012', '60168000', 'OSTM - Osteomyelitis', '900000000000013009', '450994009'),
 ('498665013', '60168000', 'OM - Osteomyelitis', '900000000000013009', '450994009'),
 ('799090010', '60168000', 'Osteomyelitis (disorder)', '900000000000003001', '450994009'),
-('99949018', '60168000', 'Osteomyelitis', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('99949018', '60168000', 'Osteomyelitis', '900000000000013009', '450994009'),
 ('99952014', '60168000', 'Pyogenic inflammation of bone', '900000000000013009', '450994009'),
 ('2464488012', '409037000', 'Adolescent behavior alteration (finding)', '900000000000003001', '450994009'),
 ('2469084017', '409037000', 'Adolescent behaviour alteration', '900000000000013009', '450994009'),
@@ -23684,7 +23667,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('114546011', '68962001', 'Myosalgia', '900000000000013009', '450994009'),
 ('114547019', '68962001', 'Myoneuralgia', '900000000000013009', '450994009'),
 ('2552628011', '68962001', 'Aching muscles', '900000000000013009', '450994009'),
-('808855014', '68962001', 'Muscle pain (finding)', '900000000000003001', '450994009'),
+('808855014', '68962001', 'Muscle pain (finding)', '900000000000003001', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('108274017', '65155005', 'Grand mal', '900000000000013009', '450994009'),
 ('199568011', '65155005', 'Grand mal seizure', '900000000000013009', '450994009'),
 ('804627017', '65155005', 'Grand mal seizure (finding)', '900000000000003001', '450994009'),
@@ -23811,8 +23795,6 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('612811017', '225553008', 'Wound dehiscence (finding)', '900000000000003001', '450994009'),
 ('17818010', '10227000', 'Herpetic infection of penis', '900000000000013009', '450994009'),
 ('539465019', '10227000', 'Herpetic infection of penis (disorder)', '900000000000003001', '450994009'),
-('449298015', '306318004', 'Referral to urologist', '900000000000013009', '450994009'),
-('702712010', '306318004', 'Referral to urologist (procedure)', '900000000000003001', '450994009'),
 ('107385015', '64613007', 'Enteritis', '900000000000013009', '450994009'),
 ('2671690011', '64613007', 'Enteritis, inflammatory disorder of small intestine', '900000000000013009', '450994009'),
 ('2868834012', '64613007', 'Inflammation of small intestine (disorder)', '900000000000003001', '450994009'),
@@ -24236,8 +24218,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1786818011', '399329002', 'Sycosis barbae', '900000000000013009', '450994009'),
 ('1786819015', '399329002', 'Mycotic sycosis', '900000000000013009', '450994009'),
 ('1786820014', '399329002', 'Sycosis barbae, not parasitic', '900000000000013009', '450994009'),
-('1786821013', '399329002', 'Barbers'' rash', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('1786821013', '399329002', 'Barbers'' rash', '900000000000013009', '450994009'),
 ('405114019', '270493009', 'Paralysis of vocal cords or larynx', '900000000000013009', '450994009'),
 ('663124014', '270493009', 'Paralysis of vocal cords or larynx (disorder)', '900000000000003001', '450994009'),
 ('130460010', '78622004', 'Galactorrhea not associated with childbirth', '900000000000013009', '450994009'),
@@ -24255,7 +24236,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('414563012', '277843001', 'Behavioural problem', '900000000000013009', '450994009'),
 ('414564018', '277843001', 'Problem behavior', '900000000000013009', '450994009'),
 ('670927016', '277843001', 'Problem behavior (finding)', '900000000000003001', '450994009'),
-('793062019', '54792008', 'Erythematosquamous dermatosis (disorder)', '900000000000003001', '450994009'),
+('793062019', '54792008', 'Erythematosquamous dermatosis (disorder)', '900000000000003001', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('91065017', '54792008', 'Erythematosquamous dermatosis', '900000000000013009', '450994009'),
 ('1461978019', '387800004', 'Cervical spondylosis (disorder)', '900000000000003001', '450994009'),
 ('1481870016', '387800004', 'Cervical spondylosis', '900000000000013009', '450994009'),
@@ -24295,8 +24277,6 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1785081019', '279062009', 'Soft tissue rheumatism', '900000000000013009', '450994009'),
 ('416180015', '279062009', 'Myofascial pain', '900000000000013009', '450994009'),
 ('672299010', '279062009', 'Myofascial pain (finding)', '900000000000003001', '450994009'),
-('323297013', '211879003', 'Burn of wrist(s) and hand(s)', '900000000000013009', '450994009'),
-('597687012', '211879003', 'Burn of wrist(s) and hand(s) (disorder)', '900000000000003001', '450994009'),
 ('379104013', '254588001', 'Intestinal polyp', '900000000000013009', '450994009'),
 ('379105014', '254588001', 'Polyp of intestine', '900000000000013009', '450994009'),
 ('645502014', '254588001', 'Polyp of intestine (disorder)', '900000000000003001', '450994009'),
@@ -24798,8 +24778,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('443896016', '302297009', 'Congenital deformity of foot', '900000000000013009', '450994009'),
 ('698195011', '302297009', 'Congenital deformity of foot (disorder)', '900000000000003001', '450994009'),
 ('419640012', '281595001', 'Thrombosis of inferior vena cava', '900000000000013009', '450994009'),
-('675150014', '281595001', 'Thrombosis of inferior vena cava (disorder)', '900000000000003001', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('675150014', '281595001', 'Thrombosis of inferior vena cava (disorder)', '900000000000003001', '450994009'),
 ('297707010', '10601006', 'Pain in lower limb', '900000000000013009', '450994009'),
 ('577179017', '10601006', 'Pain in lower limb (finding)', '900000000000003001', '450994009'),
 ('42759014', '25501002', 'Social phobia', '900000000000013009', '450994009'),
@@ -24820,7 +24799,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('283642016', '183544005', 'Referral to ENT service', '900000000000013009', '450994009'),
 ('283643014', '183544005', 'ENT referral', '900000000000013009', '450994009'),
 ('567038016', '183544005', 'Referral to ear, nose and throat service (procedure)', '900000000000003001', '450994009'),
-('283553018', '183481006', 'Non-urgent hospital admission', '900000000000013009', '450994009'),
+('283553018', '183481006', 'Non-urgent hospital admission', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('566968019', '183481006', 'Non-urgent hospital admission (procedure)', '900000000000003001', '450994009'),
 ('1228000015', '3282008', 'Arc eye', '900000000000013009', '450994009'),
 ('1228001016', '3282008', 'Welder''s flash', '900000000000013009', '450994009'),
@@ -25018,16 +24998,6 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('142425010', '85915003', 'Laryngotracheobronchitis', '900000000000013009', '450994009'),
 ('506814018', '85915003', 'LTB - Laryngotracheobronchitis', '900000000000013009', '450994009'),
 ('828069018', '85915003', 'Laryngotracheobronchitis (disorder)', '900000000000003001', '450994009'),
-('197809019', '44598004', 'Plexiform leiomyoma', '900000000000013009', '450994009'),
-('197810012', '44598004', 'Lipoleiomyoma', '900000000000013009', '450994009'),
-('2771037012', '44598004', 'Leiomyoma, no ICD-O subtype', '900000000000013009', '450994009'),
-('74391019', '44598004', 'Leiomyoma', '900000000000013009', '450994009'),
-('74393016', '44598004', 'Fibroid uterus', '900000000000013009', '450994009'),
-('74394010', '44598004', 'Fibromyoma', '900000000000013009', '450994009'),
-('74395011', '44598004', 'Leiomyofibroma', '900000000000013009', '450994009'),
-('74397015', '44598004', 'Fibroleiomyoma', '900000000000013009', '450994009'),
-('74398013', '44598004', 'Uterine fibroids', '900000000000013009', '450994009'),
-('781744014', '44598004', 'Leiomyoma, no ICD-O subtype (morphologic abnormality)', '900000000000003001', '450994009'),
 ('1231908013', '59026006', 'Spasm of eyelids', '900000000000013009', '450994009'),
 ('2579435013', '59026006', 'Essential blepharospasm', '900000000000013009', '450994009'),
 ('2579436014', '59026006', 'Benign essential blepharospasm', '900000000000013009', '450994009'),
@@ -25365,8 +25335,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('769691016', '37785001', 'Patellar tendonitis (disorder)', '900000000000003001', '450994009'),
 ('399433012', '267611002', 'Degeneration of macula and posterior pole', '900000000000013009', '450994009'),
 ('660249019', '267611002', 'Degeneration of macula and posterior pole (disorder)', '900000000000003001', '450994009'),
-('53532017', '32035007', 'Chronic lymphadenitis', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('53532017', '32035007', 'Chronic lymphadenitis', '900000000000013009', '450994009'),
 ('53535015', '32035007', 'Chronic adenitis', '900000000000013009', '450994009'),
 ('763272019', '32035007', 'Chronic lymphadenitis (disorder)', '900000000000003001', '450994009'),
 ('145925010', '88032003', 'Amaurosis fugax', '900000000000013009', '450994009'),
@@ -25393,7 +25362,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('52897013', '31658008', 'Chronic paranoid schizophrenia', '900000000000013009', '450994009'),
 ('762803014', '31658008', 'Chronic paranoid schizophrenia (disorder)', '900000000000003001', '450994009'),
 ('2575075018', '419042001', 'Anaphylactic shock, due to adverse effect of correct medicinal substance properly administered (disorder)', '900000000000003001', '450994009'),
-('2578509019', '419042001', 'Anaphylactic shock, due to adverse effect of correct medicinal substance properly administered', '900000000000013009', '450994009'),
+('2578509019', '419042001', 'Anaphylactic shock, due to adverse effect of correct medicinal substance properly administered', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('113403018', '68272006', 'Acute maxillary sinusitis', '900000000000013009', '450994009'),
 ('500974018', '68272006', 'Acute antritis', '900000000000013009', '450994009'),
 ('808089011', '68272006', 'Acute maxillary sinusitis (disorder)', '900000000000003001', '450994009'),
@@ -25926,8 +25896,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('257385013', '165517008', 'Neutropenia', '900000000000013009', '450994009'),
 ('546966014', '165517008', 'Neutropenia (finding)', '900000000000003001', '450994009'),
 ('1220353016', '11805005', 'Groin injury', '900000000000013009', '450994009'),
-('20375013', '11805005', 'Injury of groin', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('20375013', '11805005', 'Injury of groin', '900000000000013009', '450994009'),
 ('696019010', '11805005', 'Injury of groin (disorder)', '900000000000003001', '450994009'),
 ('1219405014', '1085006', 'Vulval candidiasis', '900000000000013009', '450994009'),
 ('1219406010', '1085006', 'Vulval thrush', '900000000000013009', '450994009'),
@@ -25957,7 +25926,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2579451017', '8034008', 'Painful erection', '900000000000013009', '450994009'),
 ('821490012', '8034008', 'Painful penile erection (finding)', '900000000000003001', '450994009'),
 ('2786660014', '438457000', 'Swelling of testicle (finding)', '900000000000003001', '450994009'),
-('2792514015', '438457000', 'Swelling of testicle', '900000000000013009', '450994009'),
+('2792514015', '438457000', 'Swelling of testicle', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('113328010', '68225006', 'Alopecia areata', '900000000000013009', '450994009'),
 ('113329019', '68225006', 'Alopecia circumscripta', '900000000000013009', '450994009'),
 ('113330012', '68225006', 'Patchy loss of hair', '900000000000013009', '450994009'),
@@ -26486,8 +26456,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('344524010', '229826007', 'Paring of callus', '900000000000013009', '450994009'),
 ('344525011', '229826007', 'Reduction of callus', '900000000000013009', '450994009'),
 ('617566017', '229826007', 'Reduction of callus (procedure)', '900000000000003001', '450994009'),
-('1231694016', '57182000', 'Injuries to nerves, nerve plexuses and roots', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('1231694016', '57182000', 'Injuries to nerves, nerve plexuses and roots', '900000000000013009', '450994009'),
 ('795776012', '57182000', 'Nerve injury (disorder)', '900000000000003001', '450994009'),
 ('95105012', '57182000', 'Nerve injury', '900000000000013009', '450994009'),
 ('95108014', '57182000', 'Nerve damage', '900000000000013009', '450994009'),
@@ -26516,7 +26485,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('500765010', '67531005', 'SB - Spina bifida', '900000000000013009', '450994009'),
 ('807266011', '67531005', 'Spina bifida (disorder)', '900000000000003001', '450994009'),
 ('267538018', '172805009', 'Electrocautery to nasal turbinate', '900000000000013009', '450994009'),
-('267539014', '172805009', 'CIT - Cautery to inferior turbinate', '900000000000013009', '450994009'),
+('267539014', '172805009', 'CIT - Cautery to inferior turbinate', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('267540011', '172805009', 'Cauterisation of nasal turbinate', '900000000000013009', '450994009'),
 ('267541010', '172805009', 'Cauterization of nasal turbinate', '900000000000013009', '450994009'),
 ('555041012', '172805009', 'Cauterization of nasal turbinate (procedure)', '900000000000003001', '450994009'),
@@ -27050,8 +27020,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('835896014', '92384009', 'Benign neoplasm of skin (disorder)', '900000000000003001', '450994009'),
 ('391248019', '263126002', 'Ligament injury', '900000000000013009', '450994009'),
 ('655205017', '263126002', 'Ligament injury (disorder)', '900000000000003001', '450994009'),
-('119795011', '72092001', 'Arteriosclerotic vascular disease', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('119795011', '72092001', 'Arteriosclerotic vascular disease', '900000000000013009', '450994009'),
 ('812331014', '72092001', 'Arteriosclerotic vascular disease (disorder)', '900000000000003001', '450994009'),
 ('2574306019', '419893006', 'Epidermoid cyst (disorder)', '900000000000003001', '450994009'),
 ('2577649019', '419893006', 'Epidermoid cyst', '900000000000013009', '450994009'),
@@ -27082,7 +27051,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('66118016', '39423001', 'Stammering', '900000000000013009', '450994009'),
 ('1771116017', '403190006', 'First degree burn (disorder)', '900000000000003001', '450994009'),
 ('1782262010', '403190006', 'First degree burn', '900000000000013009', '450994009'),
-('1229446015', '38628009', 'Gay', '900000000000013009', '450994009'),
+('1229446015', '38628009', 'Gay', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('491706014', '38628009', 'Homosexual', '900000000000013009', '450994009'),
 ('65053017', '38628009', 'Homosexuality', '900000000000013009', '450994009'),
 ('774926018', '38628009', 'Homosexual (finding)', '900000000000003001', '450994009'),
@@ -27604,8 +27574,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('23510011', '13791008', 'General weakness', '900000000000013009', '450994009'),
 ('23511010', '13791008', 'Debility', '900000000000013009', '450994009'),
 ('23512015', '13791008', 'Lassitude', '900000000000013009', '450994009'),
-('23513013', '13791008', 'Weakness', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('23513013', '13791008', 'Weakness', '900000000000013009', '450994009'),
 ('475504012', '13791008', 'Weakness - general', '900000000000013009', '450994009'),
 ('475505013', '13791008', 'Feeling weak', '900000000000013009', '450994009'),
 ('739243018', '13791008', 'Asthenia (finding)', '900000000000003001', '450994009'),
@@ -27636,7 +27605,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('70653017', '42343007', 'Congestive heart failure', '900000000000013009', '450994009'),
 ('70654011', '42343007', 'Congestive heart disease', '900000000000013009', '450994009'),
 ('779232016', '42343007', 'Congestive heart failure (disorder)', '900000000000003001', '450994009'),
-('46731011', '27916005', 'Abscess of liver', '900000000000013009', '450994009'),
+('46731011', '27916005', 'Abscess of liver', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('46734015', '27916005', 'Hepatic abscess', '900000000000013009', '450994009'),
 ('758538012', '27916005', 'Abscess of liver (disorder)', '900000000000003001', '450994009'),
 ('110116013', '66308002', 'Fracture of humerus', '900000000000013009', '450994009'),
@@ -28162,8 +28132,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('80021015', '48023004', 'Breast self-examination technique education', '900000000000013009', '450994009'),
 ('345651012', '230698000', 'Lacunar infarction', '900000000000013009', '450994009'),
 ('345652017', '230698000', 'Lacunar stroke', '900000000000013009', '450994009'),
-('345653010', '230698000', 'LACI - Lacunar infarction', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('345653010', '230698000', 'LACI - Lacunar infarction', '900000000000013009', '450994009'),
 ('345654016', '230698000', 'LI - Lacunar infarction', '900000000000013009', '450994009'),
 ('618541018', '230698000', 'Lacunar infarction (disorder)', '900000000000003001', '450994009'),
 ('252406018', '161947006', 'Nocturnal cough / wheeze', '900000000000013009', '450994009'),
@@ -28191,7 +28160,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('1783893010', '28998008', 'Intraretinal hemorrhage', '900000000000013009', '450994009'),
 ('2462629010', '28998008', 'Retinal hemorrhage (finding)', '900000000000003001', '450994009'),
 ('484055013', '28998008', 'Retinal haemorrhage', '900000000000013009', '450994009'),
-('48549019', '28998008', 'Retinal hemorrhage', '900000000000013009', '450994009'),
+('48549019', '28998008', 'Retinal hemorrhage', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('1495070012', '232209000', 'Nasal obstruction present', '900000000000013009', '450994009'),
 ('1495071011', '232209000', 'Nasal airway obstruction', '900000000000013009', '450994009'),
 ('347922010', '232209000', 'Nasal obstruction', '900000000000013009', '450994009'),
@@ -28723,8 +28693,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('417481019', '279992002', 'Recurrent falls', '900000000000013009', '450994009'),
 ('673351017', '279992002', 'Recurrent falls (finding)', '900000000000003001', '450994009'),
 ('406549013', '271681002', 'Stomach ache', '900000000000013009', '450994009'),
-('406550013', '271681002', 'Stomach upset', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('406550013', '271681002', 'Stomach upset', '900000000000013009', '450994009'),
 ('406551012', '271681002', 'Tummy ache', '900000000000013009', '450994009'),
 ('406552017', '271681002', 'Sore tummy', '900000000000013009', '450994009'),
 ('406553010', '271681002', 'Belly ache', '900000000000013009', '450994009'),
@@ -28752,7 +28721,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('79241018', '47534009', 'Retinaculotomy of carpal tunnel', '900000000000013009', '450994009'),
 ('794836018', '56335008', 'Infection by Trichomonas (disorder)', '900000000000003001', '450994009'),
 ('93678014', '56335008', 'Infection by Trichomonas', '900000000000013009', '450994009'),
-('93680015', '56335008', 'Trichomoniasis', '900000000000013009', '450994009'),
+('93680015', '56335008', 'Trichomoniasis', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('93681016', '56335008', 'Trichomonosis', '900000000000013009', '450994009'),
 ('495018019', '48194001', 'GH - Gestational hypertension', '900000000000013009', '450994009'),
 ('495019010', '48194001', 'Hypertension complicating childbirth', '900000000000013009', '450994009'),
@@ -29279,8 +29249,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('178429018', '111196000', 'Dermatitis herpetiformis', '900000000000013009', '450994009'),
 ('187689016', '111196000', 'Duhring''s disease', '900000000000013009', '450994009'),
 ('187690013', '111196000', 'Dermatosis herpetiformis', '900000000000013009', '450994009'),
-('359661017', '111196000', 'Duhring-Brocq disease', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('359661017', '111196000', 'Duhring-Brocq disease', '900000000000013009', '450994009'),
 ('359662012', '111196000', 'DH - Dermatitis herpetiformis', '900000000000013009', '450994009'),
 ('629155012', '111196000', 'Dermatitis herpetiformis (disorder)', '900000000000003001', '450994009'),
 ('793792016', '55434001', 'Hydrocele (disorder)', '900000000000003001', '450994009'),
@@ -29309,7 +29278,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('2474974017', '191187006', 'Alpha thalassaemia trait', '900000000000013009', '450994009'),
 ('2475179019', '191187006', 'Alpha thalassemia trait', '900000000000013009', '450994009'),
 ('294031015', '191187006', 'Alpha trait thalassemia', '900000000000013009', '450994009'),
-('294032010', '191187006', 'Alpha trait thalassaemia', '900000000000013009', '450994009'),
+('294032010', '191187006', 'Alpha trait thalassaemia', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('574856014', '191187006', 'Alpha trait thalassemia (disorder)', '900000000000003001', '450994009'),
 ('41860010', '24976005', 'Uterine prolapse', '900000000000013009', '450994009'),
 ('41862019', '24976005', 'Descensus uteri', '900000000000013009', '450994009'),
@@ -29841,8 +29811,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('410587019', '274740001', 'Enlarged submandibular lymph gland', '900000000000013009', '450994009'),
 ('667530016', '274740001', 'Enlarged submandibular lymph gland (disorder)', '900000000000003001', '450994009'),
 ('411490016', '275499005', 'Acute wheezy bronchitis', '900000000000013009', '450994009'),
-('668375016', '275499005', 'Acute wheezy bronchitis (disorder)', '900000000000003001', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('668375016', '275499005', 'Acute wheezy bronchitis (disorder)', '900000000000003001', '450994009'),
 ('196453012', '25674000', 'Lichen sclerosus', '900000000000013009', '450994009'),
 ('43034019', '25674000', 'Lichen sclerosus et atrophicus', '900000000000013009', '450994009'),
 ('483016015', '25674000', 'White spot disease', '900000000000013009', '450994009'),
@@ -29871,7 +29840,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('100367013', '60404007', 'Cerebral abscess', '900000000000013009', '450994009'),
 ('498728018', '60404007', 'Parenchymal intracranial abscess', '900000000000013009', '450994009'),
 ('799353017', '60404007', 'Cerebral abscess (disorder)', '900000000000003001', '450994009'),
-('1216683014', '49472006', 'Vitamin B12-deficient megaloblastic anaemia', '900000000000013009', '450994009'),
+('1216683014', '49472006', 'Vitamin B12-deficient megaloblastic anaemia', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('1218173018', '49472006', 'Vitamin B12-deficient megaloblastic anemia', '900000000000013009', '450994009'),
 ('495412014', '49472006', 'Megaloblastic anaemia due to vitamin B>12< deficiency', '900000000000013009', '450994009'),
 ('495413016', '49472006', 'Megaloblastic anaemia due to cobalamin deficiency', '900000000000013009', '450994009'),
@@ -30411,8 +30381,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('778465015', '41652007', 'Pain in eye (finding)', '900000000000003001', '450994009'),
 ('131110015', '79012001', 'Vaginospasm', '900000000000013009', '450994009'),
 ('131111016', '79012001', 'Vaginismus', '900000000000013009', '450994009'),
-('131112011', '79012001', 'Colpospasm', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('131112011', '79012001', 'Colpospasm', '900000000000013009', '450994009'),
 ('131113018', '79012001', 'Vulvismus', '900000000000013009', '450994009'),
 ('503999016', '79012001', 'Spasm of vaginal muscles at intercourse', '900000000000013009', '450994009'),
 ('820016015', '79012001', 'Vaginospasm (finding)', '900000000000003001', '450994009'),
@@ -30441,7 +30410,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('739182010', '13746004', 'Bipolar disorder (disorder)', '900000000000003001', '450994009'),
 ('2530828013', '414285001', 'Food allergy (disorder)', '900000000000003001', '450994009'),
 ('2534292019', '414285001', 'Food allergy', '900000000000013009', '450994009'),
-('1220021016', '1145003', 'DSD - Developmental speech disorder', '900000000000013009', '450994009'),
+('1220021016', '1145003', 'DSD - Developmental speech disorder', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2999013', '1145003', 'Developmental speech disorder', '900000000000013009', '450994009'),
 ('659670014', '1145003', 'Developmental speech disorder (disorder)', '900000000000003001', '450994009'),
 ('136225013', '82127005', 'Perianal abscess', '900000000000013009', '450994009'),
@@ -30978,8 +30948,7 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('572893019', '105529008', 'Lives alone (finding)', '900000000000003001', '450994009'),
 ('2546885016', '416675009', 'Furuncle (disorder)', '900000000000003001', '450994009'),
 ('2549199016', '416675009', 'Furuncle', '900000000000013009', '450994009'),
-('2553900013', '416675009', 'Boil', '900000000000013009', '450994009');
-INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
+('2553900013', '416675009', 'Boil', '900000000000013009', '450994009'),
 ('114029018', '68653001', 'Anal pain', '900000000000013009', '450994009'),
 ('2468910012', '68653001', 'Anal pain (finding)', '900000000000003001', '450994009'),
 ('1199209012', '373909009', 'Choking sensation (finding)', '900000000000003001', '450994009'),
@@ -31008,7 +30977,8 @@ INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`
 ('93172014', '56018004', 'Wheezing', '900000000000013009', '450994009'),
 ('93174010', '56018004', 'Asthmatic breath sounds', '900000000000013009', '450994009'),
 ('93175011', '56018004', 'Asthmatic breathing', '900000000000013009', '450994009'),
-('93176012', '56018004', 'Wheeze', '900000000000013009', '450994009'),
+('93176012', '56018004', 'Wheeze', '900000000000013009', '450994009');
+INSERT INTO `ICPCSynonyms` (`DescId`, `ConceptId`, `Synonym`, `Type`, `refsetid`) VALUES
 ('2912803019', '449614009', 'Swelling of lower limb (finding)', '900000000000003001', '450994009'),
 ('2913200017', '449614009', 'Swelling of lower limb', '900000000000013009', '450994009'),
 ('1219917017', '11401008', 'Dilatation and curettage', '900000000000013009', '450994009'),
@@ -31320,6 +31290,7 @@ CREATE TABLE `SCT_Concepts` (
   `concept_id` varchar(18) NOT NULL,
   `label` varchar(300) DEFAULT NULL,
   `refset_type_id` varchar(18) NOT NULL,
+  KEY `concept_id` (`concept_id`),
   KEY `id35` (`concept_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -31663,7 +31634,6 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('186738001', 'Epidemic vertigo', '0'),
 ('26650005', 'Acute tracheitis', '0'),
 ('102481003', 'Generalized chronic body pains', '0'),
-('128867006', 'Mange', '0'),
 ('249307003', 'Nasal symptom', '0'),
 ('185383005', 'Asked to come in - investigation result', '0'),
 ('12519004', 'Sprain of sacroiliac ligament', '0'),
@@ -32501,9 +32471,9 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('9707006', 'Intestinal volvulus', '0'),
 ('371773006', 'Emotional abuse', '0'),
 ('35265002', 'Mallory-Weiss syndrome', '0'),
-('3480002', 'Burn of wrist', '0');
+('3480002', 'Burn of wrist', '0'),
+('239775007', 'Traumatic joint hemarthrosis', '0');
 INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
-('239775007', 'Traumatic joint hemarthrosis', '0'),
 ('90539001', 'Ventricular aneurysm', '0'),
 ('367475009', 'Lesion of ulnar nerve', '0'),
 ('60862001', 'Tinnitus', '0'),
@@ -33523,7 +33493,6 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('225553008', 'Wound dehiscence', '0'),
 ('10227000', 'Herpetic infection of penis', '0'),
 ('64613007', 'Enteritis of small intestine', '0'),
-('306318004', 'Referral to urologist', '0'),
 ('34319007', 'Induration of skin', '0'),
 ('372143007', 'Carcinoma of stomach', '0'),
 ('39839004', 'Diaphragmatic hernia', '0'),
@@ -33691,10 +33660,10 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('63491006', 'Intermittent claudication', '0'),
 ('268547008', 'Screening for malignant neoplasm of breast', '0'),
 ('170946006', 'Glaucoma monitoring', '0'),
-('265473002', 'Plastic repair of aortic valve', '0');
-INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
+('265473002', 'Plastic repair of aortic valve', '0'),
 ('54556006', 'Fracture of ulna', '0'),
-('171014001', 'Medical counseling', '0'),
+('171014001', 'Medical counseling', '0');
+INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('210560004', 'Open wound of hand, excluding finger(s)', '0'),
 ('54823002', 'Subclinical hypothyroidism', '0'),
 ('86735004', 'Erythematous condition', '0'),
@@ -33853,7 +33822,6 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('197853008', 'Recurrent cystitis', '0'),
 ('428989006', 'Operation on ganglion cyst', '0'),
 ('85915003', 'Laryngotracheobronchitis', '0'),
-('44598004', 'Leiomyoma', '0'),
 ('59026006', 'Blepharospasm', '0'),
 ('57406009', 'Carpal tunnel syndrome', '0'),
 ('160932005', 'Financial problem', '0'),
@@ -34863,12 +34831,12 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('49496001', 'Double ureter', '0'),
 ('402867006', 'Capillary hemangioma', '0'),
 ('127314000', 'Open wound of chest wall', '0'),
-('95677002', 'Disorder of vision', '0');
-INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
+('95677002', 'Disorder of vision', '0'),
 ('183862006', 'Referral to fertility clinic', '0'),
 ('280816001', 'Facial palsy', '0'),
 ('52754008', 'Polymenorrhea', '0'),
-('84757009', 'Epilepsy', '0'),
+('84757009', 'Epilepsy', '0');
+INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('444905003', 'Mass of soft tissue', '0'),
 ('37031009', 'Motion sickness', '0'),
 ('8380000', 'Congenital anomaly of ear', '0'),
@@ -35593,6 +35561,7 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('64375000', 'Acute laryngotracheitis', '0'),
 ('13619001', 'Thyroidectomy', '0'),
 ('34842007', 'Antepartum hemorrhage', '0'),
+('183552008', 'Referred to urologist', '0'),
 ('301913002', 'Lesion of eyelid', '0'),
 ('275120007', 'FH: Cardiac disorder', '0'),
 ('274279008', 'Renal pain', '0'),
@@ -35828,7 +35797,6 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('88157006', 'Salpingitis', '1'),
 ('50417007', 'Lower respiratory tract infection', '1'),
 ('246679005', 'Discharge from eye', '1'),
-('272588001', 'Malnutrition (calorie)', '1'),
 ('183521007', 'Referral to neurology service', '1'),
 ('160325007', 'FH: Senile dementia', '1'),
 ('371807002', 'Atypical angina', '1'),
@@ -35951,7 +35919,6 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('186738001', 'Epidemic vertigo', '1'),
 ('26650005', 'Acute tracheitis', '1'),
 ('102481003', 'Generalized chronic body pains', '1'),
-('128867006', 'Mange', '1'),
 ('12519004', 'Sprain of sacroiliac ligament', '1'),
 ('248499004', 'Dependent edema', '1'),
 ('179382003', 'Arthroscopic total medial meniscectomy', '1'),
@@ -36053,13 +36020,13 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('302912005', 'Vocal cord palsy', '1'),
 ('30085007', 'Morton''s metatarsalgia', '1'),
 ('57054005', 'Acute myocardial infarction', '1'),
-('109913001', 'Benign neoplasm of meninges', '1');
-INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
+('109913001', 'Benign neoplasm of meninges', '1'),
 ('42112009', 'Urinary incontinence of non-organic origin', '1'),
 ('236448000', 'Small kidney', '1'),
 ('307576001', 'Osteosarcoma of bone', '1'),
 ('11403006', 'Financially poor', '1'),
-('4969004', 'Sinus headache', '1'),
+('4969004', 'Sinus headache', '1');
+INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('24369008', 'Pulmonary sarcoidosis', '1'),
 ('271839005', 'Sphincter ani incontinence', '1'),
 ('274724004', 'Localized edema', '1'),
@@ -36912,6 +36879,7 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('234550008', 'Immunoglobulin G1 deficiency', '1'),
 ('47435007', 'Measles vaccination', '1'),
 ('419603000', 'Epidermoid cyst of skin', '1'),
+('183552008', 'Referred to urologist', '1'),
 ('128079007', 'Reflex sympathetic dystrophy', '1'),
 ('125653000', 'Open wound of finger', '1'),
 ('422400008', 'Vomiting', '1'),
@@ -37236,12 +37204,12 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('93458008', 'Foreign body in skin', '1'),
 ('237091009', 'Infective vaginitis', '1'),
 ('19273005', 'Repair of recurrent inguinal hernia', '1'),
-('170628003', 'Airways obstruction irreversible', '1');
-INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
+('170628003', 'Airways obstruction irreversible', '1'),
 ('73589001', 'Intervertebral disc prolapse', '1'),
 ('195353004', 'Wegener''s granulomatosis', '1'),
 ('65568007', 'Cigarette smoker', '1'),
-('122481008', 'Hammer toe', '1'),
+('122481008', 'Hammer toe', '1');
+INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('128274005', 'Congenital anomaly of nose', '1'),
 ('15182000', 'Coffin-Lowry syndrome', '1'),
 ('14893008', 'Burn of hand', '1'),
@@ -37715,7 +37683,6 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('268227001', 'Unilateral undescended testis', '1'),
 ('225553008', 'Wound dehiscence', '1'),
 ('10227000', 'Herpetic infection of penis', '1'),
-('306318004', 'Referral to urologist', '1'),
 ('64613007', 'Enteritis of small intestine', '1'),
 ('39839004', 'Diaphragmatic hernia', '1'),
 ('372143007', 'Carcinoma of stomach', '1'),
@@ -37841,7 +37808,6 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('202487003', 'Sacroiliac joint pain', '1'),
 ('367522007', 'Infectious eczematoid dermatitis', '1'),
 ('279062009', 'Myofascial pain', '1'),
-('211879003', 'Burn of wrist(s) and hand(s)', '1'),
 ('254588001', 'Polyp of intestine', '1'),
 ('416878008', 'Papillary conjunctivitis', '1'),
 ('237495005', 'Thyroid nodule', '1'),
@@ -38030,7 +37996,6 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('21983002', 'Hashimoto thyroiditis', '1'),
 ('428989006', 'Operation on ganglion cyst', '1'),
 ('85915003', 'Laryngotracheobronchitis', '1'),
-('44598004', 'Leiomyoma', '1'),
 ('59026006', 'Blepharospasm', '1'),
 ('57406009', 'Carpal tunnel syndrome', '1'),
 ('160932005', 'Financial problem', '1'),
@@ -38421,15 +38386,15 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('53277000', 'Vulvovaginitis', '1'),
 ('271873000', 'Senility', '1'),
 ('171007003', 'Bereavement counseling', '1'),
-('68572005', 'Infestation by Siphonaptera', '1');
-INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
+('68572005', 'Infestation by Siphonaptera', '1'),
 ('21794005', 'Radial styloid tenosynovitis', '1'),
 ('249945007', 'Monoparesis - leg', '1'),
 ('30128009', 'Tietze''s disease', '1'),
 ('38880002', 'Rigor', '1'),
 ('183664005', 'Refer to hospital OPD', '1'),
 ('41088001', 'Meningococcus vaccination', '1'),
-('68109007', 'Stricture of artery', '1'),
+('68109007', 'Stricture of artery', '1');
+INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('109989006', 'Multiple myeloma', '1'),
 ('300980002', 'Normocytic anemia', '1'),
 ('300956001', 'Low back strain', '1'),
@@ -39601,15 +39566,15 @@ INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('55300003', 'Cramp', '1'),
 ('55308005', 'Poisoning due to insect venom', '1'),
 ('118601006', 'Non-Hodgkin''s lymphoma (clinical)', '1'),
-('43275000', 'Otitis', '1');
-INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
+('43275000', 'Otitis', '1'),
 ('128462008', 'Secondary malignant neoplastic disease', '1'),
 ('160303001', 'FH: Diabetes mellitus', '1'),
 ('13164000', 'Reduced visual acuity', '1'),
 ('70691001', 'Agoraphobia', '1'),
 ('408856003', 'Autistic disorder', '1'),
 ('129127001', 'Infection of ear', '1'),
-('61599003', 'Phlebitis', '1'),
+('61599003', 'Phlebitis', '1');
+INSERT INTO `SCT_Concepts` (`concept_id`, `label`, `refset_type_id`) VALUES
 ('193000002', 'Temporal lobe epilepsy', '1'),
 ('30037006', 'Anal fissure', '1'),
 ('279420009', 'Hematoma of skin', '1'),
