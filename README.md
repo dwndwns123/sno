@@ -1,5 +1,7 @@
 field-test-tool
 ===============
+This tool and open source code is no longer supported or hosted by SNOMED International
+---------------------------------------------------------------------------------------
 
 IHTSDO Field Test Web Tool
 
